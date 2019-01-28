@@ -1,0 +1,28 @@
+\begin{blocksection}
+\question Write a function that returns True if n is a prime number and False otherwise. Hint, check a number's divisors up to (but no including) n. A number n is a prime number if n's divisors are only 1 and n. 
+
+\begin{lstlisting}
+def is_prime(n):
+    """
+    >>> is_prime(2) # 2's only divisors are 1 and 2
+    True
+    >>> is_prime(3) # 3's only divisors are 1 and 3
+    True
+    >>> is_prime(15) # 15's divisors are 1, 3, 5, 15
+    False
+    """
+
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def is_prime(n):
+    if n < 2:
+        return False
+    for x in range(2, n):
+        if n % x == 0:
+            return False
+    return True
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

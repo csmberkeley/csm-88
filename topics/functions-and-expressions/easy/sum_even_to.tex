@@ -1,0 +1,36 @@
+\begin{blocksection}
+\question Write a function that returns the sum of all even numbers from 2 to n. 
+(Hint: If n = 10, return 2 + 4 + 6 + 8 + 10)
+
+\begin{lstlisting}
+def sum_even_to(temp, raining): 
+    """
+    >>> sum_even_to(6) # 2 + 4 + 6
+    12
+    >>> sum_even_to(10) # 2 + 4 + 6 + 8 + 10
+    30
+    """
+
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+# For loop solution
+def sum_even_to(temp, raining): 
+    sum = 0
+    for i in range(2, n+1):
+        if i % 2 == 0:
+            sum = sum + i
+    return sum
+
+# While loop solution
+def sum_even_to(temp, raining): 
+    sum = 0
+    while n > 0:
+        if n % 2 == 0:
+            sum = sum + n
+        n = n - 1
+    return sum
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

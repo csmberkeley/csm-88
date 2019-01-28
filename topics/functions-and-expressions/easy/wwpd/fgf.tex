@@ -8,14 +8,14 @@
 >>> def g(x, y):
 ...     print('u', x)
 ...     return mul(mul(x, y), 2)
->>> f(2, g(2, f(500, 2)))
+>>> f(2, g(2, f(500, 3)))
 \end{lstlisting}
 
 \begin{solution}[1in]
 \begin{lstlisting}
 h 2
 u 2
-h 2012
-2015
+h 2016
+2019
 \end{lstlisting}
 \end{solution}

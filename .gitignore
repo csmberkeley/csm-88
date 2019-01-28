@@ -1,6 +1,12 @@
 ## Published handouts and Makefile dependencies
 published/
 deps/
+src/fa17
+src/fa18
+src/sp18
+src/su17
+src/su18
+
 
 # Created by https://www.gitignore.io/api/latex,linux,macos,windows
 
