@@ -16,12 +16,24 @@ def is_prime(n):
 
 \begin{solution}[1.5in]
 \begin{lstlisting}
+# Solution with for loop
 def is_prime(n):
     if n < 2:
         return False
     for x in range(2, n):
         if n % x == 0:
             return False
+    return True
+
+# Alternate solution with while loop
+def is_prime(n)
+    if n <= 1:
+        return False
+    k = 2
+    while k < n:
+        if n % k == 0:             
+            return False
+        k += 1
     return True
 \end{lstlisting}
 \end{solution}
