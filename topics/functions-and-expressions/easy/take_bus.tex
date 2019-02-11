@@ -20,8 +20,16 @@ def take_bus(temp, raining):
 
 \begin{solution}[1.5in]
 \begin{lstlisting}
+# One line solution
 def take_bus(temp, raining):
     return (temp < 50) or raining
+
+# Solution with if/else
+def take_bus(temp, raining):
+    if (temp < 50) or raining:
+    	return True
+    else:
+    	return False
 \end{lstlisting}
 \end{solution}
 \end{blocksection}
