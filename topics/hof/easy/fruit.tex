@@ -1,0 +1,19 @@
+\begin{blocksection}
+\question What does the bottom function call return?
+
+\begin{lstlisting}
+>>> apple = 4
+>>> def orange(apple):
+...   apple = 5
+...   def plum(x):
+...     return x * 2
+...   return plum
+...
+>>> orange(apple)('hiii')
+
+\end{lstlisting}
+
+\begin{solution}
+'hiihii'
+\end{solution}
+\end{blocksection}

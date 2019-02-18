@@ -1,0 +1,35 @@
+\begin{blocksection}
+\question More WWPD fun! What is returned in line 1 and line 2? (Recommended: Draw an environment diagram!)
+
+\begin{lstlisting}
+>>> def f(g, f):
+...   return g(f)
+...
+>>> def foo(g, h):
+...   return h * g(h)
+...
+>>> def h(i):
+...   return 5
+...
+>>> f(h, foo)
+\end{lstlisting}
+
+\begin{solution}
+
+5
+\end{solution}
+
+\begin{lstlisting}
+
+>>> f(h, foo(h, 3))
+\end{lstlisting}
+\begin{solution}
+
+5
+\end{solution}
+\begin{solution}
+\includegraphics[scale=0.5]{foohi.png}
+\newline
+\url{https://goo.gl/1PRc9K}
+\end{solution}
+\end{blocksection}
