@@ -1,0 +1,32 @@
+\begin{blocksection}
+\question Write a function that returns the nth term of the following sequence:
+
+$1, 2, 2, 4, 8, 32, 256, 8192, ...$
+
+Hint: Think fibonacci, but slightly different! And try to find a rule relating the nth number to the n-1st and n-2nd number!
+
+\begin{lstlisting}
+def fake_fib(n):
+    """
+    >>> fake_fib(2)
+    2
+    >>> fake_fib(3)
+    2
+    >>> fake_fib(7)
+    256
+    >>> fake_fib(5)
+    8
+    """
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}:
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    else:
+        return fake_fib(n - 1) * fake_fib(n - 2)
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,21 @@
+\begin{blocksection}
+\question Write a function that takes two numbers \textbf{m} and \textbf{n} and returns their product.
+Assume the inputs are positive integers. Use recursion, not mul, *, or iteration!
+
+\begin{lstlisting}
+def multiply(m, n):
+    """
+    >>> multiply(3, 5)
+    15
+    """
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}:
+    if n == 1:
+        return m
+    else:
+        return m + multiply(m, n - 1)
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

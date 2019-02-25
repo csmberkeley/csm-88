@@ -1,0 +1,27 @@
+\begin{blocksection}
+\question Write a function that takes in an integer n, and returns True if the digits of the number are strictly increasing from left to right, and False otherwise.
+
+\begin{lstlisting}
+def is_increasing(n):
+    """
+    >>> is_increasing(2222)
+    False
+    >>> is_increasing(56789)
+    True
+    >>> is_increasing(56788)
+    False
+    """
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}:
+    right_digit = n % 10
+    rest = n // 10
+    if rest == 0:
+        return True
+    elif right digit <= rest % 10:
+        return False
+    return is_increasing(rest)
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
