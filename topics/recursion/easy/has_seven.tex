@@ -1,0 +1,32 @@
+\begin{blocksection}
+\question Write a recursive function has_seven that takes a positive integer n and returns whether n contains the digit 7
+
+\begin{lstlisting}
+def has_seven(k):
+    """
+    >>> has_seven(3)
+    False
+    >>> has_seven(7)
+    True
+    >>> has_seven(2734)
+    True
+    >>> has_seven(2634)
+    False
+    >>> has_seven(374)
+    True
+    >>> has_seven(140)
+    False
+    """
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}:
+    if k \% 10 == 7:
+        return True
+    elif k < 10:
+        return False
+    else:
+        return has_seven(k // 10)
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
