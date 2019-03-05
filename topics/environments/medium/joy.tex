@@ -1,0 +1,21 @@
+\begin{blocksection}
+\question What is the return value of the call `joy(x, y)`? 
+
+\begin{lstlisting}
+def joy(a, b):
+    x = 42
+    y = sadness(a + b, x)
+    return x - y
+
+def sadness(a, b):
+    a, b = a + x, a - y
+    return a // b
+
+x, y = 1, 2
+joy(x, y)
+\end{lstlisting}
+
+\begin{solution}[2in]
+\includegraphics[width=\linewidth]{joy.png}
+\end{solution}
+\end{blocksection}

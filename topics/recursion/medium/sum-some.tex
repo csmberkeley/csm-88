@@ -1,0 +1,42 @@
+\begin{blocksection}
+\question Implement sumsome, which takes a non-negative integer n and a function p. It returns the sum of all the digits d for which p returns a true value when given d as an argument. Assume that the function p takes a single digit d (from 0 to 9) and returns either True or False. 
+
+\begin{lstlisting}
+def even(x):
+    return x % 2 == 0
+
+def big(x):
+    return x > 5
+
+def sum_some(n, p): 
+    """
+    >>> sum_some(124567, even) # Sum even digits: 2 + 4 + 6 
+    12 
+    >>> sum_some(124567, big) # Sum big digits: 6 + 7 
+    13 
+    """ 
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    # Iterative solution
+    total = 0
+    while n:
+        if p(n % 10):
+            total += n % 10
+        n = n // 10
+    return total
+\end{lstlisting}
+\end{solution}
+\begin{solution}[1in]
+\begin{lstlisting}:
+    # Recursive
+    if n == 0:
+        return 0
+    else:
+        x = n % 10
+        if p(x):
+            return x + sum\_some(n // 10, p)
+        return sum\_some(n // 10, p)
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
