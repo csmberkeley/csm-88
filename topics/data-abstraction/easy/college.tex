@@ -1,0 +1,63 @@
+\begin{blocksection}
+\question The following is an \textbf{Abstract Data Type (ADT)} for colleges.
+Each college has a name, and population of students. 
+
+Our college ADT has one \textbf{constructor}: 
+
+\lstinline{make_college(name, population)}: Creates a college object with given name and student population. 
+
+Our college ADT has two \textbf{selectors}: 
+
+\lstinline{get_name(col)}: Return the college's name. 
+
+\lstinline{get_pop(col)}: Return the college's student population. 
+
+Now implement the function \lstinline{student_diff} which computes the difference between the student population sizes of two colleges. Make sure the number you return is nonnegative!
+
+
+\begin{lstlisting}
+def student_diff(col1, col2):
+    """
+    >>> col1 = make_college('Hogwarts', 1500)
+    >>> col2 = make_college('Brakebills', 950)
+    >>> student_diff(col1, col2)
+    550
+    >>> student_diff(col2, col1)
+    550
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    return abs(get_pop(col1) - get_pop(col2))
+
+\end{lstlisting}
+\end{solution}
+
+\end{blocksection}
+
+%%% Question %%%
+
+\begin{blocksection}
+\question Next, implement \lstinline{similar_size}, a function that takes in a number of students and two colleges, and returns the name of the college that has the closest number of students. Hint: You can use the previos method, but that one takes in colleges, so you might need to make your own college.
+ 
+\begin{lstlisting}
+def similar_size(pop, col1, col2):
+    """
+    >>> berkeley = make_college('Berkeley', 40000)
+    >>> stanford = make_college('Stanford', 20000)
+    >>> similar_size(35000, berkeley, stanford)
+    'Berkeley'
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    temp = make_college('Temporary University', pop)
+    if student_diff(temp, col1) < student_diff(temp, col2):
+        return get_name(col1)
+    else:
+        return get_name(col2)
+\end{lstlisting}
+\end{solution}
+
+\end{blocksection}
+
