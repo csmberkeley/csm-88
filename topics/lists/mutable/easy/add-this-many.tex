@@ -18,11 +18,13 @@ def add_this_many(x, el, lst):
 \vspace{.65in}
 \begin{solution}[0.75in]
 \begin{lstlisting}
-    while x > 0:
+    count = 0
+    for element in lst:
+        if element == x:
+            count += 1
+    while count > 0:
         lst.append(el)
-        x = x - 1
-    return lst
-
+        count -= 1
 \end{lstlisting}
 \end{solution}
 \end{blocksection}
