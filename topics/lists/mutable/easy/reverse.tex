@@ -1,0 +1,31 @@
+\begin{blocksection}
+\question Write the following function which takes in a list and reverses it. Challenge! Do it recursively.
+
+\begin{lstlisting}
+def reverse(lst):
+    """
+    >>> lst = [1, 2, 3, 4, 5]
+    >>> reverse(lst)
+    >>> lst
+    [5, 4, 3, 2, 1]
+    """
+\end{lstlisting}
+
+\begin{solution}[2in]
+\begin{lstlisting}
+    # Iterative solution
+    length = len(lst)
+    middle = length // 2
+    last = length - 1
+    for i in range(middle):
+        lst[i], lst[last - i] = lst[last - i], lst[i]
+
+    # Recursive Solution
+    if len(lst) > 0:
+        item = lst.pop()
+        mutable_reverse(lst)
+        lst.insert(0, item)
+\end{lstlisting}
+
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,20 @@
+\begin{blocksection}
+\question Write the following function which takes in a dictionary \lstinline$d$ and replaces all values in the dictionary with the passed in \lstinline$word$ if the original value contains the letter a.
+
+\begin{lstlisting}
+def replace_words_with_a(d, word):
+    """
+    >>> d = {1:'apple', 2: 'duck', 3: 'loop', 4: 'hallo'}
+    >>> replace_words_with_a(d, 'woohoo')
+    >>> d
+    {1: 'woohoo', 2: 'duck', 3: 'loop', 4: 'woohoo'}
+    """
+\end{lstlisting}
+
+\begin{solution}[2in]
+    for key in d:
+        if 'a' in d[key]:
+            d[key] = word
+
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,28 @@
+\begin{blocksection}
+\question Write a function that takes in a value \lstinline$x$, a value \lstinline$el$, and a list \lstinline$lst$ and adds as many \lstinline$el$’s to the end of the list as there are \lstinline$x$’s. \textbf{Make sure to modify the original list using list mutation techniques.} 
+
+\begin{lstlisting}
+def add_this_many(x, el, lst):
+    """ 
+    Adds el to the end of lst the number of times x occurs in 
+    lst.
+    >>> lst = [1, 2, 4, 2, 1]
+    >>> add_this_many(1, 5, lst)
+    >>> lst
+    [1, 2, 4, 2, 1, 5, 5]
+    >>> add_this_many(2, 2, lst)
+    >>> lst
+    [1, 2, 4, 2, 1, 5, 5, 2, 2]
+    """
+\end{lstlisting}
+\vspace{.65in}
+\begin{solution}[0.75in]
+\begin{lstlisting}
+    while x > 0:
+        lst.append(el)
+        x = x - 1
+    return lst
+
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

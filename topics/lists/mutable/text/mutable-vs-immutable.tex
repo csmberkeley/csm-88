@@ -3,12 +3,13 @@ Mutative (\emph{destructive}) operations change the state of a list by adding,
 removing, or otherwise modifying the list itself.
 
 \begin{itemize}
-\item \lstinline$lst.append(element)$
-\item \lstinline$lst.extend(lst)$
-\item \lstinline$lst.pop(index)$
-\item \lstinline$lst += lst$ (\textbf{not} \lstinline$lst = lst + lst$)
-\item \lstinline$lst[i] = x$
-\item \lstinline$lst[i:j] = lst$
+\item \lstinline$lst.append(el)$ \\ Adds \texttt{el} to the end of list
+\item \lstinline$lst1.extend(lst2)$ \\ Extends \texttt{lst1} by concatenating it with \texttt{lst2}
+\item \lstinline$lst.insert(i, el)$ \\ Inserts \texttt{el} at index \texttt{i} (doesn't replace but adds new one)
+\item \lstinline$lst.pop(i)$ \\ Removes and returns the the element at index \texttt{i}
+\item \lstinline$lst1 += lst2$ (\textbf{not} \lstinline$lst1 = lst1 + lst2$) -- Same as \texttt{.extend} above
+\item \lstinline$lst[i] = x$ \\ Replaces \texttt{lst} at index \texttt{i} with \texttt{x}
+\item \lstinline$lst1[i:j] = lst2$ \\ Replaces values in \texttt{lst1} between \texttt{i} and \texttt{j} with values from \texttt{lst2}
 \end{itemize}
 \end{blocksection}
 
@@ -16,13 +17,12 @@ removing, or otherwise modifying the list itself.
 
 \begin{blocksection}
 Non-mutative (\emph{non-destructive}) operations include the following.
-
 \begin{itemize}
-\item \lstinline$lst + lst$
-\item \lstinline$lst * n$
-\item \lstinline$lst[i:j]$
-\item \lstinline$list(lst)$
+\item \lstinline$lst1 + lst2$ \\ Concatenate \texttt{lst1} and \texttt{lst2}
+\item \lstinline$lst * n$ \\ Repeat \texttt{lst} \texttt{n} times
+\item \lstinline$lst[i:j]$ \\ Slice list and get values between index \texttt{i} (inclusive) and index \texttt{j} (exclusive)
+\item \lstinline$list(lst)$ \\ Return a copy of \texttt{lst}
 \end{itemize}
 \end{blocksection}
 
-\vspace{\parskip}
+%\vspace{\parskip}
