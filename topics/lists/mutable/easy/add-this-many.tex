@@ -1,5 +1,5 @@
 \begin{blocksection}
-\question Write a function that takes in a value \lstinline$x$, a value \lstinline$el$, and a list \lstinline$lst$ and adds as many \lstinline$el$’s to the end of the list as there are \lstinline$x$’s. \textbf{Make sure to modify the original list using list mutation techniques.} 
+\question Write a function that takes in a value \lstinline$x$, a value \lstinline$el$, and a list \lstinline$lst$ and adds as many \lstinline$el$’s to the end of the list as there are \lstinline$x$'s in the list. \textbf{Make sure to modify the original list using list mutation techniques.} 
 
 \begin{lstlisting}
 def add_this_many(x, el, lst):
@@ -13,6 +13,10 @@ def add_this_many(x, el, lst):
     >>> add_this_many(2, 2, lst)
     >>> lst
     [1, 2, 4, 2, 1, 5, 5, 2, 2]
+    >>> lst = ['a', 'b', 'c', 'a']
+    >>> add_this_many('a', 'b', lst)
+    >>> lst
+    ['a', 'b', 'c', 'a', 'b', 'b']
     """
 \end{lstlisting}
 \vspace{.65in}

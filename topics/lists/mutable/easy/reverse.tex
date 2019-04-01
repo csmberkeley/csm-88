@@ -23,7 +23,7 @@ def reverse(lst):
     # Recursive Solution
     if len(lst) > 0:
         item = lst.pop()
-        mutable_reverse(lst)
+        reverse(lst)
         lst.insert(0, item)
 \end{lstlisting}
 
