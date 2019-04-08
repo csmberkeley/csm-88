@@ -1,31 +1,24 @@
 \begin{blocksection}
-\question Write the following function that takes in a list of integers and prints out 8 divided by each item, or 0 if the item is 0.
+\question Write the following function that takes in a list of integers and prints out 8 floor divided by each item, or 0 if the item is 0. You have to use a try and except block!
 
 \begin{lstlisting}
 def print_div_eight(lst):
     """
     >>> lst = [4, 2, 1, 0, 2]
     >>> print_div_eight(lst)
-    2.0 # 8 / 4 = 2
-    4.0 # 8 / 2 = 4
-    8.0 # 8 / 8 = 1
+    2 # 8 // 4 = 2
+    4 # 8 // 2 = 4
+    8 # 8 // 1 = 8
     0 # 0, so we print 0
-    4.0 # 8 / 2 = 4
+    4 # 8 // 2 = 4
     """
 \end{lstlisting}
-
-
-
-\vspace{2in}
-
-
-
 \begin{solution}[1in]
 \begin{lstlisting}
 def print_div_eight(lst):
     for x in lst:
     	try:
-    		print(8 / x)
+    		print(8 // x)
     	except ZeroDivisionError:
     		print(0)
 \end{lstlisting}

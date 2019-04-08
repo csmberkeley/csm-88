@@ -1,0 +1,24 @@
+\begin{blocksection}
+\question You have seen that indexing a list with an index that is not contained in the list generates and exception, as does looking up a key that does not exist in a dictionary. However, the \texttt{get} method of \texttt{dict} is more forgiving. If the key is not in the dictionary it returns a value that you provide, defaulting to None. Use exception handling in the function \texttt{quiet\_get} to obtain similar behavior for both lists and dictionaries.
+
+\begin{lstlisting}
+def quiet_get(data, selector, missing=None):
+    """Return data[selector] if it exists, otherwise missing.
+    >>> quiet_get([1,2,3], 1)
+    2
+    >>> quiet_get([1,2,3], 4)
+    >>> quiet_get({'a':2, 'b':5}, 'a', -1)
+    2
+    >>> quiet_get({'a':2, 'b':5}, 'd', -1)
+    -1
+    """
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+    try:
+        return data[selector]
+    except (KeyError, IndexError):
+        return missing
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

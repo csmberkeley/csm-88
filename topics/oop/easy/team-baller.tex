@@ -1,12 +1,12 @@
 \begin{blocksection}
-\question Write \lstinline$TeamBaller$, a subclass of \lstinline$Baller$. An instance of \lstinline$TeamBaller$ cheers on the team every time it passes a ball.
+Write \lstinline$TeamBaller$, a subclass of \lstinline$Baller$. An instance of \lstinline$TeamBaller$ cheers on the team every time it passes a ball.
 
 \ifprintanswers\else
 \begin{lstlisting}
 class TeamBaller(_______________):
     """
     >>> alex = BallHog('Alex')
-    >>> cheerballer = TeamBaller('Allan', has_ball=True)
+    >>> cheerballer = TeamBaller('Chae', has_ball=True)
     >>> cheerballer.pass_ball(alex)
     Yay!
     True
@@ -22,11 +22,12 @@ class TeamBaller(_______________):
 \begin{lstlisting}
 class TeamBaller(Baller):
     """
-    >>> cheerballer = TeamBaller('Chris', has_ball=True)
-    >>> cheerballer.pass_ball(mitas)
+    >>> alex = BallHog('Alex')
+    >>> cheerballer = TeamBaller('Chae', has_ball=True)
+    >>> cheerballer.pass_ball(alex)
     Yay!
     True
-    >>> cheerballer.pass_ball(mitas)
+    >>> cheerballer.pass_ball(alex)
     I don't have the ball
     False
     """

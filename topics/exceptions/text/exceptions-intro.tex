@@ -1,0 +1,13 @@
+Python code could raise exceptions when run, so it's ipmortant to catch these exceptions when necessary, instead of letting the exception propogate back to the user. To do this, we can use a \texttt{try...except} block and allow the code to continue.
+
+\begin{lstlisting}
+try:
+    <try suite>
+except Exception as e:
+    <except suite>
+\end{lstlisting}
+
+We put the code that might raise an exception in the \texttt{<try suite>}. If an exception of type \texttt{Exception} is raised, then the program will skip the rest of that suite and execute the \texttt{<except suite>}. Generally, we want to be specify exactly which \texttt{Exception} we want to handle, such as \texttt{TypeError} or \texttt{ZeroDivisionError}.
+
+Notice that we can catch the exception \texttt{as e}. This assigns the exception object to the variable \texttt{e}. This can be helpful when we want to use information about the exception that was raised.
+
