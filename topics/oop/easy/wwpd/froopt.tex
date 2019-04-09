@@ -1,11 +1,5 @@
-\documentclass[10pt]{article}
-\usepackage[usenames]{color} %used for font color
-\usepackage{amssymb} %maths
-\usepackage{amsmath} %maths
-\usepackage[utf8]{inputenc} %useful to type directly diacritic characters
-\begin{document}
-\[\begin{blocksection}
-\question \textbf{(H)OOP} \newline
+\begin{blocksection}
+\question \textbf{FrOOPt} \newline
 Given the following code, what will Python output for the following prompts? 
 
 \begin{lstlisting}
@@ -19,9 +13,9 @@ class Fruit:
     def eat(self, eater):
        print(eater, 'eats the', 'self.name)
        if not self.ripe:
-          print('But it is not ripe!')
+          print('But it isn't ripe!')
        else:
-          print('What a', self.taste, 'and', self.size, 'fruit!')
+          print('What a', self.taste, self.size, 'fruit!')
 
 class Tomato(Fruit):
     name = 'tomato'
@@ -59,7 +53,7 @@ Error
 \begin{solution}[.2in]
 Adding some sugar first \newline
 Brian eats the tomato \newline
-What a sweet and normal fruit!
+What a sweet normal fruit!
 \end{solution}
 \end{blocksection}
 
@@ -80,5 +74,4 @@ False
 Adding some sugar first \newline
 sweet tomato is too sweet!
 \end{solution}
-\end{blocksection}\]
-\end{document}
+\end{blocksection}
