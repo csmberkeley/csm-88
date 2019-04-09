@@ -4,29 +4,31 @@
 \usepackage{amsmath} %maths
 \usepackage[utf8]{inputenc} %useful to type directly diacritic characters
 \begin{document}
-\[\begin{blocksection}
+\[\[\begin{blocksection}
 \question \textbf{(H)OOP} \newline
 Given the following code, what will Python output for the following prompts? 
 
 \begin{lstlisting}
 class Fruit:
-    all_players = []
-    def __init__(self, name, has_ball = False):
-       self.name = name
-       self.has_ball = has_ball
-       Baller.all_players.append(self)
+    ripe = False
+    def __init__(self, taste, size):
+       self.taste = taste
+       self.size = size
+       self.ripe = True
     
-    def pass_ball(self, other_player):
-       if self.has_ball:
-          self.has_ball = False
-          other_player.has_ball = True
-          return True
+    def eat(self, eater):
+       print(eater, 'eats the', 'self.name)
+       if not self.ripe:
+          print('But it is not ripe!')
        else:
-          return False
+          print('What a', self.taste, 'and', self.size, 'fruit!')
 
-class BallHog(Baller):
-    def pass_ball(self, other_player):  
-       return False 
+class Tomato(Fruit):
+    name = 'tomato'
+    def eat(self, eater):  
+       print('Adding some sugar first')
+       self.taste = 'sweet'
+       Fruit.eat(self, eater) 
        
 \end{lstlisting}
 \end{blocksection}
@@ -102,5 +104,6 @@ False
 Error
 \end{solution}
 \end{blocksection}
+\]
 \]
 \end{document}
