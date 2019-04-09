@@ -38,71 +38,50 @@ class Tomato(Fruit):
 \begin{blocksection}
 
 \begin{lstlisting}
->>> neil = Baller('Neil', True)
->>> michelle = BallHog('Michelle')
->>> len(Baller.all_players)
+>>> mystery = Friuit('tart', 'small')
+>>> tommy = Tomato('plain', 'normal')
+>>> mystery.taste
 \end{lstlisting}
 \begin{solution}[.2in]
-2
+'tart'
 \end{solution}
 
 \begin{lstlisting}
->>> Baller.name
+>>> mystery.name
 \end{lstlisting}
 \begin{solution}[.2in]
 Error
 \end{solution}
 
 \begin{lstlisting}
->>> len(michelle.all_players)
+>>> tommy.eat('Brian')
 \end{lstlisting}
 \begin{solution}[.2in]
-2
+Adding some sugar first \newline
+Brian eats the tomato
+What a sweet and normal fruit!
 \end{solution}
 \end{blocksection}
 
 \begin{blocksection}
 \begin{lstlisting}
->>> neil.pass_ball()
-\end{lstlisting}
-\begin{solution}[.2in]
-Error
-\end{solution}
-
-\begin{lstlisting}
->>> neil.pass_ball(michelle)
-\end{lstlisting}
-\begin{solution}[.2in]
-True
-\end{solution}
-
-\begin{lstlisting}
->>> neil.pass_ball(michelle)
+>>> Tomato.ripe
 \end{lstlisting}
 \begin{solution}[.2in]
 False
 \end{solution}
 
 \begin{lstlisting}
->>> BallHog.pass_ball(michelle, neil)
+>>> tommy.name = 'sweet tomato'
+>>> Fruit.eat = lambda self, own : print(self.name, 'is too sweet!')
+>>> tommy.eat('Marvin')
 \end{lstlisting}
 \begin{solution}[.2in]
-False
+Adding some sugar first \newline
+sweet tomato is too sweet!
 \end{solution}
 
-\begin{lstlisting}
->>> michelle.pass_ball(neil)
-\end{lstlisting}
-\begin{solution}[.2in]
-False
-\end{solution}
 
-\begin{lstlisting}
->>> michelle.pass_ball(michelle, neil)
-\end{lstlisting}
-\begin{solution}[.2in]
-Error
-\end{solution}
 \end{blocksection}
 \]
 \]
