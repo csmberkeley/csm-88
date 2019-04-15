@@ -1,6 +1,6 @@
 \begin{blocksection}
 \question Write a generator that will take in two iterators and compares the
-first element of each iterator and yields the smaller of the two values.
+first element of each iterator and yields the smaller of the two values. Stop as soon as you run as soon as you run out of elements in either list. 
 
 \begin{lstlisting}
 def interleave(iter1, iter2):
@@ -18,7 +18,7 @@ def interleave(iter1, iter2):
     6
     7
     8
-    9
+    9 # 10 isn't displayed since we ran out of elements in the first list
     """
 \end{lstlisting}
 
