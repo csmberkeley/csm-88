@@ -1,0 +1,51 @@
+\begin{blocksection}
+\question What would Python display? If an error occurs, write "Error". If a function is displayed, write "Function". If nothing is returned, write "Nothing". It might be easier to draw the lists with the iterator as an arrow pointing to the location in the list
+
+\begin{lstlisting}
+>>> lst = ['c', 's', 8, 8]
+>>> next(lst)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+Error
+
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
+
+\begin{lstlisting}
+>>> lst_iter = iter(lst)
+>>> next(lst_iter)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+'c'
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> next(lst_iter)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+'s'
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> next(iter(lst))
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+'c'
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> [x for x in lst_iter]
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+[8, 8]
+\end{lstlisting}
+\end{solution}

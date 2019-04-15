@@ -1,0 +1,52 @@
+\begin{blocksection}
+\question What would Python display? If an error occurs, write "Error". If a function is displayed, write "Function". If nothing is returned, write "Nothing". 
+
+\begin{lstlisting}
+>>> def weird_gen(x):
+...   if x % 2 == 0:
+...      yield x * 2
+>>> next(weird_gen(2))
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+4
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
+
+\begin{lstlisting}
+>>> def greeter(x):
+...   while x % 2 != 0:
+...     print('cs')
+...     yield x
+...     print('88') 
+>>> greeter(5)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+<generator object greeter at ...>
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> gen = greeter(5)
+>>> next(gen)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+cs
+5
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> next(gen)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+88
+cs
+5
+\end{lstlisting}
+\end{solution}
+

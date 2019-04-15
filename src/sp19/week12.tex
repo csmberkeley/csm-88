@@ -1,0 +1,38 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Iterators and Generators}}
+\date{April 17rd to 19th}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subimport{../../topics/iterators/text/}{intro.tex}
+\begin{questions}
+\subimport{../../topics/iterators/easy/}{wwpd.tex}
+
+\newpage
+
+\subimport{../../topics/generators/text/}{intro.tex}
+\newpage
+\subimport{../../topics/generators/easy/}{wwpd.tex}
+
+\newpage
+\subimport{../../topics/generators/easy/}{foo.tex}
+\newpage
+\subimport{../../topics/generators/medium/}{filter-gen.tex}
+\newpage
+\subimport{../../topics/iterators/easy/}{interleave.tex}
+
+\end{questions}
+\end{document}

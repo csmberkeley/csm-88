@@ -1,0 +1,23 @@
+\textbf{Introduction to Generators}
+
+A generator function is a special type of function that uses a yield statement instead of a return statement. When a generator function is called, it returns an iterator.
+To the right is an example of a generator function that creates an iterator for all the integers 0, 1, 2, 3, 4, 5, ... 
+
+The yield statement is like the return statement, except that yield causes the current frame to be saved until next is called again. return simply closes the frame, as we have always seen. 
+
+Including a yield statement in a function automatically makes a function a generator function. When the function is first called, it returns a generator object instead of executing the code. But when next is called on the generator, the code is executed until the next yield
+
+\begin{lstlisting}
+>>> def gen_nums():
+...   current = 0
+...   while True:
+...     yield current
+...     current += 1
+>>> gen = gen_nums()
+>>> gen
+<generator object gen at …>
+>>> next(gen)
+0
+>>> next(gen)
+1
+\end{lstlisting}

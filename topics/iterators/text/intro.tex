@@ -1,0 +1,25 @@
+\textbf{Introduction to Iterators}
+
+An iterable is a data type that contains a collection of values which can be processed one by one in order. Some examples are lists, tuples, strings, and dictionaries. 
+
+
+How do we iterate over an iterable? We use another type of object called an iterator. We create an iterator for an iterable by calling iter on the iterable. It will then keep track of its position in the iterable. Calling next on the iterator gives the current value in the iterable and move the iterator forward until it has gone past the end of iterable and a StopIteration error is produced.
+
+You might wonder why this looks so similar to for loops. As a matter of fact, the for loop uses an iterator. For any iterable you give it, the for loop implicitly creates an iterator to go through its elements.
+
+\begin{lstlisting}
+>>> a = [1, 2]
+>>> a_iter = iter(a)
+>>> next(a_iter)
+1
+>>> next(a_iter)
+2
+>>> next(a_iter)
+StopIteration Error
+\end{lstlisting}
+
+Related functions:
+
+\texttt{range(start, end)} returns an iterable
+
+\texttt{map(f, iterable)} returns an iterator containing the values resulting from applying f to every element in the iterable
