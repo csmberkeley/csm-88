@@ -8,12 +8,15 @@ class FlatMapper:
     that are within the iterables returned by calling fn on each element of s.
 
     >>> stutter = lambda x: [x, x]
+    >>> negate = lambda x: [-x]
     >>> m = FlatMapper(stutter)
     >>> g = m.flat_map((2, 3, 4, 5))
     >>> type(g)
     <class 'generator'>
     >>> list(g)
     [2, 2, 3, 3, 4, 4, 5, 5]
+    >>> list(m.flat_map([1, 2, 3, 4]))
+    [-1, -2, -3, -4]
     """
     def __init__(self, fn):
         self.fn = fn

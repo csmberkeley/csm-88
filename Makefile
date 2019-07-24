@@ -1,7 +1,7 @@
 # You should only have to modify RELEASED and SOLUTIONS.
 # Also change SRC once per semester.
-RELEASED = week4 week5 week6 week7 week8 week9 week10 week12
-SOLUTIONS = week9 week10 week12
+RELEASED = week4 week5 week6 week7 week8 week9 week10 week12 week13 week14
+SOLUTIONS = week9 week10 week12 week13 week14
 
 DST = published
 SRC = src/sp19
@@ -38,7 +38,7 @@ $(DST)/%_sol.pdf: $(SRC)/%.tex commonheader.sty
 	$(DEPEND) $* $< deps
 	cd $(SRC); $(TEX) $(TEX_FLAGS) -jobname="$*_sol" "\def\discussionsolutions{}\input{$*}"
 	@-rm $(DST)/*.aux $(DST)/*.log $(DST)/*.out
-	open $(DST)/$*_sol.pdf
+	#open $(DST)/$*_sol.pdf
 
 $(DST):
 	mkdir -p $@
