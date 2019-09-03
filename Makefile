@@ -1,10 +1,10 @@
 # You should only have to modify RELEASED and SOLUTIONS.
 # Also change SRC once per semester.
-RELEASED = week4 week5 week6 week7 week8 week9 week10 week12 week13 week14
-SOLUTIONS = week9 week10 week12 week13 week14
+RELEASED = week3
+SOLUTIONS = week3
 
 DST = published
-SRC = src/sp19
+SRC = src/fa19
 
 DEPEND = python make_dependency.py
 TEX = pdflatex
