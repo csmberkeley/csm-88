@@ -45,13 +45,22 @@ nothin'
 \begin{lstlisting}
 
 
->>> positive = 28
->>> while positive:
-...     print('positive?')
-...     positive -= 3
+>>> def funky():
+...   what = 12
+...   while what:
+...     print('huh?', what / 2)
+...     what -= 4
+...     what + 1
+...     print('oh!', what // 2)
 ...
+>>> funky()
 \end{lstlisting}
 \begin{solution}
-{\tt Infinite loop displaying positive? over and over and over}
+huh? 6.0
+oh! 4
+huh? 4.0
+oh! 2
+huh? 2.0
+oh! 0
 \end{solution}
 
