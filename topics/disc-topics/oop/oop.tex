@@ -1,0 +1,213 @@
+\question
+What is the relationship between a class and an ADT?
+
+\begin{solution}[1in]
+In general, we can think of an abstract data type as defined by some collection of selectors and constructors, together with some behavior conditions. As long as the behavior conditions are met (such as the division property above), these functions constitute a valid representation of the data type. \\
+
+There are two different layers to the abstract data type:  \\
+
+1) The program layer, which uses the data, and\\
+2) The concrete data representation that is independent of the programs that use the data. The only communication between the two layers is through selectors and constructors that implement the abstract data in terms of the concrete representation. \\
+
+Classes are a way to implement an Abstract Data Type. But, ADTs can also be created using a collection of functions, as shown by the rational number example. (See Composing Programs 2.2)\\
+\end{solution}
+
+\question
+What is the definition of a Class? What is the definition of an Instance?
+
+\begin{solution}[0.5in]
+Class: a template for all objects whose type is that class that defines attributes and methods that an object of this type has. \\
+Instance: A specific object created from a class. Each instance shares class attributes and stores the same methods and attributes. But the values of the attributes are independent of other instances of the class. For example, all humans have two eyes but the color of their eyes may vary from person to person. \\
+\end{solution}
+
+\question
+What is a Class Attribute? What is an Instance Attribute?
+
+\begin{solution}[0.5in]
+Class Attribute: A static value that can be accessed by any instance of the class
+and is shared among all instances of the class.\\
+Instance Attribute: A field or property value associated with that specific instance of the object.\\
+\end{solution}
+
+\question
+What Would Python Display?
+
+\begin{lstlisting}[language=Python]
+class Foo():
+    x = 'bam'
+    def __init__(self, x):
+       	self.x = x
+    def baz(self):
+       	return self.x
+
+class Bar(Foo):
+  	x = 'boom'
+   	def __init__(self, x):
+       		Foo.__init__(self, 'er' + x) 
+   	def baz(self):
+       		return Bar.x + Foo.baz(self)
+   
+foo = Foo('boo')
+
+Foo.x
+|\begin{solution}
+'bam'
+\end{solution}|
+foo.x
+|\begin{solution}
+'boo'
+\end{solution}|
+foo.baz()
+|\begin{solution}
+'boo'
+\end{solution}|
+Foo.baz()
+|\begin{solution}
+Error
+\end{solution}|
+Foo.baz(foo)
+|\begin{solution}
+'boo'
+\end{solution}|
+bar = Bar('ang')
+Bar.x
+|\begin{solution}
+'boom'
+\end{solution}|
+bar.x
+|\begin{solution}
+'erang'
+\end{solution}|
+bar.baz()
+|\begin{solution}
+'boomerang'
+\end{solution}|
+\end{lstlisting}
+
+\question 
+What Would Python Display?
+
+\begin{lstlisting}[language=Python]
+class Student: 
+	def __init__(self, subjects):
+		self.current_units = 16
+		self.subjects_to_take = subjects
+		self.subjects_learned = {}
+		self.partner = None
+	
+	def learn(self, subject, units):
+		print('I just learned about ' + subject)
+		self.subjects_learned[subject] = units
+		self.current_units -= units
+
+	def make_friends(self):
+                if len(self.subjects_to_take) > 3:
+			print('Whoa! I need more help!')
+			self.partner = Student(self.subjects_to_take[1:])
+		else:
+			print("I'm on my own now!")
+			self.partner = None
+
+	def take_course(self):
+		course = self.subjects_to_take.pop()
+		self.learn(course, 4)
+		if self.partner:
+			print('I need to switch this up!')
+			self.partner = self.partner.partner
+			if not self.partner:
+				print('I have failed to make a friend :(')
+
+tim = Student(['Chem1A', 'Bio1B', 'CS61A', 'CS70', 'CogSci1'])
+tim.make_friends()
+|\begin{solution}
+Whoa! I need more help!
+\end{solution}|
+print(tim.subjects_to_take)
+|\begin{solution}
+['Chem1A', 'Bio1B', 'CS61A', 'CS70', 'CogSci1']
+\end{solution}|
+tim.partner.make_friends()
+|\begin{solution}
+Whoa! I need more help!
+\end{solution}|
+tim.take_course()
+|\begin{solution}[0.25in]
+\begin{verbatim}
+I just learned about CogSci1
+I need to switch this up!  
+\end{verbatim}
+\end{solution}|
+tim.partner.take_course()
+|\begin{solution}
+I just learned about CogSci1
+\end{solution}|
+tim.take_course()
+|\begin{solution}[0.25in]
+\begin{verbatim}
+I just learned about CS70
+I need to switch this up!
+I have failed to make a friend :(  
+\end{verbatim}
+\end{solution}|
+tim.make_friends()
+|\begin{solution}
+I'm on my own now!
+\end{solution}|
+\end{lstlisting}
+
+\question
+Fill in the implementation for the Cat and Kitten classes. When a cat meows, it should say "Meow, (name) is hungry" if it is hungry, and "Meow, my name is (name)" if not. Kittens do the same thing as cats, except they say "i'm baby" instead of "meow", and they say "I want mama (parent’s name)" after every call to meow(). 
+
+\begin{lstlisting}[language=Python]
+>>>cat = Cat('Tuna')
+>>>kitten = kitten('Fish', cat)
+>>>cat.meow()
+meow, Tuna is hungry
+>>>kitten.meow()
+i'm baby, Fish is hungry
+I want mama Tuna
+>>>cat.eat()
+meow
+>>>cat.meow()
+meow, my name is Tuna
+>>>kitten.eat()
+i'm baby
+>>>kitten.meow()
+meow, my name is Fish
+I want mama Tuna
+
+class Cat():
+     noise = 'meow'
+     def __init__(self, name):
+	|\begin{solution}[1in]
+	\begin{verbatim}
+          self.name = name
+          self.hungry = True
+	\end{verbatim}
+         \end{solution}|
+     def meow(self):
+	|\begin{solution}[1in]
+	\begin{verbatim}
+          if self.hungry:
+               print(self.noise + ', ' + self.name ' + is hungry!')
+          else:
+               print(self.noise + ', my name is ' + self.name)
+	\end{verbatim}	
+         \end{solution}|
+     def eat(self):
+          print(self.noise) 
+          self.hungry = False
+
+class Kitten(Cat):
+	|\begin{solution}[1.5in]
+	\begin{verbatim}
+     noise = "i'm baby"
+     def __init__(self, name, parent):
+          Cat.__init__(self, name)
+          self.parent = parent
+     def meow(self):
+          Cat.meow(self)
+          print('I want mama' + parent.name)
+	\end{verbatim}
+         \end{solution}|
+\end{lstlisting}

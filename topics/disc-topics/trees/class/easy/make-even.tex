@@ -1,0 +1,23 @@
+\question Define a function \texttt{make\_even} which takes in a tree
+\texttt{t} whose values are integers, and mutates the tree such that all the
+odd integers are increased by 1 and all the even integers remain the same.
+
+\begin{lstlisting}
+def make_even(t):
+    """
+    >>> t = Tree(1, [Tree(2, [Tree(3)]), Tree(4), Tree(5)])
+    >>> make_even(t)
+    >>> t.label
+    2
+    >>> t.branches[0].branches[0].label
+    4
+    """
+\end{lstlisting}
+\begin{solution}[1.10in]
+\begin{lstlisting}
+    if t.label % 2 != 0:
+        t.label += 1
+    for branch in t.branches:
+        make_even(branch)
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,39 @@
+\question Implement \texttt{sum\_paths\_gen}, which takes in a Tree instance \texttt{t} and
+and returns a generator which yields the sum of all the nodes from a path from the root 
+of a tree to a leaf.
+
+You may yield the sums in any order.
+
+\begin{lstlisting}
+def sum_paths_gen(t):
+    """
+    >>> t1 = Tree(5)
+    >>> next(sum_paths_gen(t1))
+    5
+    >>> t2 = Tree(1, [Tree(2, [Tree(3), Tree(4)]), Tree(9)])
+    >>> sorted(sum_paths_gen(t2))
+    [6, 7, 10]
+    """
+
+    if ___________________________:
+
+        yield ____________________
+
+    for __________________________:
+        
+        for __________________________:
+
+            yield ____________________  
+            
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def sum_paths_gen(t):
+    if t.is_leaf():
+        yield t.label
+    for b in t.branches:
+        for s in sum_paths_gen(b):
+            yield s + t.label
+\end{lstlisting}
+\end{solution}

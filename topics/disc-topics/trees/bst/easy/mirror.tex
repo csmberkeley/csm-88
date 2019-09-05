@@ -1,0 +1,36 @@
+Change a tree so that the left and right subtrees are swapped at every node.
+If \texttt{t} is depicted below on the left, then calling
+\texttt{tree\_mirror(t)} will change \texttt{t} to be the one on the
+right.
+
+\begin{center}
+\begin{lstlisting}
+          3                                  3
+        /   \                              /   \
+       2     4             ->             4     2
+      /                                          \
+     1                                            1
+
+\end{lstlisting}
+\end{center}
+
+\begin{lstlisting}
+def mirror_tree(t):
+    """
+    >>> a = BinaryTree(3, BinaryTree(2, BinaryTree(1)), BinaryTree(4))
+    >>> mirror_tree(a)
+    >>> a
+    BinaryTree(3, BinaryTree(4), BinaryTree(2, empty, BinaryTree(1)))
+    """
+\end{lstlisting}
+\begin{solution}[1.25in]
+\begin{lstlisting}
+    if t == BinaryTree.empty:
+        return
+    mirror_tree(t.right)
+    mirror_tree(t.left)
+    temp = t.left
+    t.left = t.right
+    t.right = temp
+\end{lstlisting}
+\end{solution}

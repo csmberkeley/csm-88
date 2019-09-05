@@ -1,0 +1,26 @@
+\question 
+Write a iterative function \texttt{is\_palindrome} that takes a LinkedList, 
+\texttt{lnk}, and returns \texttt{True} if \texttt{lnk} is a
+palindrome and \texttt{False} otherwise. Hint: Use the \texttt{reverse} 
+function from lab09.
+
+\begin{lstlisting}
+def is_palindrome(lnk):
+    """
+    >>> one_link = Link(1)
+    >>> is_palindrome(one_link)
+    True
+    >>> lnk = Link(1, Link(2, Link(3, Link(2, Link(1)))))
+    >>> is_palindrome(lnk)
+    True
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    reversed = reverse(lnk)
+    while len(lnk) >= 1 and reversed.first == lnk.first:
+        reversed = reversed.rest
+        lnk = lnk.rest
+    return len(lnk) == 1
+\end{lstlisting}
+\end{solution}

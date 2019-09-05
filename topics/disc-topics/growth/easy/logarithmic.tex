@@ -1,0 +1,16 @@
+\begin{blocksection}
+\question \begin{lstlisting}
+def bonk(n):
+    total = 0
+    while n >= 2:
+        total += n
+        n = n / 2
+    return total
+\end{lstlisting}
+
+\begin{solution}[0.0in]
+  $\growth(\log(n))$, because our while loop iterates at most $\log(n)$ times,
+  due to $n$ being halved in every iteration.\\
+\href{https://www.youtube.com/watch?v=XsdTV6cAAjY&vq=hd1080&t=33m18s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

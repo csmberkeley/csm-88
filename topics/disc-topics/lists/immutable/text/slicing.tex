@@ -1,0 +1,41 @@
+If we want to access more than one element of a list at a time, we can use a
+\textit{slice}. Slicing a sequence is very similar to indexing. We specify a
+starting index and an ending index, separated by a colon. Python creates a new
+list with the elements from the starting index up to (but not including) the
+ending index.
+
+We can also specify a step size, which tells Python how to collect values for
+us. For example, if we set step size to 2, the returned list will include every
+\textbf{other} value, from the starting index until the ending index. A negative
+step size indicates that we are stepping backwards through a list when collecting
+values.
+
+You can also choose not to specify any/all of the slice arguments. Python will
+perform some default behaviour if this is the case:
+\begin{itemize}
+    \item If the step size is left out, the default step size is 1.
+    \item If the start index is left out, the default start index is the beginning of the list.
+    \item If the end index is left out, the default end index is the end of the list.
+    \item If the step size is negative, the default start index becomes the end
+        of the list, and the default end index becomes the beginning of the
+        list.
+\end{itemize}
+
+Thus, \texttt{lst[:]} creates a list that is identical to \texttt{lst} (a copy
+of \texttt{lst}). \texttt{lst[::-1]} creates a list that has the same elements
+of \texttt{lst}, but reversed. Those rules still apply if more than just the
+step size is specified e.g. \texttt{lst[3::-1]}.
+
+\begin{lstlisting}
+>>> directors = ['jenkins', 'spielberg', 'bigelow', 'kubrick']
+>>> directors[:2]
+['jenkins', 'spielberg']
+>>> directors[1:3]
+['spielberg', 'bigelow']
+>>> directors[1:]
+['spielberg', 'bigelow', 'kubrick']
+>>> directors[0:4:2]
+['jenkins', 'bigelow']
+>>> directors[::-1]
+['kubrick', 'bigelow', 'spielberg', 'jenkins']
+\end{lstlisting}

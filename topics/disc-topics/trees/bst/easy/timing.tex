@@ -1,0 +1,78 @@
+% From Prof. Hilfinger's slide, Sp14
+\question 
+Below are two binary search trees containing the same data. The tree on the left is as shallow as
+possible, while the tree on the right is as deep as
+possible. Suppose you have a function \texttt{tree\_find(t, x)} that returns
+\texttt{True} when \texttt{x} is in binary search tree \texttt{t},
+\texttt{False} otherwise.
+
+\begin{center}
+\begin{lstlisting}
+       6                2
+      / \                \
+     /   \                3
+    3     9                \
+   / \   / \                5
+  2   5 8   13               \
+                              6
+                               \
+                               ...
+\end{lstlisting}
+\end{center}
+
+\begin{enumerate}[a.]
+\item
+How long does \texttt{tree\_find} take to run on the shallower tree? And the other tree? Write your answer as a function of $N$, the number of entries in the tree.
+\begin{solution}[0.5in]
+$O(log(n))$ for the shallower tree; $O(n)$ for the deeper tree, as it can be
+viewed as a link list. 
+\end{solution}
+
+\item 
+How long does \texttt{tree\_find} take to run on the shallower tree? Write your answer as a function of $H$, the height of the tree.
+\begin{solution}[0.5in]
+$O(H)$ for both trees.
+\end{solution}
+\end{enumerate}
+
+% Cannot generate a correct tree if there's only one child, hence switching to
+% text representation. 
+\iffalse
+\begin{center}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=70mm/#1},
+                    level distance=24pt]
+\node [vertex] (r){$6$}
+  child {
+    node [vertex] (a) {$3$}
+    child {
+      node [vertex] {$2$}
+    }
+    child {
+      node [vertex] {$5$}
+    }
+  }
+  child {
+    node [vertex] {$9$}
+    child {
+      node [vertex] {$8$}
+    }
+    child {
+      node [vertex] {$13$}
+    }
+  };
+\end{tikzpicture}
+\end{center}
+\fi
+
+\iffalse
+\begin{tikzpicture}[very thick,level/.style={sibling distance=70mm/#1},
+                    level distance=24pt]
+\node [vertex] (r){$6$}
+  child {
+    node [vertex] (a) {$3$}
+    child {
+      node [vertex] {$2$}
+    }
+  };
+\end{tikzpicture}
+\fi

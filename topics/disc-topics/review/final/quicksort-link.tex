@@ -1,0 +1,81 @@
+\question We can also use quicksort to sort linked lists! Implement the
+\texttt{quicksort\_link} function, without constructing additional \texttt{Link}
+instances.
+
+You can assume that the \texttt{extend\char`_links} function is already defined. It
+takes two linked lists and mutates the first so that the ending node points to the second. \texttt{extend\_link} returns the head of the first linked list.
+
+\begin{lstlisting}
+>>> l1, l2 = Link(1, Link(2)), Link(3, Link(4))
+>>> l3 = extend_links(l1, l2)
+>>> l3
+Link(1, Link(2, Link(3, Link(4))))
+>>> l1 is l3
+True
+\end{lstlisting}
+
+\begin{lstlisting}
+def quicksort_link(link):
+    """
+    >>> s = Link(3, Link(1, Link(4)))
+    >>> quicksort_link(s)
+    Link(1, Link(3, Link(4)))
+    """
+    if _____________________________________________________:
+
+        return link
+
+    pivot, _______ = ________________________________________
+
+    less, greater = _________________________________________
+
+    while link is not Link.empty:
+
+        curr, rest = link, link.rest
+
+        if _________________________________________________:
+
+            _________________________________________________
+
+        else:
+
+            _________________________________________________
+
+        link = ______________________________________________
+
+    less = __________________________________________________
+
+    greater = _______________________________________________
+
+    _________________________________________________________
+
+    return __________________________________________________
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+def quicksort_link(link):
+    if link is Link.empty or link.rest is Link.empty:
+        return link
+    pivot, link = link, link.rest
+    less, greater = Link.empty, Link.empty
+    while link is not Link.empty:
+        curr, rest = link, link.rest
+        if curr.first < pivot.first:
+            less, curr.rest = curr, less
+        else:
+            greater, curr.rest = curr, greater
+        link = rest
+    less = quicksort_link(less)
+    greater = quicksort_link(greater)
+    pivot.rest = greater
+    return extend_links(less, pivot)
+\end{lstlisting}
+
+While the solution may look very different, doing quicksort on a linked list is
+very similar to doing quicksort on a Python list. The main difference is that we
+cannot use list comprehensions to easily split off elements of our list into
+less and greater sublists. At the end, we have to use
+\texttt{extend\char`_links} to concatenate the linked lists.
+
+\end{solution}

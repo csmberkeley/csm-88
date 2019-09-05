@@ -1,0 +1,18 @@
+An \define{iterable} is any container that can be processed sequentially.
+Examples include lists, tuples, strings, and dictionaries.
+Often we want to access the elements of an iterable, one at a time.
+We find ourselves writing \lstinline$lst[0]$, \lstinline$lst[1]$,
+\lstinline$lst[2]$, and so on.
+It would be more convenient if there was an object that could do this for us,
+so that we don't have to keep track of the indices.
+
+This is where \define{iterators} come in. Given an iterable, we can call the
+\lstinline$iter$ function on that iterable to return a new iterator object.
+Each time we call \lstinline$next$ on the iterator object, it gives us one
+element at a time, just like we wanted.
+When it runs out of elements to give, calling \lstinline$next$ on the iterator
+object will raise a \lstinline$StopIteration$ exception.
+
+We can create as many iterators as we would like from a single iterable.
+But, each iterator goes through the elements of the iterable only once.
+If you want to go through an iterable twice, create two iterators!

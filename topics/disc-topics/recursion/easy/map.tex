@@ -1,0 +1,27 @@
+\question Remember {\tt map}? Given a list of elements and a function, we want
+to return a list with the function applied to each element.  Let's write it
+recursively!
+
+\begin{lstlisting}
+def map(fn, seq):
+\end{lstlisting}
+\begin{solution}[.9in]
+\begin{lstlisting}
+    if seq == []:
+        return []
+    return [fn(seq[0])] + map(fn, seq[1:])
+\end{lstlisting}
+\end{solution}
+
+(Extra Challenge: Try to write a mutation version! i.e. Don't return a list and
+apply {\tt map} by altering the original list.)
+
+\begin{solution}
+\begin{lstlisting}
+def map(fn, lst):
+    if lst: # True when lst != []
+        temp = lst.pop(0)
+        map(fn, lst)
+        lst.insert(0, fn(temp))
+\end{lstlisting}
+\end{solution}

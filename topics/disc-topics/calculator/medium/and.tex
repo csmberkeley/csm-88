@@ -1,0 +1,76 @@
+\question Suppose we want to add handling for comparison operators \texttt{>},
+\texttt{<}, and \texttt{=} as well as \texttt{and} expressions to our
+Calculator interpreter.  These should work the same way they do in Scheme.
+
+\begin{lstlisting}
+calc> (and (= 1 1) 3)
+3
+calc> (and (+ 1 0) (< 1 0) (/ 1 0))
+#f
+\end{lstlisting}
+
+\begin{subparts}
+\subpart Are we able to handle expressions containing the comparison operators
+(such as \texttt{<}, \texttt{>}, or \texttt{=}) with the existing implementation
+of \texttt{calc\_eval}? Why or why not?
+
+\begin{solution}[0.3in]
+Comparison expressions are regular call expressions, so we need to evaluate the
+operator and operands and then apply a function to the arguments.  Therefore,
+we do not need to change \texttt{calc\_eval}. We simply need to add new entries
+to the \texttt{OPERATORS} dictionary that map \texttt{'<'}, \texttt{'>'}, and
+\texttt{'='} to functions that perform the appropriate comparison operation.
+\end{solution}
+
+\subpart Are we able to handle \texttt{and} expressions with the existing
+implementation of \texttt{calc\_eval}? Why or why not?
+
+\begin{solution}[0.3in]
+Since \texttt{and} is a special form that short circuits on the first false-y
+operand, we cannot handle these expressions the same way we handle call
+expressions.  We need to add special handling for combinations that don't
+evaluate all the operands.
+\end{solution}
+
+\subpart Now, complete the implementation below to handle {\tt and}
+expressions. You may assume the conditional operators (e.g. {\tt <}, {\tt >},
+{\tt =}, etc) have already been implemented for you.
+\begin{lstlisting}
+def calc_eval(exp):
+    if isinstance(exp, Pair):
+        if _______________________: # and expressions
+            return eval_and(exp.second)
+        else:                       # Call expressions
+            return calc_apply(calc_eval(exp.first), list(exp.second.map(calc_eval)))
+    elif exp in OPERATORS:          # Names
+        return OPERATORS[exp]
+    else:                           # Numbers
+        return exp
+\end{lstlisting}
+\begin{lstlisting}
+def eval_and(operands):
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}
+def calc_eval(exp):
+    if isinstance(exp, Pair):
+        if exp.first == 'and':  # and expressions
+            return eval_and(exp.second)
+        else:                   # Call expressions
+            return calc_apply(calc_eval(exp.first), list(exp.second.map(calc_eval)))
+    elif exp in OPERATORS:      # Names
+        return OPERATORS[exp]
+    else:                       # Numbers
+        return exp
+
+def eval_and(operands):
+    curr, val = operands, True
+    while curr is not nil:
+        val = calc_eval(curr.first)
+        if val is False:
+            return False
+        curr = curr.second
+    return val
+\end{lstlisting}
+\end{solution}
+\end{subparts}

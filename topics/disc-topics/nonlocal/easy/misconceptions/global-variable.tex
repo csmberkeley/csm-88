@@ -1,0 +1,11 @@
+\question What is wrong with the following code?
+\begin{lstlisting}
+a = 5
+def another_add_one():
+    nonlocal a
+    a += 1
+another_add_one()
+\end{lstlisting}
+\begin{solution}[0.5in]
+Nonlocal cannot be used to modify variables in the global frame.
+\end{solution}

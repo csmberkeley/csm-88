@@ -1,0 +1,45 @@
+\question An \define{expression tree} is a tree that contains a function for
+each non-leaf node, which can be either \texttt{'+'} or \texttt{'*'}. All leaves
+are numbers. Implement \texttt{eval\char`_tree}, which evaluates an expression tree
+to its value. You may want to use the functions \texttt{sum} and
+\texttt{prod}, which take a list of numbers and compute the sum and product
+respectively.
+
+\begin{lstlisting}
+def eval_tree(tree):
+    """Evaluates an expression tree with functions the root.
+    >>> eval_tree(tree(1))
+    1
+    >>> expr = tree('*', [tree(2), tree(3)])
+    >>> eval_tree(expr)
+    6
+    >>> eval_tree(tree('+', [expr, tree(4), tree(5)]))
+    15
+    """
+\end{lstlisting}
+\begin{solution}[1.2in]
+\begin{lstlisting}
+    if is_leaf(tree):
+        return label(tree)
+    args = [eval_tree(branch) for branch in branches(tree)]
+    if label(tree) == '+':
+        return sum(args)
+    else: # label(tree) == '*'
+        return prod(args)
+\end{lstlisting}
+Leaf values are guaranteed to be a number, so we can just return their label.
+
+Otherwise, we have to evaulate each of the branches and then combine their
+result using whichever operater we have in our current root.
+
+If you want to try this out yourself, note that \texttt{prod} isn't actually a
+built-in operator in Python. You can write it yourself using something like the
+following:
+\begin{lstlisting}
+def prod(iterable):
+    from functools import reduce
+    from operator import mul
+    return reduce(mul, iterable, 1)
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=Am6m8YgAnYY&list=PLx38hZJ5RLZdJgRCgpaTbmRXKAHOUmomO&index=4&t=12m40s}{Video walkthrough}
+\end{solution}

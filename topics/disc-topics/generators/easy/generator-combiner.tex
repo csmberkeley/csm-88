@@ -1,0 +1,84 @@
+\question Write a generator function \texttt{combiner} that combines two input
+iterators using a given combiner function. The resulting iterator should have a
+size equal to the size of the shorter of its two input iterators.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=Python]
+>>> from operator import add
+>>> evens = combiner(gen_naturals(), gen_naturals(), add)
+>>> next(evens)
+0
+>>> next(evens)
+2
+>>> next(evens)
+4
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+def combiner(iterator1, iterator2, combiner):
+\end{lstlisting}
+
+\begin{solution}[0.75in]
+\begin{lstlisting}[language=Python]
+    while True:
+        yield combiner(next(iterator1), next(iterator2))
+\end{lstlisting}
+While this is the most compact solution, it may not be immediately obvious that
+we would arrive at this. It's acceptable to start with the ``basic skeleton'' of
+all generators:
+
+\begin{lstlisting}
+    while True:
+        <do some work here>
+        yield <something>
+        <do some other work here>
+\end{lstlisting}
+
+From this, we put in some basic steps:
+\begin{itemize}
+    \item We want to fetch the next item from both our iterators.
+    \item Then, we would want to combine them using our combiner function.
+    \item Finally, we want to yield the result (be very careful not to return!).
+\end{itemize}
+
+\begin{lstlisting}
+    while True:
+        n1 = next(iterator1)
+        n2 = next(iterator2)
+        result = combiner(n1, n2)
+\end{lstlisting}
+
+\end{solution}
+\end{minipage}
+
+\question What is the result of executing this sequence of commands?
+\begin{lstlisting}[language=Python]
+>>> nats = gen_naturals()
+>>> doubled_nats = combiner(nats, nats, add)
+>>> next(doubled_nats)
+\end{lstlisting}
+
+\begin{solution}[0.25in]
+1
+\end{solution}
+\begin{lstlisting}[language=Python]
+>>> next(doubled_nats)
+\end{lstlisting}
+\begin{solution}[0.25in]
+5
+\end{solution}
+\begin{solution}
+The naturals iterator has been fed into \texttt{combiner} twice. So the
+first yield will get the first two numbers out of naturals, the second yield
+will the the third and fourth numbers, and so on.
+\begin{itemize}
+    \item 0 + 1 = 1
+    \item 2 + 3 = 5
+\end{itemize}
+If you expected this to return 0 then 2, think about what would need to
+be changed in how we use \texttt{combiner}. Also, let's assume we don't want to
+change the behaviour of the \texttt{combiner} function.
+\end{solution}
+
+
+
+\walkthrough{https://www.youtube.com/watch?v=2WRsGzuR7tA&list=PLx38hZJ5RLZccXWDLoOVdTsx8VT60WYgn&index=5}

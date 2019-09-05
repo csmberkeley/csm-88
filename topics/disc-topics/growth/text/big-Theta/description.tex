@@ -1,0 +1,19 @@
+For expressing complexity, we use what is called big $\Theta$ (Theta) notation.
+For example, if we say the running time of a function {\tt foo} is in
+$\Theta(n^2)$, we mean that the running time of the process will grow
+proportionally with the square of the size of the input as it becomes very
+large.
+
+\begin{blocksection}
+\begin{itemize}
+\item \textbf{Ignore lower order terms:} If a function requires $n^3 + 3n^2 +
+5n + 10$ operations with a given input $n$, then the runtime of this function
+is in $\Theta(n^3)$.  As $n$ gets larger, the lower order terms (10, $5n$, and
+$3n^2$) all become insignificant compared to $n^3$.
+\item \textbf{Ignore constants:} If a function requires $5n$ operations with a
+given input $n$, then the runtime of this function is in $\Theta(n)$.  We are
+only concerned with how the runtime grows asymptotically with the input, and
+since 5n is still asymptotically linear; the constant factor does not make a
+difference in runtime analysis.
+\end{itemize}
+\end{blocksection}

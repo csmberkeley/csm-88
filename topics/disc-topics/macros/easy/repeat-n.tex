@@ -1,0 +1,35 @@
+\question Write a macro that takes an expression and a number \texttt{n} and
+repeats the expression \texttt{n} times. For example, \texttt{(repeat-n expr
+2)} should behave the same as \texttt{(twice expr)}. Note that it's possible to
+pass in a combination as the second argument (e.g. \texttt{(+ 1 2)}) as long as
+it evaluates to a number. Be sure that you evaluate this expression in your
+macro so that you don't treat it as a list.
+
+Complete the implementation below, making use of the \texttt{replicate}
+function given below. The \texttt{replicate} function takes in a value \texttt{x}
+and a number \texttt{n} and returns a list with \texttt{x} repeated \texttt{n} 
+times.
+
+\begin{lstlisting}
+(define (replicate x n)
+  (if (= n 0) nil
+    (cons x (replicate x (- n 1)))))
+
+(define-macro (repeat-n expr n)
+\end{lstlisting}
+
+\begin{solution}[.7in]
+\begin{lstlisting}
+(define-macro (repeat-n expr n)
+    (cons 'begin (replicate expr (eval n))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+scm> (repeat-n (print '(resistance is futile)) 3)
+(resistance is futile)
+(resistance is futile)
+(resistance is futile)
+scm> (repeat-n (print (+ 3 3)) (+ 1 1))  ; Pass a call expression in as n
+6
+6
+\end{lstlisting}

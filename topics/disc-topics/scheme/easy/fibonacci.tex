@@ -1,0 +1,23 @@
+\question Write a function that returns the $n^{th}$ Fibonacci number.
+
+\begin{lstlisting}[language=Scheme]
+(define (fib n)
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=Scheme]
+    (if (<= n 1)
+        n
+        (+ (fib (- n 1)) (fib (- n 2))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+)
+scm> (fib 0)
+0
+scm> (fib 1)
+1
+scm> (fib 10)
+55
+\end{lstlisting}
+
+\walkthrough{https://youtu.be/DlA7f9KTs5o?list=PLx38hZJ5RLZfBXJRWlsQyOg3lrHzfvWu0&t=1223}

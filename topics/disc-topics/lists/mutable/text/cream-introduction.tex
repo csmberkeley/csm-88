@@ -1,0 +1,28 @@
+Many of Python's primitive types are considered {\it immutable}, meaning that once they have been created, their value {\it cannot} change. Examples of these immutable types include strings, tuples, and numbers.
+
+However, lists, dictionaries, and some other data types that are considererd {\it mutable}, meaning the values of a specific instance or object of that type {\it may change}.
+
+Imagine you go to {\it CREAM} on Telegraph Avenue and you order an ice-cream sandwich. Suppose {\it CREAM} chooses to represent your order as a list like so:
+
+\begin{lstlisting}
+>>> sandwich = ['ice-cream', 'cookie']
+\end{lstlisting}
+
+Suppose that, while {\it CREAM} was preparing your order, you decide you want to top your sandwich with sprinkles. Without mutation, CREAM changes your order like so:
+
+\begin{lstlisting}
+# creates a new python list
+>>> new_sandwich = sandwich + ['sprinkles']
+>>> new_sandwich
+['ice-cream', 'cookie', 'sprinkles']
+>>> sandwich # the original list is unmodified
+['ice-cream', 'cookie']
+\end{lstlisting}
+
+What was the point of {\it CREAM} having to make an entirely new sandwich just to add sprinkles? They could have simply modified the original sandwich! That's what mutation is all about! Instead, they could have done:
+
+\begin{lstlisting}
+>>> sandwich.append('sprinkles') # mutates original list
+>>> sandwich
+['ice-cream', 'cookie', 'sprinkles']
+\end{lstlisting}

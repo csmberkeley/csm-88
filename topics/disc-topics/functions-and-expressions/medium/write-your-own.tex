@@ -1,0 +1,24 @@
+\question Write a function, \texttt{decades\_ago}, that takes a year in the
+past (before 2017) and returns the number of decades that have passed since. A
+function signature with a \textit{doctest} (an example execution) is below.
+Fill it in so that the doctest will pass!
+
+\begin{lstlisting}
+def decades_ago(year):
+    """Returns the number of decades that have passed between
+    the year and 2017.
+
+    >>> decades_ago(1995)
+    2.2
+    """
+\end{lstlisting}
+
+\begin{solution}[1in]
+Many solutions are possible, but here's one:
+\vspace{0.2cm}
+\begin{lstlisting}
+def decades_ago(year):
+    years_ago = 2017 - year
+    return years_ago / 10
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,24 @@
+Python defines many interfaces that can be implemented by user-defined classes.
+For example, the interface for arithmetic consists of the following methods:
+
+\begin{itemize}
+\item
+\texttt{def \_\_add\_\_(self, other):} Allows objects to do \texttt{self +
+other}.
+\item
+\texttt{def \_\_sub\_\_(self, other):} Allows objects to do \texttt{self -
+other}.
+\item
+\texttt{def \_\_mul\_\_(self, other):} Allows objects to do \texttt{self *
+other}.
+\end{itemize}
+
+In addition, there is also an interface for sequences:
+
+\begin{itemize}
+\item
+\texttt{def \_\_len\_\_(self):} Allows objects to do \texttt{len(self)}.
+\item
+\texttt{def \_\_getitem\_\_(self, index):} Allows objects to do
+\texttt{self[i]}.
+\end{itemize}

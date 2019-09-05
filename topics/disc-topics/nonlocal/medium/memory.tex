@@ -1,0 +1,26 @@
+\question Write a function that takes in a number \texttt{n} and returns a
+one-argument function. The returned function takes in a function that is used
+to update \texttt{n}. It should return the updated \texttt{n}.
+
+\begin{lstlisting}
+def memory(n):
+    """
+    >>> f = memory(10)
+    >>> f(lambda x: x * 2)
+    20
+    >>> f(lambda x: x - 7)
+    13
+    >>> f(lambda x: x > 5)
+    True
+    """
+\end{lstlisting}
+\begin{solution}[1.5in]
+  \begin{lstlisting}
+    def f(g):
+        nonlocal n
+        n = g(n)
+        return n
+    return f
+  \end{lstlisting}
+\href{https://www.youtube.com/watch?v=XsdTV6cAAjY&vq=hd1080&t=57m50s}{Video walkthrough}
+\end{solution}

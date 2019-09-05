@@ -1,0 +1,12 @@
+\question Write a query that outputs two professors if they co-taught (taught
+the same course at the same time) the same course more than once.
+
+\begin{solution}[1in]
+\begin{lstlisting}[language=SQL]
+SELECT a.professor, b.professor
+  FROM courses AS a, courses AS b
+  WHERE a.professor < b.professor AND
+    a.semester = b.semester and a.course = b.course
+  GROUP BY a.course, a.professor, b.professor HAVING COUNT(*) > 1;
+\end{lstlisting}
+\end{solution}

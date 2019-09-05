@@ -1,0 +1,53 @@
+\question Fill in the following to complete an abstract data type for binary
+trees, in which each node has at most 2 children, {\tt left} and {\tt right}:
+
+\begin{lstlisting}[language=Scheme]
+(define (make-btree entry left right)
+    (cons entry (cons left right)))
+
+(define (entry tree)
+                    )
+
+(define (left tree)
+                    )
+
+(define (right tree)
+                    )
+
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define (entry tree)
+    (car tree))
+
+(define (left tree)
+    (car (cdr tree)))
+
+(define (right tree)
+    (cdr (cdr tree)))
+\end{lstlisting}
+\end{solution}
+\question Using the above definition, write a function that sums up the entries of a binary tree, assuming that the entries are all numbers.
+
+\begin{lstlisting}[language=Scheme]
+(define (btree-sum tree)
+
+
+
+
+
+
+)
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define (btree-sum tree)
+    (if (null? tree)
+        0
+        (+ (entry tree)
+            (btree-sum (left tree))
+            (btree-sum (right tree)))))
+\end{lstlisting}
+\end{solution}

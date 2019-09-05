@@ -1,0 +1,80 @@
+\question Define the procedure \texttt{find\_path} that, given a Tree \texttt{t} and
+an \texttt{entry}, returns a list containing the nodes along the path
+required to get from the root of \texttt{t} to \texttt{entry}. If \texttt{entry} is not
+present in \texttt{t}, return \texttt{False}.\\
+Assume that the elements in \texttt{t} are unique. Find the path to an
+        element.
+
+        For instance, for the following tree, \texttt{find\_path} should return:
+        \begin{center}
+        \begin{tikzpicture}[very thick,level/.style={sibling distance=70mm/#1},
+                            level distance=24pt]
+        \node [vertex] (r){$2$}
+          child {
+            node [vertex] (a) {$7$}
+            child {
+              node [vertex] {$3$}
+            }
+            child {
+              node [vertex] {$6$}
+              child {
+                node [vertex] {$5$}
+              }
+              child {
+                node [vertex] {$11$}
+              }
+            }
+          }
+          child {
+            node [vertex] {$1$}
+          };
+        \end{tikzpicture}
+        \end{center}
+
+        \begin{lstlisting}
+        >>> find_path(tree_ex, 5)
+        [2, 7, 6, 5]
+        \end{lstlisting}
+
+        \begin{lstlisting}
+        def find_path(t, entry):
+        \end{lstlisting}
+        \begin{solution}[2.5in]
+        \begin{lstlisting}
+            if t.entry == entry:
+                return [entry]
+            for subtree in t.subtrees:
+                path = find_path(subtree, entry)
+                if path:
+                    return [t.entry] + path
+            return False
+        \end{lstlisting}
+        \end{solution}
+
+    \item Now assume that the elements of the tree might not be unique. How
+        would you change your answer from part a to find the shortest path?  Try
+        to implement the function \texttt{find\_shortest}, which has the same
+        parameters as \texttt{find\_path}.
+
+        \begin{solution}[4.5in]
+        We want to check every child's entry before moving on to that child's
+        children.  It's easier to do this using an iterative implementation
+        rather than a recursive implementation. In these two functions, we are
+        actually running depth-first search and breadth-first search
+        respectively, both of which are well known graph-traversal algorithms.
+        For CS61A, you just have to recognize that a function call does not
+        return until it is fully evaluated, so the \texttt{
+        find\_path} solution might not give the shortest path.
+
+        \begin{lstlisting}
+        def find_shortest(t, entry):
+            tree_queue = [(t, [])]
+            while len(tree_queue) > 0:
+                curr_tree, path = tree_queue.pop(0)
+                if curr_tree.entry == entry:
+                    return path + [entry]
+                for branch in curr_tree.branches:
+                    tree_queue.append((branch, path + [curr_tree.entry]))
+            return False
+        \end{lstlisting}
+        \end{solution}

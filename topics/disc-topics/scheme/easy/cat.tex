@@ -1,0 +1,13 @@
+\question Write two Scheme expressions that are equivalent to the
+following Python statement - one defining a function directly, and the other creating an anonymous lambda
+that is then bound to the name \texttt{cat}:
+
+\begin{lstlisting}
+cat = lambda meow, purr: meow + purr
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define cat (lambda (meow purr) (+ meow purr)))
+(define (cat meow purr) (+ meow purr))
+\end{lstlisting}
+\end{solution}

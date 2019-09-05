@@ -1,0 +1,53 @@
+A tree has both a value for the root node and a sequence of branches,
+which are also trees. In our implementation, we represent the branches as
+a list of trees. Since a tree is an abstract data type, our choice to use
+lists is just an implementation detail.
+
+\begin{itemize}
+\item The arguments to the constructor \texttt{tree} are the value for
+    the root node and a list of branches.
+\item The selectors for these are \texttt{label} and \texttt{branches}.
+\end{itemize}
+
+\medskip
+
+Note that \texttt{branches} returns a list of trees and not a tree directly.
+It's important to distinguish between working with a tree and working with a
+\textbf{list of} trees.
+
+We have also provided a convenience function, \texttt{is\char`_leaf}.
+
+\medskip
+Let's try to create the tree below.
+
+\begin{center}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=30mm/#1},
+                    level distance=24pt]
+\node [vertex] (r){$1$}
+  child {
+    node [vertex] (a) {$3$}
+    child {
+      node [vertex] {$4$}
+    }
+    child {
+      node [vertex] {$5$}
+    }
+    child {
+      node [vertex] {$6$}
+    }
+  }
+  child {
+    node [vertex] {$2$}
+  };
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}
+# Example tree construction
+t = tree(1,
+      [tree(3,
+          [tree(4),
+           tree(5),
+           tree(6)]),
+      tree(2)])
+\end{lstlisting}

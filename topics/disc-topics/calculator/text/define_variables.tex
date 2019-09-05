@@ -1,0 +1,12 @@
+Let's extend the functionality of our Calculator interpreter to allow us to
+define new variables and functions. We want this to work the same way as how we
+would bind a symbol to a value in Scheme, e.g.: {\tt (define x (+ 3 4))}.
+
+Using our current {\tt calc\_eval} implementation, we would map {\tt calc\_eval}
+on each argument in {\tt exp.second}. However, in the example above, we should
+not call {\tt calc\_eval} on {\tt x}. Hence, we introduce special forms.
+
+First, we will implement {\tt do\_define\_form}, which will allow us to bind
+symbols to values. Then, we will implement {\tt do\_lambda\_form}, which will allow us
+to create user-defined functions.
+

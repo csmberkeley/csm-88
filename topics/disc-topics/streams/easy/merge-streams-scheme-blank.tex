@@ -1,0 +1,26 @@
+\question Write a function \lstinline$merge$ that takes 2 sorted streams
+\lstinline$s1$ and \lstinline$s2$, and returns a new sorted stream which
+contains all the elements from \lstinline$s1$ and \lstinline$s2$.\\
+Assume that both \texttt{s1} and \texttt{s2} have infinite length.
+
+\begin{lstlisting}
+(define (merge s1 s2)
+
+
+    (if _________________________________________________________________________
+
+
+        _________________________________________________________________________
+
+
+        _________________________________________________________________________))
+\end{lstlisting}
+\begin{solution}[0cm]
+\begin{lstlisting}
+(define (merge s1 s2)
+    (if (< (car s1) (car s2))
+        (cons-stream (car s1) (merge (cdr-stream s1) s2))
+        (cons-stream (car s2) (merge s1 (cdr-stream s2)))))
+\end{lstlisting}
+\href{https://youtu.be/AYKHLcMJmJ4}{Video walkthrough}
+\end{solution}

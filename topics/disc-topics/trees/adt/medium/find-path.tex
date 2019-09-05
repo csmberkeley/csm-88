@@ -1,0 +1,70 @@
+\question
+Write a function that takes in a tree and a value \texttt{x} and returns a
+list containing the nodes along the path required to get from the root of
+the tree to a node containing \texttt{x}.
+
+If \texttt{x} is not present in the tree, return \texttt{None}. Assume
+that the entries of the tree are unique.
+
+
+For the following tree, \texttt{find\_path(t, 5)} should return {\tt
+  [2, 7, 6, 5]}
+\begin{center}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=70mm/#1},
+                    level distance=24pt]
+\node [vertex] (r){$2$}
+  child {
+    node [vertex] (a) {$7$}
+    child {
+      node [vertex] {$3$}
+    }
+    child {
+      node [vertex] {$6$}
+      child {
+        node [vertex] {$5$}
+      }
+      child {
+        node [vertex] {$11$}
+      }
+    }
+  }
+  child {
+    node [vertex] {$15$}
+  };
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}
+def find_path(tree, x):
+    """
+    >>> t = tree(2, [tree(7, [tree(3), tree(6, [tree(5), tree(11)])] ), tree(15)])
+    >>> find_path(t, 5)
+    [2, 7, 6, 5]
+    >>> find_path(t, 10)  # returns None
+    """
+
+    if _____________________________:
+
+        return _____________________________
+
+    _____________________________:
+
+        path = _____________________________
+
+        if _____________________________:
+
+            return _____________________________
+\end{lstlisting}
+
+\begin{solution}[1.25in]
+\begin{lstlisting}
+def find_path(tree, x):
+    if label(tree) == x:
+        return [label(tree)]
+    for b in branches(tree):
+        path = find_path(b, x)
+        if path:
+            return [label(tree)] + path
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=OnLa_VUrWiA&list=PLx38hZJ5RLZcgrSJp16YmzNwn9hL5JD8q&index=3&t=0m11s}{Video walkthrough}
+\end{solution}

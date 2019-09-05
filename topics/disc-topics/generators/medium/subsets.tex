@@ -1,0 +1,35 @@
+\question Write a generator function \texttt{generate\char`_subsets} that
+returns all subsets of the positive integers from 1 to \lstinline$n$.
+Each call to this generator's \lstinline$next$ method will return a list of
+subsets of the set \lstinline$[1, 2, ..., n]$, where \lstinline$n$ is the number
+of previous calls to \texttt{next}.
+
+\begin{lstlisting}
+def generate_subsets():
+    """
+    >>> subsets = generate_subsets()
+    >>> for _ in range(3):
+    ...     print(next(subsets))
+    ...
+    [[]]
+    [[], [1]]
+    [[], [1], [2], [1, 2]]
+    """
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    subsets = [[]]
+    n = 1
+    while True:
+        yield subsets
+        subsets = subsets + [s + [n] for s in subsets]
+        n += 1
+\end{lstlisting}
+We start with a base list of subsets. To get the next sequence of subsets, we need two things:
+\begin{itemize}
+    \item All current subsets will continue to be valid subsets in the future.
+    \item We take all the subsets we currently have, and add the next number.
+        These are also valid subsets.
+\end{itemize}
+\end{solution}

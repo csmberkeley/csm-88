@@ -1,0 +1,39 @@
+\newcommand{\ve}[1]{\ensuremath{\bm{#1}}}
+
+\question Now that we have a definition of a vector and its basic operations
+using type dispatching, we can write more complex expressions using Python's
+operator syntax.
+\begin{align*}
+  \text{Length}(\ve{v}) &=||\ve{v}|| = \sqrt{\ve{v} \cdot \ve{v}} \\
+  \text{Norm}(\ve{v}) &= \frac{\ve{v}}{||\ve{v}||} \\
+  \text{Proj}(\ve{u}, \ve{v}) &= \ve{v} \frac{\ve{u} \cdot \ve{v}}{\ve{v} \cdot \ve{v}}
+\end{align*}
+Now write these vector functions using the Python operators we've just
+defined. Notice how much cleaner this is compared to using function calls.
+
+\begin{lstlisting}
+from math import sqrt
+def vector_length(v):
+
+    return ______________________________________
+
+def normalize(v):
+
+    return ______________________________________
+
+def proj(u, v):
+
+    return ______________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def vector_length(v):
+    return sqrt(v*v)
+
+def normalize(v):
+    return v * (1 / vector_length(v))
+
+def proj(u, v):
+    return v * ((u * v) / (v * v))
+\end{lstlisting}
+\end{solution}

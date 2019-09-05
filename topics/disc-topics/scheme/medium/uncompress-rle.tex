@@ -1,0 +1,25 @@
+\question A \textbf{run-length encoding} is a method of compressing a sequence
+of letters. The list \texttt{(a a a b a a a a)} can be compressed to \texttt{((a
+  3) (b 1) (a 4))}, where the compressed version of the sequence keeps track of
+how many letters appear consecutively.
+
+Write a function that takes a compressed sequence and expands it into the
+original sequence.
+\textit{Hint:} You may want to use \texttt{concat} and \texttt{replicate}.
+
+\begin{lstlisting}[language=Scheme]
+(define (uncompress s)
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+  (if (null? s)
+    s
+    (concat (replicate (car (car s)) (car (cdr (car s))))
+            (uncompress (cdr s)))))
+\end{lstlisting}
+\href{https://youtu.be/8FO2ZYkXwb0?t=10m27s}{Video walkthrough}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (uncompress '((a 1) (b 2) (c 3)))
+(a b b c c c)
+\end{lstlisting}

@@ -1,0 +1,24 @@
+% Question Objectives
+% - `return` statements terminate evaluation
+
+\begin{blocksection}
+\question
+What is the result of evaluating the following code?
+
+\begin{lstlisting}
+>>> from operator import add
+>>> def square(x):
+...     return x * x
+>>> def fun(num):
+...     return num
+...     num / 0
+>>> square(fun(5))
+\end{lstlisting}
+\begin{solution}[0.5in]
+25
+
+Note that although \texttt{num / 0} would throw an exception
+\textit{if executed}, this code runs error-free because the function always
+returns before reaching that line.
+\end{solution}
+\end{blocksection}

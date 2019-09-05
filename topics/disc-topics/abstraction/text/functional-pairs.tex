@@ -1,0 +1,26 @@
+A second way of constructing abstract data types is with higher-order
+functions. We can implement the functions {\tt pair} and {\tt select} to achieve
+the same result as a list.
+
+\begin{lstlisting}
+>>> def pair(x, y):
+...     """Return a function that represents a pair of data."""
+...     def get(index):
+...         if index == 0:
+...             return x
+...         elif index == 1:
+...             return y
+...     return get
+>>> def select(p, i):
+...     """Return the element at index I of pair P."""
+...     return p(i)
+>>> nums = pair(1, 2)
+>>> select(nums, 0)
+1
+>>> select(nums, 1)
+2
+\end{lstlisting}
+
+Note how although using functional pairs is syntactically different from using
+lists, they accomplish the exact same thing.
+

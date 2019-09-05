@@ -1,0 +1,62 @@
+\question Consider the following Scheme tree data abstraction.
+
+\begin{lstlisting}
+(define (make-tree root branches) (cons root branches))
+(define (root tree) (car tree))
+(define (branches tree) (cdr tree))
+(define tree 'below-example)
+;                5
+;       +--------+--------+
+;       |        |        |
+;       6        7        2
+;    +--+--+     |     +--+--+
+;    |     |     |     |     |
+;    9     8     1     6     4
+;                      |
+;                      |
+;                      3
+\end{lstlisting}
+
+Write a procedure \texttt{tree-sums} that takes a tree of numbers (like the one
+above) and outputs a list of sums from following each possible path from root to
+leaf.
+
+\textit{Hint}: You may find the \texttt{flatten} procedure helpful.
+
+\begin{lstlisting}
+(define (flatten lst)
+  (cond ((null? lst) nil)
+        ((list? (car lst)) (append (flatten (car lst)) (flatten (cdr lst))))
+        (else (cons (car lst) (flatten (cdr lst))))))
+
+(define (tree-sums tree)
+
+  (if _______________________________________________________
+
+      _______________________________________________________
+
+      (map (lambda (x) _____________________________________)
+
+      ____________________________________________________)))
+\end{lstlisting}
+
+\vfill
+
+\begin{lstlisting}
+scm> (flatten '(0 (1) ((2)) (3 ((4)))))
+(0 1 2 3 4)
+scm> (tree-sums tree)
+(20 19 13 16 11)
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+(define (tree-sums tree)
+  (if (null? (branches tree))
+      (list (root tree))
+      (map (lambda (x) (+ x (root tree)))
+           (flatten (map tree-sums (branches tree))))))
+\end{lstlisting}
+\end{solution}
+
+\clearpage

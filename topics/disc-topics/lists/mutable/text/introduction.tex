@@ -1,0 +1,61 @@
+Let's imagine you order a mushroom and cheese pizza from La Val's, and that
+they represent your order as a list:
+
+\begin{lstlisting}
+>>> pizza = ['cheese', mushrooms']
+\end{lstlisting}
+
+A couple minutes later, you realize that you really want onions on the pizza.
+Based on what we know so far, La Val's would have to build an entirely new list
+to add onions:
+
+\begin{lstlisting}
+>>> pizza = ['cheese', mushrooms']
+>>> new_pizza = pizza + ['onions'] # creates a new python list
+>>> new_pizza
+['cheese', mushrooms', 'onions']
+>>> pizza # the original list is unmodified
+['cheese', 'mushrooms']
+\end{lstlisting}
+
+This is silly, considering that all La Val's had to do was add onions on top of
+{\tt pizza} instead of making an entirely new pizza.
+
+We can fix this issue with \define{list mutation}. In Python, some objects,
+such as lists and dictionaries, are \define{mutable}, meaning that their
+contents or state can be changed over the course of program execution. Other objects, such as
+numeric types, tuples, and strings, are {\it immutable}, meaning they cannot be
+changed once they are created.
+
+Therefore, instead of building a new pizza, we can just mutate \texttt{pizza}
+to add some onions!
+
+\begin{lstlisting}
+>>> pizza.append('onions')
+>>> pizza
+['cheese', 'mushrooms', 'onions']
+\end{lstlisting}
+
+\texttt{append} is what's known as a method, or a function that belongs to an
+object, so we have to call it using dot notation. We'll talk more about methods 
+later in the course, but for now, here's a list of useful list mutation methods:
+
+\begin{enumerate}
+\item {\tt append(el)}: Adds {\tt el} to the end of the list
+\item {\tt extend(lst)}: Extends the list by concatenating it with {\tt lst}
+\item {\tt insert(i, el)}: Insert {\tt el} at index {\tt i} (does not replace
+element but adds a new one)
+\item {\tt remove(el)}: Removes the first occurrence of {\tt el} in list,
+otherwise errors
+\item {\tt pop(i)}: Removes and returns the element at index {\tt i}
+\end{enumerate}
+
+We can also use the familiar indexing operator with an assignment statement to
+change an existing element in a list. For example, we can change the element at index 1
+and to \texttt{'tomatoes'} like so:
+
+\begin{lstlisting}
+>>> pizza[1] = 'tomatoes'
+>>> pizza
+['cheese', 'tomatoes', 'onions']
+\end{lstlisting}

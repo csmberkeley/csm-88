@@ -1,0 +1,15 @@
+\question Write a function \lstinline$seventh$ that creates an infinite
+stream of the decimal expansion of dividing n by 7.
+For example, the first 5 elements in \lstinline$seventh(1)$ would be
+1, 4, 2, 8, and 5, since $1/7 = .14285$.
+
+\begin{lstlisting}
+def seventh(n):
+    """The decimal expansion of n divided by 7."""
+\end{lstlisting}
+\begin{solution}[1.5cm]
+\begin{lstlisting}
+    q, r = n*10 // 7, n*10 % 7
+    return Stream(q, lambda: seventh(r))
+\end{lstlisting}
+\end{solution}

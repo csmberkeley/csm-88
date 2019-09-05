@@ -1,0 +1,17 @@
+\question Draw the environment diagram for the following code:
+\begin{lstlisting}
+doug = "ni"
+def cat(dog):
+    def rug(rat):
+        doug = lambda doug: rat(doug)
+        return doug
+    return rug(dog)("ck")
+    
+cat(lambda rat: doug + rat)
+\end{lstlisting}
+
+\begin{solution}[6in]
+\begin{center}
+\includegraphics[scale=.5]{env-nick.png}
+\end{center}
+\end{solution}

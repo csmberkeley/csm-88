@@ -1,0 +1,44 @@
+\question More cats! Fill in this implemention of a class called
+\texttt{NoisyCat}, which is just like a normal \texttt{Cat}. However,
+\texttt{NoisyCat} talks a lot -- twice as much as a regular \texttt{Cat}!
+
+\begin{lstlisting}
+class _____________________: # Fill me in!
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+class NoisyCat(Cat):
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    """A Cat that repeats things twice."""
+    def __init__(self, name, owner, lives=9):
+        # Is this method necessary? Why or why not?
+        \end{lstlisting}
+
+        \begin{solution}[.2in]
+        \begin{lstlisting}
+        Cat.__init__(self, name, owner, lives)
+        \end{lstlisting}
+        No, this method is not necessary because NoisyCat already inherits Cat's \_\_init\_\_ method
+        \end{solution}
+
+        \begin{lstlisting}
+    def talk(self):
+        """Talks twice as much as a regular cat.
+
+        >>> NoisyCat('Magic', 'James').talk()
+        Magic says meow!
+        Magic says meow!
+        """
+        \end{lstlisting}
+
+        \begin{solution}[.3in]
+        \begin{lstlisting}
+        Cat.talk(self)
+        Cat.talk(self)
+        \end{lstlisting}
+        \end{solution}
+\begin{solution}
+\href{https://www.youtube.com/watch?v=BatqjYa7WZ8&list=PLx38hZJ5RLZfel-Gi9pjaUbfQDCZIsWMU&vq=hd1080&t=38m10s}{Video walkthrough}
+\end{solution}

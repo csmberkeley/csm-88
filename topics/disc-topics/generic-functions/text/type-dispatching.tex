@@ -1,0 +1,43 @@
+Revisiting the complex number example, we have:
+
+\begin{lstlisting}
+tags = {ComplexRI: 'com', ComplexMA: 'com', Rational: 'rat'}
+
+def type_tag(x):
+    return tags[type(x)]
+\end{lstlisting}
+
+
+\begin{lstlisting}
+tags = {AlbertRecord: 'AW', MarkRecord: 'MM'}
+
+def type_tag(x):
+    return tags[type(x)]
+\end{lstlisting}
+
+Now {\tt type\_tag.tags} is a dictionary that associates data types
+(specifically, a class name) with a key word that we can use to look up
+the type tag.
+
+Next, we can implement a generic add function:
+
+\begin{lstlisting}
+def add(z1, z2):
+    types = (type_tag(z1), type_tag(z2))
+    return add.implementations[types](z1, z2)
+
+add.implementations = {}
+add.implementations[('com', 'com')] = add_complex
+add.implementations[('com', 'rat')] = add_complex_and_rational
+add.implementations[('rat', 'com')] = lambda x, y:
+     add_complex_and_rational(y, x)
+add.implementations[('rat', 'rat')] = add_rational
+\end{lstlisting}
+
+So what happens when we call {\tt add(ComplexRI(2, 3), ComplexRI(4,
+5))}?  Let's refer to the two complex numbers as {\tt z1} and {\tt z2}.
+{\tt type\_tag} looks up the tag for each them and returns 'com' and
+'com'. We then look up {\tt ('com', 'com')} in our table of supported
+implementations of add and see that we should use {\tt add\_complex}.
+We then invoke {\tt add\_complex(z1, z2)} which works without a hitch
+because all the data types match up.

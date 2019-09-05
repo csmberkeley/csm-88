@@ -1,0 +1,23 @@
+\question Given the definition of {\tt make\_shopkeeper} below, draw the
+environment diagram.
+\begin{lstlisting}
+def make_shopkeeper(total_gold):
+    def buy(cost):
+        nonlocal total_gold
+        if total_gold < cost:
+            return 'Go farm some more champions'
+        total_gold = total_gold - cost
+        return total_gold
+    return buy
+
+infinity_edge, zeal, gold = 3800, 1100, 3800
+shopkeeper = make_shopkeeper(gold - 1000)
+shopkeeper(zeal)
+shopkeeper(infinity_edge)
+\end{lstlisting}
+
+\begin{solution}[4.0in]
+\begin{center}
+\includegraphics{make-shopkeeper.png}
+\end{center}
+\end{solution}

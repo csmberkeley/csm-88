@@ -1,0 +1,18 @@
+\question (Adapted from Fall 2014) Implement \texttt{cycle} which returns a
+stream repeating the digits 1, 3, 0, 2, and 4, forever. Write \texttt{cons-stream} only once in your solution!\\
+\textbf{Hint}: \lstinline$(3+2) % 5 == 0$.
+
+\begin{lstlisting}
+(define (cycle start)
+
+
+    ______________________________________________________________________________)
+\end{lstlisting}
+
+\begin{solution}[0in]
+\begin{lstlisting}
+(define (cycle start)
+    (cons-stream start (cycle (modulo (+ start 2) 5))))
+\end{lstlisting}
+\href{https://youtu.be/Qde_PiKUoA4?t=6m11s}{Video walkthrough}
+\end{solution}

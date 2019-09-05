@@ -1,0 +1,44 @@
+\question What would Python display in an interactive session?
+
+\begin{lstlisting}
+>>> range3 = Range(3)
+>>> for i in range3:
+...     print(i)
+...
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+0
+1
+2
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> list(range3)
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+[0, 1, 2]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> iterator3 = iter(range3)
+>>> list(iterator3)
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+[0, 1, 2]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> list(iterator3)
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+[]
+\end{lstlisting}
+\end{solution}
+

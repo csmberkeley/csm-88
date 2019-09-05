@@ -1,0 +1,21 @@
+\begin{center}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=30mm/#1},
+                    level distance=24pt]
+\node [vertex] (r){$1$}
+  child {
+    node [vertex] (a) {$3$}
+    child {
+      node [vertex] {$4$}
+    }
+    child {
+      node [vertex] {$5$}
+    }
+    child {
+      node [vertex] {$6$}
+    }
+  }
+  child {
+    node [vertex] {$2$}
+  };
+\end{tikzpicture}
+\end{center}

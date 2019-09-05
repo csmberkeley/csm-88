@@ -1,0 +1,33 @@
+\question
+Write a function that takes in a tree and squares every value. It should
+return a new tree. You can assume that every item is a number.
+\begin{lstlisting}
+def square_tree(t):
+    """Return a tree with the square of every element in t
+    >>> numbers = tree(1,
+    ...                [tree(2,
+    ...                      [tree(3),
+    ...                       tree(4)]),
+    ...                 tree(5,
+    ...                      [tree(6,
+    ...                            [tree(7)]),
+    ...                       tree(8)])])
+    >>> print_tree(square_tree(numbers))
+    1
+      4
+        9
+        16
+      25
+        36
+          49
+        64
+    """
+
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    sq_branches = [square_tree(branch) for branch in branches(t)]
+    return tree(label(t)**2, sq_branches)
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=cZWnevsmb5o&index=2&list=PLx38hZJ5RLZcgrSJp16YmzNwn9hL5JD8q&t=5m3s}{Video walkthrough}
+\end{solution}

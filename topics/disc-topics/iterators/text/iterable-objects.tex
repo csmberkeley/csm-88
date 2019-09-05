@@ -1,0 +1,29 @@
+An \define{iterable} object is any container that can be processed sequentially.
+Examples of iterables are lists, tuples, strings, and dictionaries. To process
+the elements sequentially, call \texttt{iter} on the iterable to retrieve an
+iterator.
+
+An \define{iterator} is an object that tracks the position in a sequence of
+values in order to provide sequential access. It returns elements one at a time
+and is only good for one pass through the sequence. To access the next element
+of an iterator, call \texttt{next} on the object. Each time \texttt{next} is
+called, the iterator advances.
+
+We can create as many iterators as we would like from a single iterable. However,
+iterators will go through the elements of the sequence they represent only once.
+To go through an iterable twice, create two iterators!
+
+\vspace{1em}
+\begin{lstlisting}[language=Python]
+>>> iterable = [4, 8, 15, 16, 23, 42]
+>>> iterator1 = iter(iterable)
+>>> next(iterator1)
+4
+>>> next(iterator1)
+8
+>>> next(iterator1)
+15
+>>> iterator2 = iter(iterable)
+>>> next(iterator2)
+4
+\end{lstlisting}

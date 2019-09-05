@@ -1,0 +1,30 @@
+We've seen how different data types can implement the same interface,
+such as with Python's {\tt \_\_add\_\_} method. When a class that
+implements {\tt \_\_add\_\_} only has to interact with a limited number
+of other classes (e.g. a {\tt Vector} only has to add with other {\tt
+Vector}s), then simply using Python's builtin interfaces is easy.
+
+However, sometimes simply defining an interface is not enough:
+\begin{itemize}
+    \item \textbf{Two data types might not share the same interface.}
+        If you don't have access to the source code, it might not be
+        possible to change the data types so that they \emph{do}
+        implement the interface
+    \item \textbf{We want to preserve modularity in our programs.} Even
+        if we could modify the data types, it would be unwieldy to
+        change the implementations of each data type (often across
+        multiple files) every time we added a new data type. For
+        example, once we add a {\tt ComplexNumber} class, we'd have to
+        go through all the number-related classes and add code to
+        handle {\tt ComplexNumber}s.
+\end{itemize}
+
+{\tt Generic functions} are a way around this.
+
+We are going to employ \emph{type dispatching}. The idea: our generic
+functions will see arguments of various data types. We can inspect what
+type of data the argument is. Now suppose we have been keeping a table
+that holds functionality for interacting with specific data types. We
+can simply look up the argument's data type in the table, which will
+return to us a function that we know will work with the argument's data
+type.

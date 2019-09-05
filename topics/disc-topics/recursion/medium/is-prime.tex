@@ -1,0 +1,52 @@
+\question Below is the iterative version of {\tt is\_prime}, which returns 
+{\tt True} if positive integer {\tt n} is a prime number and {\tt False} otherwise: 
+\begin{lstlisting}
+def is_prime(n):
+    if n == 1: 
+        return False
+    k = 2
+    while k < n:
+        if n % k == 0: 
+            return False
+        k += 1 
+    return True
+\end{lstlisting}
+
+Implement the recursive {\tt is\_prime} function. Do not use a while loop, use recursion.
+
+\begin{lstlisting}
+def is_prime(n):
+\end{lstlisting}
+
+\begin{solution}[2in]
+\begin{lstlisting}
+    def helper(k):
+        if k >= n:
+            return True
+        if n % k == 0:
+            return False
+        return helper(k + 1)
+    return helper(2)
+\end{lstlisting}
+\textbf{Note}: The goal of this question was to demonstrate how to use a helper 
+function, as well as how to translate between iteration and recursion.
+\end{solution}
+
+\iffalse
+\question Is there a math trick you can apply to {\tt is\_prime} so it runs faster?
+\begin{solution}[2.0in]
+If {\tt n} is prime, it can be factored into at least two factors. If both of the factors 
+are greater than the $\sqrt{n}$, then their product is greater than {\tt n}. Therefore, 
+one of the factors must be less than or equal to $\sqrt{n}$.
+\begin{lstlisting}
+    def helper(k):
+        if k > math.sqrt(n):
+            return True
+        if n % k == 0:
+            return False
+        return helper(k + 1)
+    return helper(2)
+\end{lstlisting}
+\textbf{Note}: Don't forget to import {\tt math}.
+\end{solution}
+\fi

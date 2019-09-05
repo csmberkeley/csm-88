@@ -1,0 +1,23 @@
+\question Implement the following rational number methods.
+\begin{lstlisting}
+def inverse_rational(x):
+    """Returns the inverse of the given non-zero rational 
+    number
+    """
+\end{lstlisting}
+\begin{solution} [0.5in]
+\begin{lstlisting}
+    return rational(denom(x), numer(x))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+def div_rationals(x, y):
+    """Returns x / y for given rational x and non-zero
+    rational y
+    """
+\end{lstlisting}
+\begin{solution} [0.5in]
+\begin{lstlisting}
+    return mul_rationals(x, inverse_rational(y))
+\end{lstlisting}
+\end{solution}

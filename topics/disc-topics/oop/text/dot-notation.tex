@@ -1,0 +1,25 @@
+Finally, to use a class or instance's attributes, we use ``dot notation'', which
+is aptly named for the use of the magic dot. The dot asks the class for the
+value of the attribute. So, if we have an attribute, \texttt{bar}, of a class or
+instance, \texttt{foo}, we access it by saying: ``\texttt{foo.bar}'' which says
+``Almighty \texttt{foo} class, what is the value of the attribute \texttt{bar}?''
+
+Typically, attributes are defined in the \texttt{\_\_init\_\_} function of a
+class:
+\begin{lstlisting}
+class OurClass(ParentClass):
+    bar = "Fruit Bar" # class attribute
+    def __init__(self, bar_name):
+        self.bar = bar_name # instance attribute
+    def method(self, arg):
+        # body goes here
+\end{lstlisting}
+
+Once an object is constructed, you can also access the attribute by using dot
+notation \emph{outside} of the class definition:
+\begin{lstlisting}
+>>> new_bar = OurClass('Crazy Bar')
+>>> new_bar.bar
+'Crazy Bar'
+\end{lstlisting}
+

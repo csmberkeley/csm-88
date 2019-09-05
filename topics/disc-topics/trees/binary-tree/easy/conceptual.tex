@@ -1,0 +1,34 @@
+\question
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\begin{enumerate}
+\item What is the purpose of the assert statement in the second line of {\tt
+    \_\_init\_\_}?  Why must we write this line explicitly instead of relying
+    on {\tt Tree.\_\_init\_\_}'s assert?
+
+\item Summarize the process of creating a new BinaryTree. How does {\tt
+    Tree.\_\_init\_\_} contribute?
+
+\item Why do we use {\tt @property} instead of writing {\tt self.left =
+    self.branches[0]} in {\tt \_\_init\_\_}?
+\end{enumerate}
+
+\begin{solution}[1in]
+\begin{enumerate}
+\item We want to enforce the closure property for the BinaryTree, that each
+    subtree of a BinaryTree is a BinaryTree instance. {\tt Tree.\_\_init\_\_}'s
+    assert only enforces that each subtree is a Tree instance. Therefore, we
+    need to make a stronger assertion in the BinaryTree class.
+
+\item First, an empty instance of BinaryTree is created. Then, after the
+    assert, we will \emph{fill in} the empty instance by calling {\tt
+    Tree.\_\_init\_\_} with particular arguments so that our tree will be a
+    binary tree. Note that  {\tt Tree.\_\_init\_\_} does not create a new
+    object, nor is it used as a bound method.
+\item {\tt self.left = self.branches[0]} will only copy the current value of
+    {\tt self.branches[0]}, not whatever that list element contains. Since the
+    value of the list element can change anytime, we should instead re-compute
+    the value of {\tt self.left} every time we need the attribute. The {\tt
+    @property}  construct helps us implement that easily.
+\end{enumerate}
+\end{solution}

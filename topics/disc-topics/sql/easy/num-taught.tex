@@ -1,0 +1,11 @@
+\question Create a table called \lstinline$num_taught$ that contains three
+columns: \lstinline$professor$, the \lstinline$course$ they taught, and the
+number of \lstinline$times$ they taught each course.
+
+\begin{solution}[1in]
+\begin{lstlisting}[language=SQL]
+CREATE TABLE num_taught AS
+  SELECT professor AS professor, course AS course, COUNT(*) AS times
+  FROM courses GROUP BY professor, course;
+\end{lstlisting}
+\end{solution}

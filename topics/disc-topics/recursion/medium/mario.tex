@@ -1,0 +1,55 @@
+\question
+Mario needs to jump over a sequence of Piranha plants, represented as a string of spaces (no plant) and P's (plant!).  He only moves forward, and he can either step (move forward one space) or jump (move forward two spaces) from each position.  How many different ways can Mario traverse a level without stepping or jumping into a Piranha plant? Assume that every level begins with a space (where Mario starts) and ends with a space (where Mario must end up):
+
+\textbf{Hint}: You can get the ith character in a string `s` by using `s[i]`. For example,
+\begin{lstlisting}[language=Python]
+     >>> s = 'abcdefg'
+     >>> s[0]
+     'a'
+     >>> s[2]
+     'c'
+\end{lstlisting}
+You can find the total number of characters in a string with the built-in`len` function:
+\begin{lstlisting}[language=Python]
+     >>> s = 'abcdefg'
+     >>> len(s)
+     7
+     >>> len('')
+     0
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+def mario_number(level):
+    """Return the number of ways that Mario can perform a sequence of steps
+    or jumps to reach the end of the level without ever landing in a Piranha
+    plant. Assume that every level begins and ends with a space.
+
+    >>> mario_number(' P P ')   # jump, jump
+    1
+    >>> mario_number(' P P  ')   # jump, jump, step
+    1
+    >>> mario_number('  P P ')  # step, jump, jump
+    1
+    >>> mario_number('   P P ') # step, step, jump, jump or jump, jump, jump
+    2
+    >>> mario_number(' P PP ')  # Mario cannot jump two plants
+    0
+    >>> mario_number('    ')    # step, jump ; jump, step ; step, step, step
+    3
+    >>> mario_number('    P    ')
+    9
+    >>> mario_number('   P    P P   P  P P    P     P ')
+    180
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+	def ways(n):
+        if n == len(level)-1:
+            return 1
+        if n >= len(level) or level[n] == 'P':
+            return 0
+        return ways(n+1) + ways(n+2)
+    return ways(0)
+\end{lstlisting}
+\end{solution}
+

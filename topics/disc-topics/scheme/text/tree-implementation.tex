@@ -1,0 +1,7 @@
+\begin{lstlisting}[language=Scheme]
+(define (tree root children) (list root children))
+(define (root t) (car t))
+(define (children t) (cdr t))
+(define (empty? s) (null? s))
+(define (leaf root) (tree root nil nil))
+\end{lstlisting}

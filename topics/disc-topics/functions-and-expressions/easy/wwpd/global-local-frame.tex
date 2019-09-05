@@ -1,0 +1,69 @@
+% Question Summary
+% - Introduce lexical scoping rules with a global and local frame, targetting
+%   some common misconceptions.
+
+\begin{blocksection}
+\question
+What would Python display?
+
+\begin{lstlisting}
+>>> x = 10
+>>> def foo():
+...     return x
+>>> def bar(x):
+...     return x
+>>> def foobar(new_value):
+...     x = new_value
+...     y = x + 1
+...     return x
+\end{lstlisting}
+\end{blocksection}
+\begin{lstlisting}
+>>> foo()
+\end{lstlisting}
+\begin{solution}[0.5in]
+10
+
+Since \texttt{x} is not defined in the \texttt{foo} environment, then Python
+looks in the parent frame (the global environment) for the value of \texttt{x}.
+\end{solution}
+\begin{lstlisting}
+>>> bar(5)
+\end{lstlisting}
+\begin{solution}[0.5in]
+5
+
+In this case, \texttt{x} was passed in as a parameter of \texttt{bar}, so since
+it is defined in the \texttt{bar} environment, that value is used.
+\end{solution}
+\begin{lstlisting}
+>>> foobar(20)
+\end{lstlisting}
+\begin{solution}[0.5in]
+20
+
+We define \texttt{x} in the \texttt{foobar} frame to be \texttt{20} and then
+return that value.
+\end{solution}
+\begin{lstlisting}
+>>> x
+\end{lstlisting}
+\begin{solution}[0.5in]
+10
+
+From the previous call to \texttt{foobar}, \texttt{x} in the \texttt{foobar}
+frame was defined to be \texttt{20}, but the \texttt{x} in the global frame was
+left unchanged. So when we ask for the value of \texttt{x} in the global frame,
+we get \texttt{10}.
+\end{solution}
+\begin{lstlisting}
+>>> y
+\end{lstlisting}
+\begin{solution}[0.5in]
+\texttt{NameError: name 'y' is not defined}
+
+\texttt{y} was defined in the \texttt{foobar} frame. The global frame does not
+have \texttt{y} defined, nor does it have a parent frame to reference to, so
+instead Python raises an error.
+\end{solution}
+

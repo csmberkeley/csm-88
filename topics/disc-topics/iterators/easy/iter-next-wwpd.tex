@@ -1,0 +1,50 @@
+\question What would Python display?
+\setlength{\medskipamount}{0pt}
+
+\begin{solution}
+It can be helpful to refer back to the \texttt{iter} example on the first page.
+Remember that calling \texttt{iter} returns something that you can call
+\texttt{next} on. The rest of the challenge in this problem is just keeping
+track of where you currently are in the sequence.
+\end{solution}
+\begin{lstlisting}
+>>> lst = [[1, 2]]
+>>> i = iter(lst)
+>>> j = iter(next(i))
+>>> next(j)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+1
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst.append(3)
+>>> next(i)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+3
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> next(j)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+2
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> next(i)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+StopIteration
+\end{lstlisting}
+\end{solution}
+
+\walkthrough{https://www.youtube.com/watch?v=Scz50qHjzXM&list=PLx38hZJ5RLZccXWDLoOVdTsx8VT60WYgn&index=3}

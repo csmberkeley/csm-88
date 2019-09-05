@@ -1,0 +1,10 @@
+\begin{lstlisting}[language=Python]
+>>> square = lambda x: x*x
+>>> def many_squares(s):
+...     for x in s:
+...         yield square(x)
+...     yield from map(square, s)
+...
+>>> list(many_squares([1, 2, 3]))
+[1, 4, 9, 1, 4, 9]
+\end{lstlisting}

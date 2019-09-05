@@ -1,0 +1,10 @@
+\question Write a query that results in the names of all employees that have a
+meeting on the same day as their supervisor.
+\begin{solution}[0in]
+\begin{lstlisting}[language=SQL]
+SELECT e.name FROM records AS e, records AS s, meetings AS em, meetings AS sm
+  WHERE e.supervisor = s.name AND em.day = sm.day AND
+        e.division = em.division AND s.division = sm.division;
+\end{lstlisting}
+\href{https://youtu.be/BIV5O1U9Zdw?t=17m24s}{Video walkthrough}
+\end{solution}

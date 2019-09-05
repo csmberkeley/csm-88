@@ -1,0 +1,13 @@
+\question What does the following Stream output? Try writing out the
+first few values of the stream to see the pattern.
+
+\begin{lstlisting}
+def my_stream():
+    def compute_rest():
+        return add_streams(map_stream(double, my_stream()),
+                           my_stream())
+    return Stream(1, compute_rest)
+\end{lstlisting}
+\begin{solution}[2cm]
+Powers of 3: 1, 3, 9, 27, 81, ...
+\end{solution}

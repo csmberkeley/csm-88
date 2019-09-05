@@ -1,0 +1,22 @@
+One important application of iterables 
+and iterators is the \lstinline$for$ loop.
+We've seen how we can use \lstinline$for$ loops to iterate over iterables like lists and 
+dictionaries.
+
+This only works because the \lstinline$for$ loop implicitly creates an iterator
+using the built-in \lstinline$iter$ function.
+Python then calls \lstinline$next$ repeatedly on the iterator, until it raises
+\lstinline$StopIteration$.
+
+The code to the right shows how we can mimic the behavior of \lstinline$for$ loops
+using \lstinline$while$ loops.
+
+Note that most iterators are also iterables - that is, calling \lstinline$iter$ on 
+them will return an iterator. This means that we can use them inside \lstinline$for$ loops. 
+However, calling \lstinline$iter$ on most iterators will not create a new iterator -
+instead, it will simply return the same iterator.
+
+We can also iterate over iterables in a list comprehension or pass in an iterable to
+the built-in function \lstinline$list$ in order to put the items of an iterable into
+a list.
+

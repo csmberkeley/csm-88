@@ -1,0 +1,24 @@
+\question Write a recursive function that takes a number {\tt n} and
+returns the sum of its digits. Assume {\tt n} is positive.
+
+You might find the operators \texttt{//} and \texttt{\%} useful.
+\begin{lstlisting}
+def sum_digits(n):
+    """
+    >>> sum_digits(7)
+    7
+    >>> sum_digits(30)
+    3
+    >>> sum_digits(228)
+    12
+    """
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}
+    if n < 10:
+        return n 
+    else:
+        return n % 10 + sum_digits(n // 10)
+\end{lstlisting}
+\end{solution}

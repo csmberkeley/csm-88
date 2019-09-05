@@ -1,0 +1,19 @@
+\question Define {\tt reduce}, where the first argument is a function that takes
+two arguments, the second is a starting value, and the third is a list. This should
+work like \textbf{Python}'s {\tt reduce}.
+
+\begin{lstlisting}[language=Scheme]
+(define (reduce fn s lst)
+
+
+
+                                             )
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define (reduce fn s lst)
+    (if (null? lst)
+        s
+        (reduce fn (fn s (car lst)) (cdr lst))))
+\end{lstlisting}
+\end{solution}

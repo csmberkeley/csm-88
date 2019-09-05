@@ -1,0 +1,59 @@
+In Logic, you can also define more complex facts. For example:
+
+\begin{lstlisting}
+> (fact (sells-same ?store1 ?store2)
+        (sells ?store1 ?item)
+        (sells ?store2 ?item))
+\end{lstlisting}
+
+Here is the basic syntax of a complex fact:
+
+\begin{lstlisting}
+> (fact (<conclusion>)
+        (<hypothesis 1>)
+        (<hypothesis 2>)
+        ...
+        (<hypothesis n>))
+\end{lstlisting}
+
+This is equivalent to saying ``the conclusion is true if all the hypotheses are
+true.''  If even one of the hypotheses is false, the conclusion cannot be proven
+using this fact.
+
+For example, the {\tt sells-same} complex fact is equivalent to saying ``{\tt
+store1} and {\tt store2} sell the same thing if {\tt store1} sells {\tt item}
+and {\tt store2} also sells the same {\tt item}.''
+
+You can perform fact-checking with complex facts, just like with simple facts:
+
+\begin{lstlisting}
+> (fact (sells farmers-market groceries))
+> (fact (sells starbucks coffee))
+> (query (sells-same supermarket farmers-market))
+Success!
+> (query (sells-same supermarket starbucks))
+Failed.
+\end{lstlisting}
+
+We can also do querying:
+
+\begin{lstlisting}
+> (query (sells-same ?store supermarket))
+Success!
+store: farmers-market
+\end{lstlisting}
+
+This is equivalent to asking ``what store sells the same thing as a
+supermarket?''
+
+We can also ask ``what stores sell the same thing?''
+
+\begin{lstlisting}
+> (query (sells-same ?store1 ?store2))
+Success!
+store1: supermarket store2: farmers-market
+store1: farmers-market store2: supermarket
+store1: supermarket store2: supermarket
+store1: farmers-market store2: farmers-market
+\end{lstlisting}
+

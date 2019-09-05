@@ -1,0 +1,26 @@
+\question Implement the \texttt{repeat-nats} procedure, which takes a starting number and returns a stream of natural numbers beginning at the starting value such that each element \texttt{x} is repeated \texttt{x} number of times.
+
+\begin{lstlisting}[language=Scheme]
+(define (repeat-nats start)
+\end{lstlisting}
+\begin{solution}[3in]
+\begin{lstlisting}[language=Scheme]
+  (define (repeat-helper n count)
+    (if (= count 0)
+        (cons-stream (+ n 1)
+                     (repeat-helper (+ n 1) n))
+        (cons-stream n
+                    (repeat-helper n (- count 1)))))
+  (repeat-helper start start))
+\end{lstlisting}
+\end{solution}
+\texttt{take} is a procedure that returns a Scheme list containing the first \texttt{n} elements a stream \texttt{s}.
+\begin{lstlisting}[language=Scheme]
+(define (take n s)
+  (if (or (= n 0) (null? s))
+    nil
+    (cons (car s) (take (- n 1) (cdr-stream s)))))
+
+scm> (take 10 (repeat-nats 0))
+(1 2 2 3 3 3 4 4 4 4)
+\end{lstlisting}

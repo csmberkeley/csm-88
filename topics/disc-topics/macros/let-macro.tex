@@ -1,0 +1,34 @@
+\question Write the \texttt{let} special form as a macro called
+\texttt{let-macro}.  Recall that \texttt{let} takes in a list of bindings and a
+body expression. It creates a temporary frame containing the given bindings,
+and returns the result of evaluating the body in this temporary frame. Do not
+use the \texttt{let} special form in your solution.
+
+You may use the provided \texttt{cadr} procedure in your solution.
+
+\textit{Hint:} The built-in \texttt{map} procedure takes in a one-argument
+function and a list and returns the result of mapping the function to every
+element in the list.
+
+\begin{lstlisting}[language=Scheme]
+(define-macro (let-macro bindings body)
+\end{lstlisting}
+
+\begin{solution}[.5in]
+\begin{lstlisting}[language=Scheme]
+  (cons `(lambda ,(map car bindings) ,body) (map cadr bindings))
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+)
+
+(define (cadr lst) (car (cdr lst)))
+
+scm> (define x 3)
+x
+scm> (let-macro ((x 1) (y 2)) (+ x y))
+3
+scm> (let-macro ((x 2) (y x)) (* x y))
+6
+\end{lstlisting}

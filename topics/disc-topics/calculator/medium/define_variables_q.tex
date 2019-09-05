@@ -1,0 +1,187 @@
+\question
+Before we can create functions and bind symbols to values, we need a way to keep
+track of different frames and environments. Fill in the {\tt define} and {\tt
+lookup} methods in the {\tt Frame} class. The {\tt define} method should assign
+the key {\tt name} to the value {\tt value} in the bindings of the current
+frame. The {\tt lookup} method should return the value bound to {\tt name} in
+the current frame, or lookup in the parent if there is one. Otherwise, raise a
+{\tt NameError}.\\
+
+\begin{lstlisting}
+class Frame:
+    def __init__(self, parent=None):
+        self.bindings = {}
+        self.parent = parent
+
+    def define(self, name, value):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+        self.bindings[name] = value
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    def lookup(self, name): 
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+        if name in self.bindings:
+            return self.bindings[name]
+        elif self.parent is None:
+            raise NameError('name {} is not defined'.format(name))
+        else:
+            return self.parent.lookup(name)
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+global_frame = Frame()
+\end{lstlisting}
+
+\clearpage
+
+Note that, to handle environments and the {\tt define} and {\tt lambda} special
+forms, we have to modify {\tt calc\_eval} as follows:\\
+
+\begin{lstlisting}
+def calc_eval(exp, env):
+    """Evaluates a Calculator expression."""
+    if isinstance(exp, Pair):
+        first, second = exp.first, exp.second
+        if first in SPECIAL_FORMS:
+            return SPECIAL_FORMS[first](second, env)
+        op = calc_eval(first, env)
+        args = second.map(lambda exp: calc_eval(exp, env))
+        return calc_apply(op, list(args))
+    elif exp in OPERATORS:
+        return OPERATORS[exp]
+    elif isinstance(exp, str):
+        return env.lookup(exp)
+    else:
+        return exp
+\end{lstlisting}
+
+{\tt calc\_eval} has to take in an additional parameter {\tt env}, which is the
+current frame that {\tt exp} is being evaluated in. If {\tt exp} is a string,
+meaning it is a symbol, we simply look it up in {\tt env}.
+
+To handle special forms, we create a dictionary {\tt SPECIAL\_FORMS} that maps
+the strings {\tt "define"} and {\tt "lambda"} to the functions {\tt
+do\_define\_form} and {\tt do\_lambda\_form}, respectively. These functions take
+in the rest of {\tt exp} and perform the order of evaluation specific to their
+special form.\\
+
+\begin{lstlisting}
+SPECIAL_FORMS = {'define': do_define_form,
+                 'lambda': do_lambda_form}
+\end{lstlisting}
+
+\question
+Let's now implement {\tt do\_define\_form}. This function takes in {\tt exp},
+which is the rest of the expression after the {\tt define}), and a frame {\tt
+env} and binds the name given by {\tt exp.first} to the value that {\tt
+exp.second.first} evaluates to in {\tt env}.\\
+
+\begin{lstlisting}
+def do_define_form(exp, env):
+    target = exp.first
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    value = calc_eval(exp.second.first, env)
+    env.define(target, value)
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    return target
+\end{lstlisting}
+
+\question
+We can now bind symbols to values! But there's more work to be done to allow for
+user-defined functions.
+
+We will first implement a class that represents procedures. Instances of the
+{\tt LambdaProcedure} class are created with {\tt formals}, a {\tt Pair}
+containing the names of the parameters, {\tt body}, a {\tt Pair} representing
+the expression that is the body of the procedure, and {\tt env}, the frame where
+the procedure was created.
+
+We will restrict ourselves to procedures with only one expression in the body,
+similar to how lambda functions are restricted in Python. In the project, you
+will have to handle arbitrary procedures.
+
+Implement the {\tt make\_call\_frame} method, which takes in a {\tt Pair} of
+arguments {\tt args} and creates and returns a new frame where the formal
+parameters of the procedure are bound to the elements of {\tt args}. Make sure
+the frame that is created has the correct parent.\\
+
+\begin{lstlisting}
+class LambdaProcedure:
+    """A procedure defined by a lambda expression."""
+
+    def __init__(self, formals, body, env):
+        self.formals = formals
+        self.body = body
+        self.env = env
+
+    def make_call_frame(self, args):
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+        frame = Frame(self.env)
+        for i in range(len(self.formals)):
+            frame.define(self.formals[i], args[i])
+        return frame
+\end{lstlisting}
+\end{solution}
+
+\clearpage
+
+Now, it is easy to implement {\tt do\_lambda\_form}:\\
+
+\begin{lstlisting}
+def do_lambda_form(exp, env):
+    return LambdaProcedure(exp.first, exp.second.first, env)
+\end{lstlisting}
+
+Evaluating a {\tt lambda} special form simply creates and evaluates to the
+procedure itself. However, there is one more step: currently, our {\tt
+calc\_apply} does not know how to apply user-defined functions. Modify it below
+so that it can handle instances of the {\tt LambdaProcedure} class:\\
+
+\begin{lstlisting}
+def calc_apply(op, args):
+    """Applies an operator to a Pair of arguments."""
+    if isinstance(op, LambdaProcedure):
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+        new_env = op.make_call_frame(args)
+        return calc_eval(op.body, new_env)
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    else:
+        return op(*args)
+\end{lstlisting}
+
+We have now added variables and procedures to our Calculator language! With a
+few small changes to the parser (to allow for symbols) and the REPL (to handle
+environments), we are able to use our interpreter like this:\\
+
+\begin{lstlisting}
+calc> (+ 4 5)
+9
+calc> (define x 4)
+x
+calc> (+ x 6)
+10
+calc> ((lambda (x) (* x x)) 7)
+49
+calc> (define f (lambda (x y) (* (+ x y) (- x y))))
+f
+calc> (f 5 4)
+9
+\end{lstlisting}
+
+Download the Calculator interpreter from Lecture 21 and see if you can figure
+out the necessary changes to get this to work!

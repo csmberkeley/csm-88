@@ -1,0 +1,57 @@
+\begin{blocksection}
+\question ``If P=NP, then the world would be a profoundly different place than
+we usually assume it to be. There would be no special value in `creative
+leaps,' no fundamental gap between solving a problem and recognizing the
+solution once it's found. Everyone who could appreciate a symphony would be
+Mozart; everyone who could follow a step-by-step argument would be Gauss;
+everyone who could recognize a good investment strategy would be Warren
+Buffett.'' -- Scott Aaronson
+
+Unfortunately, P is most likely not equal to NP, but let's pretend it is. This
+allows us to write a function that can write a symphony better than Mozart!
+
+Assume you are given a function, \lstinline$judge$, that takes in a list and
+returns a real number. The list is a representation of a symphony and the
+number is how good the symphony is. Given this function, use tree recursion to
+write a function that generates the best symphony of a predetermined length.
+
+\ifprintanswers\else
+\begin{lstlisting}
+def best_symphony(symphony_so_far, possible_notes, length):
+
+    if _________________________________________________________:
+
+        ________________________________________________________
+
+    symphonies = []
+
+    for ________________________________________________________:
+
+        symphony = ____________________________________________________________________________
+
+        symphonies += [(symphony, judge(symphony))]
+
+    return max(______________________________, key=_________________________)[0]
+\end{lstlisting}
+\fi
+
+\begin{solution}
+\begin{lstlisting}
+def best_symphony(symphony_so_far, possible_notes, length):
+
+    if length == len(symphony_so_far):
+
+        return symphony_so_far
+
+    symphonies = []
+
+    for next_note in possible_notes:
+
+        symphony = best_symphony(symphony_so_far + [next_note], possible_notes, length)
+
+        symphonies += [(symphony, judge(symphony))]
+
+    return max(symphonies, key=lambda v: v[1])[0]
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

@@ -1,0 +1,22 @@
+\question Write out the Calculator expression with proper syntax that
+corresponds to the following \texttt{Pair} constructor calls. Also,
+draw out a box and pointer diagram corresponding to each input.
+
+\begin{lstlisting}
+>>> Pair('+', Pair(1, Pair(2, Pair(3, Pair(4, nil)))))
+\end{lstlisting}
+\begin{solution}[.6in]
+\begin{lstlisting}
+> (+ 1 2 3 4)
+\end{lstlisting}
+\end{solution}
+\begin{verbatim}
+>>> Pair('+', Pair(1, Pair(Pair('*', Pair(2, Pair(3, nil))), nil)))
+\end{verbatim}
+\begin{solution}[.7in]
+\begin{lstlisting}
+> (+ 1 (* 2 3))
+\end{lstlisting}
+\href{https://goo.gl/6VKGQX}{Box and pointers solutions}\\
+\href{https://youtu.be/zIvYrA76GRo?t=1m59s}{Video walkthrough}
+\end{solution}

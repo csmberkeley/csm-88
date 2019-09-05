@@ -1,0 +1,77 @@
+\question You're starting a new job at an animal shelter, and you've been
+tasked with keeping track of all the cats that are up for adoption!
+
+We'll start with an empty table:
+\begin{lstlisting}[language=SQL]
+CREATE TABLE cats(name, weight DEFAULT 1, notes DEFAULT "meow");
+\end{lstlisting}
+
+\begin{parts}
+\part What would SQL display?
+\begin{lstlisting}[language=SQL]
+sqlite> INSERT INTO cats(name) VALUES ("Tom"), ("Whiskers");
+sqlite> SELECT * FROM cats;
+\end{lstlisting}
+\begin{solution}[0.50in]
+\begin{lstlisting}[language=SQL]
+Tom|1|meow
+Whiskers|1|meow
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=SQL]
+sqlite> INSERT INTO cats VALUES
+   ...>   ("Mittens", 2, "Actually likes shoes"),
+   ...>   ("Rascal", 4, "Prefers to associate with dogs"),
+   ...>   ("Magic", 2, "Expert at card games");
+sqlite> SELECT * FROM cats ORDER BY weight, name;
+\end{lstlisting}
+\begin{solution}[0.75in]
+\begin{lstlisting}[language=SQL]
+Tom|1|meow
+Whiskers|1|meow
+Magic|2|Expert at card games
+Mittens|2|Actually likes shoes
+Rascal|4|Prefers to associate with dogs
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=SQL]
+sqlite> UPDATE cats SET notes = "A cat" WHERE notes = "meow";
+sqlite> SELECT name FROM cats WHERE notes = "A cat";
+\end{lstlisting}
+\begin{solution}[0.50in]
+\begin{lstlisting}[language=SQL]
+Tom
+Whiskers
+\end{lstlisting}
+\end{solution}
+
+\part Cats of different weights require different quantities of food. We
+have the following table:
+\begin{lstlisting}[language=SQL]
+CREATE TABLE food AS
+    SELECT 1 AS cat_weight, 0.5 AS amount UNION
+    SELECT 2              , 2.5           UNION
+    SELECT 3              , 4.0           UNION
+    SELECT 4              , 4.5;
+\end{lstlisting}
+
+Write a query that calculates the total amount of food required to feed
+all the cats (this should work for any table of cats, not just the one we
+created above). In our example, we have two cats of weight 1, two cats of
+weight 2, and one cat of weight 4. The total food required is $2 \times 0.5 +
+2 \times 2.5 + 1 \times 4.5 = 10.5$.
+\begin{lstlisting}[language=SQL]
+  SELECT _________________________________________________________________________
+
+    FROM _________________________________________________________________________
+
+    WHERE ________________________________________________________________________;
+\end{lstlisting}
+\begin{solution}
+Specifying the table name in the \texttt{WHERE} clause here is not
+necessary and was added just for clarity.
+\begin{lstlisting}[language=SQL]
+SELECT SUM(amount) FROM cats, food WHERE cats.weight = food.cat_weight;
+\end{lstlisting}
+\end{solution}
+\end{parts}

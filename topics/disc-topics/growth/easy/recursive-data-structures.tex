@@ -1,0 +1,61 @@
+\question
+\begin{lstlisting}
+def insert_at_end(lnk, x):
+    assert(lnk is not Link.empty, "Cannot add to empty linked list")
+    while lnk.rest is not Link.empty:
+        lnk = lnk.rest
+    lnk.rest = Link(x)
+\end{lstlisting}
+What is the growth of this function in terms of \texttt{n}, the length of lnk?
+\begin{solution}[1in]
+$\Theta(n)$
+\end{solution}
+
+\question
+\begin{lstlisting}
+def concatenate(lnk1, lnk2):
+    if lnk2 is Link.empty:
+        return lnk1
+    else:
+        insert_at_end(lnk1, lnk2.first)
+        return concatenate(lnk1, lnk2.rest)
+\end{lstlisting}
+What is the growth of this function if the length of lnk1 and lnk2 are both \texttt{n}?
+\begin{solution}[.5in]
+$\Theta(n^2)$
+
+More generally, if lnk1 is of length $n$ and lnk2 is of length $m$, this will grow as
+$\Theta(nm)$
+\end{solution}
+
+\newpage 
+
+\question
+\begin{lstlisting}
+def search(t, x):
+    if t.label == x:
+        return True
+    for b in t.branches:
+        if search(b, x):
+            return True
+    return False
+\end{lstlisting}
+What is the growth of this function in terms of \texttt{n}, the number of nodes in the tree?
+\begin{solution}[1in]
+$\Theta(n)$
+\end{solution}
+
+\question
+\begin{lstlisting}
+def powers_tree(n):
+    if n == 0:
+        return Tree(0)
+    else:
+        return Tree(n, [powers_tree(n // 2) for i in range(2)])
+\end{lstlisting}
+What is the height of the tree returned by a call to \texttt{powers\_tree(n)} in terms of n?
+
+Recall that the height of the tree is equal to the length of the largest path from root to leaf.
+\begin{solution}[1in]
+$\Theta(log n)$
+\end{solution}

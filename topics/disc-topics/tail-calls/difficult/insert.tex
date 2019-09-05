@@ -1,0 +1,33 @@
+\question
+Write a tail recursive function, \texttt{insert}, that takes in a number and a
+sorted list. The function returns a sorted copy with the number inserted in the
+correct position.
+\begin{lstlisting}[language=Scheme]
+(define (insert n lst)
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}[language=Scheme]
+(define (insert n lst)
+ (define (rev-insert lst rev-lst)
+   (cond ((null? lst) (cons n rev-lst))
+         ((> (car lst) n) (append (reverse lst)
+                                  (cons n rev-lst)))
+         (else (rev-insert (cdr lst)
+                           (cons (car lst) rev-lst)))))
+ (reverse (rev-insert lst nil)))
+
+(define (append a b)
+    (define (rev-append-tail a b)
+        (if (null? a)
+            b
+            (rev-append-tail (cdr a) (cons (car a) b))))
+    (rev-append-tail (reverse a) b))
+
+(define (reverse lst)
+  (define (reverse-sofar lst lst-sofar)
+    (if (null? lst)
+        lst-sofar
+        (reverse-sofar (cdr lst) (cons (car lst) lst-sofar))))
+  (reverse-sofar lst nil))
+\end{lstlisting}
+\end{solution}

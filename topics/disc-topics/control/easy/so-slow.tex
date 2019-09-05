@@ -1,0 +1,25 @@
+\begin{blocksection}
+\question What is the result of evaluating the following code?
+
+\begin{lstlisting}
+def square(x):
+    print("here!")
+    return x * x
+
+def so_slow(num):
+    x = num
+    while x > 0:
+        x = x + 1
+    return x / 0
+
+square(so_slow(5))
+\end{lstlisting}
+
+\begin{solution}[0.25in]
+Infinite loop because \lstinline$x$ will always be greater than 0; the
+\lstinline$num / 0$ is never executed. We also know that \texttt{here!}
+is never printed since the operand \texttt{so\_slow(5)} must be evaluated
+before \texttt{function square(x)} can be called. \\
+\href{https://www.youtube.com/watch?v=Fiw0f5yuQgo&vq=hd1080&t=39m34s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

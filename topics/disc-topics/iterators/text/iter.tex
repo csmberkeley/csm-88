@@ -1,0 +1,5 @@
+The \lstinline$__iter__$ method returns an iterator object. If a class
+implements both a \lstinline$__next__$ method and an \lstinline$__iter__$
+method, its \lstinline$__iter__$ method can simply return \lstinline$self$ as
+the class itself is an iterator. In fact, Python specifies that an iterator's
+\lstinline$__iter__$ method should return \lstinline$self$.

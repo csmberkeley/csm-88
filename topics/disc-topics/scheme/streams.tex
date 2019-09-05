@@ -1,0 +1,72 @@
+\question
+What Would Scheme Display?
+
+\begin{lstlisting}[language=Scheme]
+> (define a (cons-stream 4 (cons-stream 6 (cons-stream 8 a))))
+> (car a)
+|\begin{solution}
+4
+\end{solution}|
+> (cdr a)
+|\begin{solution}
+[promise (not forced)]
+\end{solution}|
+> (cdr-stream a)
+|\begin{solution}
+(6 . [promise (not forced)])
+\end{solution}|
+> (define b (cons-stream 10 a))
+> (cdr b)
+|\begin{solution}
+[promise (not forced)]
+\end{solution}|
+> (cdr-stream b)
+|\begin{solution}
+(4 . [promise (forced)])
+\end{solution}|
+> (define c (cons-stream 3 (cons-stream 6)))
+> (cdr-stream c)
+|\begin{solution}
+Error: too few operands in form
+\end{solution}|
+\end{lstlisting}
+
+\question
+Write a function \textbf{merge} that takes in two sorted infinite streams and returns a new infinite stream containing all the elements from both streams, in sorted order. 
+
+\begin{lstlisting}[language=Scheme]
+(define (merge s1 s2)
+
+
+
+
+
+
+
+)
+\end{lstlisting}
+
+\begin{solution}
+\begin{verbatim}
+(define (merge s1 s2)
+	(if (null? s1)
+		s2
+		(if (<= (car s1) (car s2))
+			(cons-stream (car s1) (merge (cdr-stream s1) s2))
+			(cons-stream (car s2) (merge s1 (cdr-stream s2)))
+		)
+	)
+)
+	
+; Alternate solution
+(define (merge s1 s2)
+	(if (null? s1)
+		s2
+		(if (<= (car s1) (car s2))
+			(cons-stream (car s1) (merge (cdr-stream s1) s2))
+			(merge s2 s1)
+		)
+	)
+)
+\end{verbatim}
+\end{solution}

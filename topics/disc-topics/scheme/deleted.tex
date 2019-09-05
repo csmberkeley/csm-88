@@ -1,0 +1,157 @@
+\question
+What will Scheme output? Draw the box and pointer whenever the expression evaluates to some pair or list.
+
+\begin{lstlisting}
+> (or 'false (/ 1 0) 'true)
+|\begin{solution}
+Error
+\end{solution}|
+> '(1 2 3)
+|\begin{solution}
+(1 2 3)
+\end{solution}|
+> (cons 2 '())
+|\begin{solution}
+(2)
+\end{solution}|
+> (cons 1 (cons 2 '()))
+|\begin{solution}
+(1 2)
+\end{solution}|
+> (cadar '((1 2) 3 (4 5)))
+|\begin{solution}
+2
+\end{solution}|
+> (caddr '((1 2) 3 (4 5)))
+|\begin{solution}
+(4 5)
+\end{solution}|
+> (cddar '((1 2) 3 (4 5)))
+|\begin{solution}
+()
+\end{solution}|
+> (cddr '((1 2) 3 (4 5)))
+|\begin{solution}
+((4 5))
+\end{solution}|
+\end{lstlisting}
+
+
+\question
+Define \textbf{append}, which takes in two lists and concatenates them together.
+
+\begin{lstlisting}
+> (append '(1 2 3) '(4 5 6))
+(1 2 3 4 5 6)
+\end{lstlisting}
+
+\begin{solution}
+\begin{verbatim}
+(define (append lst1 lst2)
+  (cond ((null? lst1) lst2)
+(else (cons (car lst1) (append (cdr lst1) lst2)))))
+\end{verbatim}
+\end{solution}
+\newpage
+
+\question
+Define \textbf{reverse}. You may use \textbf{append} in your definition.
+
+\begin{lstlisting}
+> (reverse '(1 2 3))
+(3 2 1)
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{verbatim}
+(define (reverse lst)
+    (if (null? lst)
+        lst
+    (append (reverse (cdr lst)) (list (car lst)))))
+\end{verbatim}
+\end{solution}
+
+\question
+Define \textbf{reverse} without using \textbf{append}. (Hint: use a helper function and \textbf{cons})
+
+\begin{solution}[0.5in]
+\begin{verbatim}
+(define (reverse lst)
+    (define (helper lst reversed)
+    (if (null? lst)
+      reversed
+      (helper (cdr lst) (cons (car lst) reversed ))))
+    (helper lst '()))
+\end{verbatim}
+\end{solution}
+
+\question
+Define \textbf{add-to-all}, which takes in an item and a list of lists, and adds that item to the front of each nested list.
+
+\begin{lstlisting}
+> (add-to-all 'foo '((1 2) (3 4) (5 6)))
+((foo 1 2) (foo 3 4) (foo 5 6))
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{verbatim}
+(define (add-to-all item lst)
+  (if (null? lst)
+    lst
+    (cons (cons item (car lst))
+          (add-to-all item (cdr lst)))))
+\end{verbatim}
+\end{solution}
+
+\question
+Define \textbf{map}, which takes in a function and a list, and applies that function to each item in the list.
+
+\begin{lstlisting}
+> (map (lambda (x) (+ x 1)) '(1 2 3))
+(2 3 4)
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{verbatim}
+(define (map f lst)
+  (if (null? lst)
+      lst
+      (cons (f (car lst)) (map f (cdr lst)))))
+\end{verbatim}
+\end{solution}
+
+\question
+Define \textbf{add-to-all} using one call to \textbf{map}. (Hint: consider using a lambda expression!)
+
+\begin{solution}[0.25in]
+\begin{verbatim}
+(define (add-to-all item lst)
+    (map (lambda (inner-lst) (cons item inner-lst)) lst))
+\end{verbatim}
+\end{solution}
+
+\question
+Define \textbf{sublists}. (Hint: use \textbf{add-to-all})
+
+\begin{lstlisting}
+> (sublists '(1 2 3))
+(() (3) (2) (2 3) (1) (1 3) (1 2) (1 2 3))
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{verbatim}
+Solution 1:
+(define (sublists lst)
+  (if (null? lst)
+    '(())
+    (append (sublists (cdr lst))
+            (add-to-all (car lst) (sublists (cdr lst))))))
+
+Solution 2: (using let to avoid calling sublists twice)
+(define (sublists lst)
+  (if (null? lst) '(())
+    (let ((recur (sublists (cdr lst))))
+      (append recur
+              (add-to-all (car lst) recur)))))
+\end{verbatim}
+\end{solution}

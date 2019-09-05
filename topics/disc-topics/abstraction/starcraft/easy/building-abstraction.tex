@@ -1,0 +1,43 @@
+\question Let's make a {\tt building} pair that is constructed with a unit data
+type and a resource bundle data type. This time take your choice of lists or
+functional pairs in representing a building. Make sure not to violate any data
+abstractions.
+
+\begin{lstlisting}
+def make_building(unit, bundle):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return [unit, bundle]
+\end{lstlisting}
+or
+\begin{lstlisting}
+    return pair(unit, bundle)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_unit(building):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return building[0]
+\end{lstlisting}
+or
+\begin{lstlisting}
+    return select(building, 0)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_bundle(building):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return building[1]
+\end{lstlisting}
+or
+\begin{lstlisting}
+    return select(building, 1)
+\end{lstlisting}
+\end{solution}

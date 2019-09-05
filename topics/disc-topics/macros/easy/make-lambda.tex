@@ -1,0 +1,30 @@
+\question Write a macro that takes an expression and returns
+a parameter-less lamba procedure with the expression as its body
+
+\begin{lstlisting}
+(define-macro (make-lambda expr)
+\end{lstlisting}
+
+\begin{solution}[.6in]
+With quasiquotes:
+\begin{lstlisting}
+(define-macro (make-lambda expr)
+    `(lambda () ,expr))
+\end{lstlisting}
+With the list constructor:
+\begin{lstlisting}
+(define-macro (make-lambda expr)
+      (list 'lambda (list) expr))
+\end{lstlisting}
+
+\end{solution}
+\begin{lstlisting}
+scm> (make-lambda (print 'hi))
+(lambda () (print (quote hi)))
+scm> (make-lambda (/ 1 0))
+(lambda () (/ 1 0))
+scm> (define print-3 (make-lambda (print 3)))
+print-3
+scm> (print-3)
+3
+\end{lstlisting}

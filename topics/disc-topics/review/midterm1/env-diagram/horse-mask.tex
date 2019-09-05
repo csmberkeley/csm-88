@@ -1,0 +1,18 @@
+\question (Fall 2012) Draw the environment diagram for the following code:
+\begin{lstlisting}
+def horse(mask):
+    horse = mask
+    def mask(horse):
+        return horse
+    return horse(mask)
+
+mask = lambda horse: horse(2)
+
+horse(mask)
+\end{lstlisting}
+
+\begin{solution}[6in]
+\begin{center}
+\includegraphics[scale=.5]{horse-mask.png}
+\end{center}
+\end{solution}

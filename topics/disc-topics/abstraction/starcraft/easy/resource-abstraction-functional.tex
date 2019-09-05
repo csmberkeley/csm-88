@@ -1,0 +1,30 @@
+\question Write constructors and selectors for a data abstraction that combines
+an integer amount of minerals and gas together into a bundle. Use functional
+pairs.
+
+\begin{lstlisting}
+def make_resource_bundle(minerals, gas):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return pair(minerals, gas)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_minerals(bundle):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return select(bundle, 0)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_gas(bundle):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return select(bundle, 1)
+\end{lstlisting}
+\end{solution}

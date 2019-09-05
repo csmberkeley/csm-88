@@ -1,0 +1,10 @@
+\question Write a query that outputs the meeting days and times of all
+employees directly supervised by Oliver Warbucks.
+\begin{solution}[1in]
+\begin{lstlisting}[language=SQL]
+SELECT m.day, m.time FROM records AS r, meetings AS m
+  WHERE r.division = m.division AND
+        r.supervisor = "Oliver Warbucks";
+\end{lstlisting}
+\href{https://youtu.be/BIV5O1U9Zdw?t=9m}{Video walkthrough}
+\end{solution}

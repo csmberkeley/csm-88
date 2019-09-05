@@ -1,0 +1,14 @@
+\question What is wrong with the following code?
+\begin{lstlisting}
+def adder(x):
+    def add(y):
+        nonlocal x, y
+        x += y
+        return x
+    return add
+adder(2)(3)
+\end{lstlisting}
+\begin{solution}[0.5in]
+There is no variable y defined in a parent frame, and y is already a local
+variable.
+\end{solution}

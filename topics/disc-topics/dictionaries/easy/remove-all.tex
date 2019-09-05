@@ -1,0 +1,17 @@
+\question Given a (non-nested) dictionary {\tt d}, write a function which deletes all occurrences of {\tt x} as a value. You cannot delete items in a dictionary as you are iterating through it.
+\begin{lstlisting}
+def remove_all(d, x):
+    """
+    >>> d = {1:2, 2:3, 3:2, 4:3}
+    >>> remove_all(d, 2)
+    >>> d
+    {2: 3, 4: 3}
+    """
+\end{lstlisting}
+\begin{solution}[0.8in]
+\begin{lstlisting}
+    keys_to_delete = [key for key in d if d[key] == x]
+    for key in keys_to_delete:
+        del d[key]
+\end{lstlisting}
+\end{solution}

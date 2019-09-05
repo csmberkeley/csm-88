@@ -1,0 +1,115 @@
+In Python, we can use iterators to represent infinite sequences (for example,
+the generator for all natural numbers). However, Scheme does not support
+iterators. Let's see what happens when we try to use a Scheme list to represent
+an infinite sequence of natural numbers:
+
+\begin{lstlisting}[language=Scheme]
+scm> (define (naturals n)
+         (cons n (naturals (+ n 1))))
+naturals
+scm> (naturals 0)
+Error: maximum recursion depth exceeded
+\end{lstlisting}
+
+Because \texttt{cons} is a regular procedure and both its operands must be
+evaluted before the pair is constructed, we cannot create an infinite sequence
+of integers using a Scheme list.
+Instead, our Scheme interpreter supports \textit{streams}, which are
+\textit{lazy} Scheme lists. The first element is represented explicitly, but the
+rest of the stream's elements are computed only when needed. Computing a value
+only when it's needed is also known as \textit{lazy evaluation}.
+
+\begin{lstlisting}[language=Scheme]
+scm> (define (naturals n)
+         (cons-stream n (naturals (+ n 1))))
+naturals
+scm> (define nat (naturals 0))
+nat
+scm> (car nat)
+0
+scm> (cdr nat)
+#[promise (not forced)]
+scm> (car (cdr-stream nat))
+1
+scm> (car (cdr-stream (cdr-stream nat)))
+2
+\end{lstlisting}
+We use the special form \texttt{cons-stream} to create a stream:
+
+\centerline{\lstinline{(cons-stream <operand1> <operand2>)}}
+
+\texttt{cons-stream} is a special form because the second operand is not
+evaluated when evaluating the expression. To evaluate this expression, Scheme
+does the following:
+
+\begin{enumerate}
+\item Evaluate the first operand.
+\item Construct a promise containing the second operand.
+\item Return a pair containing the value of the first operand and the promise.
+\end{enumerate}
+
+To actually get the rest of the stream, we must call \texttt{cdr-stream} on it
+to force the promise to be evaluated.  Note that this argument is only
+evaluated once and is then stored in the promise; subsequent calls to
+\texttt{cdr-stream} returns the value without recomputing it. This allows us to
+efficiently work with infinite streams like the \texttt{naturals} example
+above. We can see this in action by using a non-pure function to compute the
+rest of the stream:
+
+\begin{lstlisting}
+scm> (define (compute-rest n)
+...>   (print 'evaluating!)
+...>   (cons-stream n nil))
+compute-rest
+scm> (define s (cons-stream 0 (compute-rest 1)))
+s
+scm> (car (cdr-stream s))
+evaluating!
+1
+scm> (car (cdr-stream s))
+1
+\end{lstlisting}
+
+Here, the expression \texttt{compute-rest 1} is only evaluated the first time
+\texttt{cons-stream} is called, so the symbol \texttt{evaluating!} is only
+printed the first time.
+
+When displaying a stream, the first element of the stream and the promise are 
+displayed separated by a dot (this indicates that they are part of the same pair, with
+the promise as the \texttt{cdr}).
+If the value in the promise has not been evaluated by calling \texttt{cdr-stream}, 
+we consider it to be not forced. Otherwise, we consider it forced.
+
+\begin{lstlisting}
+scm> (define s (cons-stream 1 nil))
+s
+scm> s
+(1 . #[promise (not forced)])
+scm> (cdr-stream s) ; nil
+()
+scm> s
+(1 . #[promise (forced)])
+\end{lstlisting}
+
+
+Streams are very similar to Scheme lists in that they are also recursive
+structures. Just like the \texttt{cdr} of a Scheme list is either another
+Scheme list or \texttt{nil}, the \texttt{cdr-stream} of a stream is either a
+stream or \texttt{nil}. The difference is that whereas both arguments to
+\texttt{cons} are evaluated upon calling \texttt{cons}, the second argument
+to \texttt{cons-stream} isn't evaluated until the first time that
+\texttt{cdr-stream} is called.
+
+Here's a summary of what we just went over:
+
+\begin{itemize}
+    \item \texttt{nil} is the empty stream
+    \item \texttt{cons-stream} constructs a stream containing the value of the
+        first operand and a promise to evaluate the second operand
+    \item \texttt{car} returns the first element of the stream
+    \item \texttt{cdr-stream} computes and returns the rest of stream
+\end{itemize}
+
+\begin{solution}[0.1in]
+\href{https://youtu.be/N-AGcLiPDao}{Video walkthrough}
+\end{solution}

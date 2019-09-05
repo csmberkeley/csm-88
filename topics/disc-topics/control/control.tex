@@ -1,0 +1,98 @@
+\question
+Which numbers will be printed after executing the following code?
+\begin{lstlisting}[language=Python]
+n = 0
+if n:
+    print(1)
+elif n < 2
+    print(2)
+else:
+    print(3)
+print(4)
+|\begin{solution}
+\begin{verbatim}
+2
+4
+\end{verbatim}
+\end{solution}|
+\end{lstlisting}
+
+\question
+WWPD (What would Python Display) after evaluating each of the following expressions?
+\begin{lstlisting}
+>>> 0 and 1 / 0
+|\begin{solution}
+0
+\end{solution}|
+>>> 6 or 1 or "a" or 1 / 0
+|\begin{solution}
+6
+\end{solution}|
+>>> 6 and 1 and "a" and 1 / 0
+|\begin{solution}
+Error
+\end{solution}|
+>>> print(print(4) and 2)
+|\begin{solution}
+\begin{verbatim}
+4
+None
+\end{verbatim}
+\end{solution}|
+>>> not True and print("a")
+|\begin{solution}
+False
+\end{solution}|
+\end{lstlisting}
+\question
+Define a function, count\_digits, which takes in an integer, n, and counts the number of digits in that number.
+\begin{lstlisting}[language=Python]
+def count_digits(n):
+    '''
+    >>> count_digits(4)
+    1
+    >>> count_digits(12345678)
+    8
+    >>> count_digits(0)
+    0
+    '''
+    |\begin{solution}[1.25in]
+    \begin{verbatim}
+    count = 0
+    while n > 0:
+        count += 1
+        n = n//10
+    return  count
+    \end{verbatim}
+    \end{solution}|
+\end{lstlisting}
+
+\question
+Define a function, count\_matches, which takes in two integers n and m, and counts the number of digits that match.
+\begin{lstlisting}
+def count_matches(n, m):
+    '''
+    >>> count_matches(10, 30)
+    1
+    >>> count_matches(12345, 23456)
+    0
+    >>> count_matches(121212, 123123)
+    2
+    >>> count_matches(111, 11) # only one's place matches
+    2
+    >>> count_matches(101, 10) # no place matches
+    0
+    '''
+	|\begin{solution}[2in]
+	\begin{verbatim}
+	    matches = 0
+    while n > 0 and m > 0:
+        if n % 10 == m % 10:
+            matches += 1	    
+        n, m = n // 10, m // 10
+    return matches
+	\end{verbatim}
+	\end{solution}|
+\end{lstlisting}
+
+

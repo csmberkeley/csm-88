@@ -1,0 +1,93 @@
+\question
+What is the runtime of the following function?
+\begin{lstlisting}[language=Python]
+def one(n):
+    if 1 == 1:
+        return None
+    return n
+\end{lstlisting}
+
+\begin{verbatim}
+a. Theta(1) b. Theta(log n) c. Theta(n) d. Theta(n^2) e. Theta(2^n)
+\end{verbatim}
+\begin{solution}
+Theta(1) - the function always returns None, because 1 == 1 is always True. And even if it was a false statement, the function would just return n. So since the runtime of the function doesn't change with respect to the size of the input, it is constant time.
+\end{solution}
+
+\question
+What is the runtime of the following function?
+\begin{lstlisting}[language=Python]
+def two(n):
+    for i in range(n):
+        print(n)
+\end{lstlisting}
+
+\begin{verbatim}
+a. Theta(1) b. Theta(log n) c. Theta(n) d. Theta(n^2) e. Theta(2^n)
+\end{verbatim}
+\begin{solution}
+Theta(n) - the function iterates n times; if n increases by 1, the function loops 1 additional time. Therefore there is a linear relationship between the input size and runtime.
+\end{solution}
+
+\question
+What is the runtime of the following function?
+\begin{lstlisting}[language=Python]
+def three(n):
+    while n > 0:
+       n = n // 2
+\end{lstlisting}
+
+\begin{verbatim}
+a. Theta(1) b. Theta(log n) c. Theta(n) d. Theta(n^2) e. Theta(2^n)
+\end{verbatim}
+\begin{solution}
+Theta(log n) - The function continues to loop as long as n > 0. Inside the while loop, we divide n by 2 every loop. So to get the function to loop one additional time, we need to double our original input size. This is a logarithmic relationship between input size and runtime.
+\end{solution}
+
+\question
+What is the runtime of the following function?
+\begin{lstlisting}[language=Python]
+def four(n):
+    for i in range(n):
+        for j in range(i):
+            print(str(i), str(j))
+\end{lstlisting}
+
+\begin{verbatim}
+a. Theta(1) b. Theta(log n) c. Theta(n) d. Theta(n^2) e. Theta(2^n)
+\end{verbatim}
+\begin{solution}
+d. Theta($n^2$) - The outer loop loops through every number from 0 to n. The inner loop loops corresponding to the outer loop. So the total number of loops from the inner loop looks like this: 0 + 1 + 2 + 3 + 4 ... + n. This is the summation of the first n natural numbers = n(n + 1)/2, which asymptotically is Theta($n^2$)
+\end{solution}
+
+\question
+What is the runtime of the following function?
+\begin{lstlisting}[language=Python]
+def five(n):
+    if n <= 0:
+        return 1
+    return five(n - 1) + five(n - 2)
+\end{lstlisting}
+
+\begin{verbatim}
+a. Theta(1) b. Theta(log n) c. Theta(n) d. Theta(n^2) e. Theta(2^n)
+\end{verbatim}
+\begin{solution}
+e. Theta($2^n$) - Draw out the tree of recursive calls. You should see that every node branches out into 2 more nodes. Since the base case returns when n $<=$ 0, and each recursive call subtracts 1 or 2 from n, the height of our tree is n. We're branching out by a factor of 2 each layer for n layers -- that means we'll have $2^n$ nodes in our tree of recursive calls. Each 'node' represents 1 'unit of work' as all the function does is return something. So 1 unit of work across $2^n$ nodes is $2^n$ total.
+\end{solution}
+
+\question
+What is the runtime of the following function?
+\begin{lstlisting}[language=Python]
+def five(n):
+    if n <= 0:
+        return 1
+    return five(n//2) + five(n//2)
+\end{lstlisting}
+
+\begin{verbatim}
+a. Theta(1) b. Theta(log n) c. Theta(n) d. Theta(n^2) e. Theta(2^n)
+\end{verbatim}
+\begin{solution}
+c. Theta(n) - Draw out the tree of recursive calls. You should see that every node branches out into 2 more nodes. Since the base case returns when n $<=$ 0, and each recursive call divides n by 2, the height of our tree is logn (by the same logic as three(n): if we want one additional layer in our tree, our original input has to be doubled, which is a logarithmic relationship). We're branching out by a factor of 2 each layer for logn layers -- that means we'll have $2^(logn) = n$ nodes in our tree of recursive calls. Each 'node' represents 1 'unit of work' as all the function does is return something. So 1 unit of work across n nodes is n total.
+\end{solution}

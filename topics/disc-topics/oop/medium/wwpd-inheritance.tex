@@ -1,0 +1,54 @@
+\question Assume these commands are entered in order. What would
+    Python output?
+
+\begin{lstlisting}
+>>> class Foo:
+...     def __init__(self, a):
+...         self.a = a
+...     def garply(self):
+...         return self.baz(self.a)
+>>> class Bar(Foo):
+...     a = 1
+...     def baz(self, val):
+...         return val
+>>> f = Foo(4)
+>>> b = Bar(3)
+>>> f.a
+\end{lstlisting}
+
+\begin{solution}[0.25in]
+\lstinline{4}
+\end{solution}
+
+\lstinline{>>> b.a}
+\begin{solution}[0.25in]
+\lstinline{3}
+\end{solution}
+
+\lstinline{>>> f.garply()}
+\begin{solution}[0.25in]
+\lstinline{AttributeError: 'Foo' object has no attribute 'baz'}
+\end{solution}
+
+\lstinline{>>> b.garply()}
+\begin{solution}[0.25in]
+\lstinline{3}
+\end{solution}
+
+\begin{lstlisting}
+>>> b.a = 9
+>>> b.garply()
+\end{lstlisting}
+\begin{solution}[0.25in]
+\lstinline{9}
+\end{solution}
+
+\begin{lstlisting}
+>>> f.baz = lambda val: val * val
+>>> f.garply()
+\end{lstlisting}
+
+\begin{solution}[0.25in]
+\lstinline{16}
+\end{solution}
+

@@ -1,0 +1,27 @@
+\question We can even represent the sequence of all prime numbers as an
+infinite stream! Define a function \texttt{sieve}, which takes in a stream of
+increasing numbers and returns a stream containing only those numbers which are
+not multiples of an earlier number in the stream. We can define
+\texttt{primes} by sifting all natural numbers starting at 2. Look online for
+the \textbf{Sieve of Eratosthenes} if you need some inspiration. \newline
+
+\begin{lstlisting}[language=Scheme]
+(define (sieve s)
+\end{lstlisting}
+\begin{solution}[4cm]
+\begin{lstlisting}[language=Scheme]
+  (cons-stream
+    (car s)
+    (sieve (sift (car s) (cdr-stream s)))))
+(define (sift prime s)
+  (filter-stream
+    (lambda (x) (not (= 0 (modulo x prime))))
+    s))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+(define primes
+  (sieve (naturals 2)))
+scm> (slice primes 0 10)
+(2 3 5 7 11 13 17 19 23 29)
+\end{lstlisting}

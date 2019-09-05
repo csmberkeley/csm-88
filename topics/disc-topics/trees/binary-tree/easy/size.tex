@@ -1,0 +1,14 @@
+\question Let's define {\tt size(t)}, which returns how many
+items the Tree t contains.
+
+\begin{lstlisting}
+def size(t):
+    """Returns the number of items in a Tree t."""
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+    if not t:
+        return 0
+    return 1 + tree_size(t.left) + tree_size(t.right)
+\end{lstlisting}
+\end{solution}

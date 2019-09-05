@@ -1,0 +1,25 @@
+\question Create an iterator that generates the sequence of Fibonacci numbers.
+\begin{lstlisting}[language=Python]
+class FibIterator(object):
+    def __init__(self):
+\end{lstlisting}
+\begin{solution}[.75in]
+    \begin{lstlisting}[language=Python]
+        self.current = 0
+        self.next = 1
+    \end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Python]
+    def __next__(self):
+\end{lstlisting}
+\begin{solution}[1in]
+    \begin{lstlisting}[language=Python]
+        res = self.current
+        self.current, self.next = self.next, self.current + self.next
+        return res
+    \end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Python]
+    def __iter__(self):
+        return self
+\end{lstlisting}

@@ -1,0 +1,14 @@
+\begin{lstlisting}
+>>> def gen_naturals():
+...     current = 0
+...     while True:
+...         yield current
+...         current += 1
+>>> gen = gen_naturals()
+>>> gen
+<generator object gen at ...>
+>>> next(gen)
+0
+>>> next(gen)
+1
+\end{lstlisting}

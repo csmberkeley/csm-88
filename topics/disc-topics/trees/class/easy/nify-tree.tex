@@ -1,0 +1,17 @@
+\question Create and return a new tree with the same shape as \texttt{t}, 
+but where all elements are \texttt{n}.
+\begin{lstlisting}
+def fill_tree(t, n):
+    """
+    >>> t0 = Tree(0, [Tree(1), Tree(2)])
+    >>> t1 = fill_tree(t0, 5)
+    >>> t1
+    Tree(5, [Tree(5), Tree(5)])
+    """  
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    filled_branches = [fill_tree(b, n) for b in t.branches]
+    return Tree(n, filled_branches)
+\end{lstlisting}
+\end{solution}

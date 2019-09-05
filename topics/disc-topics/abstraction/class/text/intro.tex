@@ -1,0 +1,21 @@
+The 61A TAs have decided to call upon the power of data abstraction to organize
+their discussion sections. To do so, they've created a {\tt discussion}
+abstract data type. A discussion contains three things:
+
+\begin{itemize}
+\item The name of the TA running the section
+\item The time the section starts, given as an integer
+\item A list of students enrolled in the section
+\end{itemize}
+
+Given this, the TAs come up with the following constructor and selectors:
+
+\begin{itemize}
+\item \texttt{make\_discussion(ta, time, students)}: Creates and returns a new
+discussion section.
+\item \texttt{get\_ta(disc)}: Returns the TA running the given discussion section.
+\item \texttt{get\_time(disc)}: Returns the start time of the given discussion
+section.
+\item \texttt{get\_students(disc)}: Returns the list of students enrolled in the
+given discussion section.
+\end{itemize}

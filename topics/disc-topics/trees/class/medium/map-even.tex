@@ -1,0 +1,35 @@
+\question Implement the \texttt{alt\_tree\_map} function that, given a function
+and a \texttt{Tree}, applies the function to all of the data at every other
+level of the tree, starting at the root.
+
+\begin{lstlisting}
+def alt_tree_map(t, map_fn):
+   """
+   >>> t = Tree(1, [Tree(2, [Tree(3)]), Tree(4)])
+   >>> negate = lambda x: -x
+   >>> alt_tree_map(t, negate)
+   Tree(-1, [Tree(2, [Tree(-3)]), Tree(4)])
+   """
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+   def helper(t, depth):
+       if depth % 2 == 0:
+           root = map_fn(t.root)
+       else:
+           root = t.root
+       branches = [helper(b, depth+1) for b in t.branches]
+       return Tree(root, branches)
+   return helper(t, 0)
+\end{lstlisting}
+Alternate solution without a helper function:
+\begin{lstlisting}
+def alt_tree_map(t, map_fn):
+    root = map_fn(t.root)
+    branches = []
+    for b in t.branches:
+        next_branches = [alt_tree_map(bb, map_fn) for bb in b.branches]
+        branches.append(Tree(b.root, next_branches))
+    return Tree(root, branches)
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,27 @@
+Like Python, Scheme also has the boolean operators \lstinline$and$,
+\lstinline$or$, and \lstinline$not$.  \lstinline$and$ and \lstinline$or$ are
+special forms because they are short-circuiting operators.
+
+\begin{itemize}
+\item \texttt{and} takes in any amount of operands and evaluates these operands
+from left to right until one evaluates to a false-y value. It returns
+that first false-y value. If there are no false-y values, it returns the value
+of the last expression (or \texttt{\#t} if there are no operands)
+\item \texttt{or} also evaluates any number of operands from left to right
+until one evaluates to a truth-y value. It returns that first truth-y 
+value. If there are no truth-y values, it returns the value of the last expression
+(or \texttt{\#f} if there are no operands)
+\item \texttt{not} takes in a single operand, evaluates it, and returns its
+opposite truthiness value. Note that \texttt{not} is a regular procedure
+and not a special form.
+\end{itemize}
+
+\begin{lstlisting}[language=Scheme]
+scm> (and 25 32)
+32
+scm> (or 1 (/ 1 0))    ; Short-circuits
+1
+scm> (not (odd? 10)) 
+#t
+\end{lstlisting}
+

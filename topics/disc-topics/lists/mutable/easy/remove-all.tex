@@ -1,0 +1,17 @@
+\question Write a function that removes all instances of an element from a list.
+\begin{lstlisting}
+def remove_all(el, lst):
+    """
+    >>> x = [3, 1, 2, 1, 5, 1, 1, 7]
+    >>> remove_all(1, x)
+    >>> x
+    [3, 2, 5, 7]
+    """
+\end{lstlisting}
+\begin{solution}[1.2in]
+\begin{lstlisting}
+    while el in lst:
+       lst.remove(el)
+\end{lstlisting}
+\end{solution}
+

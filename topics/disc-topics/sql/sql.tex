@@ -1,0 +1,149 @@
+\question
+We will be working with a Facebook-like website called Fakebook. There are four tables in our Fakebook data, described below:\\
+
+\textbf{people(name, age, state, hobby)}: a person on Fakebook \\
+
+\textbf{posts(post\_id, poster, text, time)}: a post with its creator and creation time (in minutes, starting at 0)\\
+
+\textbf{likes(post\_id, name, time)}: a like -- post\_id of the post that was liked, name of person who liked the post, and time (in minutes) of like\\
+
+\textbf{requests(friend1, friend2)}: a friend request from friend1 to friend2\\
+
+If you wish to try these questions out on your sqlite3 interpreter, you can download a .sql file with the data we'll be working with can be found here:\\ https://links.cs61a.org/guer06-data\\
+
+Write a query to find the name and age for each person on Fakebook who is 26 years old or younger
+
+\begin{solution}[0.5in]
+SELECT name, age FROM people \\
+WHERE age $<$= 26;
+\end{solution}
+
+\question
+Write a query to find the name of the poster and the time of each post on Fakebook before minute 230
+
+\begin{solution}[0.5in]
+SELECT poster, time FROM posts \\
+WHERE time $<$ 230;
+\end{solution}
+
+\question
+Write a query to find the names of users who have liked their own post
+
+\begin{solution}[0.5in]
+SELECT poster from posts, likes\\
+WHERE name = poster AND posts.post\_id = likes.post\_id;
+\end{solution}
+
+\question
+The requests table stores all requests from one person to another.  Two people are only friends if both people requested to be friends with the other. Create a table \textbf{friends} that has two columns, \textbf{(friend1, friend2)}, which contain the names of each friend pairing. For example, if Hali sends a friend request to Joe and Joe sends a friend request to Hali, both Joe|Hali and Hali|Joe should appear in the table.
+
+\begin{solution}[0.5in]
+CREATE TABLE friends AS\\
+    SELECT a.friend1 as friend1, a.friend2 as friend2\\
+    FROM requests AS a, requests AS b\\
+    WHERE a.friend1 = b.friend2 AND a.friend2 = b.friend1;
+\end{solution}
+
+\question
+Recall: The aggregate functions MAX, MIN, COUNT, and SUM return the maximum, minimum, number, and sum of the values in a column. The GROUP BY clause of a select statement is used to partition rows into groups. HAVING filters through the groupings from the GROUP BY clause.\\
+Write a query that outputs all names of people who have at least 4 friends
+
+\begin{solution}[0.5in]
+SELECT friend1 FROM friends \\
+GROUP BY friend1 \\
+HAVING COUNT(*) $>$= 4;
+\end{solution}
+
+\question
+Write a query that outputs the states that Will's friends live in, and how many friends are in each state
+
+\begin{solution}[0.5in]
+SELECT state, COUNT(*) \\
+FROM friends as f, people as p\\
+WHERE f.friend1 = "Will" AND f.friend2 = name \\
+GROUP BY p.state;\\
+\end{solution}
+
+\question
+Write a query that outputs the text from every post that was liked within 2 minutes of post time
+
+\begin{solution}[0.5in]
+SELECT posts.text FROM posts, likes\\
+WHERE posts.post\_id = likes.post\_id AND likes.time $<$= posts.time + 2;
+\end{solution}
+
+\question
+Write a query that outputs every pair of people that share the same hobby, as well as that shared hobby. Make sure your output doesn't have duplicate pairs (e.g. A|B and B|A should not both appear in the output).
+
+\begin{solution}[0.5in]
+SELECT a.name, b.name, a.hobby \\
+FROM people AS a, people AS b\\
+WHERE a.hobby = b.hobby AND a.name $<$ b.name;
+\end{solution}
+
+\question
+Write a query that outputs the counts of the number of people that live in each state, with each state listed in descending order of count
+
+\begin{solution}[0.5in]
+SELECT state, COUNT(*) FROM people\\
+GROUP BY state \\
+ORDER BY -COUNT(*);
+\end{solution}
+
+\question
+Send a friend request by inserting a new friend request from 'Denero' to 'Hilfy'
+
+\begin{solution}[0.5in]
+INSERT INTO requests(friend1, friend2) VALUES(‘Denero’, ‘Hilfy’);
+\end{solution}
+
+\question
+Help Fakebook user 'Denero' send a friend request to every person who liked post 349 by inserting into requests
+
+\begin{solution}[0.5in]
+INSERT INTO requests(friend1, friend2) SELECT ‘Denero’, name FROM likes WHERE post\_id = 349;
+\end{solution}
+
+\question
+Change the hobby of every person whose name is Joe to CS
+
+\begin{solution}[0.5in]
+UPDATE people SET hobby = ‘CS’ WHERE name = ‘Joe’;
+\end{solution}
+
+\question
+Create a table num\_likes with columns: name, post\_id, number. Each row should contain a poster’s name, a post\_id, and number of likes for that post
+
+\begin{solution}[0.5in]
+CREATE TABLE num\_likes AS\\
+      SELECT posts.poster AS name, posts.post\_id AS post\_id, \\ COUNT(likes.name) AS number \\
+      FROM posts, likes\\
+	WHERE posts.post\_id = likes.post\_id\\
+	GROUP BY posts.post\_id;
+\end{solution}
+
+\question
+Carolyn is a bit shy. Delete all of her posts in the num\_likes table with fewer than 4 likes
+
+\begin{solution}[0.5in]
+DELETE FROM num\_likes WHERE number $<$ 4 AND name = ‘Carolyn’;
+\end{solution}
+
+\question
+
+Create an empty table called privacy with columns  name and visibility which should hold the default to everyone.
+
+\begin{solution}[0.5in]
+CREATE TABLE privacy(name, visibility DEFAULT ‘everyone’);
+\end{solution}
+
+\question
+Add Hermish to privacy using the default value. 
+
+\begin{solution}[0.5in]
+INSERT INTO privacy(name) VALUES (‘Hermish’);
+\end{solution}
+
+
+
+

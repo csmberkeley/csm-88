@@ -1,0 +1,52 @@
+\question What would Python display?
+
+\begin{lstlisting}
+>>> pokemon
+{'jolteon': 135, 'pikachu': 25, 'dragonair': 148, 'ditto': 25, 'mew': 151}
+\end{lstlisting}
+
+\lstinline{>>> 'mewtwo' in pokemon}
+\begin{solution}[0.4in]
+\lstinline{False}
+\end{solution}
+
+\lstinline{>>> len(pokemon)}
+\begin{solution}[0.4in]
+\lstinline{5}
+\end{solution}
+
+\begin{lstlisting}
+>>> pokemon['ditto'] = pokemon['jolteon']
+>>> pokemon[('diglett', 'diglett', 'diglett')] = 51
+>>> pokemon[25] = 'pikachu'
+>>> pokemon
+\end{lstlisting}
+\begin{solution}[0.7in]
+\begin{lstlisting}
+{'mew': 151, 'ditto': 135, 'jolteon': 135, 25: 'pikachu',
+'pikachu': 25, ('diglett', 'diglett', 'diglett'): 51,
+'dragonair': 148}
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> pokemon['mewtwo'] = pokemon['mew'] * 2
+>>> pokemon
+\end{lstlisting}
+\begin{solution}[0.4in]
+\begin{lstlisting}
+{'mew': 151, 'ditto': 135, 'jolteon': 135, 25: 'pikachu',
+'pikachu': 25, ('diglett', 'diglett', 'diglett'): 51,
+'mewtwo': 302, 'dragonair': 148}
+\end{lstlisting}
+\end{solution}
+
+\lstinline{>>> pokemon[['firetype', 'flying']] = 146}
+\begin{solution}[0.4in]
+\lstinline{Error: unhashable type}
+\end{solution}
+
+Note that the last example demonstrates that dictionaries cannot use
+other mutable data structures as keys. However, dictionaries can be
+arbitrarily deep, meaning the {\it values} of a dictionary can be
+themselves dictionaries.

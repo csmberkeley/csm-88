@@ -1,0 +1,17 @@
+\question Write a query that outputs the names of all pairs of employees that have a meeting at 
+the same time. Make sure that if \texttt{A|B} appears in your output, \texttt{B|A} does not
+appear as well (\texttt{A|A} and \texttt{B|B} should additionally not appear).
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=SQL]
+SELECT e1.name, e2.name FROM records as e1, records as e2, meetings as m1, meetings as m2
+  WHERE e1.division = m1.division AND e2.division = m2.division AND 
+        m1.time = m2.time AND AND m1.day = m2.day AND 
+        e1.name < e2.name;
+\end{lstlisting}
+\end{solution}
+
+\question (Extra question) Will the statement above filter out all redundant output in all cases? Why or why not?
+\begin{solution}[1in]
+No - if a department has multiple meetings, then all pairs of individuals within that department will be listed
+multiple times. To avoid this, we can use the \texttt{DISTINCT} keyword.
+\end{solution}

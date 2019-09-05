@@ -1,0 +1,71 @@
+\question
+Spot the bug(s). Test out the code and your fixes in the scheme interpreter! (https://scheme.cs61a.org/)
+
+\begin{lstlisting}
+(define (sum-every-other lst)
+ (cond ((null? lst) lst)
+       (else (+ (cdr lst)
+                (sum-every-other (caar lst)) )))
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+1. Missing a paren at the end. \\
+2. The base case should return 0, not '(). \\
+3. (cdr lst) is a list, so it doesn't make sense to add it to something. Instead, use (car lst), which will give us a number. \\
+4. Using the caar (car of the car) is incorrect because the car is a number and it doesn't make sense to get the car of a number. Instead, we should use cddr (the cdr of the cdr) to skip forward two elements. However, the cdr could be '(), so we need to add a case to our cond to take care of this.
+
+The corrected function:
+\begin{verbatim}
+(define (sum-every-other lst)
+  (cond ((null? lst) 0)
+        ((null? (cdr lst)) (car lst))
+        (else (+ (car lst)
+              (sum-every-other (cddr lst))))))
+\end{verbatim}
+\end{solution}
+
+\question
+Define \textbf{sixty-ones}, a funcion that takes in a list and returns the number of times that 1 follows 6 in the list.
+
+\begin{lstlisting}
+> (sixty-ones '(4 6 1 6 0 1))
+1
+> (sixty-ones '(1 6 1 4 6 1 6 0 1))
+2
+> (sixty-ones '(6 1 6 1 4 6 1 6 0 1))
+3
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{verbatim}
+(define (sixty-ones lst)
+  (cond ((or (null? lst) (null? (cdr lst))) 0)
+        ((and (= 6 (car lst)) (= 1 (cadr lst)))
+          (+ 1 (sixty-ones (cddr lst))))
+        (else (sixty-ones (cdr lst)))))
+\end{verbatim}
+\end{solution}
+
+\question
+Define \textbf{no-elevens}, a function that takes in a number n, and returns a list of all distinct length-n lists of 1s and 6s that do not contain two consecutive 1s.
+
+\begin{lstlisting}
+> (no-elevens 2)
+((6 6) (6 1) (1 6))
+> (no-elevens 3)
+((6 6 6) (6 6 1) (6 1 6) (1 6 6) (1 6 1))
+> (no-elevens 4)
+((6 6 6 6) (6 6 6 1) (6 6 1 6) (6 1 6 6) (6 1 6 1) (1 6 6 6) (1 6 6 1) (1 6 1 6))
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{verbatim}
+(define (no-elevens n)
+  (cond ((= 0 n) '(()) )
+        ((= 1 n) '((6) (1)) )
+        (else (append (add-to-all 6 (no-elevens (- n 1)))
+                      (add-to-all 1
+                        (add-to-all 6 (no-elevens (- n 2))))))))
+\end{verbatim}
+\end{solution}
+

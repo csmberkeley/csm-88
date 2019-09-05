@@ -1,0 +1,10 @@
+When \lstinline$yield from$ is called on an iterator, it will \lstinline$yield$
+every value from that iterator. It's similar to doing the following:
+
+\begin{lstlisting}
+for x in an_iterator:
+    yield x
+\end{lstlisting}
+
+The example to the right demonstrates different ways of computing the same
+result.

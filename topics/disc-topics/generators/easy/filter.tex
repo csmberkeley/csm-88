@@ -1,0 +1,27 @@
+\question
+Implement a generator function called \texttt{filter(iterable, fn)} that only yields
+elements of iterable for which fn returns True.
+
+\begin{lstlisting}[language=Python]
+def filter(iterable, fn):
+    """
+    >>> is_even = lambda x: x % 2 == 0
+    >>> list(filter(range(5), is_even))
+    [0 , 2 , 4]
+    >>> all_odd = (2*y-1 for y in range (5))
+    >>> list(filter(all_odd, is_even))
+    []
+    >>> s = filter(naturals(), is_even)
+    >>> next(s)
+    2
+    >>> next(s)
+    4
+    """
+\end{lstlisting}
+\begin{solution}[.75in]
+\begin{lstlisting}[language=Python]
+    for elem in iterable:
+        if fn(elem):
+            yield elem
+\end{lstlisting}
+\end{solution}

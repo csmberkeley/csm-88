@@ -1,0 +1,18 @@
+\question Write a function that takes an element {\tt x} and a
+non-negative integer {\tt n}, and returns a list with {\tt x} repeated
+{\tt n} times.
+\begin{lstlisting}[language=Scheme]
+(define (replicate x n)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=Scheme]
+    (if (= n 0)
+        nil
+        (cons x (replicate x (- n 1)))))
+\end{lstlisting}
+\href{https://youtu.be/8FO2ZYkXwb0?t=3m55s}{Video walkthrough}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (replicate 5 3)
+(5 5 5)
+\end{lstlisting}

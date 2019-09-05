@@ -1,0 +1,58 @@
+\question Write a generator function that yields functions that are repeated
+applications of a one-argument function \texttt{f}. The first function yielded
+should apply \texttt{f} 0 times (the identity function), the second function
+yielded should apply \texttt{f} once, etc.
+
+\begin{lstlisting}
+def repeated(f):
+    """
+    >>> double = lambda x: 2 * x
+    >>> funcs = repeated(double)
+    >>> identity = next(funcs)
+    >>> double = next(funcs)
+    >>> quad = next(funcs)
+    >>> oct = next(funcs)
+    >>> quad(1)
+    4
+    >>> oct(1)
+    8
+    >>> [g(1) for _, g in
+    ...  zip(range(5), repeated(lambda x: 2 * x))]
+    [1, 2, 4, 8, 16]
+    """
+
+
+    g = ________________________________________________________________________
+
+    while True:
+
+
+        ________________________________________________________________________
+
+
+        ________________________________________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def repeated(f):
+    g = lambda x: x
+    while True:
+        yield g
+        g = (lambda g: lambda x: f(g(x)))(g)
+\end{lstlisting}
+\href{https://youtu.be/I-riLb8xAdk}{Video walkthrough}
+\end{solution}
+
+\question Ben Bitdiddle proposes the following alternate solution. Does it work?
+
+\begin{lstlisting}
+def ben_repeated(f):
+    g = lambda x: x
+    while True:
+        yield g
+        g = lambda x: f(g(x))
+\end{lstlisting}
+\begin{solution}
+This solution does not work. The value g changes with each iteration so the bodies
+of the lambdas yielded change as well.
+\end{solution}

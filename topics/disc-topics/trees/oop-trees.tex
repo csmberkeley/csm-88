@@ -1,0 +1,53 @@
+\question
+Define \textbf{filter\_tree}, which takes in a tree \textbf{t} and one argument predicate function \textbf{fn}. It should mutate the tree by removing all branches of any node where calling \textbf{fn} on its label returns \textbf{False}. In addition, if this node is not the root of the tree, it should remove that node from the tree as well.
+
+\begin{lstlisting}[language=Python]
+def filter_tree(t, fn):
+    """
+    >>> t = Tree(1, [Tree(2), Tree(3, [Tree(4)]), Tree(6, [Tree(7)])])
+    >>> filter_tree(t, lambda x: x % 2 != 0)
+    >>> t
+    tree(1, [Tree(3)])
+    >>> t2 = Tree(2, [Tree(3), Tree(4), Tree(5)])
+    >>> filter_tree(t2, lambda x: x != 2)
+    >>> t2
+    Tree(2)
+    """
+    |\begin{solution}[1in]
+    \begin{verbatim}
+    if not fn(t.label):
+        t.branches = []
+    else:
+        for b in t.branches[:]:
+            if not fn(b.label): 
+                t.branches.remove(b)
+            else: 
+                filter_tree(b, fn)
+    \end{verbatim}
+    \end{solution}|
+\end{lstlisting}
+
+\question
+Fill in the definition for \textbf{nth\_level\_tree\_map}, which also takes in a function and a tree, but mutates the tree by applying the function to every nth level in the tree, where the root is the 0th level.
+
+\begin{lstlisting}[language=Python]
+def nth_level_tree_map(fn, tree, n):
+   """Mutates a tree by mapping a function all the elements of a tree.
+   >>> tree = Tree(1, [Tree(7, [Tree(3), Tree(4), Tree(5)]),
+                Tree(2, [Tree(6), Tree(4)])])
+   >>> nth_level_tree_map(lambda x: x + 1, tree, 2)
+   >>> tree
+   Tree(2, [Tree(7, [Tree(4), Tree(5), Tree(6)]), 
+            Tree(2, [Tree(7), Tree(5)])])
+   """
+    |\begin{solution}[1in]
+    \begin{verbatim}
+    def helper(tree, level):
+          if level % n == 0:
+               tree.label = fn(tree.label)
+          for b in tree.branches:
+               helper(b, level + 1)
+  	helper(tree, 0)
+    \end{verbatim}
+    \end{solution}|
+\end{lstlisting}

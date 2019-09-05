@@ -1,0 +1,28 @@
+\question Implement {\tt \_\_mul\_\_}, which takes in a value, and
+performs a scalar product if the value is a number, or a vector product
+if the value is another vector.
+\begin{lstlisting}
+def __mul__(self, other):
+    if type(other) == int or type(other) == float:
+        "*** YOUR CODE HERE ***"
+\end{lstlisting}
+
+\begin{solution}[3cm]
+\begin{lstlisting}
+        return Vector([v * other for v in self.vector])
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+    elif type(other) == Vector:
+        "*** YOUR CODE HERE ***"
+\end{lstlisting}
+
+\begin{solution}[3cm]
+\begin{lstlisting}
+        assert len(self) == len(other), "Invalid dimensions!"
+        return sum([self[n] * other[n]
+                    for n in range(len(self))])
+\end{lstlisting}
+\end{solution}
+

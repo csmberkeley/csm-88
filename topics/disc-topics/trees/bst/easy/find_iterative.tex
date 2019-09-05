@@ -1,0 +1,18 @@
+% From Prof. Hilfinger's slide, Sp14
+\question Now rewrite \texttt{tree\_find} with iteration. Hint: should you use a \texttt{for} loop or a \texttt{while} loop?
+
+\begin{lstlisting}
+def tree_find(t, x):
+\end{lstlisting}
+\begin{solution}[2.5in]
+\begin{lstlisting}
+    while t != BinaryTree.empty:
+        if x == t.entry:
+            return True
+        elif x < t.entry:
+            t = t.left
+        else:
+            t = t.right
+    return False
+\end{lstlisting}
+\end{solution}

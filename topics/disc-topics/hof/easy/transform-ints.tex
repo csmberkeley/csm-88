@@ -1,0 +1,25 @@
+\question Implement the function \texttt{transform\_ints} that takes in a
+function \texttt{func} and a number \texttt{n} and prints the result of applying
+that function to each of the first $n$ natural numbers.
+
+\begin{lstlisting}
+def transform_ints(func, n):
+    """Print out all integers from 1 to n with func applied
+    on them.
+
+    >>> def square(x):
+    ...     return x * x
+    >>> transform_ints(square, 3)
+    1
+    4
+    9
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    i = 1
+    while i <= n:
+        print(func(i))
+        i += 1
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,9 @@
+In a binary tree, each tree node has at most two subtrees: \texttt{left} and 
+\texttt{right}. We can use a binary tree to create a 
+\textit{binary search tree}. A binary search tree is a binary tree with
+the following additional constraints: 
+\begin{itemize}
+\item all entries in the left side of the tree are smaller than the root entry
+\item all entries in the right side of the tree are bigger than the root entry
+\end{itemize}
+If we organize data in a binary search tree, we can find a specific element very quickly. How? Compare the element we want with the root entry, and if the element is smaller, search the left side; if bigger, search the right side; recurse!

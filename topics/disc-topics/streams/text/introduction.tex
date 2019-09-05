@@ -1,0 +1,40 @@
+A \define{stream} is a lazily-evaluated linked list. A stream's elements
+(except for the first element) are only computed when those values are needed.
+
+A \lstinline$Stream$ instance is similar to a \lstinline$Link$ instance.
+Both have \lstinline$first$ and \lstinline$rest$ attributes.
+The rest of a \lstinline$Link$ is either a \lstinline$Link$ or
+\lstinline$Link.empty$.
+Likewise, the rest of a \lstinline$Stream$ is either a \lstinline$Stream$ or
+\lstinline$Stream.empty$.
+
+However, instead of specifying all of the elements in \lstinline$__init__$, we
+provide a function, \lstinline$compute_rest$, which will be called to compute
+the next element of the stream.
+Remember that the code in the function body is not evaluated until it is
+called, which lets us implement the desired evaluation behavior.
+It's very important that \lstinline$compute_rest$ should return a
+\lstinline$Stream$, if you don't want your \lstinline$Stream$ to end.
+
+\begin{lstlisting}
+class Stream:
+    empty = 'empty'
+
+    def __init__(self, first, compute_rest=lambda: Stream.empty):
+        self.first = first
+        self.cached_rest = None
+        assert callable(compute_rest)
+        self.compute_rest = compute_rest
+
+    @property
+    def rest(self):
+        """Return the rest, computing it if necessary."""
+        if self.compute_rest is not None:
+            self.cached_rest = self.compute_rest()
+            self.compute_rest = None
+        return self.cached_rest
+
+    def __repr__(self):
+        rest = self.cached_rest if self.compute_rest is None else '<...>'
+        return 'Stream({}, {})'.format(self.first, rest)
+\end{lstlisting}

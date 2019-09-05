@@ -1,0 +1,13 @@
+\question Implement {\tt \_\_add\_\_}, which takes in two vectors of
+the same length and returns a new vector which is their sum. Try using
+list comprehensions.
+\begin{lstlisting}
+def __add__(self, other):
+    assert type(other) == Vector, "Invalid operation!"
+    assert len(self) == len(other), "Invalid dimensions!"
+\end{lstlisting}
+\begin{solution}[3cm]
+\begin{lstlisting}
+    return Vector([self[n] + other[n] for n in range(len(self))])
+\end{lstlisting}
+\end{solution}

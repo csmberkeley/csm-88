@@ -1,0 +1,9 @@
+\question Write a query that outputs the names of employees whose supervisor
+is in a different division.
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=SQL]
+SELECT e.name FROM records AS e, records AS s
+  WHERE e.supervisor = s.name AND e.division != s.division;
+\end{lstlisting}
+\href{https://youtu.be/BIV5O1U9Zdw?t=6m56s}{Video walkthrough}
+\end{solution}

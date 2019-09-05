@@ -1,0 +1,38 @@
+\question
+Write a function that takes in a tree and a depth \texttt{k} and returns a
+new tree that contains only the first \texttt{k} levels of the original
+tree.
+
+For example, if \texttt{t} is the tree shown in the previous question,
+then \texttt{prune(t, 2)} should return the following tree.
+\begin{center}
+\begin{tikzpicture}[very thick,level/.style={sibling distance=70mm/#1},
+                    level distance=24pt]
+\node [vertex] (r){$2$}
+  child {
+    node [vertex] (a) {$7$}
+    child {
+      node [vertex] {$3$}
+    }
+    child {
+      node [vertex] {$6$}
+    }
+  }
+  child {
+    node [vertex] {$15$}
+  };
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}
+def prune(t, k):
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    if k == 0:
+        return tree(label(t), [])
+    else:
+        return tree(label(t), [prune(branch, k - 1) for branch in branches(t)])
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=OnLa_VUrWiA&list=PLx38hZJ5RLZcgrSJp16YmzNwn9hL5JD8q&index=3&t=5m56s}{Video walkthrough}
+\end{solution}

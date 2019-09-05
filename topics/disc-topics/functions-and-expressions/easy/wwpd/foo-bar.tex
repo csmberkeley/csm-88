@@ -1,0 +1,18 @@
+\question Determine the result of evaluating \texttt{foo(5)} in the Python
+interpreter if the following functions are defined in the order below:
+\begin{lstlisting}
+>>> def bar(param):
+...     return param
+>>> bar = 6
+>>> def foo(bar):
+...     return bar(bar)
+>>> bar = 7
+>>> foo(5)
+\end{lstlisting}
+
+\begin{solution}[1in]
+When we evaluate \texttt{foo(5)}, the name \texttt{bar} will be bound to 5
+inside the function \texttt{foo}. Next, Python will try to evaluate
+\texttt{bar(bar)}, or \texttt{5(5)}. This will cause an error when we apply 5
+as a function onto 5 because integers are not functions.
+\end{solution}

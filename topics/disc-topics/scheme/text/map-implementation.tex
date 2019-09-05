@@ -1,0 +1,8 @@
+\begin{lstlisting}[language=Scheme]
+; returns a list of trees, which is built by calling product-tree on all children
+(def (map fn branches k)
+    (if (null? branches)
+        nil
+        (cons (fn (car branches) k) (map fn (cdr branches) k)))
+)
+\end{lstlisting}

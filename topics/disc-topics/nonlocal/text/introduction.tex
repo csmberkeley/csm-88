@@ -1,0 +1,37 @@
+Until now, you've been able to access names in parent frames, but you have not
+been able to modify them. The {\tt nonlocal} keyword can be used to modify a
+binding in a parent frame. For example, consider {\tt stepper}, which uses {\tt
+nonlocal} to modify {\tt num}:
+
+\begin{lstlisting}
+def stepper(num):
+    def step():
+        nonlocal num  # declares num as a nonlocal name
+        num = num + 1 # modifies num in the stepper frame
+        return num
+    return step
+
+>>> step1 = stepper(10)
+>>> step1()                # Modifies and returns num
+11
+>>> step1()                # num is maintained across separate calls to step
+12
+>>> step2 = stepper(10)    # Each returned step function keeps its own state
+>>> step2()
+11
+\end{lstlisting}
+
+As illustrated in this example, \texttt{nonlocal} is useful for maintaining
+state across different calls to the same function.
+
+However, there are two important caveats with {\tt nonlocal} names:
+\begin{description}
+  \item[$\bullet$ Global names] cannot be modified using the {\tt nonlocal}
+  keyword.
+  \item[$\bullet$ Names in the current frame] cannot be overridden
+  using the {\tt nonlocal} keyword. This means we cannot have both a local and
+  nonlocal binding with the same name in a single frame.
+\end{description}
+
+Because {\tt nonlocal} lets you modify bindings in parent frames, we call
+functions that use it \textbf{mutable functions}.

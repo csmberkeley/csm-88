@@ -1,0 +1,21 @@
+\question Write simple and complex facts for {\tt mapped}, a relation between a
+relation and two lists that is satisfied if and only if each element of the
+second list satisfies the relation with the corresponding element of the first
+list. (The example uses the {\tt complementary} fact you defined at the
+beginning of discussion.)
+
+\begin{lstlisting}
+> (query (mapped complementary (g t a g t a g t a) ?nyan))
+Success!
+nyan: (c a t c a t c a t)
+\end{lstlisting}
+
+\begin{solution}[2in]
+\begin{lstlisting}
+(fact (mapped ?relation () ()))
+(fact (mapped ?relation (?f1 . ?r1) (?f2 . ?r2))
+      (?relation ?f1 ?f2)
+      (mapped ?relation ?r1 ?r2))
+\end{lstlisting}
+\end{solution}
+

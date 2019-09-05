@@ -1,0 +1,22 @@
+\begin{blocksection}
+\question Write a function {\tt square\_elements} which takes a {\tt
+lst} and replaces each element with the square of that element. {\it
+Mutate {\tt lst} rather than returning a new list}.
+
+\begin{lstlisting}
+def square_elements(lst):
+    """
+    >>> lst = [1, 2, 3]
+    >>> square_elements(lst)
+    >>> lst
+    [1, 4, 9]
+    """
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+    for i in range(len(lst)):
+        lst[i] = lst[i]**2
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
+

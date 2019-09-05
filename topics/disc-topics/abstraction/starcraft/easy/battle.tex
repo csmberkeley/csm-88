@@ -1,0 +1,29 @@
+\question Let's simulate a battle between units! In a battle, each unit yells
+its respective catchphrase, then the unit with more damage wins.
+Implement {\tt battle}, which prints the catchphrases of the first and
+second unit in that order, then returns the unit that does more damage.
+The first unit wins ties. Don't violate any data abstractions!
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}
+def battle(first, second):
+    """Simulates a battle between the first and second unit
+    >>> zealot = make_unit('My life for Aiur!', 16)
+    >>> zergling = make_unit('GRAAHHH!', 5)
+    >>> winner = battle(zergling, zealot)
+    GRAAHHH!
+    My life for Aiur!
+    >>> winner is zealot
+    True
+    """
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    print(get_catchphrase(first))
+    print(get_catchphrase(second))
+    if get_damage(first) >= get_damage(second):
+        return first
+    return second
+\end{lstlisting}
+\end{solution}
+\end{minipage}

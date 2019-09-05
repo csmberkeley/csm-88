@@ -1,0 +1,22 @@
+\question Write a function which takes two lists and concatenates them.
+
+Notice that simply calling {\tt (cons a b)} would not work because it will
+create a deep list. Do not call the builtin procedure \texttt{append}, which
+does the same thing as \texttt{my-append}.
+
+\begin{lstlisting}[language=Scheme]
+(define (my-append a b)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=Scheme]
+    (if (null? a)
+    b
+    (cons (car a) (my-append (cdr a) b)))
+\end{lstlisting}
+%\href{https://youtu.be/8FO2ZYkXwb0}{Video walkthrough}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+)
+scm> (my-append '(1 2 3) '(2 3 4))
+(1 2 3 2 3 4)
+\end{lstlisting}

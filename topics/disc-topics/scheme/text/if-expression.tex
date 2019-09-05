@@ -1,0 +1,29 @@
+An
+\lstinline$if$ expression looks like this:
+
+\centerline{\lstinline{(if <predicate> <if-true> [if-false])}}
+
+{\tt <predicate>} and {\tt <if-true>} are required expressions and {\tt
+[if-false]} is optional.
+
+The rules for evaluation are as follows:
+\begin{enumerate}
+\item Evaluate {\tt <predicate>}.
+\item If {\tt <predicate>} evaluates to a truth-y value, evaluate {\tt
+<if-true>} and return its value. Otherwise, evaluate {\tt [if-false]} if
+provided and return its value.
+\end{enumerate}
+
+This is a special form because not all operands will be evaluated! Only one of
+the second and third operands is evaluated, depending on the value of the first
+operand.
+
+Remember that only \lstinline{#f} is a false-y value in Scheme; everything else
+is truth-y.
+
+\begin{lstlisting}[language=Scheme]
+scm> (if (< 4 5) 1 2)
+1
+scm> (if #f (/ 1 0) 42)
+42
+\end{lstlisting}

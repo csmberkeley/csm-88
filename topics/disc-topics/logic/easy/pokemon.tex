@@ -1,0 +1,27 @@
+\question Define a set of facts to model the table of data below.
+\begin{center}
+\begin{tabular}{ | l | l | l | l |}
+\hline
+Name & Number & Color &  Type \\ \hline
+Bulbasaur & 001 & Green & Grass \\ \hline
+Charmander & 004 & Red & Fire \\ \hline
+Squirtle & 007 & Blue & Water \\ \hline
+Caterpie & 010 & Green & Bug \\ \hline
+Pikachu & 025 & Yellow & Electric \\ \hline
+\end{tabular}
+\end{center}
+\begin{solution}[1in]
+\begin{lstlisting}
+> (fact (pokemon (name bulbasaur) (number 1) (color green)
+  (type grass)))
+> (fact (pokemon (name charmander) (number 4) (color red)
+  (type fire)))
+> (fact (pokemon (name squirtle) (number 7) (color blue)
+  (type water)))
+> (fact (pokemon (name caterpie) (number 10) (color green)
+  (type bug)))
+> (fact (pokemon (name pikachu) (number 25) (color yellow)
+  (type electric)))
+\end{lstlisting}
+\end{solution}
+

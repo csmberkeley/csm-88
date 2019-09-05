@@ -1,0 +1,29 @@
+The second way of constructing abstract data types is with higher order functions. We can
+implement the functions {\tt pair} and {\tt select} to achieve the same
+goal.
+
+\begin{lstlisting}
+>>> def pair(x, y):
+        """Return a function that represents a pair of data."""
+        def get(index):
+            if index == 0:
+                return x
+            elif index == 1:
+                return y
+        return get
+>>> def select(p, i):
+        """Return the element at index i of pair p"""
+        return p(i)
+>>> nums = pair(1, 2)
+>>> select(nums, 0)
+1
+>>> select(nums, 1)
+2
+\end{lstlisting}
+
+Note how although using functional pairs is different syntactically from lists,
+it accomplishes the exact same thing.
+
+We can tie this in with our continuing Starcraft example. Units require
+resources to create, and in Starcraft, these resources are called "minerals" and
+"gas."

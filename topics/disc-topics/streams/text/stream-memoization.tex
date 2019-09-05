@@ -1,0 +1,6 @@
+This implementation of streams also uses \emph{memoization}, or caching.
+The first time a program asks a \lstinline$Stream$ for its \lstinline$rest$,
+the \lstinline$Stream$ code computes the required value using
+\lstinline$compute_rest$, saves the resulting value, and then returns it.
+After that, every time the \lstinline$rest$ is referenced, we simply return
+the value that we stored earlier.

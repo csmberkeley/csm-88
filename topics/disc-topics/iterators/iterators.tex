@@ -1,0 +1,438 @@
+\question
+What is the definition of an iterable? What is the definition of an iterator? What is the definition of a generator? What built-in functions or keywords are associated with each. Give an example of each.
+
+\begin{solution}[2in]
+An iterable is any object that can be passed to the built-in iter function. In other words, an iterable is any object that can produce iterators. \\
+An iterator is an object that provides sequential access to values one by one. Its contents can be accessed through the built-in next function, and it will signal there are no more values available with a StopIteration exception when next is called. \\
+A generator object is an iterator, but it is created in a special way -- generator functions are defined as a function that yields its values instead of returning them. When generator functions are called, they return a generator object, which can then be used as an iterator.
+
+\end{solution}
+
+\question
+Evaluate if each line is valid? If not, state the error and how you would fix it.
+
+\begin{lstlisting}
+>>> new_list = [2, 3, 6, 8, 8, 3]
+>>> next(new_list)
+
+
+>>> iter(new_list)[1]
+
+
+>>> [x for x in iter(new_list)]
+
+
+>>> for i in range(len(iter(new_list))):
+... 		new_list.append(2)
+
+
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{verbatim}
+
+A)
+Error: new_list is an Iterable not Iterator
+Fix:
+>>> next(iter(new_list))
+Output:
+2
+
+B)
+Error, can't use indexing on an iterator
+>>> new_list[1]
+3
+
+C)
+[2, 3, 6, 8, 8, 3]
+
+D)
+Error, can’t call len on iterator object
+>>> for i in range(len(new_list)):
+	new_list.append(2)
+
+\end{verbatim}
+\end{solution}
+\newpage
+
+\question
+What is the difference between these two statements?
+
+\begin{lstlisting}
+a.    def infinity1(start):
+		while True:
+			start = start + 1
+			return start
+
+b.    def infinity2(start):
+		while True:
+			start = start + 1
+			yield start			
+|\begin{solution}
+(a)is a function since it uses a return statement. Even tho while True is always true, it will stop after the first iteration when it returns start.
+On the other hand, (b) is a generator since it uses a yield statement. Since while True is always true, calling next will iterate once and yield start
+\end{solution}|
+
+What would python display?
+
+>>> infinity1
+|\begin{solution}
+<Function>
+\end{solution}|
+>>> infinity2
+|\begin{solution}
+<Function>
+\end{solution}|
+>>> infinity1(2)
+|\begin{solution}
+3
+\end{solution}|
+>>> infinity2(2)
+|\begin{solution}
+<Generator Instance>
+\end{solution}|
+>>> x = infinity1(2)
+|\begin{solution}
+Nothing
+\end{solution}|
+>>> next(x)
+|\begin{solution}
+Error, cant call next on integer
+\end{solution}|
+>>> y = infinity2(2)
+|\begin{solution}
+Nothing
+\end{solution}|
+>>> next(y)
+|\begin{solution}
+3
+\end{solution}|
+>>> next(y)
+|\begin{solution}
+4
+\end{solution}|
+>>> next(infinity2(2))
+|\begin{solution}
+3	
+\end{solution}|
+\end{lstlisting}
+\newpage
+
+
+
+\question
+They can't stop all of us!!! Write a function \textbf{generate\_constant} which, a generator function that repeatedly yields the same value forever.
+
+\begin{lstlisting}
+def generate_constant(x):
+	"""A generator function that repeats the same value x forever.
+	>>> area = generate_constant(51)
+	>>> next(area)
+	51
+	>>> next(area)
+	51
+	>>> sum([next(area) for _ in range(100)])
+	5100
+	"""
+	
+	
+	
+	
+	
+	
+\end{lstlisting}
+
+\begin{solution}
+\begin{verbatim}
+while True: 
+    yield x
+ \end{verbatim}
+\end{solution}
+
+
+
+
+\question
+4.2 Now implement  \textbf{black\_hole} , a generator that yields items in seq until one of them matches trap, in which case that value should be repeated yielded forever. You may assume that  \textbf{generate\_constant}  works. You may not index into or slice seq.
+
+\begin{lstlisting}
+def black_hole(seq, trap):
+	"""A generator that yields items in SEQ until one of them matches TRAP, in which case that value 	should be repeatedly yielded forever.
+	>>> trapped = black_hole([1, 2, 3], 2)
+	>>> [next(trapped) for _ in range(6)]
+	[1, 2, 2, 2, 2, 2]
+	>>> list(black_hole(range(5), 7))
+	[0, 1, 2, 3, 4]
+	"""
+\end{lstlisting}
+
+\begin{solution} [.5in]
+\begin{lstlisting}
+for item in seq:
+	if item == trap:
+		yield from generate_constant(trap)
+	else:
+		yield item
+
+ \end{lstlisting}
+\end{solution}
+\newpage
+
+
+
+
+\question
+What Would Python Display?
+
+\begin{lstlisting}
+
+>>> def weird_gen(x):
+... 	if x % 2 == 0:
+... 	  yield x * 2
+>>> wg = weird_gen(2)
+>>> next(wg)
+>>> next(weird_gen(2))
+|\begin{solution}
+4
+4
+\end{solution}|
+
+>>> next(wg)
+|\begin{solution}
+StopIteration
+\end{solution}|
+
+>>> def greeter(x):
+...   while x % 2 != 0:
+...     print('hi')
+...     yield x
+...     print('bye')
+>>> greeter(5)
+|\begin{solution}
+<Generator Object>
+\end{solution}|
+
+>>> gen = greeter(5)
+>>> g = next(gen)
+|\begin{solution}
+hi
+\end{solution}|
+>>> g = (g, next(gen))
+>>> g
+
+
+|\begin{solution}
+bye
+hi
+(5, 5)
+\end{solution}|
+>>> next(gen)
+
+
+|\begin{solution}
+bye
+hi
+5
+\end{solution}|
+>>> next(g)
+
+
+|\begin{solution}
+Error, tuple is not iterator
+\end{solution}|
+An iterator ______________________ a generator
+A generator is a(n)  ______________________ iterator
+|\begin{solution}
+An iterator is not always represented by  a generator
+A generator is a(n)  a special type of/user defined iterator
+
+\end{solution}|
+\end{lstlisting}
+\newpage
+
+
+\question
+Write a generator function \textbf{gen\_inf} that returns a generator which yields all the numbers in the provided list one by one in an infinite loop. 
+
+\begin{lstlisting}
+>>> t = gen_inf([3, 4, 5])
+>>> next(t)
+3
+>>> next(t)
+4
+>>> next(t)
+5
+>>> next(t)
+3
+>>> next(t)
+4
+def gen_inf(lst):
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{verbatim}
+#solution 1
+def gen_inf(lst):
+    while True:
+        for elem in lst:
+            yield elem
+#solution 2
+def gen_inf(lst):
+    while True:
+        yield from iter(lst)
+\end{verbatim}
+\end{solution}
+\newpage
+
+
+\question
+Implement a generator function called \texttt{filter(iterable, fn)} that only yields
+elements of iterable for which fn returns True.
+
+\begin{lstlisting}[language=Python]
+
+def naturals(): 
+	i = 1 
+	while True: 
+		yield i 
+		i += 1
+
+
+def filter(iterable, fn):
+    """
+    >>> is_even = lambda x: x % 2 == 0
+    >>> list(filter(range(5), is_even))
+    [0 , 2 , 4]
+    >>> all_odd = (2*y-1 for y in range (5))
+    >>> list(filter(all_odd, is_even))
+    []
+    >>> s = filter(naturals(), is_even)
+    >>> next(s)
+    2
+    >>> next(s)
+    4
+    """
+    
+    
+    
+    
+    
+
+\end{lstlisting}
+\begin{solution}[.75in]
+\begin{lstlisting}[language=Python]
+    for elem in iterable:
+        if fn(elem):
+            yield elem
+\end{lstlisting}
+\end{solution}
+
+\question What could you use a generator for that you could not use a standard iterator paired with a function for? 
+\begin{solution}[.75in]
+Call next on an infinite iterator
+\end{solution}
+\newpage
+
+
+\question
+Define \textbf{tree\_sequence}, a generator that iterates through a tree by first yielding the root value and then yielding the values from each branch.
+
+
+\begin{lstlisting}
+def tree_sequence(t):
+	"""
+	>>> t = tree(1, [tree(2, [tree(5)]), tree(3, [tree(4)])])
+	>>> print(list(tree_sequence(t)))
+	[1, 2, 5, 3, 4]
+	"""
+
+\end{lstlisting}
+\begin{solution}
+\begin{verbatim}
+yield label(t)
+  for branch in branches(t):
+     for value in tree_sequence(branch):
+        yield value
+
+Alternate solution:
+yield label(t)
+   for branch in branches(t):
+      yield from tree_sequence(branch)
+
+\end{verbatim}
+\end{solution}
+
+
+\newpage
+
+\question
+Write a function \textbf{make\_digit\_getter} that, given a positive integer n, returns a new function that returns the digits in the integer one by one, starting from the rightmost digit. 
+
+Once all digits have been removed, subsequent calls to the function should return the sum of all the digits in the original integer.
+
+\begin{lstlisting}
+def make_digit_getter(n):
+	""" Returns a function that returns the next digit in n
+	each time it is called, and the total value of all the integers
+	once all the digits have been returned.
+	>>> year = 8102
+	>>> get_year_digit = make_digit_getter(year)
+	>>> for _ in range(4):
+	... print(get_year_digit())
+	2
+	0
+	1
+	8
+	>>> get_year_digit()
+	11
+	"""
+
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def make_digit_getter(n):
+	total = 0
+	def get_next():
+		nonlocal n, total
+		if n == 0:
+			return total
+		val = n % 10
+		n = n // 10
+		total += val
+		return val
+	return get_next
+\end{lstlisting}
+\end{solution}
+
+
+\newpage
+
+\question
+Sorry another environment diagram, but it's the last one I promise.
+
+\begin{lstlisting}
+def iter(iterable):
+    def iterator(msg):
+        nonlocal iterable
+        if msg == 'next':
+            next = iterable[0]
+            iterable = iterable[1:]
+            return next
+        elif msg == 'stop':
+            raise StopIteration
+    return iterator 
+def next(iterator):
+    return iterator('next')
+def stop(iterator):
+    iterator('stop')
+    
+lst = [1, 2, 3]
+iterator = iter(lst)
+elem = next(iterator)
+
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+https://tinyurl.com/y3xxycgp
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,45 @@
+\newcommand{\growth}{\Theta}
+
+When we talk about the efficiency of a function, we are often interested in the
+following: as the size of the input grows, how does the runtime of the function
+change? And what do we mean by ``runtime''?
+
+\begin{itemize}
+\item  \lstinline$square(1)$ requires one primitive operation: \lstinline$*$
+    (multiplication). \lstinline$square(100)$ also requires one. No matter
+    what input \lstinline$n$ we pass into \lstinline$square$, it always takes one
+    operation.
+    \begin{center}
+    \begin{tabular}{ |c|c|c|c| }
+        \hline
+        input & function call & return value & number of operations\\
+        \hline
+        $1$   & square(1)     & $1\cdot 1$          & $1$          \\
+        $2$   & square(2)     & $2\cdot 2$          & $1$          \\
+        \vdots& \vdots        & \vdots              & \vdots       \\
+        $100$ & square(100)   & $100\cdot 100$      & $1$          \\
+        \vdots& \vdots        & \vdots              & \vdots       \\
+        $n$   & square($n$)   & $n\cdot n$          & $1$          \\
+        \hline
+    \end{tabular}
+    \end{center}
+\item
+    \lstinline$factorial(1)$ requires one multiplication, but
+    \lstinline$factorial(100)$ requires 100 multiplications. As we increase the
+    input size of n, the runtime (number of operations) increases linearly
+    proportional to the input.
+    \begin{center}
+    \begin{tabular}{ |c|c|c|c| }
+      \hline
+      input & function call & return value & number of operations\\
+      \hline
+      $1$   & factorial(1)    & $1\cdot 1$                    & $1$   \\
+      $2$   & factorial(2)    & $2\cdot 1\cdot 1$             & $2$   \\
+      \vdots& \vdots          & \vdots                        & \vdots\\
+      $100$ & factorial(100)  & $100\cdot 99\cdots 1\cdot 1$  & $100$ \\
+      \vdots& \vdots          & \vdots                        & \vdots\\
+      $n$   & factorial($n$)  & $n\cdot (n-1)\cdots 1\cdot 1$ & $n$   \\
+      \hline
+    \end{tabular}
+    \end{center}
+\end{itemize}

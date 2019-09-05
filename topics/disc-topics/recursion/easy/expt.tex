@@ -1,0 +1,16 @@
+\question Write a procedure {\tt expt(base, power)}, which implements the
+exponent function. For example, {\tt expt(3, 2)} returns 9, and {\tt expt(2, 3)}
+returns 8. Assume {\tt power} is always a non-negative integer.  Use recursion, not {\tt
+pow}!
+
+\begin{lstlisting}
+def expt(base, power):
+\end{lstlisting}
+\begin{solution}[1.7in]
+\begin{lstlisting}
+    if power == 0:
+        return 1
+    else:
+        return expt(base, power - 1) * base
+\end{lstlisting}
+\end{solution}

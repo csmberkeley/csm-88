@@ -1,0 +1,26 @@
+\question A middle manager is a person who is both supervising someone and is
+supervised by someone different. Write a query that outputs the names of all
+middle managers.
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=SQL]
+SELECT b.name FROM records AS a, records AS b
+  WHERE a.supervisor = b.name AND b.supervisor != b.name;
+\end{lstlisting}
+\href{https://youtu.be/BIV5O1U9Zdw?t=13m28s}{Video walkthrough}
+\end{solution}
+
+\question What is the output of the query in the previous part? Explain the
+output you get.
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=SQL]
+Alyssa P Hacker
+Ben Bitdiddle
+Ben Bitdiddle
+Ben Bitdiddle
+Eben Scrooge
+\end{lstlisting}
+There are multiple people with Ben Bitdiddle as supervisor, and joining tables
+together does not remove these duplicates. If we wanted to remove duplicates, we
+could use the \texttt{DISTINCT} keyword.\\
+\href{https://youtu.be/BIV5O1U9Zdw?t=15m49s}{Video walkthrough}
+\end{solution}

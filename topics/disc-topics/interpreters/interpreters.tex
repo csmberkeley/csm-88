@@ -1,0 +1,83 @@
+\question
+Determine the number of calls to \textbf{scheme\_eval} and the number of calls to \textbf{scheme\_apply} for the following expressions. Use the visualizer at \url{code.cs61a.org} if you're not sure how an expression is evaluated.
+
+\begin{lstlisting}[language=Scheme]
+> (+ 1 2)
+3
+\end{lstlisting}
+\begin{solution}[1in]
+4 calls to eval: \\
+1. Evaluate entire expression \\
+2. Evaluate + \\
+3. Evaluate 1 \\
+4. Evaluate 2
+
+1 call to apply: \\
+1. Apply + to 1 and 2 \\
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+> (if 1 (+ 2 3) (/ 1 0))
+5
+\end{lstlisting}
+\begin{solution}[1in]
+6 calls to eval: \\
+1. Evaluate entire expression \\
+2. Evaluate predicate 1 \\
+3. Since 1 is true, evaluate the entire sub-expression ( + 2 3) \\
+4. Evaluate + \\
+5. Evaluate 2 \\
+6. Evaluate 3 \\
+
+1 call to apply: \\
+1. Apply + to 2 and 3 \\
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+> (or #f (and (+ 1 2) 'apple) (- 5 2))
+apple
+\end{lstlisting}
+\begin{solution}[1in]
+8 calls to eval: \\
+1. Evaluate entire expression \\
+2. Evaluate false \\
+3. Evaluate entire sub-expression (and  (+ 1 2) 'apple) \\
+4. Evaluate entire sub-expression (+ 1 2) \\
+5. Evaluate + \\
+6. Evaluate 1 \\
+7. Evaluate 2 \\
+8. Evaluate 'apple \\
+Since the and expression evaluates to true, we short circuit here. \\
+1 call to apply: \\
+1. Apply + to 2 and 3 \\
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+> (define (add x y) (+ x y))
+add
+> (add (- 5 3) (or 0 2))
+2
+\end{lstlisting}
+
+\begin{solution}[1in]
+13 calls to eval: \\
+1. Evaluate entire define expression \\
+2. Evaluate entire (add ...) expression \\
+3. Evaluate add operator \\
+4. Evaluate entire (- 5 3) sub-expression \\
+5. Evaluate - \\
+6. Evaluate 5 \\
+7. Evaluate 3 \\
+8. Evaluate entire (or 0 2) sub-expression \\
+9. Evaluate 0 (and short circuit, since 0 is truthy in Scheme\\
+10. Evaluate (+ x y) (after applying add and entering the body of the add function) \\
+11. Evaluate + \\
+12. Evaluate x \\
+13. Evaluate y \\
+
+2 call to apply: \\
+1. Apply - to 5 and 3 \\
+2. Apply + to -2 and 0 \\
+\end{solution}
+
+

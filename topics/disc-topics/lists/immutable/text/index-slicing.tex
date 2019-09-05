@@ -1,0 +1,27 @@
+If we want to access more than one element of a list at a time, we can use a
+\textit{slice}. Slicing a sequence is very similar to indexing. We specify a
+starting index and an ending index, separated by a colon. Python creates a new
+list with the elements from the starting index up to (but not including) the
+ending index. Specifically, we can write [\textit{start}:\textit{stop}] to slice a list with two integers.
+
+\textit{start} denotes the index for the beginning of the slice (inclusive)\\
+\textit{stop} denotes the index for the end of the slice (exclusive)
+
+Using negative indices for start and end behaves in the same way as indexing
+into negative indices. Slicing a list always creates a new list.
+
+\begin{lstlisting}
+>>> pizza = [1, 2, 3, 4]
+>>> pizza[0]
+1
+>>> pizza[-1]
+4
+>>> pizza[-4]
+1
+>>> pizza[1:2]
+[2]
+>>> pizza[1:]
+[2, 3, 4]
+>>> pizza[-2:3]
+[3]
+\end{lstlisting}

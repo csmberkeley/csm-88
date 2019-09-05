@@ -1,0 +1,18 @@
+\question Suppose you want an infinite stream of randomly generated numbers.
+Consider an attempt to implement this via the code below.
+Are there any problems with this? If so, how can we fix it?
+
+\begin{lstlisting}
+from random import random
+random_stream = Stream(random(), lambda: random_stream)
+\end{lstlisting}
+
+\begin{solution}[2cm]
+The provided code will generate a single random number, and then produce an
+infinite stream which simply repeats that one number over and over. To fix this,
+we can make this into a function that returns a Stream:
+\begin{lstlisting}
+def random_stream():
+    return Stream(random(), random_stream)
+\end{lstlisting}
+\end{solution}

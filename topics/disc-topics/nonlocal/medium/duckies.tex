@@ -1,0 +1,33 @@
+\begin{blocksection}
+\question The bathtub below simulates an epic battle between Finn and Kylo
+Ren over a populace of rubber duckies. Fill in the body of \texttt{ducky} so
+that all doctests pass.
+
+\begin{lstlisting}
+def bathtub(n):
+    """
+    >>> annihilator = bathtub(500) # the force awakens...
+    >>> kylo_ren = annihilator(10)
+    >>> kylo_ren()
+    490 rubber duckies left
+    >>> rey = annihilator(-20)
+    >>> rey()
+    510 rubber duckies left
+    >>> kylo_ren()
+    500 rubber duckies left
+    """
+    def ducky_annihilator(rate):
+        def ducky():
+\end{lstlisting}
+\begin{solution}[1.5in]
+  \begin{lstlisting}
+            nonlocal n
+            n = n - rate
+            print(n, 'rubber duckies left')
+  \end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+        return ducky
+    return ducky_annihilator
+\end{lstlisting}
+\end{blocksection}

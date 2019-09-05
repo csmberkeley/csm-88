@@ -1,0 +1,56 @@
+\question
+Write a function that takes a \texttt{Tree} object and returns the
+elements at the depth with the most elements.
+
+In this problem, you may find it helpful to use the second optional argument to
+\texttt{sum}, which provides a starting value. All items in the sequence to be
+summed will be concatenated to the starting value. By default, start will
+default to 0, which allows you to sum a sequence of numbers. We provide an
+example of sum starting with a list, which allows you to concatenate items in a
+list.
+
+\begin{lstlisting}
+def widest_level(t):
+    """
+    >>> sum([[1], [2]], [])
+    [1, 2]
+    >>> t = Tree(3, [Tree(1, [Tree(1), Tree(5)]),
+    ...              Tree(4, [Tree(9, [Tree(2)])])])
+    >>> widest_level(t)
+    [1, 5, 9]
+    """
+    levels = []
+    x = [t]
+
+    while __________________________________________________:
+
+        _____________________________________________________
+
+        __________ = sum(_______________________________, [])
+
+    return max(levels, key=_________________________________)
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+def widest_level(t):
+    levels = []
+    x = [t]
+    while x:
+        levels.append([t.label for t in x])
+        x = sum([t.branches for t in x], [])
+    return max(levels, key=len)
+\end{lstlisting}
+\textbf{Main idea:} we'll traverse each level of the tree and keep track of the
+elements of the levels. After we're done, we return the level with the most
+items.
+
+Here, \texttt{x} keeps track of the trees in the current level. To get the next
+level of trees, we take all the branches from all the trees in the current
+level. The special \texttt{sum} call is needed to make sure we get a list of
+trees, instead of a list of branches (since branches are a list of trees
+themselves).
+
+Finally, we use \texttt{max} with a key to select the list with the longest
+length from our list of levels.
+\end{solution}

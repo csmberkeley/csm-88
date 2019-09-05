@@ -1,0 +1,7 @@
+\question Write a query that outputs all salaries that appear more than once in the employee records.
+
+\begin{solution}[2cm]
+\begin{lstlisting}[language=SQL]
+select salary from records group by salary having count(*) > 1;
+\end{lstlisting}
+\end{solution}

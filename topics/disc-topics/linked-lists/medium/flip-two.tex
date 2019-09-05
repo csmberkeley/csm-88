@@ -1,0 +1,47 @@
+\question
+Write a recursive function \texttt{flip\_two} that takes as input a
+linked list \texttt{lnk} and mutates \texttt{lnk} so that every pair
+is flipped.
+
+\begin{lstlisting}
+def flip_two(lnk):
+    """
+    >>> one_lnk = Link(1)
+    >>> flip_two(one_lnk)
+    >>> one_lnk
+    Link(1)
+    >>> lnk = Link(1, Link(2, Link(3, Link(4, Link(5)))))
+    >>> flip_two(lnk)
+    >>> lnk
+    Link(2, Link(1, Link(4, Link(3, Link(5)))))
+    """
+\end{lstlisting}
+\begin{solution}[1.25in]
+Recursive solution:
+\begin{lstlisting}
+    if lnk is Link.empty or lnk.rest is Link.empty:
+        return
+    lnk.first, lnk.rest.first = lnk.rest.first, lnk.first
+    flip_two(lnk.rest.rest)
+\end{lstlisting}
+If there's only a single item (or no item) to flip, then we're done.
+
+Otherwise, we swap the contents of the first and second items in the list. Since
+we've handled the first two items, we then need to recurse on
+
+Although the question explicitly asks for a recursive solution, there is also a
+fairly similar iterative solution:
+\begin{lstlisting}
+    while lnk is not Link.empty and lnk.rest is not Link.empty:
+        lnk.first, lnk.rest.first = lnk.rest.first, lnk.first
+        lnk = lnk.rest.rest
+\end{lstlisting}
+We will advance \texttt{lnk} until we see there are no more items or there is
+only one more Link object to process. Processing each \texttt{Link} involves
+swapping the contents of the first and second items in the list (same as the
+recursive solution).
+
+Notice that the code is remarkably similar to the recursive implementation of
+\texttt{flip\char`_two}.\\
+\href{https://www.youtube.com/watch?v=wPF9gOx15V0&index=2&list=PLx38hZJ5RLZdJgRCgpaTbmRXKAHOUmomO&t=9m54s}{Video walkthrough}
+\end{solution}

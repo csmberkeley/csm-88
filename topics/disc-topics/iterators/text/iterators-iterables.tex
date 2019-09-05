@@ -1,0 +1,30 @@
+An \define{iterable} is a data type which contains
+a collection of values which can be processed one by one 
+sequentially. Some examples of iterables we've seen include
+lists, tuples, strings, and dictionaries. In general, any
+object that can be iterated over in a \lstinline$for$ loop
+can be considered an iterable.
+
+
+While an iterable contains values that can be iterated over,
+we need another type of object called an \define{iterator}
+to actually retrieve values contained in an iterable. Calling
+the \lstinline$iter$ function on an iterable will create an iterator
+over that iterable. Each iterator keeps track of its position within
+the iterable. Calling the \lstinline$next$ function on an iterator will 
+give the current value in the iterable and move the iterator's position 
+to the next value. 
+
+
+In this way, the relationship between an
+iterable and an iterator is analogous to the relationship between
+a book and a bookmark - an iterable contains the data that is
+being iterated over, and an iterator keeps track of your position 
+within that data.
+
+
+Once an iterator has returned all the values in an iterable, subsequent
+calls to \lstinline$next$ on that iterable will result in a 
+\lstinline$StopIteration$ exception. In order to be able to access the values
+in the iterable a second time, you would have to create a second iterator.
+

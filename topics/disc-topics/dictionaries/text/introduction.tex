@@ -1,0 +1,32 @@
+Dictionaries are data structures which map keys to values.
+Dictionaries in Python are unordered, unlike real-world dictionaries --- in
+other words, key-value pairs are not arranged in the dictionary in any
+particular order. Let's look at an example:
+
+\begin{lstlisting}
+>>> pokemon = {'pikachu': 25, 'dragonair': 148, 'mew': 151}
+>>> pokemon['pikachu']
+25
+>>> pokemon['jolteon'] = 135
+>>> pokemon
+{'jolteon': 135, 'pikachu': 25, 'dragonair': 148, 'mew': 151}
+>>> pokemon['ditto'] = 25
+>>> pokemon
+{'jolteon': 135, 'pikachu': 25, 'dragonair': 148,
+'ditto': 25, 'mew': 151}
+\end{lstlisting}
+
+The {\it keys} of a dictionary can be any {\it immutable} value, such as
+numbers, strings, and tuples.\footnote{To be exact, keys must be {\it
+hashable}, which is out of scope for this course. This means that some
+mutable objects, such as classes, can be used as dictionary keys.}
+Dictionaries themselves are mutable; we can add,
+remove, and change entries after creation. There is only one value per key,
+however --- if we assign a new value to the same key, it overrides any previous
+value which might have existed.
+
+To access the value of {\tt dictionary} at {\tt key}, use the syntax
+{\tt dictionary[key]}.
+
+Element selection and reassignment work similarly to sequences, except the
+square brackets contain the key, not an index.

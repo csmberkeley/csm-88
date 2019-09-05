@@ -1,0 +1,34 @@
+\texttt{let} is another special form based around \texttt{lambda}. The structure
+of \texttt{let} is as follows:
+
+\begin{lstlisting}[language=Scheme]
+(let ( (<SYMBOL1> <EXPR1>)
+       ...
+       (<SYMBOLN> <EXPRN>) )
+       <BODY> )
+\end{lstlisting}
+
+This binds the results of evaluating expressions 1 through n to their associated
+symbols, creating temporary variables. Finally, the body of the \texttt{let} is
+evaluated.
+
+This special form is really just equivalent to:
+
+\begin{lstlisting}[language=Scheme]
+( (lambda (<SYMBOL1> ... <SYMBOLN>) <BODY>) <EXPR1> ... <EXPRN>)
+\end{lstlisting}
+
+Think of the temporary variables as being the parameters of a lambda function.
+Then, the arguments are the values of the expressions, which we bind to the
+temporary variables by calling the lambda.
+
+Consider the following example:
+\begin{lstlisting}[language=Scheme]
+(let ((x 1)
+      (y 2))
+  (+ x y))
+\end{lstlisting}
+This is equivalent to:
+\begin{lstlisting}[language=Scheme]
+((lambda (x y) (+ x y)) 1 2)
+\end{lstlisting}

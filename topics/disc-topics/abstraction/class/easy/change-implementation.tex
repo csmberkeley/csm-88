@@ -1,0 +1,34 @@
+\question
+A disgruntled student makes changes to the discussion 
+data abstraction in an attempt to disrupt the TAs' ability
+to run section. The new implementation is as follows:
+
+\begin{lstlisting}
+def make_discussion(ta, time, students):
+    return {"ta" : ta, "time" : time,  "students" : students}
+
+def get_ta(disc):
+    return disc["ta"]
+
+def get_time(disc):
+    return disc["time"]
+
+def get_students(disc):
+    return disc["students"]
+\end{lstlisting}
+
+Would the code in the previous question, with the corrections
+you made, still work with these changes? Would the code before
+removing abstraction violations still work?
+
+\begin{solution}
+After removing the abstraction violations, the code will work 
+correctly. This is because we don't assume anything about the
+representation of a discussion object, so changing the 
+representation doesn't affect anything.
+
+Before, with abstraction violations, our code will no longer work 
+correctly. When we try to index into a discussion as if it is a 
+list, we will get an error, since it is now implemented as a 
+dictionary.
+\end{solution}

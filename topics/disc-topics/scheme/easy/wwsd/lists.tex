@@ -1,0 +1,140 @@
+\question What would Scheme display?
+
+\begin{lstlisting}[language=Scheme]
+scm> (cons 10 (cons 11))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+Error
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (car (cons 10 (cons 11 nil)))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+10
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (cdr (cons 10 (cons 11 nil)))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+(11)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (cons 5 '(6 7 8))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+(5 6 7 8)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (define a 10)
+a
+scm> (list 8 9 a 11)    ; list procedure evaluates all operands
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+(8 9 10 11)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> '(8 9 a 11)        ; quote special form does not evaluate operand
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+(8 9 a 11)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (list? (cons 1 2))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+#f
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (list? (cons 1 (cons 2 '())))
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#t
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (define null nil)
+scm> (equal? null 'null)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#f
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (equal? nil 'null)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#f
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (equal? null 'nil)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#t
+\end{lstlisting}
+\end{solution}
+
+
+\begin{lstlisting}[language=Scheme]
+scm> (equal? nil 'nil)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#t
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (equal? 'nil ''nil)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#f
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (equal? ''nil ''nil)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#t
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (eq? ''nil ''nil)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}[language=Scheme]
+#f
+\end{lstlisting}
+\end{solution}

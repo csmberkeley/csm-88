@@ -1,0 +1,24 @@
+%%%%%% Taken from Fall 2015 Midterm 2e %%%%%%
+%%%%%% Can also be found at /exam/src/su16/mt-alt/env.tex %%%%%%
+
+\question Fill in the second line below so that {\tt s} evaluates to the list shown in the
+diagram. {\bf You may only use brackets, commas, and} {\tt s} {\bf in your
+answer.}
+
+\begin{lstlisting}
+>>> s = [1, 2]
+
+>>> s = ________________________________________________________
+\end{lstlisting}
+
+\begin{center}
+\includegraphics[scale=.5]{s-list.png}
+\end{center}
+
+\begin{solution}[0.5in]
+\begin{lstlisting}
+>>> s = [1, 2]
+
+>>> s = [s, [s]]
+\end{lstlisting}
+\end{solution}

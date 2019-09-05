@@ -1,0 +1,35 @@
+\question Answer the following questions about a {\tt Pair} instance
+representing the Calculator expression \texttt{(+ (- 2 4) 6 8)}.
+
+\begin{blocksection}
+\begin{subparts}
+\subpart Write out the Python expression that returns a {\tt Pair}
+representing the given expression, and draw a box and pointer diagram
+corresponding to it.
+
+\begin{solution}[0.4in]
+\begin{lstlisting}
+>>> Pair('+', Pair(Pair('-', Pair(2, Pair(4, nil))), Pair(6, Pair(8, nil))))
+\end{lstlisting}
+\href{https://goo.gl/2pxLFY}{Box and pointer diagram}
+\end{solution}
+
+\subpart What is the operator of the call expression? If the {\tt Pair}
+you constructed in the previous part was bound to the name {\tt p}, how would
+you retrieve the operator?
+
+\begin{solution}[0.4in]
+\texttt{p.first}
+\end{solution}
+
+\subpart What are the operands of the call expression? Given that the {\tt Pair}
+you constructed in Part (i) was bound to the name {\tt p}, how would
+you retrieve a list containing all of the operands? How would you retrieve
+only the first operand?
+
+\begin{solution}[0.4in]
+\texttt{p.second} to get a list containing all the operands.
+\texttt{p.second.first} to get the first operand by itself.
+\end{solution}
+\end{subparts}
+\end{blocksection}

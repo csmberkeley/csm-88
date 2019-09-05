@@ -1,0 +1,40 @@
+\question What would Python display? If you believe an expression evaluates
+to a \textit{Tree} object, write \textit{Tree}.
+
+\begin{lstlisting}
+>>> t0 = Tree(0)
+>>> t0.label
+\end{lstlisting}
+
+\begin{solution}[0.2in]
+\lstinline{0}
+\end{solution}
+
+\lstinline{>>> t0.branches}
+
+\begin{solution}[0.2in]
+\lstinline{[]}
+\end{solution}
+
+\lstinline{>>> t1 = Tree(0, [1, 2]) # Is this a valid tree?}
+
+\begin{solution}[0.2in]
+\lstinline{AssertionError # As the branches must be Tree objects}
+\end{solution}
+
+\begin{lstlisting}
+>>> t2 = Tree(0, [Tree(1), Tree(2, [Tree(3)])])
+>>> t2.branches[0]
+\end{lstlisting}
+
+\begin{solution}[0.2in]
+\lstinline{Tree(1)}
+\end{solution}
+
+\begin{lstlisting}
+>>> t2.branches[1].branches[0].label
+\end{lstlisting}
+
+\begin{solution}[0.2in]
+\lstinline{3}
+\end{solution}

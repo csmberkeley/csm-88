@@ -1,0 +1,91 @@
+In Logic, you can define \textit{facts}. Facts are simply Scheme lists of
+relations and relations are simply Scheme lists of symbols. Remember, relations
+are {\bf not} call expressions; instead, relations are used to express
+relationships between symbols.
+
+Here's an example of a fact:
+
+\begin{lstlisting}
+> (fact (sells supermarket groceries))
+\end{lstlisting}
+
+This line of code says: ``This is a fact: supermarkets sell groceries''. When we
+declare something as a fact, we are simply saying that it is a \textbf{true
+statement}.  You can think of a fact as an axiom, i.e., something that is
+fundamentally true.
+
+``sells'' is a quality that relates two things, ``supermarket'' and
+``groceries.''  What are the values of ``supermarket'' and ``groceries''? They
+have no values! They are \textit{symbols} -- symbols are Logic's primitives.
+
+Having defined some facts, we can make \textit{queries} -- in other words, we
+can ask Logic for information based on the facts that we've defined:
+
+\begin{lstlisting}
+> (query (sells supermarket groceries))
+Success!
+> (query (sells supermarket books))
+Failed.
+> (query (sells supermarket ?stuff))
+Success!
+stuff: groceries
+\end{lstlisting}
+
+The first query asks, ``Is it a fact that supermarkets sell groceries?'' and the
+second query asks, ``Is it a fact that supermarkets sell books?''.  The third
+query above is equivalent to asking ``What do supermarkets sell?'' Logic replies
+that supermarkets sell groceries, \textit{based on the previously defined fact}.
+
+Note that {\tt ?stuff} is a variable in Logic, whereas {\tt supermarket} is a
+symbol.  {\tt supermarket} is always going to be {\tt supermarket}, but {\tt
+?stuff} is unknown -- it is only \textit{after} the query that we know what the
+value of {\tt ?stuff} is.
+
+% A similar query is
+
+% \begin{lstlisting}
+% > (query (sells ?place groceries))
+% Success!
+% place: supermarket
+% \end{lstlisting}
+
+% This query is equivalent to asking ``Which places sell groceries?'' Once again,
+% Logic replies based on the previously defined fact.
+
+We can also query both multiple elements of a relation:
+
+\begin{lstlisting}
+> (query (sells ?place ?stuff))
+Success!
+place: supermarket stuff: groceries
+\end{lstlisting}
+
+This is equivalent to asking ``What are places that sell stuff, and what stuff
+do they sell?''  Logic will tell you what each variable should be based on
+previously defined facts.
+
+% In Logic, we can also model hierarchical data by nesting relations inside of
+% other relations.  For example:
+
+% \begin{lstlisting}
+% (fact (person (name bob) (age 49)))
+% (fact (person (name alice) (age 20)))
+% \end{lstlisting}
+
+% declares two facts. The first fact asserts that there exists a person whose name
+% is Bob and whose age is 49. The second fact asserts that there exists a person
+% whose name is Alice and whose age is 20.
+
+% Moreover, we can query the facts that we previously defined:
+
+% \begin{lstlisting}
+% > (query (person (name ?first-name) (age 49)))
+% Success!
+% first-name: bob
+% > (query (person (name bob) ?age))
+% Success!
+% age: (age 49)
+% \end{lstlisting}
+
+% The first query asks, "What is the name of a person whose age is 49?" and the
+% second query asks, "What is the age of a person named Bob?".

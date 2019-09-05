@@ -1,0 +1,36 @@
+\question
+How would we modify the Tree class so that each node remembers its parent?
+Write out the new Tree class with the necessary modifications.
+\begin{solution}[1.5in]
+\begin{lstlisting}
+class Tree:
+    """A tree with root as its root value."""
+    def __init__(self, root, branches=()):
+        self.root = root
+        for branch in branches:
+            assert isinstance(branch, Tree)
+            branch.parent = self
+        self.branches = list(branches)
+
+\end{lstlisting}
+\end{solution}
+
+Now write a method {\tt first\_to\_last} for the {\tt Tree} class that swaps a
+tree's own first child with the last child of {\tt other} (another instance of
+the {\tt Tree} class). Don't forget to make sure the parents are still correct
+after the swap!
+\begin{lstlisting}
+def first_to_last(self, other):
+\end{lstlisting}
+\begin{solution}[1.0in]
+\begin{lstlisting}
+    assert len(self.branches) > 0 and
+        len(other.branches) > 0,
+        "Must have children to swap."
+    self.branches[0], other.branches[-1] =
+        other.branches[-1], self.branches[0]
+    self.branches[0].parent, other.branches[-1].parent =
+        self, other
+\end{lstlisting}
+The important part here is that the parent pointers must be updated as well.
+\end{solution}

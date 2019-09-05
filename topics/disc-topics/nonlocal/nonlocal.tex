@@ -1,0 +1,119 @@
+\question
+Draw an environment diagram for the following code:
+\begin{lstlisting}[language=Python]
+spiderman = 'peter parker'
+def spider(man):
+    def myster(io):
+        nonlocal man
+        man = spiderman
+        spider = lambda stark: stark(man) + ' ' +  io
+        return spider
+    return myster
+truth = spider('quentin is')('the greatest superhero')(lambda x: x)
+\end{lstlisting}
+
+\begin{solution}
+http://bit.ly/2XZSoEL
+\end{solution}
+\newpage
+
+
+\question
+Draw an environment diagram for the following code:
+\begin{lstlisting}[language=Python]
+fa = 0
+
+def fi(fa):
+    def world(cup):
+        nonlocal fa
+        fa = lambda fi: world or fa or fi
+        world = 0
+        if (not cup) or fa:
+            fa(2022)
+            fa, cup = world + 2, fa
+            return cup(fa)
+        return fa(cup)
+    return world
+
+won = lambda opponent, x: opponent(x)
+us = won(fi(fa), 2019)
+\end{lstlisting}
+
+\begin{solution}
+http://bit.ly/2G9zxMr
+\end{solution}
+\newpage
+
+\question
+Write \textbf{make\_max\_finder}, which takes in no arguments but returns a function which takes in a list. The function it returns should return the maximum value it's been called on so far, including the current list and any previous list. You can assume that any list this function takes in will be nonempty and contain only non-negative values.
+
+\begin{lstlisting}
+def make_max_finder():
+    """ 
+	>>> m = make_max_finder()
+	>>> m([5, 6, 7])
+	7
+	>>> m([1, 2, 3])
+	7
+	>>> m([9])
+	9
+	>>> m2 = make_max_finder()
+	>>> m2([1])
+	1
+	"""
+    |\begin{solution}
+    \begin{verbatim}
+    max_so_far = 0
+    def find_max_overall(lst): 
+	        nonlocal max_so_far
+	        if max(lst) > max_so_far: 
+	            max_so_far = max(lst)
+	        return max_so_far
+    return find_max_overall
+    \end{verbatim}
+    \end{solution}|
+\end{lstlisting}
+\newpage
+
+\question
+Check your understanding:
+\begin{lstlisting}[language=Python]
+x = 5
+def f(x):
+    def g(s):
+        def h(h):
+            nonlocal x
+            x = x + h
+            return x
+        nonlocal x
+        x = x + x
+        return h
+print(x)
+return g
+t = f(7)(8)(9)
+\end{lstlisting}
+
+
+
+a. What is t after the code is executed? 
+
+
+
+b. In the h frame, which x is being referenced? Which frame? 
+
+
+
+c. In the g frame, is a new variable x being created? 
+
+\begin{solution}
+http://bit.ly/2G9zxMr
+
+a. 7
+
+b. the x, that is the parameter for f(x) from line 2 ... or frame 1. 
+
+c. no, g (f2) refers to the x in parent (f1)
+
+\end{solution}
+
+\newpage

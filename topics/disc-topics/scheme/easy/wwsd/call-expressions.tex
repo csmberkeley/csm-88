@@ -1,0 +1,76 @@
+\question What would Scheme display?
+
+\begin{lstlisting}[language=Scheme]
+scm> (define a (+ 1 2))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+a
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> a
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+3
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (define b (+ (* 3 3) (* 4 4)))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+b
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (+ a b)
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+28
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (= (modulo 10 3) (quotient 5 3))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+#t
+\end{lstlisting}
+\end{solution}
+
+
+% \begin{lstlisting}[language=Scheme]
+% scm> (> (+ 2 3) (* 2 3))
+% \end{lstlisting}
+% \begin{solution}[0.15in]
+% \begin{lstlisting}[language=Scheme]
+% #f
+% \end{lstlisting}
+% \end{solution}
+
+% \begin{lstlisting}[language=Scheme]
+% scm> (even? (quotient (* 4 6) 2))
+% \end{lstlisting}
+% \begin{solution}[0.15in]
+% \begin{lstlisting}[language=Scheme]
+% #t
+% \end{lstlisting}
+% \end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (even? (+ (- (* 5 4) 3) 2))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+#f
+\end{lstlisting}
+\end{solution}
+
+% \walkthrough{https://youtu.be/DlA7f9KTs5o?list=PLx38hZJ5RLZfBXJRWlsQyOg3lrHzfvWu0}

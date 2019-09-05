@@ -1,0 +1,51 @@
+Data abstraction is a powerful concept in computer science that allows
+programmers to treat code as objects. That way, programmers don't have to worry
+about \emph{how} code is implemented --- they just have to know \emph{what} it
+does.
+
+Data abstraction mimics how we think about the world. For example, when you
+want to drive a car, you don't need to know how the engine was built or what
+kind of material the tires are made of.  You just have to know how to turn the
+wheel and press the gas pedal.
+
+Data abstraction is useful when dealing with compound values, or values that
+consist of more than one component. An example of such a value is a rational
+number, or a number than can be written as {\tt x / y}, which consists of a
+numerator and a denominator.
+
+We can represent these types of values as \define{abstract data types} (ADTs).
+An abstract data type consists of two types of functions:
+\begin{itemize}
+\item
+\define{Constructors}: functions that build the abstract data type.
+\item
+\define{Selectors}: functions that retrieve information from the data type.
+\end{itemize}
+
+Below are possible function signatures for the constructor and selectors of a
+rational number ADT:
+
+\begin{lstlisting}
+rational(numerator, denominator)
+numer(rational)
+denom(rational)
+\end{lstlisting}
+
+Here is how we might use this constructor and these selectors:
+
+\begin{lstlisting}
+>>> half = rational(1, 2)
+>>> numer(half)
+1
+>>> denom(half)
+2
+\end{lstlisting}
+
+The following function multiplies together two rational numbers, returning a
+new rational number.
+
+\begin{lstlisting}
+def mul_rational(x, y):
+    return rational(numer(x) * numer(y),
+                    denom(x) * denom(y))
+\end{lstlisting}

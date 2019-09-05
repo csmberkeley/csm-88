@@ -1,0 +1,82 @@
+Scheme implements tail-call optimization, which allows programmers to write
+recursive functions that use a constant amount of space. A \define{tail call}
+occurs when a function calls another function as its \textbf{last action of the
+current frame}. In this case, the frame is no longer needed, and we
+can remove it from memory. In other words, if this is the last thing you are
+going to do in a function call, we can reuse the current frame instead
+of making a new frame.
+
+Consider this implementation of \texttt{factorial}.
+
+\begin{lstlisting}[language=Scheme]
+(define (fact n)
+  (if (= n 0)
+      1
+      (* n (fact (- n 1)))))
+\end{lstlisting}
+
+The recursive call occurs in the last line, but it is not the last expression
+evaluated. After calling \texttt{(fact (- n 1))}, the function still needs to
+multiply that result with \texttt{n}. The final expression that is evaluated is
+a call to the multiplication function, not \texttt{fact} itself.  Therefore,
+the recursive call is \textbf{not} a tail call.
+
+We can rewrite this function using a helper function that remembers the
+temporary product that we have calculated so far in each recursive step.
+
+\begin{lstlisting}[language=Scheme]
+(define (fact n)
+  (define (fact-tail n result)
+    (if (= n 0)
+        result
+        (fact-tail (- n 1) (* n result))))
+  (fact-tail n 1))
+\end{lstlisting}
+
+\texttt{fact-tail} makes a single recursive call to \texttt{fact-tail}, and
+that recursive call is the last expression to be evaluated, so it is a tail
+call. Therefore, \texttt{fact-tail} is a tail recursive process. We say that a
+recursive function is \define{tail recursive} if all of its recursive calls are
+tail calls.
+
+\subsection*{Using a constant number of frames}
+
+Tail recursive processes can use a constant amount of memory because each
+recursive call frame does not need to be saved.
+
+Our original implementation of \texttt{fact} required the program to keep each
+frame open because the last expression multiplies the recursive result with
+\texttt{n}.  Therefore, at each frame, we need to remember the current value of
+\texttt{n}.
+
+In contrast, the tail recursive \texttt{fact-tail} does not require the
+interpreter to remember the values for \texttt{n} or \texttt{result} in each
+frame. Instead, we can just \emph{update} the value of \texttt{n} and
+\texttt{result} of the current frame! Therefore, we can keep reusing a single
+frame to complete this calculation.
+
+\begin{blocksection}
+\subsection*{Tail context}
+When trying to identify whether a given function call within the body of a
+function is a tail call, we look for whether the call expression is in
+\textbf{tail context}.
+
+Given that each of the following expressions is the last expression in 
+the body of the function, the following expressions are tail contexts:
+\begin{itemize}
+\item the second or third operand in an \texttt{if} expression
+\item any of the non-predicate sub-expressions in a \texttt{cond} expression
+  (i.e. the second expression of each clause)
+\item the last operand in an \texttt{and} or an \texttt{or} expression
+\item the last operand in a \texttt{begin} expression's body
+\item the last operand in a \texttt{let} expression's body
+\end{itemize}
+
+For example, in the expression \texttt{(begin (+ 2 3) (- 2 3) (* 2 3))},
+\texttt{(* 2 3)} is a tail call because it is the last operand expression to be
+evaluated.
+
+\end{blocksection}
+\begin{solution}[0.1in]
+\href{https://youtu.be/QbtKMreFRl8?t=51s}{Video walkthrough}
+\end{solution}

@@ -1,0 +1,39 @@
+\question This is the function \lstinline$combine_stream$.
+Use it to define the infinite stream of factorials below!
+You can assume \lstinline$add$ and \lstinline$mul$ have been imported, and
+you may also use the infinite stream of naturals from page 4.
+
+\begin{lstlisting}
+def combine_stream(f, s1, s2):
+    if s1 is Stream.empty or s2 is Stream.empty:
+        return Stream.empty
+    return Stream(f(s1.first, s2.first), lambda: combine_stream(f, s1.rest, s2.rest))
+\end{lstlisting}
+
+\begin{lstlisting}
+def evens():
+    return combine_stream(add, naturals(0), naturals(0))
+\end{lstlisting}
+
+\begin{lstlisting}
+def factorials():
+\end{lstlisting}
+\begin{solution}[2cm]
+\begin{lstlisting}
+    return Stream(1, lambda: combine_stream(mul, naturals(1), factorials()))
+\end{lstlisting}
+\end{solution}
+
+Now define a new \lstinline$Stream$, where the $n$th term represents the
+degree-$n$ polynomial expansion for $e^x$, which is $\sum_{i=0}^{n} x^i / i!$.
+You are allowed to use any of the other functions defined in this problem.
+
+\begin{lstlisting}
+def exp(x):
+\end{lstlisting}
+\begin{solution}[2cm]
+\begin{lstlisting}
+    terms = combine_stream(lambda a, b: (x**a)/b, naturals(0), factorials())
+    return Stream(0, lambda: combine_stream(add, terms, exp(x)))
+\end{lstlisting}
+\end{solution}

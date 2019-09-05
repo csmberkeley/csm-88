@@ -1,0 +1,22 @@
+The \texttt{yield from} statement is similar to a \texttt{yield} statement.
+\texttt{yield from} takes in an iterator and yields each of the values from
+that iterator. It can be used in conjunction with other \texttt{yield}s and
+\texttt{yield from}s.
+
+\vspace{1em}
+\begin{lstlisting}[language=Python]
+>>> square = lambda x: x*x
+>>> def many_squares(s):
+...     for x in s:
+...         yield square(x)
+...     yield from [square(x) for x in s]
+...     yield from map(square, s)
+...
+>>> list(many_squares([1, 2, 3]))
+[1, 4, 9, 1, 4, 9, 1, 4, 9]
+\end{lstlisting}
+
+When the \texttt{list} function in Python receives an iterator, it calls the
+\texttt{next} function on the input until it raises a \texttt{StopIteration}. It
+puts each of the elements from the calls to \texttt{next} into a new list and
+returns it.

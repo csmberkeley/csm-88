@@ -1,0 +1,23 @@
+In computer science, an \define{interface} is a shared set of attributes, along
+with a specification of the attributes' behavior.  For example, an interface for
+vehicles might consist of the following methods:
+\begin{itemize}
+\item \texttt{def drive(self):} Drives the vehicle if it has stopped.
+\item \texttt{def stop(self):} Stops the vehicle if it is driving.
+\end{itemize}
+Data types can implement the same interface in different ways. For example, a
+\texttt{Car} class and a \texttt{Train} can both implement the interface
+described above, but the \texttt{Car} probably has a different mechanism for
+\texttt{drive} than the \texttt{Train}.
+
+The power of interfaces is that other programs don't have to know \emph{how}
+each data type implements the interface -- only that they \emph{have}
+implemented the interface. The following \texttt{travel} function can work with
+both \texttt{Car}s and \texttt{Train}s:
+
+\begin{lstlisting}
+def travel(vehicle):
+    while not at_destination():
+        vehicle.drive()
+    vehicle.stop()
+\end{lstlisting}

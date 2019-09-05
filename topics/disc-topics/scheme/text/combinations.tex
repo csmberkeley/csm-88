@@ -1,0 +1,19 @@
+Primitive expressions in Scheme include self-evaluating expressions, like
+numbers and booleans, and symbols.
+
+All non-primitive expressions in Scheme are \define{combinations}. These are
+expressions that combine other expressions in a set of parentheses like so:
+
+\centerline{\lstinline{(<operator> <operand1> <operand2> ...)}}
+
+where \texttt{<operator>}, \texttt{<operand1>}, \texttt{<operand2>} are all
+Scheme expressions. A combination can have zero or more operands, but it must
+have an operator.
+
+Combinations are one of two things:
+\begin{enumerate}
+\item \define{Call expressions}, if the \texttt{<operator>} is a
+procedure.
+\item \define{Special form expressions}, if the \texttt{<operator>} is
+a special form.
+\end{enumerate}

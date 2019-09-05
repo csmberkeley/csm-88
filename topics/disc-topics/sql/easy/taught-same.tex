@@ -1,0 +1,13 @@
+\question Write a query that outputs two professors and a course if they have
+taught that course the same number of times. You may use the \texttt{num\_taught}
+table you created in the previous question.
+
+\begin{solution}[1.0in]
+\begin{lstlisting}[language=SQL]
+SELECT a.professor, b.professor, a.course
+  FROM num_taught AS a, num_taught AS b
+  WHERE a.professor > b.professor
+    AND a.course = b.course
+    AND a.times = b.times;
+\end{lstlisting}
+\end{solution}

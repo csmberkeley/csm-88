@@ -1,0 +1,20 @@
+\question
+Write a function that takes in a list and reverses it {\it in place}, i.e.
+mutate the given list itself, instead of returning a new list.
+
+\begin{lstlisting}
+def reverse(lst):
+    """ Reverses lst in place.
+    >>> x = [3, 2, 4, 5, 1]
+    >>> reverse(x)
+    >>> x
+    [1, 5, 4, 2, 3]
+    """
+\end{lstlisting}
+\begin{solution}[1.8in]
+\begin{lstlisting}
+    for i in range(len(lst) // 2):
+        lst[i], lst[-i - 1] = lst[-i - 1], lst[i]
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=XsdTV6cAAjY&vq=hd1080&t=66m50s}{Video walkthrough}
+\end{solution}

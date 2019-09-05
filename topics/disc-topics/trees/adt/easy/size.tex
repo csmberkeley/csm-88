@@ -1,0 +1,12 @@
+\question
+Define a function \texttt{tree\_size(t)} that returns the number of nodes in a
+tree.
+\begin{lstlisting}
+def tree_size(t):
+    """Return the size of a tree."""
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    return 1 + sum([tree_size(branch) for branch in branches(t)])
+\end{lstlisting}
+\end{solution}

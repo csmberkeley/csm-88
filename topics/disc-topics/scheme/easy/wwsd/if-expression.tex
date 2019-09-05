@@ -1,0 +1,39 @@
+\question What would Scheme display?
+
+\begin{lstlisting}[language=Scheme]
+scm> (if (or #t (/ 1 0)) 1 (/ 1 0))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+1
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (if (> 4 3) (+ 1 2 3 4) (+ 3 4 (* 3 2)))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+10
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> ((if (< 4 3) + -) 4 100)
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+-96
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (if 0 1 2)
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+1
+\end{lstlisting}
+\end{solution}
+
+\walkthrough{https://youtu.be/DlA7f9KTs5o?list=PLx38hZJ5RLZfBXJRWlsQyOg3lrHzfvWu0&t=525}

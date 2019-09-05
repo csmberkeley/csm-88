@@ -1,0 +1,20 @@
+\question The Hadley Cycle describes the process of atmospheric circulation
+caused by rising air at the equator and falling air at about 30 degrees North or
+South. The air loses water vapor to rain as it rises from the equator.
+Consequently, the falling cold air is dry, so that many regions around 30
+degrees from the equator comprise of desert.
+
+Write a function {\tt near\_thirty(city, diff)} that checks whether an input
+{\tt city} is within {\tt diff} degrees of 30 degrees N or 30 degrees S.
+
+\begin{lstlisting}
+def near_thirty(city, diff):
+\end{lstlisting}
+
+\begin{solution}[1.0in]
+\begin{lstlisting}
+    city_latitude = get_lat(city)
+    return abs(city_latitude - 30) <= diff or abs(city_latitude + 30) <= diff
+\end{lstlisting}
+\end{solution}
+

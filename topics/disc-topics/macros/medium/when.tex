@@ -1,0 +1,50 @@
+\question Using macros, let's make a new special form, \texttt{when}, that has the
+following structure:
+
+\begin{lstlisting}[language=Scheme]
+(when <condition>
+      (<expr1> <expr2> <expr3> ...))
+\end{lstlisting}
+
+If the condition is not false (a truthy expression), all the subsequent
+operands are evaluated in order and the value of the last expression is
+returned. Otherwise, the entire \texttt{when} expression evaluates to
+\texttt{okay}.
+
+\begin{lstlisting}
+scm> (when (= 1 0) ((/ 1 0) 'error))
+okay
+scm> (when (= 1 1) ((print 6) (print 1) 'a))
+6
+1
+a
+\end{lstlisting}
+
+\begin{parts}
+    \part Fill in the skeleton below to implement this without
+    using quasiquotes.
+\begin{lstlisting}[language=Scheme]
+(define-macro (when condition exprs)
+
+  (list 'if_______________________________________________________________________________))
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define-macro (when condition exprs)
+       (list 'if condition (cons 'begin exprs) ''okay))
+\end{lstlisting}
+\end{solution}
+    \part Now, implement the macro using quasiquotes.
+\begin{lstlisting}[language=Scheme]
+(define-macro (when condition exprs)
+
+  `(if ___________________________________________________________________________________))
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+(define-macro (when condition exprs)
+  `(if ,condition ,(cons 'begin exprs) 'okay))
+\end{lstlisting}
+\end{solution}
+\end{parts}

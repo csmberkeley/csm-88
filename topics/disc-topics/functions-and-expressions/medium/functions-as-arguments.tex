@@ -1,0 +1,27 @@
+\question What would Python display?
+
+\begin{lstlisting}
+>>> def cake(batter):
+...     return batter
+>>> def pan(x, y):
+...     y = y + 20
+...     return x(y)
+>>> pan(print, 10)
+\end{lstlisting}
+
+\begin{solution}[1in]
+\texttt{30}
+
+We did something tricky here--we passed a function (\texttt{print}) into another
+function (\texttt{pan}), where it was bound to the local variable \texttt{x}. We
+then called \texttt{x(y)}, which actually executes \texttt{print(y)}.
+Passing functions as arguments is something we'll discuss more in the future.
+\end{solution}
+
+\begin{lstlisting}
+>>> pan(cake, cake(30))
+\end{lstlisting}
+
+\begin{solution}[1in]
+\texttt{50}
+\end{solution}

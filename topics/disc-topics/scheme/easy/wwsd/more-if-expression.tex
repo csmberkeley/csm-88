@@ -1,0 +1,35 @@
+\begin{lstlisting}[language=Scheme]
+scm> (if (and #t (/ 1 0)) 1 (/ 1 0))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+Error
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (if (> (+ 2 3) 5) (+ 1 2 3 4) (+ 3 4 (* 3 2)))
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+13
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> ((if (< 9 3) + -) 4 100)
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+-96
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (if 0 #t #f)
+\end{lstlisting}
+\begin{solution}[0.15in]
+\begin{lstlisting}[language=Scheme]
+#t
+\end{lstlisting}
+\end{solution}

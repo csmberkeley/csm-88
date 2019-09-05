@@ -1,0 +1,32 @@
+\question Write a procedure \lstinline$make-piggy-bank$, which returns a
+one-argument procedure (which we'll call a piggy bank). A piggy bank starts with
+nothing inside it. Each time you call it with a positive number, that amount is
+added to the bank's total. If you instead pass in number less than or equal to
+0, the piggy bank should reset its total to 0 and then return the old total.
+
+\begin{lstlisting}[language=Scheme]
+(define (make-piggy-bank)
+\end{lstlisting}
+\begin{solution}[4in]
+\begin{lstlisting}[language=Scheme]
+  (define total 0)
+  (lambda (amount)
+    (if (> amount 0)
+        (set! total (+ total amount))
+        (begin (define old-total total)
+			   (set! total 0)
+               old-total))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (define piggy-bank (make-piggy-bank))
+piggy-bank
+scm> (piggy-bank 5)  ; add $5
+scm> (piggy-bank 10) ; add $10
+scm> (piggy-bank 3)  ; add $3
+scm> (piggy-bank 0)  ; dump the money out
+18
+scm> (piggy-bank 4)  ; add $4
+scm> (piggy-bank 0)  ; dump the money out
+4
+\end{lstlisting}

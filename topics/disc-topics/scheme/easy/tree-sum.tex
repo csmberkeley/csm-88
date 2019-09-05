@@ -1,0 +1,40 @@
+\question Fill in the following to complete an abstract tree data type:
+
+\begin{lstlisting}[language=Scheme]
+(define (make-tree label branches) (cons label branches))
+
+(define (label tree)
+
+(define (branches tree)
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define (label tree) (car tree))
+(define (branches tree) (cdr tree))
+\end{lstlisting}
+\end{solution}
+
+\question Using the abstract data type above, write a function that sums up the
+entries of a tree, assuming that the entries are all numbers.
+
+Hint: you may want to use the \texttt{map} function you defined above, and
+also write a helper function for summing up the entries of a list.
+
+\begin{lstlisting}[language=Scheme]
+(define (tree-sum tree)
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=Scheme]
+    (+ (label tree) (sum (map tree-sum (branches tree)))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=Scheme]
+(define (sum lst)
+    (if (null? lst) 0 (+ (car lst) (sum (cdr lst)))))
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,48 @@
+\question In Discussion 9, we saw how to write a macro
+that creates a lambda function given an expression. While creating 
+a parameter-less function might not seem that useful at first,
+it can be helpful in many cases when we don't want to immediately
+evaluate an expression.
+
+Using the \texttt{make-lambda} macro you defined in Discussion 9, define
+\texttt{make-stream}, a macro which returns a pair of elements, where
+the second element is not evaluated until \texttt{cdr-stream} is called
+on it. Also define the procedure \texttt{cdr-stream}, which takes in a
+stream returned by \texttt{make-stream} and returns the result of evaluating
+the second element in the stream pair. 
+
+Unlike the streams we've seen in lecture and earlier in discussion, if you repeatedly 
+call \texttt{cdr-stream} on a stream returned by \texttt{make-stream}, you may evaluate
+an expression multiple times.
+
+\begin{lstlisting}
+(define-macro (make-stream first second)
+\end{lstlisting}
+
+\begin{solution}[.7in]
+\begin{lstlisting}
+(define-macro (make-stream first second)
+	`(list ,first (make-lambda ,second)))
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+(define (cdr-stream stream)
+\end{lstlisting}
+
+\begin{solution}[.7in]
+\begin{lstlisting}
+(define (cdr-stream stream)
+	((car (cdr stream))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+scm> (define a (make-stream (print 1) (make-stream (print 2) nil))))
+1
+a
+scm> (define b (cdr-stream a))
+2
+b
+scm> (cdr-stream b)
+()
+\end{lstlisting}

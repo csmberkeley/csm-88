@@ -1,0 +1,65 @@
+\question The \textbf{quicksort} sorting algorithm is an efficient and commonly
+used algorithm to order the elements of a list. We choose one element of the
+list to be the \textbf{pivot} element and partition the remaining elements into
+two lists: one of elements less than the pivot and one of elements greater than
+the pivot. We recursively sort the two lists, which gives us a sorted list of
+all the elements less than the pivot and all the elements greater than the
+pivot, which we can then combine with the pivot for a completely sorted list.
+
+First, implement the \texttt{quicksort\_list} function. Choose the first element
+of the list as the pivot. You may assume that all elements are distinct.
+
+\emph{Note: in computer science, ``sorting'' refers to placing elements in order from least to greatest, not putting things in categories}
+
+\medskip
+
+\begin{lstlisting}
+def quicksort_list(lst):
+    """
+    >>> quicksort_list([3, 1, 4])
+    [1, 3, 4]
+    """
+
+    if _____________________________________________________:
+
+        _____________________________________________________
+
+    pivot = lst[0]
+
+    less = __________________________________________________
+
+    greater = _______________________________________________
+
+    return __________________________________________________
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+def quicksort_list(lst):
+    if len(lst) <= 1:
+        return lst
+    pivot = lst[0]
+    less = [e for e in lst[1:] if e < pivot]
+    greater = [e for e in lst[1:] if e > pivot]
+    return quicksort_list(less) + [pivot] +
+           quicksort_list(greater)
+\end{lstlisting}
+
+A list with zero or no elements is already sorted. Otherwise, we follow the
+procedure outline in the description.
+
+We pick a ``pivot'' to remove from the list. Then, construct \texttt{less} and
+\texttt{greater} lists that represent items less than and greater than the
+pivot. Notice that both of these lists are guaranteed to be smaller than our
+original list, so we are guaranteed that these are valid subproblems for our
+recursive call.
+
+The sorted version of the items less than the pivot will all be less than the
+pivot, so adding pivot to the end of that list maintains a sorted list over all
+the smaller elements plus the pivot. Finally, the sorted version of the items
+greater than pivot will be all be greater than the items less than the pivot
+plus the pivot, so adding that to the end will ensure our list is still sorted.
+After concatenating all these lists together, we have a sorted version of our
+original list.
+
+\end{solution}

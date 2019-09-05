@@ -1,0 +1,28 @@
+% Question Objectives
+% - Functions that are rebound to a different variable still have the same
+%   intrinsic name.
+
+\begin{blocksection}
+\question Draw the environment diagram that results from executing the
+code below.
+
+\begin{lstlisting}
+def f(x):
+	return x
+
+def g(x, y):
+	if x(y):
+		return not y
+	return y
+
+x = 3
+x = g(f, x)
+f = g(f, 0)
+\end{lstlisting}
+
+\begin{solution}[2.5in]
+\begin{center}
+\includegraphics{xfg.png}
+\end{center}
+\end{solution}
+\end{blocksection}

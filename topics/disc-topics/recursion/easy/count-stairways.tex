@@ -1,0 +1,40 @@
+\question You want to go up a flight of stairs that has \texttt{n} steps. You can
+either take 1 or 2 steps each time. How many different ways can you go up this
+flight of stairs? Write a function {\tt count\char`_stair\char`_ways} that
+solves this problem. Assume \texttt{n} is positive.
+
+Before we start, what's the base case for this question? What is the simplest
+input?
+\begin{solution}[0.75in]
+When there is only 1 step, there is only one way to go up the stair. When
+there are two steps, we can go up in two ways: take a two-step, or take 2
+one-steps.
+\end{solution}
+What do \texttt{count\char`_stair\char`_ways(n - 1)} and
+\texttt{count\char`_stair\char`_ways(n - 2)} represent?
+\begin{solution}[0.75in]
+\texttt{count\char`_stair\char`_ways(n - 1)} represents the number of
+different ways to go up the first $n-1$ stairs.
+\texttt{count\char`_stair\char`_ways(n - 2)} represents the number of
+different ways to go up the first $n-2$ stairs. Our base cases will take
+care of the remaining 1 or 2 steps.
+\end{solution}
+
+\begin{blocksection}
+Use those two recursive calls to write the recursive case:
+\vspace{.5in}
+\begin{lstlisting}
+def count_stair_ways(n):
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    return count_stair_ways(n-1) + count_stair_ways(n-2)
+\end{lstlisting}
+\href{https://youtu.be/VcZPTlE56G8?t=1h7m6s}{Video walkthrough (Leap of Faith)} \\
+\href{https://www.youtube.com/watch?v=sgNGso3LhD8&index=6&list=PLx38hZJ5RLZd35oDi3TGz5p9DyyxU3WwA}{Video Walkthrough (Diagramming Trees)}
+\end{solution}
+\end{blocksection}

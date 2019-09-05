@@ -1,0 +1,16 @@
+\question Write a Scheme function that, when given an element, a list, and an
+index, inserts the element into the list at that index.
+\begin{lstlisting}[language=Scheme]
+(define (insert element lst index)
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=Scheme]
+   (if (= index 0)
+       (cons element lst)
+       (cons (car lst) (insert element (cdr lst) (- index 1))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+                                             )
+\end{lstlisting}
+

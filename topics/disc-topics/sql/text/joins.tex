@@ -1,0 +1,51 @@
+Suppose we have another table \texttt{meetings} which records the divisional
+meetings.
+
+\begin{center}
+    \texttt{meetings}\\
+    \begin{tabular}{ l l l l l }
+        \textbf{Division} & \textbf{Day} & \textbf{Time} \\
+        \hline
+        Accounting     & Monday    & 9am \\
+        Computer       & Wednesday & 4pm \\
+        Administration & Monday    & 11am\\
+        Administration & Wednesday  & 4pm \\
+    \end{tabular}
+\end{center}
+
+Data are combined by joining multiple tables together into one, a fundamental
+operation in database systems. There are many methods of joining, all closely
+related, but we will focus on just one method (the inner join) in this class.
+
+When tables are joined, the resulting table contains a new row for each
+combination of rows in the input tables. If two tables are joined and the left
+table has $m$ rows and the right table has $n$ rows, then the joined table will
+have $mn$ rows. Joins are expressed in SQL by separating table names by commas
+in the \texttt{FROM} clause of a \texttt{SELECT} statement.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT name, day FROM records, meetings;
+Ben Bitdiddle | Monday
+Ben Bitdiddle | Wednesday
+...
+Alyssa P Hacker | Monday
+...
+\end{lstlisting}
+
+Tables may have overlapping column names, and so we need a method for
+disambiguating column names by table. A table may also be joined with itself,
+and so we need a method for disambiguating tables. To do so, SQL allows us to
+give aliases to tables within a \texttt{FROM} clause using the keyword
+\texttt{AS} and to refer to a column within a particular table using a dot
+expression. In the example below we find the name and title of Louis Reasoner's
+supervisor.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT b.name, b.title FROM records AS a, records AS b
+   ...>   WHERE a.name = "Louis Reasoner" AND
+   ...>         a.supervisor = b.name;
+Alyssa P Hacker | Programmer
+\end{lstlisting}
+\begin{solution}[0.1in]
+\href{https://youtu.be/XGgJVmpw-SM}{Video walkthrough}
+\end{solution}

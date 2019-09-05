@@ -1,0 +1,15 @@
+In addition to the sequences we've learned, Python has some
+built-in ways to create iterables and iterators. Here are a few 
+useful ones:
+
+\begin{itemize}
+	\item \lstinline$range(start, end)$ returns an iterable containing 
+	numbers from start to end-1. If \lstinline$start$ is not provided, 
+	it defaults to 0.
+	\item \lstinline$map(f, iterable)$ returns a new iterator containing 
+	the values resulting from applying \lstinline$f$ to each value in 
+	\lstinline$iterable$.
+	\item \lstinline$filter(f, iterable)$ returns a new iterator containing
+	only the values in \lstinline$iterable$ for which \lstinline$f(value)$ returns
+	\lstinline$True$.
+\end{itemize}

@@ -1,0 +1,16 @@
+\begin{blocksection}
+\question
+\begin{lstlisting}
+def fib_iter(n):
+    prev, curr, i = 0, 1, 0
+    while i < n:
+        prev, curr = curr, prev + curr
+        i += 1
+    return prev
+\end{lstlisting}
+\begin{solution}[0.0in]
+  $\growth(n)$, since the while loop executes $n$ times with each iteration
+  taking a constant $\growth(1)$ time.\\
+\href{https://www.youtube.com/watch?v=XsdTV6cAAjY&vq=hd1080&t=32m40s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

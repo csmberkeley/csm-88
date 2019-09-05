@@ -1,0 +1,68 @@
+\begin{blocksection}
+\question
+What would Python display? It may be helpful to draw the box and pointers
+diagrams to the right in order to keep track of the state.
+
+\begin{parts}
+\part \begin{lstlisting}
+>>> lst1 = [1, 2, 3]
+>>> lst2 = [1, 2, 3]
+>>> lst1 == lst2      # compares each value
+\end{lstlisting}
+
+\begin{solution}[1em]
+\lstinline{True}
+\end{solution}
+
+\part \lstinline{>>> lst1 is lst2      # compares references}
+\begin{solution}[1em]
+\lstinline{False}
+\end{solution}
+
+\part \begin{lstlisting}
+>>> lst2 = lst1
+>>> lst1.append(4)
+>>> lst1
+\end{lstlisting}
+\begin{solution}[1em]
+\lstinline{[1, 2, 3, 4]}
+\end{solution}
+
+\part \lstinline{>>> lst2}
+\begin{solution}[1em]
+\lstinline{[1, 2, 3, 4]}
+\end{solution}
+
+\part \begin{lstlisting}
+>>> lst1 = lst1 + [5]
+>>> lst1 == lst2
+\end{lstlisting}
+
+\begin{solution}[1em]
+\lstinline{False}
+\end{solution}
+
+\part \begin{lstlisting}
+>>> lst1
+\end{lstlisting}
+
+\begin{solution}[1em]
+\lstinline{[1, 2, 3, 4, 5]}
+\end{solution}
+
+\part \lstinline{>>> lst2}
+
+\begin{solution}[1em]
+\lstinline{[1, 2, 3, 4]}
+\end{solution}
+
+\part \lstinline{>>> lst2 is lst1}
+
+\begin{solution}[1em]
+\lstinline{False}
+\end{solution}
+\end{parts}
+\begin{solution}
+\href{https://www.youtube.com/watch?v=XsdTV6cAAjY&vq=hd1080&t=52m40s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

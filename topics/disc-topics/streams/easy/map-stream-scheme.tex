@@ -1,0 +1,33 @@
+\question Write a function \texttt{map-stream}, which takes a function
+\texttt{f} and a stream \texttt{s}. It returns a new stream which has all the
+elements from \texttt{s}, but with \texttt{f} applied to each one.
+\begin{lstlisting}[language=Scheme]
+(define (map-stream f s)
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}[language=Scheme]
+  (if (null? s)
+    nil
+    (cons-stream (f (car s)) (map-stream f (cdr-stream s))))
+\end{lstlisting}
+
+It might help to also compare this to the version of \texttt{map} for regular
+(non-stream) Scheme lists:
+\begin{lstlisting}[language=Scheme]
+(define (map f s)
+  (if (null? s)
+    nil
+    (cons (f (car s)) (map f (cdr s)))))
+\end{lstlisting}
+
+Not too different, eh? The main change we've made is indicating we want to
+lazily evaluate the rest of our stream by using \texttt{cons-stream} instead of
+\texttt{cons}, and recognizing is a stream rather than a regular list by using
+\texttt{cdr-stream}.
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (define evens (map-stream (lambda (x) (* x 2)) nat))
+evens
+scm> (car (cdr-stream evens))
+2
+\end{lstlisting}

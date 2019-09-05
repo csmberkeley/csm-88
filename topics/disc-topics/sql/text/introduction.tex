@@ -1,0 +1,30 @@
+SQL is an example of a declarative programming language. Statements do not
+describe computations directly, but instead describe the desired result of some
+computation. It is the role of the query interpreter of the database system to
+plan and perform a computational process to produce such a result.
+
+In SQL, data is organized into \textit{tables}.  A table has a fixed number of
+named \define{columns}. A \define{row} of the table represents a single data
+record and has one \define{value} for each column.  For example, we have a table
+named \texttt{records} that stores information about the employees at a small
+company\footnote{Example adapted from Structure and Interpretation of Computer
+Programs}. Each of the eight rows represents an employee.
+
+\begin{center}
+    \texttt{records}\\
+    \begin{tabular}{ l l l l l }
+        \textbf{Name} & \textbf{Division} & \textbf{Title} & \textbf{Salary} & \textbf{Supervisor} \\
+        \hline
+        Ben Bitdiddle   &  Computer       & Wizard             & 60000  & Oliver Warbucks \\
+        Alyssa P Hacker &  Computer       & Programmer         & 40000  & Ben Bitdiddle   \\
+        Cy D Fect       &  Computer       & Programmer         & 35000  & Ben Bitdiddle   \\
+        Lem E Tweakit   &  Computer       & Technician         & 25000  & Ben Bitdiddle   \\
+        Louis Reasoner  &  Computer       & Programmer Trainee & 30000  & Alyssa P Hacker \\
+        Oliver Warbucks &  Administration & Big Wheel          & 150000 & Oliver Warbucks \\
+        Eben Scrooge    &  Accounting     & Chief Accountant   & 75000  & Oliver Warbucks \\
+        Robert Cratchet &  Accounting     & Scrivener          & 18000  & Eben Scrooge
+    \end{tabular}
+\end{center}
+\begin{solution}[0.1in]
+\href{https://youtu.be/OyTnjS94EE8}{Video walkthrough}
+\end{solution}

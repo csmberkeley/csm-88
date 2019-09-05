@@ -1,0 +1,22 @@
+A \define{list comprehension} is a compact way to create a list whose elements
+are the results of applying a fixed expression to elements in another sequence.
+\begin{center}
+\texttt{[<map exp> for <name> in <iter exp> if <filter exp>]}
+\end{center}
+It might be helpful to note that we can rewrite a list comprehension as an
+equivalent for statement. See the example to the right.
+
+Let's break down an example:
+\begin{center}
+\texttt{[x * x - 3 for x in [1, 2, 3, 4, 5] if x \% 2 == 1]}
+\end{center}
+
+In this list comprehension, we are creating a new list after performing a
+series of operations to our initial sequence \texttt{[1, 2, 3, 4, 5]}. We only
+keep the elements that satisfy the filter expression \texttt{x \% 2 == 1}
+(\texttt{1}, \texttt{3}, and \texttt{5}). For each retained element, we apply
+the map expression \texttt{x*x - 3} before adding it to the new list that we are
+creating, resulting in the output \texttt{[-2, 6, 22]}.
+
+\emph{Note}: The \texttt{if} clause in a list comprehension is optional.
+

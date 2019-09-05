@@ -1,0 +1,28 @@
+\question
+How do we raise exceptions in Python?
+
+\begin{solution}[2in]
+An exception is a object instance with a class that inherits, either directly or indirectly, from the BaseException class. The assert statement introduced in Chapter 1 raises an exception with the class AssertionError. In general, any exception instance can be raised with the raise statement. The general form of raise statements are described in the Python docs. The most common use of raise constructs an exception instance and raises it. \\
+\begin{verbatim}
+>>> raise Exception('An error occurred') 
+Traceback (most recent call last): 
+  File "<stdin>", line 1, in <module> 
+Exception: an error occurred
+\end{verbatim}
+
+\end{solution}
+
+\question
+How do we handle raised exceptions? And why would we need to do so?
+
+\begin{solution}[2in]
+An exception can be handled by an enclosing try statement. A try statement consists of multiple clauses; the first begins with try and the rest begin with except: \\
+\begin{verbatim}
+try:
+    <try suite>
+except <exception class> as <name>: 
+    <except suite>   
+\end{verbatim}
+The <try suite> is always executed immediately when the try statement is executed. Suites of the except clauses are only executed when an exception is raised during the course of executing the try suite. Each except clause specifies the particular class of exception to handle. \\
+We want to handle exceptions if we don't want our program to crash immediately when it encounters an error, and if we can anticipate the errors that would occur/have pre-defined ways of handling them.
+\end{solution}

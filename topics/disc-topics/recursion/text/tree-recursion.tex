@@ -1,0 +1,31 @@
+Consider a function that requires more than one recursive call. A simple example
+is the recursive \texttt{fibonacci} function:
+\begin{lstlisting}
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+\end{lstlisting}
+
+This type of recursion is called {\tt tree recursion}, because it makes more
+than one recursive call in its recursive case. If we draw out the recursive calls,
+we see the recursive calls in the shape of an upside-down tree:
+\begin{center}
+\synttree[{\tt fib(4)} [{\tt fib(3)} [{\tt fib(2)}] [{\tt fib(1)}]] [{\tt fib(2)} [{\tt fib(1)}] [{\tt fib(0)}]]]
+\end{center}
+
+We could, in theory, use loops to write the same procedure. However, problems
+that are naturally solved using tree recursive procedures are generally
+difficult to write iteratively. It is sometimes the case that a tree recursive problem
+also involves iteration: for example, you might use a while loop to add together multiple
+recursive calls.
+\newline
+As a general rule of thumb, whenever you need to
+try multiple possibilities at the same time, you should consider using tree
+recursion.
+\begin{solution}[1.5in]
+\href{https://www.youtube.com/watch?v=5C4-fIN-zyA&index=3&list=PLx38hZJ5RLZd35oDi3TGz5p9DyyxU3WwA}{How to diagram Tree Recursion}
+\end{solution}

@@ -1,0 +1,27 @@
+A \define{call expression} applies a function to 0 or more arguments and
+evaluates to the function's return value.
+
+\begin{blocksection}
+\begin{equation*}
+    \underbrace{\texttt{add}}_\text{Operator}
+    \texttt{ ( }
+    \underbrace{\texttt{2}}_\text{Operand 0}
+    \texttt{ , }
+    \underbrace{\texttt{3}}_\text{Operand 1}
+    \texttt{ )}
+\end{equation*}
+\end{blocksection}
+
+\begin{blocksection}
+To evaluate a function call:
+\begin{enumerate}
+\item Evaluate the operator, which should evaluate to a function.
+\item Evaluate the operands from left to right to get the values of the
+arguments.
+\item Apply the function (the value of the operator) to the arguments (the
+values of the operands) to obtain the return value.
+\end{enumerate}
+\end{blocksection}
+
+If the operator or an operand is itself a call expression, then these steps are
+applied in order to evaluate it.

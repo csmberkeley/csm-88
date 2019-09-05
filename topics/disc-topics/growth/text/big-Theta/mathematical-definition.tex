@@ -1,0 +1,14 @@
+More generally, we can say that {\tt foo} is in some $\Theta(f(n))$ if there exist
+some constants $k_1$ and $k_2$ such that
+\begin{equation*}
+ k_1 \cdot f(n) \leq R(n) \leq k_2 \cdot f(n)
+\end{equation*}
+for $n > N$, where $N$ is sufficiently large.
+
+This is a mathematical definition of big Theta notation. To prove that {\tt foo}
+is in $\Theta(f(n))$, we only need to find constants $k_1$ and $k_2$ where the
+above holds.
+
+Fortunately, in CS 61A, we're not that concerned with rigorous mathematical
+proofs. (You'll get more details in CS 61B!) What we want you to develop in CS
+61A is the intuition to reason out the orders of growth for certain functions.

@@ -1,0 +1,17 @@
+\question
+Write a tail recursive function, \texttt{append}, that takes in two lists and
+appends them. Make sure that your function is $\Theta(n)$ and tail-recursive.
+
+\begin{lstlisting}[language=Scheme]
+(define (append a b)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=Scheme]
+(define (append a b)
+    (define (rev-append-tail a b)
+        (if (null? a)
+            b
+            (rev-append-tail (cdr a) (cons (car a) b))))
+    (rev-append-tail (reverse a) b))
+\end{lstlisting}
+\end{solution}

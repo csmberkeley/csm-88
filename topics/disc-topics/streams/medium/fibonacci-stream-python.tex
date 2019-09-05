@@ -1,0 +1,34 @@
+\question Write a function \texttt{fib\_stream} that creates an infinite
+stream of Fibonacci Numbers, using the \texttt{add\_streams} function that was
+introduced in lab.
+
+\begin{lstlisting}
+def fib_stream():
+\end{lstlisting}
+\begin{solution}[4cm]
+\begin{lstlisting}
+def fib_stream():
+    def compute_rest():
+        return add_streams(fib_stream(),
+                           fib_stream().rest)
+    return Stream(0, lambda: Stream(1, compute_rest))
+\end{lstlisting}
+\end{solution}
+
+\question Write a function \texttt{seventh} that creates an infinite
+stream of the decimal expansion of dividing n by 7.
+
+\begin{lstlisting}
+def seventh(n):
+    """The decimal expansion of n divided by 7.
+
+    >>> first_k(seventh(1), 10)
+    [1, 4, 2, 8, 5, 7, 1, 4, 2, 8]
+    """
+\end{lstlisting}
+\begin{solution}[3cm]
+\begin{lstlisting}
+    q, r = n*10 // 7, n*10 % 7
+    return Stream(q, lambda: seventh(r))
+\end{lstlisting}
+\end{solution}

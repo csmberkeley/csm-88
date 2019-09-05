@@ -1,0 +1,32 @@
+\question Write out constructor calls to create {\tt Pair} objects representing
+the following Calculator expression.
+
+\begin{lstlisting}
+> (/ 1 2 3)
+\end{lstlisting}
+\begin{solution}[0.3in]
+\begin{lstlisting}
+>>> Pair('/', Pair(1, Pair(2, Pair(3, nil))))
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+> (+ 1 2 (- 3 4))
+\end{lstlisting}
+\begin{solution}[0.3in]
+\begin{lstlisting}
+>>> Pair('+', Pair(1, Pair(2, Pair(
+         Pair('-', Pair(3, Pair(4, nil))), nil))))
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+> (+ 1 (* 2 3) 4)
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+>>> Pair('+', Pair(1, Pair(Pair( '*', Pair(2, Pair(3, nil))),
+         Pair(4,nil))))
+\end{lstlisting}
+\href{https://youtu.be/zIvYrA76GRo}{Video walkthrough}
+\end{solution}

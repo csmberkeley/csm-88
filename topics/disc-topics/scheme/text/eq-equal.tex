@@ -1,0 +1,25 @@
+\begin{itemize}
+    \item \texttt{=} can only be used for comparing numbers.
+    \item \texttt{eq?} behaves like \texttt{==} in Python for comparing two
+        non-pairs (numbers, booleans, etc.).
+        Otherwise, \texttt{eq?} behaves like \texttt{is} in Python.
+    \item \texttt{equal?} compares pairs by determining if their \texttt{car}s
+        are \texttt{equal?} and their \texttt{cdr}s are \texttt{equal?}(that is, they
+        have the same contents). Otherwise, \texttt{equal?} behaves like
+        \texttt{eq?}.
+\end{itemize}
+
+\begin{lstlisting}[language=Scheme]
+scm> (define a '(1 2 3))
+a
+scm> (= a a)
+Error
+scm> (equal? a '(1 2 3))
+#t
+scm> (eq? a '(1 2 3))
+#f
+scm> (define b a)
+b
+scm> (eq? a b)
+#t
+\end{lstlisting}

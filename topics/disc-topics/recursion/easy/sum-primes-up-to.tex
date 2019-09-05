@@ -1,0 +1,24 @@
+\question Write {\tt sum\_primes\_up\_to(n)}, which sums up every prime up to
+and including {\tt n}.  Assume you have an {\tt is\_prime(n)} predicate.
+
+\begin{lstlisting}
+def sum_primes_up_to(n):
+\end{lstlisting}
+\begin{solution}[2.1in]
+\begin{lstlisting}
+    if n <= 1:
+        return 0
+    elif is_prime(n):
+        return n + sum_primes_up_to(n - 1)
+    else:
+        return sum_primes_up_to(n - 1)
+\end{lstlisting}
+or
+\begin{lstlisting}
+    if n <= 1:
+        return 0
+    else:
+        num_if_prime = n if is_prime(n) else 0
+        return sum_primes_up_to(n - 1) + num_if_prime
+\end{lstlisting}
+\end{solution}

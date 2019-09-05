@@ -1,0 +1,14 @@
+\question Write a function \lstinline$merge$ that takes 2 sorted
+\lstinline$Stream$s \lstinline$s1$ and \lstinline$s2$, and returns a new
+sorted \lstinline$Stream$ which contains all the elements from \lstinline$s1$
+and \lstinline$s2$.
+
+\begin{solution}[2cm]
+\begin{lstlisting}
+def merge(s1, s2):
+    if s1.first < s2.first:
+        return Stream(s1.first, lambda: merge(s1.rest, s2))
+    else:
+        return Stream(s2.first, lambda: merge(s1, s2.rest))
+\end{lstlisting}
+\end{solution}

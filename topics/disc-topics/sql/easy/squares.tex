@@ -1,0 +1,14 @@
+\question
+Write a query that calculates the first 10 squares starting from 1.
+\begin{solution}[2.5cm]
+\begin{lstlisting}[language=SQL]
+create table squares as
+  with sq(n, s) as (
+    select 1, 1 union
+    select n + 1, (n + 1) * (n + 1) from sq
+    where n < 10
+  )
+  select s from sq;
+\end{lstlisting}
+\end{solution}
+

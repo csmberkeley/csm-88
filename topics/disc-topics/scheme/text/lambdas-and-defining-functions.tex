@@ -1,0 +1,37 @@
+All Scheme procedures are lambda procedures. One way to create a procedure is
+to use the \texttt{lambda} special form.
+
+\centerline{\lstinline{(lambda (<param1> <param2> ...) <body>)}}
+
+This expression creates a lambda function with the given parameters and body,
+but does not evaluate the body. Just like in Python, the body is not
+evaluated until the function is called and applied to some argument
+values. The fact that neither operand is evaluated is what makes
+\texttt{lambda} a special form.
+
+Another similarity to Python is that lambda expressions do not assign the
+returned function to any name. We can assign the value of an expression to a
+name with a \texttt{define} special form.
+
+For example, \texttt{(define square (lambda (x) (* x x)))} creates a lambda
+procedure that squares its argument and assigns that procedure to the name
+\texttt{square}.
+
+The second version of the \texttt{define} special form is a shorthand for this
+function definition:
+
+\centerline{\lstinline{(define (<name> <param1> <param2 ...>) <body>)}}
+
+This expression creates a function with the given parameters and body
+\emph{and} binds it to the given name.
+
+\begin{lstlisting}
+scm> (define square (lambda (x) (* x x))) ; Bind the lambda function to the name square
+square
+scm> (define (square x) (* x x))          ; Equivalent to the line above
+square
+scm> square
+(lambda (x) (* x x))
+scm> (square 4)
+16
+\end{lstlisting}

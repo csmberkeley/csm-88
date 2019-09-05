@@ -1,0 +1,66 @@
+All lists in Scheme are linked lists. Scheme lists are composed of two element pairs.
+We define a list as being either
+
+\begin{itemize}
+\item the empty list, \texttt{nil}
+\item a pair whose second element is a list
+\end{itemize}
+
+As in Python, linked lists are recursive data structures. The base case is the empty list.
+
+We use the following procedures to construct and select from lists:
+\begin{itemize}
+\item {\tt (cons first rest)} constructs a list with the given first element
+and rest of the list. For now, if \texttt{rest} is not a pair or \texttt{nil} it will error.
+\item {\tt (car lst)} gets the first item of the list
+\item {\tt (cdr lst)} gets the rest of the list
+\end{itemize}
+
+\begin{lstlisting}[language=Scheme]
+scm> nil
+()
+scm> (define lst (cons 1 (cons 2 (cons 3 nil))))
+lst
+scm> lst
+(1 2 3)
+scm> (car lst)
+1
+scm> (cdr lst)
+(2 3)
+scm> (car (cdr lst))
+2
+scm> (cdr (cdr (cdr lst)))
+()
+\end{lstlisting}
+
+The rule for displaying lists is very similar to that for the Link class from earlier in the class's \texttt{\_\_str\_\_} method. It prints out the elements in the linked list as if the list has no nested structure.
+
+\begin{lstlisting}[language=Scheme]
+scm> (cons 1 (cons 2 (cons 3 nil)))
+(1 2 3)
+scm> (cons 1 (cons (cons 2 (cons 3 nil)) nil))
+(1 (2 3))
+\end{lstlisting}
+
+Two other common ways of creating lists is using the built-in \texttt{list}
+procedure or the \texttt{quote} special form:
+
+\begin{itemize}
+\item The \texttt{list} procedure takes in an arbitrary amount of arguments.
+Because it is a procedure, all operands are evaluated when \texttt{list} is
+called. A list is constructed with the values of these operands and is
+returned.
+\item The \texttt{quote} special form takes in a single operand. It returns
+this operand exactly as is, without evaluating it. Note that this special form
+can be used to return any value, not just a list.
+\end{itemize}
+
+\begin{lstlisting}[language=Scheme]
+scm> (define x 2)
+scm> (list 1 x 3)
+(1 2 3)
+scm> (quote (1 x 3))
+(1 x 3)
+scm> '(1 x 3)   ; Equivalent to the previous quote expression
+(1 x 3)
+\end{lstlisting}

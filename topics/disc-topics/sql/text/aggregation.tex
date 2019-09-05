@@ -1,0 +1,48 @@
+So far, we have joined and manipulated individual rows using \texttt{SELECT}
+statements.  But we can also perform aggregation operations over multiple rows
+with the same \texttt{SELECT} statements.
+
+We can use the \texttt{MAX}, \texttt{MIN}, \texttt{COUNT}, and \texttt{SUM}
+functions to retrieve more information from our initial tables.
+
+If we wanted to find the name and salary of the employee who makes the most
+money, we might say
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT name, MAX(salary) FROM records;
+Oliver Warbucks|150000
+\end{lstlisting}
+
+\begin{minipage}{\textwidth}
+Using the special \texttt{COUNT(*)} syntax, we can count the number of rows in
+our table to see the number of employees at the company.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT COUNT(*) from RECORDS;
+9
+\end{lstlisting}
+\end{minipage}
+
+These commands can be performed on specific sets of rows in our table by using
+the \texttt{GROUP BY [column name]} clause.  This clause takes all of the rows
+that have the same value in \texttt{column name} and groups them together.
+
+We can find the miniumum salary earned in each division of the company.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT division, MIN(salary) FROM records GROUP BY division;
+Computer|25000
+Administration|25000
+Accounting|18000
+\end{lstlisting}
+
+These groupings can be additionally filtered by the \texttt{HAVING} clause.
+In contrast to the \texttt{WHERE} clause, which filters out rows, the \texttt{HAVING}
+clause filters out entire groups.
+
+To find all titles that are held by more than one person, we say
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT title FROM records GROUP BY title HAVING count(*) > 1;
+Programmer
+\end{lstlisting}

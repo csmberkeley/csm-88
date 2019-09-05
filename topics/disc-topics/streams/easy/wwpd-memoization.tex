@@ -1,0 +1,68 @@
+\question What does Python print?
+
+\begin{lstlisting}
+>>> foo = lambda x: 10 * x
+>>> s = Stream(foo(1), lambda: foo(2))
+>>> s
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+Stream(10, <...>)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> foo = lambda x: 100 * x
+>>> s.rest
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+200
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> s
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+Stream(10, 200)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> s.compute_rest = lambda: Stream(foo(3), lambda: s)
+>>> s
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+Stream(10, <...>)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> s.rest
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+Stream(300, <...>)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> s
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+Stream(10, Stream(300, <...>))
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> s.rest.rest
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+RecursionError
+\end{lstlisting}
+\end{solution}

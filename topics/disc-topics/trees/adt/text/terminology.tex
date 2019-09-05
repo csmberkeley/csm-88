@@ -1,0 +1,26 @@
+Some terminology regarding trees:
+\begin{itemize}
+\item \define{Parent node}: A node that has branches. Parent nodes can have
+  multiple branches.
+\item \define{Child node}: A node that has a parent. A child node can only
+  belong to one parent.
+\item \define{Root}: The top node of the tree. In our example, the node that
+  contains $7$ is the root.
+\item \define{Label}: The value at a node. In our example, all of the integers
+  are values.
+\item \define{Leaf}: A node that has no branches. In our example, the nodes that
+  contain $-4$, $0$, $6$, $17$, and $20$ are leaves.
+\item \define{Branch}: A subtree of the root. Note that trees have branches, which are trees themselves: this is why trees are \emph{recursive} data structures.
+\item \define{Depth}: How far away a node is from the root. In other
+  words, the number of edges between the root of the tree to the
+  node. In the diagram, the node containing $19$ has depth 1; the node
+  containing $3$ has depth 2. Since there are no edges between the
+  root of the tree and itself, the depth of the root is 0.
+\item \define{Height}: The depth of the lowest leaf. In the diagram, the nodes
+  containing $-4$, $0$, $6$, and $17$ are all the ``lowest leaves,'' and they
+  have depth 4. Thus, the entire tree has height 4.
+\end{itemize}
+
+In computer science, there are many different types of trees. Some vary in
+the number of branches each node has; others vary in the structure of the
+tree.

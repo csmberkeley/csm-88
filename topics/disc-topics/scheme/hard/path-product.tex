@@ -1,0 +1,63 @@
+\question Using the abstract data type above, write a function that
+creates a new tree where the entries are the product of the entries along
+the path to the root in the original tree.
+
+Hint: you may want to write a helper function that keeps track of the
+current product.
+\begin{center}
+  \begin{tikzpicture}[very thick,level distance=10mm,sibling distance=20mm]
+    \node [vertex] {$3$}
+    child {
+      node [vertex] {$0$}
+      child {node [vertex] {$10$}}
+      child {
+        node [vertex] {$2$}
+      }
+    }
+    child {
+      node [vertex] {$8$}
+    }
+    child {
+      node [vertex] {$-2$}
+      child {
+        node [vertex] {$-3$}
+      }
+    };
+  \end{tikzpicture}
+  \begin{tikzpicture}[very thick,level distance=10mm,sibling distance=20mm]
+    \node [vertex] {$3$}
+    child {
+      node [vertex] {$0$}
+      child {node [vertex] {$0$}}
+      child {
+        node [vertex] {$0$}
+      }
+    }
+    child {
+      node [vertex] {$24$}
+    }
+    child {
+      node [vertex] {$-6$}
+      child {
+        node [vertex] {$18$}
+      }
+    };
+  \end{tikzpicture}
+\end{center}
+% todo: word better and insert tikz diagram
+
+\begin{lstlisting}[language=Scheme]
+(define (path-product-tree t)
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    (define (path-product t product)
+        (let ((prod (* product (label t))))
+            (make-tree prod
+                (map (lambda (t) (path-product t prod))
+                     (branches tree)))))
+    (path-product t 1))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+\end{lstlisting}

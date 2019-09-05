@@ -1,0 +1,53 @@
+\question Assuming that every value in {\tt t} is a number, define {\tt
+average(t)}, which returns the average of all the values in {\tt t}.
+You may not need to use all the provided lines.
+
+\begin{lstlisting}
+def average(t):
+    """
+    Returns the average value of all the nodes in t.
+    >>> t0 = Tree(0, [Tree(1), Tree(2, [Tree(3)])])
+    >>> average(t0)
+    1.5
+    >>> t1 = Tree(8, [t0, Tree(4)])
+    >>> average(t1)
+    3.0
+    """
+    def sum_helper(t):
+
+        total, count = _______________________________________________________________
+
+
+        for __________________________________________________________________________:
+
+
+            __________________________________________________________________________
+
+
+            __________________________________________________________________________
+
+
+            __________________________________________________________________________
+
+
+        return total, count
+
+
+    total, count = ___________________________________________________________________
+
+    return total / count
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}
+    def sum_helper(t):
+        total, count = t.label, 1
+        for b in t.branches:
+            b_total, b_count = sum_helper(b)
+            total += b_total
+            count += b_count
+        return total, count
+    total, count = sum_helper(t)
+    return total / count
+\end{lstlisting}
+\href{https://youtu.be/AYKHLcMJmJ4}{Video walkthrough}
+\end{solution}

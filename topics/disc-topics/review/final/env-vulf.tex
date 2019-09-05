@@ -1,0 +1,18 @@
+\question Draw the environment diagram for the following code:
+\begin{lstlisting}
+key = [1,6,1,2]
+
+def ford(focus):
+    def frank(sinatra):
+        key = lambda key: sinatra(key)
+        return key
+    return frank(focus)(key[:])
+
+result = ford(lambda x : x + [key])
+\end{lstlisting}
+
+\begin{solution}[6in]
+\begin{center}
+\includegraphics[scale=.5]{env-vulf.png}
+\end{center}
+\end{solution}

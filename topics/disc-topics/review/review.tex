@@ -1,0 +1,422 @@
+\section{Sample Final Questions}
+%% Dependency: multicol package
+% Insert \usepackage{multicolor} at the beginning of disc00.tex
+\subsection*{It's holiday season!}
+For each of the expressions in the tables below, write the output
+displayed by the interactive Python interpreter when the expression is
+evaluated. The output may have multiple lines.
+
+Whenever the interpreter would report an error, write {\sc Error}. You
+\emph{should} include any lines displayed before an error.
+
+\emph{Reminder}: the interactive interpreter displays the value of a
+successfully evaluated expression, unless it is {\tt None}.
+
+Assume that you have started Python 3 and executed the following statements:
+\begin{multicols}{2}
+\begin{lstlisting}
+class Coffee:
+  warmth = 2
+  def __init__(self, warmth):
+    self.warmth = warmth
+  def holiday(self, cheer):
+    def buzz(self, sugar):
+      yield sugar(self, cheer) + self.warmth
+      cal = self.buzz
+      while True:
+        yield sugar(self, next(cal)) + self.warmth
+    return buzz
+\end{lstlisting}
+\columnbreak
+\begin{lstlisting}
+class Latte(Coffee):
+  @property
+  def buzz(self):
+    return iter([self.warmth for _ in range(Latte.warmth)])
+    
+  def stir(self, drink):
+    self.warmth += 1
+    return drink * drink
+\end{lstlisting}
+\end{multicols}
+\begin{lstlisting}
+frap, mocha = Coffee(2), Latte(1)
+Latte.holiday, Coffee.buzz = frap.holiday(5), frap.holiday(5)
+chai = mocha.holiday(lambda self, x: x + 1)
+vanilla = frap.buzz(Latte.stir)
+\end{lstlisting}
+
+
+%%% LEFT %%%
+\begin{tabular}[t]{| l | r |}
+\hline
+\multicolumn{1}{|l|}{\bf Expression} & {\bf Interactive Output} \\
+\hline
+\lstinline$5*5$ & 25 \\
+\hline
+\lstinline$print(5)$ & 5 \\
+\hline
+\lstinline$1/0$ & {\sc Error} \\
+\hline
+\lstinline$Latte.stir(Latte, 3)$ &  \\
+\hline
+\lstinline$print(Latte.warmth, mocha.warmth)$ &  \\ 
+\hline
+\lstinline$next(chai)$ & \\
+\hline
+\lstinline$next(chai)$ & \\
+\hline
+\lstinline$[cream for cream in chai]$ &  \\ 
+\hline
+\lstinline$next(vanilla)$ &  \\ 
+\hline
+\lstinline$next(vanilla)$ & \\ 
+\hline
+\end{tabular}
+
+\begin{solution}
+\begin{tabular}[t]{| l | r |}
+\hline
+\multicolumn{1}{|l|}{\bf Expression} & {\bf Interactive Output} \\
+\hline
+\lstinline$5*5$ & 25 \\
+\hline
+\lstinline$print(5)$ & 5 \\
+\hline
+\lstinline$1/0$ & {\sc Error} \\
+\hline
+\lstinline$Latte.stir(Latte, 3)$ & 9 \\ 
+\hline
+\lstinline$print(Latte.warmth, mocha.warmth)$ & 3 1 \\
+\hline
+\lstinline$next(chai)$ & 7 \\
+\hline
+\lstinline$next(chai)$ & 3 \\ 
+\hline
+\lstinline$[cream for cream in chai]$ &  [3, 3]  \\
+\hline
+\lstinline$next(vanilla)$ & 28 \\ 
+\hline
+\lstinline$next(vanilla)$ &  {\sc Error}: Method object is not an iterator \\ 
+\hline
+\end{tabular}
+
+
+\end{solution}
+
+
+\subsection*{Lazy Newton}
+\begin{questions}
+\question
+Recall the iterative improvement algorithm, where we keep updating a guess until either it is close enough to the actual answer or we have exhausted our number of attempts. What if we wanted to model an infinite sequence of updates? Modify the {\tt improve} function such that it outputs a {\tt Stream} of values at each update instead of just the final value. Note that max\_updates can either be a number or None, which means that the {\tt Stream} should be infinite.
+\begin{lstlisting}
+def lazy_improve(update, close, guess=1, max_updates=None):
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+
+  if close(guess) or max_updates is not None and max_updates <= 0:
+    return Stream(guess)
+  if max_updates is not None:
+    max_updates -= 1
+  return Stream(guess, lambda: \
+    lazy_improve(update, close, update(guess), max_updates))
+\end{lstlisting}
+
+Note: This is not the only solution.
+\end{solution}
+\end{questions}
+
+\subsection*{Higher Order Mus}
+\begin{questions}
+\begin{lstlisting}
+Line 1: (define f (mu (x) (mu (y) (+ x y))))
+Line 2: (define (g z) (let ((z 3) (omega (f z))) (omega z)))
+Line 3: (g 4)
+\end{lstlisting}
+
+\question Draw the complete environment diagram that results from executing the program above until the entire program is finished or an error occurs. \emph{\textbf{Hint:} do\_let\_form invokes a make\_call\_frame method.} If SchemeError occurs, circle the expression whose evaluation \textbf{directly} causes the error.
+\begin{solution}[3in]
+Line 1: {\tt (define f (mu (x) (mu (y) (+ \textbf{x} y))))}. Unknown identifier `x'
+\end{solution}
+
+\question How many calls to {\tt scheme\_eval} were made when evaluating {\tt (g 3)}? 
+\newline
+\begin{tabular} { l c c r }
+9 & 12 & 15 & 18\\
+\end{tabular}
+\begin{solution}
+15. The arguments to {\tt scheme\_eval} are:
+(g 3)
+, g
+, 3
+, (let ((z 3) (omega (f z))) (omega z))
+, 3
+, (f z)
+, f
+, z
+, (mu (y) (+ x y))
+, (omega z)
+, omega
+, z
+, (+ x y)
+, +
+, x (evaluating this expression causes the error)
+\end{solution}
+
+\question I now modify Line 1 to be Line 1b: {\tt (define f (mu (z) (mu (y) (+ z y))))}. What will a correct implementation of the Scheme interpreter in Project 4 output for {\tt (g 4)}? If SchemeError occurs, box the expression (from Lines 1b, 2, or 3) whose evaluation \textbf{directly} causes the error.
+\begin{solution}
+6
+\end{solution}
+
+\end{questions}
+
+
+
+\subsection*{Prepare for trouble! And make it double...}
+Team Rocket has caught you in a cave and placed teleporters everywhere around you! However, they are kind enough to tell you the goal location to exit the cave, the actions you can take at a square, and the possible destination list for each result. If you are at (2, 1), for instance, you know you can go ``up" and the list of destinations you can possibly be at after going ``up".
+
+Since you don't know which destination you'll end up in, you need to consider the fact that you can be in all of them. Formally, the {\tt problem} object is a given dictionary that will map a location to a list of {\tt result} objects, whose selectors are described below: 
+\begin{lstlisting}
+# Result abstract data type
+def get_direction_name(result):
+  """Implementation is hidden"""
+def get_destinations(result):
+  """Implementation is hidden"""
+
+class InfiniteLoopException(Exception):
+  pass
+
+def solve(problem):
+  return choose_action(problem['initial'], problem, [])
+\end{lstlisting}
+
+{\tt solve} should return an \textbf{action}: a list of the action's name and a \textbf{plan}, which is a dictionary mapping each possible destination to another appropriate action. An output to 
+\\ {\tt solve(team\_rocket)} will look something like:
+\begin{lstlisting}
+['up', {(2, 2): ['left', {(1, 2): ['up', 
+  {(3, 1): ['up', {(1, 1): ['goal', {}]}], 
+  (3, 3): ['down', {(1, 1): ['goal', {}]}]}]}]}]
+\end{lstlisting}
+
+Your task is to fill in the implementations of {\tt choose\_action} and {\tt create\_plan} such that the {\tt solve} function above will output an action that will always lead you to the goal destination (or if such a plan does not exist, raise an InfiniteLoopException). Additionally, your code cannot violate any abstraction barriers.
+
+\begin{lstlisting}
+def choose_action(location, problem, path):
+  if location == problem['goal']:
+    return ['goal', {}]
+  if location in path:
+  
+    ___________________________________________________________________
+    
+  for __________________________________________________________:
+    try:
+    
+      ___________________________________________________________________
+      
+      ___________________________________________________________________
+    except InfiniteLoopException:
+      pass    
+      
+  ___________________________________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def choose_action(location, problem, path):
+  if location == problem['goal']:
+    return []
+  if location in path:
+    raise InfiniteLoopException()
+  for result in problem[location]:
+    try:
+      plan = create_plan(get_destinations(result), problem, [location] + path)
+      return [get_direction_name(result), plan]
+    except InfiniteLoopException:
+      pass
+  raise InfiniteLoopException()
+\end{lstlisting}
+
+\end{solution}
+\begin{lstlisting}
+def create_plan(locations, problem, path):
+  plan = {}
+  for location in locations:
+  
+  
+    ___________________________________________________________________
+  return plan
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def create_plan(locations, problem, path):
+  plan = {}
+  for location in locations:
+    plan[location] = choose_action(location, problem, path)
+  return plan
+\end{lstlisting}
+
+\end{solution}
+
+
+\subsection*{It's a (Hailstone) Race!}
+\begin{questions}
+\question In SQL, it is possible to make a decision about what to output based on input data using the {\tt CASE} statement. The syntax looks like:
+\begin{lstlisting}
+SELECT
+  CASE WHEN fur = "curly" THEN fur ELSE name END 
+    AS curly_replaced FROM dogs;
+\end{lstlisting}
+Given the (truncated) {\tt dogs} table from lecture, the output will then look like:
+\begin{multicols}{2}
+\begin{center}
+  \begin{tabular}{ l l l l l }
+  \textbf{Name} & \textbf{Fur}  \\
+  \hline
+  delano & long \\
+  eisenhower & short \\
+  fillmore & curly \\
+  grover & short \\
+  herbert & curly 
+ \end{tabular}
+\end{center}
+\columnbreak
+\begin{center}
+  \begin{tabular}{ l l l l l }
+  \textbf{curly\_replaced} \\
+  \hline
+  delano \\
+  eisenhower \\
+  curly \\ 
+  grover \\
+  curly
+  \end{tabular}
+\end{center}
+\end{multicols}
+
+Now, given a table {\tt ints} of two columns {\tt a, b}, \textbf{output a table that shows the hailstone steps for each number}, stopping when any of the numbers reaches 1. With SQL, it's easy to see the recursion side-by-side, so now, you can compare which numbers' hailstone sequences are longer! The blanks are not indented.
+\begin{lstlisting}
+-- Given: (SQL commands are case insensitive)
+CREATE TABLE ints AS SELECT 20 AS a, 21 AS b;
+-- First two rows of query output should then be:
+-- 20 | 21
+-- 10 | 64
+
+________________________________________________________
+
+________________________________________________________
+  
+  select case when ________then _______ else ___________ end,
+  
+    case when ____________then _______ else _____________ end
+    
+________________________________________________________
+    
+________________________________________________________;
+
+\end{lstlisting}
+\begin{solution}[1cm]
+\begin{lstlisting}
+with hail_race(a, b) as (
+  select * from ints union
+  select case when a % 2 = 0 then a / 2 else a * 3 + 1 end, 
+     case when b % 2 = 0 then b / 2 else b * 3 + 1 end 
+  from hail_race where a > 1 and b > 1
+ ) select * from hail_race;
+\end{lstlisting}
+\end{solution}
+
+\end{questions}
+
+
+\subsection*{Hall of Fame (HoF)}
+\begin{questions}
+\question Given the following assignment statements, write a call expression that will evaluate to the string \textbf{"FINAL"}. Your call expression itself cannot contain any strings. 
+\begin{lstlisting}
+bird = lambda boston: boston("N")
+magic = lambda lakers: lambda: "LA" + lakers
+jordan = lambda chicago: kobe(chicago+"IF")()
+kobe = lambda duncan: lambda: duncan[::-1]
+
+___________________________________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+jordan(magic(bird(lambda x: x))())
+\end{lstlisting}
+\end{solution}
+
+\end{questions}
+
+\subsection*{Trick or Trees}
+\begin{questions}
+\question Given the following implementation of the \textbf{Tree} class - construct an iterator that outputs the value of every candy ingredient in the tree. The iterator should replace any instances of the string \textbf{"Broccoli"} with \textbf{"Trick!"}  For example:
+\begin{lstlisting}
+>>> sweet = Tree("Sugar",Link(Tree("Chocolate"),Link(Tree("Broccoli"))))
+>>> pb = Tree("Peanut", Link(Tree("Butter")))
+>>> goodies = Tree("Broccoli", Link(pb, Link(sweet)))
+>>> for treat in goodies:
+...    print(treat)
+Trick!
+Peanut
+Butter 
+Sugar
+Chocolate 
+Trick!
+\end{lstlisting}
+
+Complete the \textbf{\_\_iter\_\_} method of the \textbf{Tree} class. Careful with the attribute names in the \textbf{Link} class. Implementations may differ, but the concepts remain the same.
+
+\begin{lstlisting}
+nil = "candy!"
+class Link:
+    def __init__(self, first, second=nil):
+        self.value = first
+        self.rest = second
+
+class Tree:  
+    def __init__(self, entry, branches=nil):
+        self.entry = entry
+        self.branches = branches
+
+    def __iter__(self):
+    
+        if _____________________________________________:
+        
+            _____________________________________________
+        else:
+            _____________________________________________
+            
+        current = _______________________________________
+        
+        while current != _______________________________:
+            
+            elem = ______________________________________
+            
+            _____________________________________________
+                
+                _________________________________________
+            
+            current = ___________________________________
+\end{lstlisting}
+
+
+
+\begin{solution}
+\begin{lstlisting}
+    def __iter__(self):
+        if self.entry == "Broccoli":
+            yield "Trick!"
+        else:
+            yield self.entry
+        current = self.branches
+        while current != nil:
+            elem = current.value
+            for node in elem:
+                yield node
+            current = current.rest
+\end{lstlisting}
+\end{solution}
+
+\end{questions}
+
+

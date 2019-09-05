@@ -1,0 +1,22 @@
+We can use object oriented programming to write a class that behaves like an
+iterator.
+There is an example implementation to the right.
+
+To make a new instance of this \lstinline$Iterator$ class, you have to provide
+an iterable, just like you have to do with Python's built-in \lstinline$iter$
+function.
+
+Notice our \lstinline$Iterator$ class has a \lstinline$__next__$ method,
+so that we can call Python's built-in \lstinline$next$ on it to get the next
+element out of the iterable we initially passed in.
+
+You might also notice there's an \lstinline$__iter__$ method.
+This may seem odd since we only use \lstinline$iter$ to obtain an iterator —
+so why would we ever have to call \lstinline$iter$ on something that's already
+an iterator?
+Well, technically speaking, iterators are just a subcategory of iterables,
+since you are still able to iterate over them.
+Python wants every iterable — including iterators themselves — to support its
+built-in \lstinline$iter$ function.
+That's why we added an \lstinline$__iter__$ method that just returns
+\lstinline$self$.

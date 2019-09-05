@@ -1,0 +1,66 @@
+Data abstraction is a powerful concept in computer science that
+allows programmers to treat code as objects --- for example,
+car objects, chair objects, people objects, etc. That way,
+programmers don't have to worry about \texttt {how} code is
+implemented --- they just have to know \texttt{what} it does.
+
+Data abstraction mimics how we think about the world. For example,
+when you want to drive a car, you don't need to know how the
+engine was built or what kind of material the tires are made of.
+You just have to know how to turn the wheel and press the gas pedal.
+
+An \textit{abstract data type} consists of two types of functions:
+\begin{itemize}
+\item
+Constructors: functions that build the abstract data type.
+\item
+Selectors: functions that retrieve information from the data type.
+\end{itemize}
+For example, say we have an abstract data type called {\tt city}.
+This {\tt city} object will hold the {\tt city}'s name, and
+its latitude and longitude. To create a {\tt city} object,
+you'd use a constructor like
+
+\begin{lstlisting}
+city = make_city(name, lat, lon)
+\end{lstlisting}
+
+To extract the information of a {\tt city} object, you would use the selectors like
+
+\begin{lstlisting}
+get_name(city)
+get_lat(city)
+get_lon(city)
+\end{lstlisting}
+
+For example, here is how we would use the {\tt make\_city} constructor to create a city object to represent Berkeley
+and the selectors to access its information.
+
+\begin{lstlisting}
+>>> berkeley = make_city('Berkeley', 122, 37)
+>>> get_name(berkeley)
+'Berkeley'
+>>> get_lat(berkeley)
+122
+>>> get_lon(berkeley)
+37
+\end{lstlisting}
+
+The following code will compute the distance between two city objects:
+
+\begin{lstlisting}
+from math import sqrt
+def distance(city_1, city_2):
+
+    lat_1, lon_1 = get_lat(city_1), get_lon(city_1)
+    lat_2, lon_2 = get_lat(city_2), get_lon(city_2)
+
+    return sqrt((lat_1 - lat_2)**2 + (lon_1 - lon_2)**2)
+\end{lstlisting}
+
+Notice that we don't need to know how these functions were implemented.  We are
+assuming that someone else has defined them for us.
+
+It's okay if the end user doesn't know how functions were implemented.  However,
+the functions still have to be defined by someone. We'll look into defining the
+constructors and selectors later in this discussion.

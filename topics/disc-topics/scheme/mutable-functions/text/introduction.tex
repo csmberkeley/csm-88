@@ -1,0 +1,45 @@
+We can also create mutable functions in Scheme. In Python, when we want to
+modify a binding in a parent frame, we declare it to be {\tt nonlocal} at the
+start of the function and then assign to the name as normal.
+
+In Scheme, we don't need to declare which bindings from a parent frame we wish
+to modify. Instead, we use a new special form call {\tt set!} when we want to
+modify an existing binding (regardless of whether that binding exists in the
+current frame or a parent frame).
+
+Just like the {\tt define} special form, {\tt set!} takes in two operands: the
+symbol to be re-assigned and an expression that should be evaluated and assigned
+to that symbol.
+
+\centerline{\lstinline{(set! <symbol> <expression>)}}
+
+Here's the same {\tt stepper} function from earlier, now written in Scheme.
+
+\begin{lstlisting}[language=Scheme]
+  (define (stepper num)
+    (define (step)
+      (set! num (+ num 1))
+      num)
+    step)
+\end{lstlisting}
+
+{\tt set!} will always modify the most local binding for that symbol that
+exists. In other words, if the symbol is bound in the current frame, {\tt set!}
+works the same as {\tt define}. Otherwise, it proceeds through parent frames
+until it finds the symbol, and then re-binds it in that frame. If the binding
+does not exist anywhere within the current environment, {\tt set!} will error.
+
+Unlike {\tt nonlocal}, {\tt set!} can even modify bindings in the global frame.
+For example:
+
+\begin{lstlisting}[language=Scheme]
+  scm> (define count 0)
+  count
+  scm> (define (increment) (set! count (+ count 1)))
+  increment
+  scm> (increment)
+  scm> (increment)
+  scm> (increment)
+  scm> count
+  3
+\end{lstlisting}

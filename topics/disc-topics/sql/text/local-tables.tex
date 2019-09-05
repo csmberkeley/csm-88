@@ -1,0 +1,46 @@
+The \texttt{select} statement can optionally include a \texttt{with} clause that
+generates and names \textit{local} tables used in computing the final result.
+These local tables cannot be used outside of the select statement, and they can
+be thought of as ``helper'' tables.
+The full syntax of a \texttt{select} statement has the following form:
+\begin{lstlisting}[language=SQL]
+with [local-tables] select [columns] from [tables]
+  where [condition] order by [criteria]
+\end{lstlisting}
+
+For example, you can use a \texttt{with} statement to create and immediately use
+a new table to compute the final result.
+
+\begin{lstlisting}[language=SQL]
+sqlite> with
+   ...>   schedule(day, dresscode) as (
+   ...>     select "Monday",    "Sports"    union
+   ...>     select "Tuesday",   "Drag"      union
+   ...>     select "Wednesday", "Regular"   union
+   ...>     select "Thursday",  "Throwback" union
+   ...>     select "Friday",    "Casual"
+   ...>   )
+   ...> select a.name, b.dresscode from 
+   ...>    records as a, schedule as b, meetings as c
+   ...>    where a.division = c.division and 
+   ...>    b.day = c.day order by a.name;
+Alyssa P Hacker|Regular
+Ben Bitddiddle|Regular
+Cy D Fect|Regular
+DeWitt Aull|Sports
+DeWitt Aull|Throwback
+Eben Scrooge|Sports
+Lem E Tweakit|Regular
+Louis Reasoner|Regular
+Oliver Warbucks|Sports
+Oliver Warbucks|Throwback
+Robert Cratchet|Sports
+\end{lstlisting}
+
+If you try selecting from \texttt{schedule} outside, like
+\begin{lstlisting}[language=SQL]
+sqlite> select * from schedule;
+Error: no such table: schedule
+\end{lstlisting}
+you'll find that you cannot reference it because \texttt{schedule} was not made
+globally.

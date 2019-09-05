@@ -1,0 +1,29 @@
+\begin{itemize}
+\item To add {\tt val} corresponding to {\tt key} {\it or} to replace the current value of {\tt key} with {\tt val}:
+\begin{lstlisting}
+    dictionary[key] = val
+\end{lstlisting}
+\item To iterate over a dictionary's keys:
+\begin{lstlisting}
+    for key in dictionary: #OR for key in dictionary.keys()
+        do_stuff()
+\end{lstlisting}
+\item To iterate over a dictionary's values:
+\begin{lstlisting}
+    for value in dictionary.values():
+        do_stuff()
+\end{lstlisting}
+\item To iterate over a dictionary's keys and values:
+\begin{lstlisting}
+    for key, value in dictionary.items():
+        do_stuff()
+\end{lstlisting}
+\item To remove an entry in a dictionary:
+\begin{lstlisting}
+    del dictionary[key]
+\end{lstlisting}
+\item To get the value corresponding to {\tt key} and remove the entry:
+\begin{lstlisting}
+    dictionary.pop(key)
+\end{lstlisting} 
+\end{itemize}

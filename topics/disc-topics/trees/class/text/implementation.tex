@@ -1,0 +1,25 @@
+Recall the tree abstract data type: a tree is defined as having a label and
+some branches. Previously, we implemented the tree abstraction using Python
+lists.  Let's look at another implementation using objects instead:
+
+\begin{lstlisting}
+class Tree:
+    def __init__(self, label, branches=[]):
+        for b in branches:
+            assert isinstance(b, Tree)
+        self.label = label
+        self.branches = branches
+
+    def is_leaf(self):
+        return not self.branches
+\end{lstlisting}
+
+Notice that with this implementation we can mutate a tree using attribute
+assignment, which wasn't possible in the previous implementation using lists.
+
+\begin{lstlisting}
+>>> t = Tree(3, [Tree(4), Tree(5)])
+>>> t.label = 5
+>>> t.label
+5
+\end{lstlisting}

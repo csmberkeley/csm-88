@@ -1,0 +1,26 @@
+In Scheme, any expression that is quoted is \textbf{not} evaluated, making it a symbol. A
+quoted expression is one that has \lstinline{'} preceding the expression.
+
+\begin{blocksection}
+\begin{lstlisting}[language=Scheme]
+scm> (define b 3)
+b
+scm> (define a 'b)
+a
+scm> a
+b                       ; a is not 3
+\end{lstlisting}
+\end{blocksection}
+
+We will see later in discussion that quotation also allows us to construct a
+list of quoted elements, using the conventional printed representation for
+lists.
+
+\begin{blocksection}
+\begin{lstlisting}
+scm> '(1 2 3)
+(1 2 3)
+scm> '(a b c)
+(a b c)
+\end{lstlisting}
+\end{blocksection}

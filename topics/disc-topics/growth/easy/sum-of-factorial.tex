@@ -1,0 +1,15 @@
+\begin{blocksection}
+\question \begin{lstlisting}
+def sum_of_factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return factorial(n) + sum_of_factorial(n - 1)
+\end{lstlisting}
+
+\begin{solution}[0.0in]
+  $\growth(n^2)$, we will call factorial $n$ times with arguments $n, n-1, n-2,
+  ..., 0$.  The sum from $0$ to $n$ is approximately $n^2$.\\
+\href{https://www.youtube.com/watch?v=XsdTV6cAAjY&vq=hd1080&t=25m25s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

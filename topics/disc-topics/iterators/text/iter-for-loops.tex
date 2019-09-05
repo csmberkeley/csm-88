@@ -1,0 +1,27 @@
+We have already been using iterables to go through the elements of a sequence.
+This happens all the time in for loops. For example:
+\begin{lstlisting}
+>>> for n in [1, 2, 3]:
+...     print(n)
+...
+1
+2
+3
+\end{lstlisting}
+
+This works because the for loop implicitly creates an iterator using the
+\lstinline$iter$ method. Python then repeatedly calls \lstinline$next$
+repeatedly on the iterator, until it raises \texttt{StopIteration}. In other
+words, the loop above is (basically) equivalent to:
+
+\begin{blocksection}
+\begin{lstlisting}
+iterator = iter([1, 2, 3])
+try:
+    while True:
+        n = next(iterator)
+        print(n)
+except StopIteration:
+    pass
+\end{lstlisting}
+\end{blocksection}

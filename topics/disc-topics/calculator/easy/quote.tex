@@ -1,0 +1,19 @@
+\question Implement quote. A quote expression simply returns its argument
+without evaluating it.
+
+\begin{lstlisting}
+> (quote (2 (3 4) 5))
+(2 (3 4) 5)
+> (quote (+ 3 4))
+(+ 3 4)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def calc_eval(exp):
+    ...
+    elif exp.first == "quote":
+        return exp.second.first
+    ...
+\end{lstlisting}
+\end{solution}
+

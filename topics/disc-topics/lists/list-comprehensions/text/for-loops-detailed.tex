@@ -1,0 +1,12 @@
+\begin{lstlisting}
+for <name> in <expression>:
+	<suite>
+\end{lstlisting}
+
+\begin{itemize}
+\item Evaluate the header {\tt <expression>}, which must yield an iterable
+    value, such as a list
+\item For each element in that sequence, in order:\\
+A. Bind {\tt <name>} to that element in the current frame\\
+B. Execute the {\tt <suite>}
+\end{itemize}

@@ -1,0 +1,48 @@
+\question Implement the coupon abstraction using functional pairs.
+A coupon pairs a string item name with an integer amount of discount
+representing a deduction from the cost.
+
+\begin{lstlisting}
+def make_coupon(name, discount):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return pair(name, discount)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_coupon_name(coupon):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return select(coupon, 0)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_coupon_discount(coupon):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return select(coupon, 1)
+\end{lstlisting}
+\end{solution}
+
+\question Write {\tt discount\_purchase}, which calculates the total price of a
+list of items after being discounted by a list of coupons.
+
+\begin{lstlisting}
+def discount_purchase(items, coupons):
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    total_cost = 0
+    for item in items:
+        total_cost += get_item_price(item)
+        for coupon in coupons:
+            if get_coupon_name(coupon) == get_item_name(item):
+                total_cost -= get_coupon_discount(coupon)
+    return total_cost
+\end{lstlisting}
+\end{solution}

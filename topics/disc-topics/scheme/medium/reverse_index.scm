@@ -1,0 +1,15 @@
+; Returns a new list with each value in the list multiplied by its distance from the end. The last element is a distance of 0 from the end.
+(define (reverse-index lst)
+  ; helper maintains invariant that first element is distance from the end
+  (define (helper lst)
+    ((null? (cdr lst))
+        (cons 0 0)
+        ((let data (helper lst))
+          (let dist (car data))
+          (cons (+ dist 1)
+            (cons (* dist (car lst)) (helper (cdr lst))))
+        )
+    )
+  )
+  (cdr (helper lst))
+)

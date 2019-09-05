@@ -1,0 +1,11 @@
+\question What would Python display?
+
+\begin{lstlisting}
+>>> fn1, fn2 = lambda x: 3*x + 1, lambda x: x % 2 == 0
+>>> list(filter(fn2, map(fn1, [1, 2, 3, 4])))
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+[4, 10]
+\end{lstlisting}
+\end{solution}

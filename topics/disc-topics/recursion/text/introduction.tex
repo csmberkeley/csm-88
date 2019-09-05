@@ -1,0 +1,40 @@
+A {\it recursive} function is a function that is defined in terms of itself.
+A good example is the {\tt factorial} function. Although we haven't finished defining
+\texttt{factorial}, we are still able to call it since the function body is not
+evaluated until the function is called. Note that when {\tt n} is {\tt 0} or
+{\tt 1}, we just return {\tt 1}. This is known as the {\it base case}, and it
+prevents the function from infinitely recursing.  Now we can compute {\tt
+factorial(2)} in terms of {\tt factorial(1)}, and {\tt factorial(3)} in terms
+of {\tt factorial(2)}, and {\tt factorial(4)} -- well, you get the idea.
+
+There are \textbf{three} common steps in a recursive definition:
+
+\begin{enumerate}
+\item \textbf{Figure out your base case}: The base case is usually the simplest
+input possible to the function. For example, {\tt factorial(0)} is 1 by
+definition. You can also think of a base case as a stopping condition for the
+recursion. If you can't figure this out right away, move on to the recursive
+case and try to figure out the point at which we can't reduce the problem any
+further.
+\item \textbf{Make a recursive call with a simpler argument}: Simplify your
+problem, and assume that a recursive call for this new problem will simply
+work. This is called the ``leap of faith''. For {\tt factorial}, we reduce the
+problem by calling {\tt factorial(n-1)}.
+\item \textbf{Use your recursive call to solve the full problem}: Remember that
+we are assuming the recursive call works. With the result of the recursive
+call, how can you solve the original problem you were asked? For {\tt
+factorial}, we just multiply $(n-1)!$ by $n$.
+\end{enumerate}
+
+{\em \small Note: One way to go understand recursion is to separate out two things: ``internal correctness''
+and not running forever (known as ``halting'').
+
+A recursive function is internally correct
+if it is always does the right thing assuming that every recursive call does the right thing.
+For example, the same factorial function from above but with no base case is internally
+correct, but does not halt.
+
+A recursive function is correct if and only if it is
+both internally correct and halts; but you can check each property separately. The
+``recursive leap of faith'' is temporarily placing yourself in a mindset where you only
+check internal correctness.}

@@ -1,0 +1,16 @@
+Sometimes, it is more convenient to work with trees that have at most
+two subtrees per node. Instead of using a list to keep track of all the
+subtrees, we can use \texttt{left} and \texttt{right} to refer two the only two
+subtrees in a \texttt{BinTree}.
+
+% new binary tre class.
+\begin{lstlisting}
+class BinTree:
+    empty = ()
+    def __init__(self, entry, left=empty, right=empty):
+        if left: assert isinstance(left, BinTree)
+        if right: assert isinstance(right, BinTree)
+        self.entry = entry
+        self.left = left
+        self.right = right
+\end{lstlisting}

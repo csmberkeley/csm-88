@@ -1,0 +1,23 @@
+\question Write simple and complex facts for {\tt in}, a relation between a
+symbol and a list that is satisfied if and only if that symbol is in the list.
+
+\begin{lstlisting}
+> (query (in a (a b c)))
+Success!
+> (query (in d (a b c)))
+Failed.
+> (query (in ?elem (a b c)))
+Success!
+elem: a
+elem: b
+elem: c
+\end{lstlisting}
+
+\begin{solution}[2in]
+\begin{lstlisting}
+(fact (in ?x (?x . ?r)))
+(fact (in ?x (?y . ?r))
+      (in ?x ?r))
+\end{lstlisting}
+\end{solution}
+

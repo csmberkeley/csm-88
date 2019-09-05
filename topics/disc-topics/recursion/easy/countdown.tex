@@ -1,0 +1,48 @@
+\question Write a recursive function that takes in an integer {\tt n} and
+prints out a countdown from {\tt n} to 1.
+
+First, think about a base case for the {\tt countdown} function. What is
+the simplest input the problem could be given?
+
+\begin{solution}[0.35in]
+When {\tt n} equals {\tt 0}
+\end{solution}
+
+After you've thought of a base case, think about a recursive call with a
+smaller argument that approches the base case. What happens if you call
+\texttt{countdown(n - 1)}?
+
+\begin{solution}[0.35in]
+A countdown starting from {\tt n - 1} is printed.
+\end{solution}
+
+\begin{blocksection}
+Then, put the base case and the recursive call together, and think about
+where a print statement would be needed.
+
+\begin{lstlisting}
+def countdown(n):
+    """
+    >>> countdown(3)
+    3
+    2
+    1
+    """
+\end{lstlisting}
+\begin{solution}[1.9in]
+\begin{lstlisting}
+    if n <= 0:
+        return
+    print(n)
+    countdown(n - 1)
+\end{lstlisting}
+\href{https://youtu.be/VcZPTlE56G8?t=52m59s}{Video walkthrough}
+\end{solution}
+\end{blocksection}
+
+\question How can we change {\tt countdown} to count up instead without
+modifying a lot of the code?
+\begin{solution}[0.7in]
+Move the {\tt print} statement to after the recursive call. \\
+\href{https://youtu.be/VcZPTlE56G8?t=58m48s}{Video walkthrough}
+\end{solution}

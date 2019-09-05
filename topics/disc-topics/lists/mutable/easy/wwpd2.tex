@@ -1,0 +1,99 @@
+\question
+What would Python display? In addition to giving the output,
+draw the box and pointer diagrams for each list to the right.
+
+\begin{lstlisting}
+>>> lst1 = [1, 2, 3]
+>>> lst2 = lst1
+>>> lst1 is lst2
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+True
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst2.extend([5, 6])
+>>> lst1[4]
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+6
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst1.append([-1, 0, 1])
+>>> -1 in lst2
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+False
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst2[5]
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+[-1, 0, 1]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst3 = lst2[:]
+>>> lst3.insert(3, lst2.pop(3))
+>>> len(lst1)
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+5
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst1[4] is lst3[6]
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+True
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst3[lst2[4][1]]
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+1
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst1[:3] is lst2[:3]
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+False
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst1[:3] == lst3[:3]
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+True
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,31 @@
+\question Using streams can be tricky! Compare the following two
+implementations of \texttt{filter-stream}, the first is a correct
+implementation whereas the second is wrong in some way. What's wrong with the
+second implementation?
+
+\begin{lstlisting}[language=Scheme]
+; Correct
+(define (filter-stream f s)
+  (cond
+    ((null? s) nil)
+    ((f (car s)) (cons-stream (car s) (filter-stream f (cdr-stream s))))
+    (else (filter-stream f (cdr-stream s)))))
+
+; Incorrect
+(define (filter-stream f s)
+  (if (null? s) nil
+    (let ((rest (filter-stream f (cdr-stream s))))
+      (if (f (car s))
+        (cons-stream (car s) rest)
+        rest))))
+\end{lstlisting}
+\begin{solution}[0.0in]
+Evaluating \texttt{rest} will result in infinite recursion if \texttt{s} is an
+infinite stream! In the body of \texttt{filter-stream}, \texttt{rest} is always
+computed before \texttt{cons-stream} can delay the evaluation.
+
+Another way of thinking about this is that everything in the body of the
+\texttt{let} doesn't matter. All we will be doing is repeatedly doing the
+recursive call on \texttt{filter-stream}.
+\href{https://youtu.be/TGSYZvoIMnE?t=3m39s}{Video walkthrough}
+\end{solution}

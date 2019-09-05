@@ -1,0 +1,26 @@
+\textbf{Exceptions} are used to signify when something goes wrong
+in your program. For interpreters, they're often used to categorize a case when
+the user inputs something that doesn't make sense (just try typing in {\tt
+Hi Soumya} in your Python interpreter and see what happens!)
+
+There are two major things that you do with exceptions: {\tt raise}
+and \textbf{handle} them.
+
+Generally, to raise an exception you use the statement {\tt raise
+<expression>}.
+
+To handle an exception, you use a {\tt try-except} block. The syntax is as
+follows:
+
+\begin{lstlisting}
+try:
+    <try suite>
+except <exception class> as <name>:
+    <except suite>
+...
+\end{lstlisting}
+
+You can have multiple {\tt except} suites for different types of exceptions that
+might occur in the try suite.
+
+

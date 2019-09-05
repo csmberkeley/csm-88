@@ -1,0 +1,229 @@
+\question 
+Fill in this implementation of the Tree ADT.
+
+\begin{lstlisting}[language=Python]
+def tree(label, branches = []):
+    for b in branches:
+        assert is_tree(b), 'branches must be trees'
+    return [label] + list(branches)
+
+def is_tree(tree):
+    if type(tree) != list or len(tree) < 1:
+        return False
+    for b in branches(tree):
+        if not is_tree(b):
+            return False
+    return True
+
+def label(tree):
+    |\begin{solution}
+    \begin{verbatim}
+    return tree[0] 
+\end{verbatim}
+\end{solution}|
+
+def branches(tree):
+    |\begin{solution}
+    \begin{verbatim}
+    return tree[1:] 
+\end{verbatim}
+\end{solution}|
+
+def is_leaf(tree):
+    |\begin{solution}
+    \begin{verbatim}
+    return not branches(tree) 
+\end{verbatim}
+\end{solution}|
+\end{lstlisting}
+
+\question
+A min-heap is a tree with the special property that every node’s value is less than or equal to the values of all of its children. For example, the following tree is a min-heap:
+\begin{verbatim}
+                               1
+                            /  |  \
+                          5    3   6
+                          |   / \  
+                          7  9   4
+\end{verbatim}
+However, the following tree is not a min-heap because the node with value 3 has a value greater than one of its children:
+\begin{verbatim}
+                               1
+                            /  |  \
+                          5    3   6
+                          |   / \  
+                          7  9   2
+\end{verbatim}
+\newpage
+Write a function \textbf{is\_min\_heap} that takes a tree and returns True if the tree is a min-heap and False otherwise.
+\begin{lstlisting}
+def is_min_heap(t):
+    |\begin{solution}[0.75in]
+    \begin{verbatim}
+    for b in branches(t):
+        if label(t) > label(b) or not is_min_heap(b):
+             return False
+    return True    
+    \end{verbatim}
+    \end{solution}|
+\end{lstlisting}
+
+\question
+Write a function \textbf{largest\_product\_path} that finds the largest product path possible. A product path is defined as the product of all nodes between the root and a leaf. The function takes a tree as its parameter. Assume all nodes have a non-negative value.
+\begin{verbatim}
+                               3
+                            /  |  \
+                          7    8   4
+                          |    |  
+                          2    1    
+\end{verbatim}
+
+For example, calling \textbf{largest\_product\_path} on the above tree would return 42, since 3 * 7 * 2 is the largest product path.
+\begin{lstlisting}
+def largest_product_path(tree):
+    """
+    >>> largest_product_path(None)
+    0
+    >>> largest_product_path(tree(3))
+    3
+    >>> t = tree(3, [tree(7, [tree(2)]), tree(8, [tree(1)]), tree(4)])
+    >>> largest_product_path(t)
+    42
+    """
+    |\begin{solution}[1in]
+    \begin{verbatim}
+    if not tree:
+        return 0
+    elif is_leaf(tree):
+        return label(tree)
+    else:
+        paths = [largest_product_path(t) for t in branches(tree)]
+        return label(tree) * max(paths)
+    \end{verbatim}
+    \end{solution}|
+
+\end{lstlisting}
+\question 
+Check your understanding:
+\begin{paragraph}
+1  Given the first tree in 4.2, write the corresponding python call to create the tree 
+\end{paragraph}
+\begin{solution}
+tree(1, [tree(5, [tree(7)]),tree(3,[tree(9),tree(4)]),tree(6)])
+\end{solution}
+\begin{paragraph}
+2 What is the benefit of using a tree as a data structure, rather than a list or linked list? 
+\end{paragraph}
+\begin{solution}
+Trees can be organized more effectively (in the case of a binary search tree), and in the general case you can tell whether or not an element is in that tree faster than if it were in a linked list or a list. You can also search faster in a BST. Trees can also be used to express hierarchy. 
+\end{solution}
+\begin{paragraph}
+3 Below is the function contains, which takes in an input of a tree, t and a value, e. The function returns true if e exists as a label inside t. However, the function does not work properly, debug this code and find the error(s). 
+\end{paragraph}
+\begin{lstlisting}
+def contains(t, e):
+     if is_leaf(t):
+        return False
+     elif e == label(t):
+        return True
+     else:
+        for b in branches(t):
+            return contains(b, e)
+        return True
+\end{lstlisting}
+\begin{solution}
+Errors: \\
+-One should check the label before checking if the tree is a leaf, in case the leaf contains the value of the tree \\
+-In the for loop it should not return contains(b,e), but rather return True, if contains(b,e) evaluates to true. \\ 
+-At the end, if we have searched through all the trees, we should return False if the value, e is not found.  
+
+\end{solution}
+\begin{paragraph}
+4 Implement a function max\_tree, which takes a tree t. It returns a new tree with the exact same structure as t; at each node in the new tree, the entry is the largest number that is contained in that node's subtrees or the corresponding node in t. 
+\end{paragraph}
+\begin{lstlisting}
+def max_tree(t):
+>>> max_tree(tree(1, [tree(5, [tree(7)]),tree(3,[tree(9),tree(4)]),tree(6)]))
+    tree(9, [tree(7, [tree(7)]),tree(9,[tree(9),tree(4)]),tree(6)])
+    if ___________:
+        return _________________
+    else:
+    	new_branches= ______________________________
+    	new_label = __________________________________
+    	return ______________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def max_tree(t):
+     if is_leaf(t):
+    	return tree(root(t))
+     else:
+    	new_branches = [max_tree(b) for b in branches(t)]
+    	new_label = max([root(t)] + [root(s) for s in new_branches])
+    	return tree(new_label, new_branches)
+\end{lstlisting}
+\end{solution}
+\newpage
+\question
+Challenge Question: The level-order traversal of a tree is defined as visiting the nodes in each level of a tree before moving onto the nodes in the next level. For example, the level order of the following tree is: 3 7 8 4 
+\begin{verbatim}
+                               3
+                            /  |  \
+                          7    8   4 
+\end{verbatim}
+ Write a function \textbf{level\_order} that takes in a tree as the parameter and returns a list of the values of the nodes in level order. 
+ 
+ \begin{lstlisting}
+ def level_order(tree):
+ |\begin{solution}
+ \begin{verbatim}
+ #iterative solution
+def level_order(tree)
+    if not tree:
+        return []
+    current_level, next_level = [label(tree)], [tree]
+    while next_level:
+        find_next= []
+        for b in next_level:
+            find_next.extend(branches(b))
+        next_level = find_next
+        current_level.extend([label(t) for t in next_level])
+    return current_level
+    
+ \end{verbatim}
+ \end{solution}|
+ \end{lstlisting}
+ \hfill\break
+\hfill\break
+\hfill\break
+ \hfill\break
+\hfill\break
+\hfill\break
+
+\question 
+Challenge Question: Write a function \textbf{all\_paths} which will return a list of lists of all the possible paths of an input tree, t. When the function is called on the same tree as the problem above, the function would return: $[[3,7],[3,8],[3,4]]$
+\begin{lstlisting}
+def all_paths(t):
+    if _______________:
+        ____________________
+    else:
+        ___________________
+        ____________________
+            ________________________
+                ______________________
+        __________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def all_paths(t):
+    if is_leaf(t):
+        return [[label(t)]]
+    else:
+        total = []
+        for b in branches(t):
+            for path in all_paths(b):
+                total.append([label(t)] + path)
+        return total
+\end{lstlisting}
+\end{solution}
+

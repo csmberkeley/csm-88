@@ -1,0 +1,14 @@
+There are many different implementations of sequences in Python. Today, we'll
+explore the linked list implementation.
+
+A linked list is either an empty linked list, or a Link object containing a
+\texttt{first} value and the \texttt{rest} of the linked list.
+
+To check if a linked list is an empty linked list, compare it against the class
+attribute \texttt{Link.empty}:
+\begin{lstlisting}
+if link is Link.empty:
+    print('This linked list is empty!')
+else:
+    print('This linked list is not empty!')
+\end{lstlisting}

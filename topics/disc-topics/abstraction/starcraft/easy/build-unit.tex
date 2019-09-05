@@ -1,0 +1,34 @@
+\question Implement {\tt build\_unit}. This function takes in a building and
+resource bundle. First, it checks whether the amount of each resources provided
+in the bundle is greater than or equal to the amount the building was
+constructed with. If it is not, it prints out "We require more minerals!" if
+more minerals are needed, or "We require more vespene gas!" if more gas is
+needed, or both.  Otherwise, it creates a new copy of the building's unit and
+returns it.
+
+\begin{lstlisting}
+def build_unit(building, bundle):
+    """Constructs a unit if given the minimum amount of resources. Otherwise, prints an error message.
+    >>> barracks = make_building(make_unit('Go go go!', 6),
+    ...                          make_resource_bundle(50, 0))
+    >>> marine = build_unit(barracks, make_resource_bundle(20, 20))
+    We require more minerals!
+    >>> marine = build_unit(barracks, make_resource_bundle(50, 0))
+    >>> print(get_catchphrase(marine))
+    Go go go!
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+minerals, gas = get_minerals(bundle), get_gas(bundle)
+b_minerals = get_minerals(get_bundle(building))
+b_gas = get_gas(get_bundle(building))
+if minerals >= b_minerals and gas >= b_gas:
+    unit = get_unit(building)
+    return make_unit(get_catchphrase(unit), get_damage(unit))
+if minerals < b_minerals:
+    print("We require more minerals!")
+if gas < b_gas:
+    print("We require more vespene gas!")
+\end{lstlisting}
+\end{solution}

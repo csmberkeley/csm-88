@@ -1,0 +1,31 @@
+We can make our own classes iterable using the \lstinline$__iter__$ method,
+which returns an iterator object. Because generators are technically iterators,
+you can implement \lstinline$__iter__$ methods using them. For example:
+
+\begin{lstlisting}
+class Naturals():
+    def __iter__(self):
+        current = 0
+        while True:
+            yield current
+            current += 1
+\end{lstlisting}
+
+\lstinline$Naturals$'s \lstinline$__iter__$ method now returns a generator
+object. The behavior of \lstinline$Naturals$ is almost the same as before:
+
+\begin{lstlisting}
+>>> nats = Naturals()
+>>> nats_iterator1 = iter(nats)
+>>> next(nats_iterator1)
+0
+>>> next(nats_iterator1)
+1
+>>> nats_iterator2 = iter(nats)
+>>> next(nats_iterator2)
+0
+\end{lstlisting}
+
+In this example, we can iterate over the same object more than once by calling
+\textbf{iter} multiple times. Note that \lstinline$nats$ is an iterable
+object and the \lstinline$nats_iterator$'s are generators.

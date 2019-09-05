@@ -1,0 +1,40 @@
+\marginpar{\subimport{../code/}{quote.tex}}
+
+Recall that the \texttt{quote} special form prevents the Scheme interpreter
+from executing a following expression. We saw that this helps us create complex
+lists more easily than repeatedly calling \texttt{cons} or trying to get the
+structure right with \texttt{list}. It seems like this form would come in handy
+if we are trying to construct complex Scheme expressions with many nested
+lists.
+
+Consider that we rewrite the \texttt{twice} macro as follows:
+
+\begin{lstlisting}
+(define-macro (twice f)
+  '(begin f f))
+\end{lstlisting}
+
+This seems like it would have the same effect, but since the \texttt{quote}
+form prevents any evaluation, the resulting expression we create would actually
+be \texttt{(begin f f)}, which is not what we want.
+
+The \textbf{quasiquote} allows us to construct literal lists in a similar way
+as quote, but also lets us specify if any sub-expression within the list should be
+evaluated.
+
+\marginpar{\subimport{../code/}{unquote.tex}}
+At first glance, the quasiquote (which can be invoked with the backtick \`{} or
+the \texttt{quasiquote} special form) behaves exactly the same as \texttt{'} or
+\texttt{quote}.  However, using quasiquotes gives you the ability to
+\textbf{unquote} (which can be invoked with the comma \texttt{,} or the
+\texttt{unquote} special form). This removes an expression from the quoted
+context, evaluates it, and places it back in.
+
+By combining quasiquotes and unquoting, we can often save ourselves a lot
+of trouble when building macro expressions.
+
+Here is how we could use quasiquoting to rewrite our previous example:
+\begin{lstlisting}[language=Scheme]
+(define-macro (twice f)
+  `(begin ,f ,f))
+\end{lstlisting}

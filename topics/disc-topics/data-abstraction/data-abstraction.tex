@@ -1,0 +1,67 @@
+
+\question
+What are the two types of functions necessary to make an Abstract Data Type? What do they do?
+
+\begin{solution}[0.25in]
+Constructors make the ADT.\\
+Selectors take instances of the ADT and output relevant information stored in it.
+\end{solution}
+
+\question
+Assume that \textbf{rational}, \textbf{numer}, \textbf{denom}, and \textbf{gcd} run without error and behave as described below. Can you identify where the abstraction barrier is broken? Come up with a scenario where this code runs without error and a scenario where this code would stop working.
+
+\begin{lstlisting}[language=Python]
+def rational(num, den): # Returns a rational number ADT
+    #implementation not shown
+def numer(x): # Returns the numerator of the given rational
+    #implementation not shown
+def denom(x): # Returns the denominator of the given rational
+    #implementation not shown
+def gcd(a, b): # Returns the GCD of two numbers
+    #implementation not shown
+
+def simplify(f1): #Simplifies a rational number
+    g = gcd(f1[0], f1[1])
+    return rational(numer(f1) // g, denom(f1) // g)
+
+def multiply(f1, f2): # Multiples and simplifies two rational numbers
+    r = rational(numer(f1) * numer(f2), denom(f1) * denom(f2))
+    return simplify(r)
+
+x = rational(1, 2)
+y = rational(2, 3)
+multiply(x, y)
+\end{lstlisting}
+
+\begin{solution}
+The abstraction barrier is broken inside simplify(f1) when calling gcd(f1[0], f1[1]). This assumes rational returns a type that can be indexed through. i.e. This would work if rational returned a list. However, this would not work if rational returned a dictionary.\\
+
+The correct implementation of simplify would be\\
+\begin{verbatim}
+def simplify(f1): 
+    g = gcd(numer(x), denom(x))
+    return rational(numer(f1) // g, denom(f1) // g)
+\end{verbatim}
+\end{solution}
+
+\question 
+Check your understanding
+\begin{paragraph}
+1 How do we know what we are breaking an abstraction barrier? 
+\end{paragraph}
+\begin{solution}
+Put simply, a Data Abstraction Violation is when you bypass the constructors and selectors for an ADT, and directly use how it’s implemented in the rest of your code, thus assuming that its implementation will not change. \\ 
+We cannot assume we know how the ADT is constructed except by using constructors and likewise, we cannot assume we know how to access details of our ADT except through selectors. The details are supposed to be abstracted away by the constructors and selectors. If we bypass the constructors and selectors and access the details directly, any small change to the implementation of our ADT could break our entire program.
+\end{solution}
+\begin{paragraph}
+2 What are the benefits to Data Abstraction? 
+\end{paragraph}
+\begin{solution}
+With a correct implementation of these data types, it makes for more readable code because: \\ 
+-You can make constructors and selectors have more informative names. \\ 
+-Makes collaboration easier \\ 
+-Other programmers don't have to worry about implementation details. \\ 
+-Prevents error propagation. \\
+-Fix errors in a single function rather than all over your program.
+
+\end{solution}

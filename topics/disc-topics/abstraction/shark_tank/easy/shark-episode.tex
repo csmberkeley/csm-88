@@ -1,0 +1,37 @@
+\question 
+Let’s simulate a presentation by an aspiring entrepreneur.
+In the pitch, the entrepreneur describes an idea 
+to a panel (a list) of sharks.
+If the idea is good
+and any of the sharks has enough money for
+the entrepreneur's request, the entrepreneur
+succeeds!
+
+Implement {\tt episode}, which prints the idea of the entrepreneur 
+and then returns {\tt True} if any of the sharks fund it and {\tt False} otherwise.
+Don't violate any data abstractions!
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}
+def episode(entrepreneur, shark):
+    """Simulates a pitch from entrepreneur to shark
+    >>> wfs = make_idea('Water-free shower', True)
+    >>> nikki = make_entrepreneur(wfs, 100000)
+    >>> sharks = [make_shark(100000000), make_shark(10000)]
+    >>> result = episode(nikki, sharks)
+    Water-free shower
+    >>> result is True
+    True
+    """
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    idea = get_idea(entrepreneur)
+    print(get_name(idea))
+    for shark in sharks:
+        if is_good(idea) and get_money_request(entrepreneur) <= get_max_funding(shark):
+            return True
+    return False
+\end{lstlisting}
+\end{solution}
+\end{minipage}

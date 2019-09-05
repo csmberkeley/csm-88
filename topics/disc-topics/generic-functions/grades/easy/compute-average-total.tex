@@ -1,0 +1,37 @@
+\question Albert and Mark also use their own grade objects to store
+grades. Here are the definitions for their grade classes:
+
+\begin{lstlisting}
+class AlbertGrade:
+    def __init__(self, total_points):
+        if total_points > 90:
+            letter_grade = 'A'
+        else:
+            letter_grade = 'F'
+        self.grade_info = (total_points, letter_grade)
+
+class MarkGrade:
+    def __init__(self, total_points):
+        self.grade_info = total_points
+\end{lstlisting}
+
+Write a function {\tt compute\_average\_total}, which takes in a list
+of records (that could be formatted via either standard) and computes
+the average total points of all the students in the list.
+\begin{solution}[.2in]
+\begin{lstlisting}
+type_tag.tags[AlbertGrade] = 'AW'
+type_tag.tags[MarkGrade] = 'MM'
+
+def get_points(grade):
+    data_type = type_tag(grade)
+    return get_points.implementations[data_type](grade)
+def compute_average_total(records):
+    total = 0
+    for record in records:
+        grade = get_grade(record)
+        total += get_points(grade)
+    return total / len(records)
+\end{lstlisting}
+\end{solution}
+

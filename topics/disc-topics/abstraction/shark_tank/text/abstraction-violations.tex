@@ -1,0 +1,13 @@
+Data abstraction violations happen when we assume we know something about how
+our data is represented. For example, if we use pairs and we forget to use a
+selector and instead use the index.
+
+\begin{lstlisting}
+>>> lauren = make_entrepreneur('CS61A App.', 2000000)
+>>> print(lauren[0]) # violation!!!!
+CS61A App.
+\end{lstlisting}
+
+In this example, we assume that {\tt lauren} is represented as a list because
+we use the square bracket indexing. However, we should have used the selector
+{\tt get\_idea}. This is a data abstraction violation.

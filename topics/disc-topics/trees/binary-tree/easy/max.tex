@@ -1,0 +1,23 @@
+\question Write the function \texttt{tree\_max(t)} that
+takes in a BinTree and returns the max value in the tree.
+
+\begin{lstlisting}
+def tree_max(t):
+    """Returns the max entry in a BinTree t."""
+\end{lstlisting}
+\begin{solution}[1.75in]
+\begin{lstlisting}
+    ret = t.root
+    if t.left != BinTree.empty:
+        ret = max(ret, tree_max(t.left))
+    if t.right != BinTree.empty:
+        ret = max(tree_max(t.right), ret)
+    return ret
+
+    # Another Solution
+    if t == BinTree.empty:
+        return - float('inf')
+    return max(t.root,
+               tree_max(t.left), tree_max(t.right))
+\end{lstlisting}
+\end{solution}

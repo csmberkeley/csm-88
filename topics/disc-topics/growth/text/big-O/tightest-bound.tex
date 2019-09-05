@@ -1,0 +1,7 @@
+When using big-O notation, we always want to find the ''tightest bound''. Recall
+that \texttt{factorial(n)} requires \texttt{n} multiplications. It's technically correct to
+say that \texttt{factorial(n)} is in $O(n^2)$, since $n^2 \geq n$ for all positive
+values of \texttt{n}, but it's not very informative. Instead, we want to find the
+smallest big-O that \texttt{factorial(n)} belongs to. Since our implementation of
+\texttt{factorial(n)} must use at most \texttt{n} multiplications in all cases, we say its
+tightest bound is $O(n)$.

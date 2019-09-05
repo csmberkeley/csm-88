@@ -1,0 +1,44 @@
+\begin{blocksection}
+\question Here are some possible functions that can be passed through as
+\lstinline$f$.
+
+\begin{lstlisting}
+def square(n):
+    return n * n
+
+def double(n):
+    return 2 * n
+\end{lstlisting}
+
+What will the following Python statements display?
+
+\begin{lstlisting}
+>>> negate(square, 5)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+-25
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=q3sZ3lX25eI&list=PLx38hZJ5RLZfg6jvEBBtjc5fnc5BclyEb&index=4}{Video Walkthrough}
+\end{solution}
+
+\begin{lstlisting}
+>>> negate(double, -19)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+38
+\end{lstlisting}
+\href{https://youtu.be/q3sZ3lX25eI?t=3m13s}{Video Walkthrough}
+\end{solution}
+
+\begin{lstlisting}
+>>> negate(double, negate(square, -4))
+\end{lstlisting}
+\begin{solution}[0.3in]
+\begin{lstlisting}
+32
+\end{lstlisting}
+\href{https://youtu.be/q3sZ3lX25eI?t=5m49s}{Video Walkthrough}
+\end{solution}
+\end{blocksection}

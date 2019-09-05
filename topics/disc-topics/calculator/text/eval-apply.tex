@@ -1,0 +1,65 @@
+The evaluation component of an interpreter determines the type of an expression
+and executes corresponding evaluation rules.
+
+Here are the evaluation rules for the three types of Calculator expressions:
+
+\begin{enumerate}[1.]
+    \item \textbf{Numbers} are self-evaluating. For example, the numbers 3.14
+    and 165 just evaluate to themselves.
+
+    \item \textbf{Names} are looked up in the \texttt{OPERATORS} dictionary.
+    Each name (e.g. \texttt{'+'}) is bound to a corresponding function in Python
+    that does the appropriate operation on a list of numbers (e.g. \texttt{sum}).
+
+    \item \textbf{Call expressions} are evaluated the same way you've been
+    doing them all semester:
+        \begin{enumerate}[(1)]
+            \item \textbf{Evaluate} the operator, which evaluates to a function.
+            \item \textbf{Evaluate} the operands from left to right.
+            \item \textbf{Apply} the function to the value of the operands.
+        \end{enumerate}
+\end{enumerate}
+
+\begin{minipage}{\textwidth}
+The function {\tt calc\char`_eval} takes in a Calculator expression represented
+in Python and implements each of these rules:
+\begin{lstlisting}
+def calc_eval(exp):
+    """Evaluates a Calculator expression represented as a Pair."""
+    if isinstance(exp, Pair): # Call expressions
+        fn = calc_eval(exp.first)
+        args = list(exp.second.map(calc_eval))
+        return calc_apply(fn, args)
+    elif exp in OPERATORS:    # Names
+        return OPERATORS[exp]
+    else:                     # Numbers
+        return exp
+\end{lstlisting}
+\end{minipage}
+
+Note that \texttt{calc\_eval} is recursive! In order to evaluate call
+expressions, we must call \texttt{calc\_eval} on the operator and each of the
+operands.
+
+The \textit{apply} step in the Calculator language is straight-forward, since we only
+have primitive procedures. This step is more complex when it comes to
+applying Scheme procedures, which may include user-defined procedures.
+
+Given the Python function that implements the appropriate Calculator operation
+and a Python list of numbers, the {\tt calc\char`_apply} function simply calls
+the function on the arguments, and regular Python evalutation rules take place.
+
+\begin{lstlisting}
+def calc_apply(fn, args):
+    """Applies a Calculator operation to a list of numbers."""
+    return fn(args)
+\end{lstlisting}
+
+%The \texttt{*args} syntax expands a list of arguments. For example:
+%\begin{lstlisting}
+%>>> calc_apply(print, [1, 2, 3]) # Becomes print(1, 2, 3), not print([1, 2, 3])
+%1 2 3
+%\end{lstlisting}
+%\begin{solution}[0.1in]
+%\href{https://youtu.be/pRo4QX4c5lk}{Video walkthrough}
+%\end{solution}

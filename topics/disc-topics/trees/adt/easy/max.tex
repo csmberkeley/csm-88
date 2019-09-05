@@ -1,0 +1,17 @@
+\question
+Write a function that returns the largest number in a tree.
+\begin{lstlisting}
+def tree_max(t):
+    """Return the maximum label in a tree.
+
+    >>> t = tree(4, [tree(2, [tree(1)]), tree(10)])
+    >>> tree_max(t)
+    10
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    return max([label(t)] + [tree_max(branch) for branch in branches(t)])
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=VcZPTlE56G8&vq=hd1080&t=49m52s}{Video walkthrough}
+\end{solution}

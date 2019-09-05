@@ -1,0 +1,19 @@
+A lambda expression evaluates to a function, called a lambda function. In the code above, \texttt{lambda y: x + y} is a lambda expression, and can be read as “a function that takes in one parameter \texttt{y} and returns \texttt{x + y}.” 
+
+A lambda expression by itself evaluates to a function but does not bind it to a name. Also note that the return expression of this function is not evaluated until the lambda is called. This is similar to how defining a new function using a def statement does not execute the function’s body until it is later called. 
+
+\begin{lstlisting}[linewidth=\textwidth]
+>>> what = lambda x : x + 5
+>>> what
+<function <lambda> at 0xf3f490>
+\end{lstlisting}
+
+
+Unlike \texttt{def} statements, lambda expressions can be used as an operator or an operand to a call expression. This is because they are simply one-line expressions that evaluate to functions.
+
+\begin{lstlisting}[linewidth=\textwidth]
+>>> (lambda y: y + 5)(4) 
+9
+>>> (lambda f, x: f(x))(lambda y: y + 1, 10)
+11
+\end{lstlisting}

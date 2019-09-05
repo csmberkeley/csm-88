@@ -1,0 +1,104 @@
+\question
+Fill in the classes \texttt{Emotion}, \texttt{Joy}, and \texttt{Sadness} below so that you get the following output from the Python interpreter.
+
+\begin{blocksection}
+\begin{lstlisting}
+>>> Emotion.num
+0
+>>> joy = Joy()
+>>> sadness = Sadness()
+>>> Emotion.num # number of Emotion instances created
+2
+>>> joy.power
+5
+>>> joy.catchphrase() # Print Joy's catchphrase
+Think positive thoughts
+>>> sadness.catchphrase() #Print Sad's catchphrase
+I'm positive you will get lost
+>>> sadness.power
+5
+>>> joy.feeling(sadness) # When both Emotions have same power value, print "Together"
+Together
+>>> sadness.feeling(joy)
+Together
+>>> joy.power = 7
+>>> joy.feeling(sadness) # Print the catchphrase of the more powerful feeling before the less powerful feeling
+Think positive thoughts
+I'm positive you will get lost
+>>> sadness.feeling(joy)
+Think positive thoughts 
+I'm positive you will get lost
+\end{lstlisting}
+\newpage
+\end{blocksection}
+
+\begin{blocksection}
+\begin{lstlisting}
+class Emotion(_______):
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+class Emotion(object):
+    num = 0
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    def __init__(self):
+\end{lstlisting}
+\begin{solution}[.80in]
+\begin{lstlisting}
+        self.power = 5
+        Emotion.num += 1
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+
+    def feeling(self, other):
+\end{lstlisting}
+\begin{solution}[2.3in]
+\begin{lstlisting}
+        if self.power > other.power:
+            self.catchphrase()
+            other.catchphrase()
+        elif other.power > self.power:
+            other.catchphrase()
+            self.catchphrase()
+        else:
+            print("Together")
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+
+class Joy(_______):
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}
+class Joy(Emotion):
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    def catchphrase(self):
+\end{lstlisting}
+\begin{solution}[0.55in]
+\begin{lstlisting}
+        print("Think positive thoughts!")
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+
+class Sadness(_______):
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}
+class Sadness(Emotion):
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    def catchphrase(self):
+\end{lstlisting}
+\begin{solution}[0.55in]
+\begin{lstlisting}
+        print("I'm positive you will get lost.")
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

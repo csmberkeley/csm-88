@@ -1,0 +1,52 @@
+\question
+Implement an iterator class called Filter. The \texttt{\_\_init\_\_} method for
+Filter takes an iterable and a one-argument function that either returns True
+or False. The Filter iterator represents a sequence that only contains elements
+of the iterable for which the predicate function returns True. Do not use a
+generator in your solution.
+
+\begin{lstlisting}[language=Python]
+class Filter :
+    """
+    >>> is_even = lambda x: x % 2 == 0
+    >>> for elem in Filter(range(5) , is_even):
+    ...     print(elem)
+    0
+    2
+    4
+    >>> all_odd = (2*y-1 for y in range (5))
+    >>> for elem in Filter(all_odd, is_even):
+    ...     print(elem) # No elements are even !
+    >>> s = Filter(naturals(), is_even)
+    >>> next(s)
+    2
+    >>> next(s)
+    4
+    """
+    def __init__(self, iterable, fn):
+\end{lstlisting}
+\begin{solution}[1.25in]
+\begin{lstlisting}[language=Python]
+        self.iterator = iter(iterable)
+        self.fn = fn
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    def __iter__( self ):
+\end{lstlisting}
+\begin{solution}[.75in]
+\begin{lstlisting}[language=Python]
+    return self
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    def __next__( self ):
+\end{lstlisting}
+\begin{solution}[.75in]
+\begin{lstlisting}[language=Python]
+    candidate = next(self.iterator)
+    while not self.fn(candidate):
+        candidate = next(self.iterator)
+    return candidate
+\end{lstlisting}
+\end{solution}

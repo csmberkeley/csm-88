@@ -1,0 +1,20 @@
+\question Define {\tt concat}, which takes a list of lists, and constructs
+a list by concatenating all the elements together into one list.
+Use your {\tt my-append} function to concatenate two lists.
+\begin{lstlisting}[language=Scheme]
+(define (concat lsts)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=Scheme]
+    (if (null? lsts)
+        nil
+        (my-append (car lsts) (concat (cdr lsts))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+)
+scm> (concat '((1 4 7) '(2 5 8)))
+(1 4 7 2 5 8)
+scm> (concat '((1 4 7) (2 5 8) (3 6 9)))
+(1 4 7 2 5 8 3 6 9)
+\end{lstlisting}

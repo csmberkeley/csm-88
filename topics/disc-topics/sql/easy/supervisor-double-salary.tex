@@ -1,0 +1,12 @@
+\question Write a query that creates a table with columns: employee,
+salary, supervisor and supervisor's salary, containing all supervisors who
+earn more than twice as much as the employee.
+
+\begin{solution}[1in]
+\begin{lstlisting}[language=SQL]
+SELECT e.name, e.salary, s.name, s.salary
+  FROM records AS e, records AS s
+  WHERE e.supervisor = s.name AND e.salary * 2 < s.salary;
+\end{lstlisting}
+\href{https://youtu.be/BIV5O1U9Zdw?t=1m25s}{Video walkthrough}
+\end{solution}

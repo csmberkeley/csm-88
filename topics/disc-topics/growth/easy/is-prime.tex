@@ -1,0 +1,46 @@
+\question
+Previously, we looked at the \texttt{is\_prime} function. Here's the code for it:
+
+\begin{blocksection}
+\begin{lstlisting}
+def is_prime(n):
+    if n == 1:
+        return False
+    k = 2
+    while k < n:
+        if n % k == 0: 
+            return False
+        k += 1 
+    return True
+\end{lstlisting}
+\end{blocksection}
+
+What is the order of growth of \texttt{is\_prime}?
+
+\begin{solution} [0.5in]
+    $O(n)$
+\end{solution}
+
+How can we change \texttt{is\_prime} so that it runs in $O(\sqrt{n})$?
+
+\begin{lstlisting}
+def is_prime(n):
+\end{lstlisting}
+
+\begin{solution}[1.0in]
+If {\texttt n} is not prime, it can be factored into at least two factors. If both
+of the factors are greater than the $\sqrt{n}$, then their product is greater
+than \texttt{n}. Therefore, one of the factors must be less than or equal to
+$\sqrt{n}$.
+\begin{lstlisting}
+    if n == 1:
+        return False
+    k = 2
+    while k * k <= n:
+        if n % k == 0:
+            return False
+        k += 1
+    return True
+\end{lstlisting}
+\end{solution}
+

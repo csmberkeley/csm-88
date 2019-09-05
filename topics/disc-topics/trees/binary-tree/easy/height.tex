@@ -1,0 +1,19 @@
+\question Define a function {\tt height(t)} that returns the height of a
+BinTree.  The height is defined as the length of the {\it longest} path from
+the root node down to a leaf node. If a BinTree just consists of a root with
+no children, its height is 0.
+
+\begin{lstlisting}
+def height(t):
+    """Returns the height of the BinTree t."""
+\end{lstlisting}
+\begin{solution}[1.75in]
+\begin{lstlisting}
+    result = 0
+    if t.left != BinTree.empty:
+        result = 1 + height(t.left)
+    if  t.right != BinTree.empty:
+        result = max(1 + height(t.right), result)
+    return result
+\end{lstlisting}
+\end{solution}

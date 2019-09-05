@@ -1,0 +1,26 @@
+\question
+Implement {\tt add\_student}, which takes in a discussion section and a string
+representing a student's name, and returns a new discussion with the new
+student added to the roster. The list of students for the new discussion should
+be a new list. Remember to use the constructor and selectors!
+
+\begin{lstlisting}
+def add_student(disc, student):
+    """ Adds a student to this discussion.
+    >>> disc = make_discussion("Chris", 4, ["Abhinav", "Brian"])
+    >>> new_disc = add_student(disc, "Carl")
+    >>> get_students(new_disc)
+    ["Abhinav", "Brian", "Carl"]
+    >>> get_students(disc)
+    ["Abhinav", "Brian"]
+    """
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+    new_students = get_students(disc) + [student]
+    ta = get_ta(disc)
+    time = get_time(disc)
+    return make_discussion(ta, time, new_students)
+\end{lstlisting}
+\end{solution}

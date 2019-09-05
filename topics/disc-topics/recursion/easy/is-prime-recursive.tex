@@ -1,0 +1,48 @@
+\question In discussion 1, we implemented the function 
+\texttt{is\_prime}, which takes in a positive integer
+and returns whether or not that integer is prime, iteratively.
+
+Now, let's implement it recursively! As a reminder, an integer
+is considered prime if it has exactly two unique factors: 1 and itself.
+
+\begin{lstlisting}
+def is_prime(n):
+    """
+    >>> is_prime(7)
+    True
+    >>> is_prime(10)
+    False
+    >>> is_prime(1)
+    False
+    """
+    def prime_helper(____________________):
+
+        if   ________________________:
+
+             ________________________
+
+        elif ________________________:
+
+             ________________________
+        
+        else:
+
+             ________________________
+
+    return __________________________
+\end{lstlisting}
+
+\begin{blocksection}
+\begin{solution}[.5in]
+\begin{lstlisting}
+    def prime_helper(index):
+        if index == n:
+            return True
+        elif n % index == 0 or n == 1:
+            return False
+        else:
+            return prime_helper(index + 1)
+    return prime_helper(2)
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

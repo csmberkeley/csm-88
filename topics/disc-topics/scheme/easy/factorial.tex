@@ -1,0 +1,16 @@
+\question Write a function that returns the factorial of a number.
+
+\begin{lstlisting}[language=Scheme]
+(define (factorial x)
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}[language=Scheme]
+    (if (< x 2)
+        1
+        (* x (factorial (- x 1)))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+\end{lstlisting}
+
+\walkthrough{https://youtu.be/DlA7f9KTs5o?list=PLx38hZJ5RLZfBXJRWlsQyOg3lrHzfvWu0&t=1059}

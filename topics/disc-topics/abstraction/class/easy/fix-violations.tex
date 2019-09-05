@@ -1,0 +1,41 @@
+\question
+The TAs have written the following code using the above data abstraction.
+However, it contains some abstraction violations. Underline each occurence of
+an abstraction violation. Then, if possible, write the correct line of code to the right.
+
+\begin{lstlisting}
+def check_start(disc1, disc2):
+    """Checks whether disc1 and disc2 have the same starting time."""
+    return disc1[1] == disc2[1]:
+
+def print_students(disc):
+    """Prints the name of each student in the discussion."""
+    for student in disc[2]:
+        print(student)
+
+def print_duplicates(disc1, disc2):
+     """Prints each student that attended both disc1 and disc2."""
+    students_1, students_2 = get_students(disc1), get_students(disc2)
+    for i in range(len(students_1)):
+        if students_1[i] in students_2:
+            print(students_1[i])
+\end{lstlisting}
+
+\begin{solution}[.5cm]
+Below is the code with all abstraction violations removed. Notice that
+{\tt print\_duplicates} did not contain any data abstraction violations.
+\begin{lstlisting}
+def check_start(disc1, disc2):
+    return get_time(disc1) == get_time(disc2):
+
+def print_students(disc):
+    for student in get_students(disc2):
+        print(student)
+
+def print_duplicates(disc1, disc2):
+    students_1, students_2 = get_students(disc1), get_students(disc2)
+    for i in range(len(students_1)):
+        if students_1[i] in students_2:
+            print(students_1[i])
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,49 @@
+\question The following code has been loaded into the Python
+interpreter:
+
+\begin{lstlisting}
+def skipped(f):
+    def g():
+        return f
+    return g
+def composed(f, g):
+    def h(x):
+        return f(g(x))
+    return h
+def added(f, g):
+    def h(x):
+        return f(x) + g(x)
+    return h
+def square(x):
+    return x*x
+def two(x):
+    return 2
+\end{lstlisting}
+
+What will Python output when the following lines are evaluated?
+\begin{lstlisting}
+>>> composed(square, two)(7)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+4
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> skipped(added(square, two))()(3)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+11
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> composed(two, square)(2)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+2
+\end{lstlisting}
+\end{solution}

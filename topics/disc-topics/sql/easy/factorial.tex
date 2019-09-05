@@ -1,0 +1,32 @@
+\question
+Write a query that creates a table called \texttt{factorials}, which has a
+single column, and a row for each factorial for the numbers 0 to 10 (inclusive).
+To do this, create a local table with two columns: the first column is the
+numbers 0 to 10 (inclusive), and the second column is their factorials.
+
+\begin{lstlisting}[language=SQL]
+create table factorials as
+\end{lstlisting}
+\begin{solution}[3.5cm]
+\begin{lstlisting}[language=SQL]
+  with fact(n, nfact) as (
+    select 0, 1 union
+    select n + 1, nfact * (n + 1) from fact where n < 10
+  )
+  select nfact from fact;
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=SQL]
+sqlite> select * from factorials;
+1
+1
+2
+6
+24
+120
+720
+5040
+40320
+362880
+3628800
+\end{lstlisting}

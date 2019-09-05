@@ -1,0 +1,20 @@
+\question
+Write a function that takes in a a linked list and returns the sum of all
+its elements. You may assume all elements in \texttt{lnk} are integers.
+
+\begin{lstlisting}
+def sum_nums(lnk):
+    """
+    >>> a = Link(1, Link(6, Link(7)))
+    >>> sum_nums(a)
+    14
+    """
+\end{lstlisting}
+
+\begin{solution}[2.0in]
+\begin{lstlisting}
+    if lnk == Link.empty:
+        return 0
+    return lnk.first + sum_nums(lnk.rest)
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,39 @@
+\question Consider the function below.
+
+\begin{lstlisting}
+def foo(x, y):
+    y = y + 4
+    x = y / 2
+    return x * y
+\end{lstlisting}
+
+How many arguments does this function take in, and what type should they be?
+
+\begin{solution}[.3in]
+The \texttt{foo} function takes in two arguments; the second has to be a
+number, and though it seems like the first should also be a number, it can be
+anything, because the first parameter gets reassigned in the second line!
+\end{solution}
+
+Consider the call expression \texttt{foo(5, 1 + 3)}. What are \texttt{x} and
+\texttt{y} bound to inside the body of the function during this call?
+
+\begin{solution}[.3in]
+The parameter \texttt{x} is bound to \texttt{5} and the parameter \texttt{y} is
+bound to \texttt{4} (the result of \texttt{1 + 3}).
+\end{solution}
+
+What does the call expression \texttt{foo(5, 4)} return?
+
+\begin{solution}[.3in]
+\texttt{32}. First, \texttt{y} is reassigned to \texttt{8}. Then, \texttt{x} is
+reassigned to \texttt{4}. Finally, the result of \texttt{4 * 8} is returned.
+\end{solution}
+
+What about \texttt{foo(10, 4)}?
+
+\begin{solution}[.5in]
+The output would still be \texttt{32}. Notice that the first argument will
+never affect our result because \texttt{x} gets reassigned in the second line.
+\end{solution}
+

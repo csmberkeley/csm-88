@@ -1,0 +1,61 @@
+\begin{blocksection}
+
+\question Write facts for {\tt prefix}, a relation between two lists that is
+satisfied if and only if elements of the first list are the first elements of
+the second list, in order.
+
+\lstset{language={}}
+\begin{lstlisting}
+> (query (prefix (being for the) (being for the
+                  benefit of mister kite)))
+Success!
+> (query (prefix (for no one) (for no one)))
+Success!
+> (query (prefix () (got to get you into my life)))
+Success!
+> (query (prefix (want i to) (i want to hold your hand)))
+Failed.
+\end{lstlisting}
+
+\begin{solution}[1.7in]
+\begin{lstlisting}
+(fact (prefix () ?any-list))
+(fact (prefix (?first . ?small) (?first . ?big))
+      (prefix ?small ?big))
+\end{lstlisting}
+
+Note: You should try out the query 
+\texttt{(query (prefix ?sub (1 2 3 4 5)))}.
+\end{solution}
+
+\end{blocksection}
+
+\begin{blocksection}
+
+\question Write facts for {\tt sublist}, a relation between two lists that is
+satisfied if and only if the first is a consecutive sublist of the second. For
+example:
+
+\begin{lstlisting}
+> (query (sublist (give) (never gonna give you up)))
+Success!
+> (query (sublist (you up) (never gonna give you up)))
+Success!
+> (query (sublist () (never gonna give you up)))
+Success!
+> (query (sublist (never give up) (never gonna give you up)))
+Failed.
+> (query (sublist (let you down) (never gonna give you up)))
+Failed.
+\end{lstlisting}
+
+Hint: You will want to use the prefix fact that you previously defined.
+
+\begin{solution}[2in]
+\begin{lstlisting}
+(fact (sublist ?a ?b) (prefix ?a ?b))
+(fact (sublist ?sub (?first . ?rest)) (sublist ?sub ?rest))
+\end{lstlisting}
+\end{solution}
+
+\end{blocksection}

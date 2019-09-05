@@ -1,0 +1,20 @@
+Python classes can implement a useful abstraction technique known as
+\define{inheritance}. To illustrate this concept, consider the following
+\texttt{Dog} and \texttt{Cat} classes.
+
+\lstinputlisting{catdog.py}
+
+Notice that because dogs and cats share a lot of similar qualities, there is a
+lot of repeated code! To avoid redefining attributes and methods for similar
+classes, we can write a single \define{superclass} from which the similar
+classes \define{inherit}. For example, we can write a class called \texttt{Pet}
+and redefine \texttt{Dog} as a \define{subclass} of \texttt{Pet}:
+
+\lstinputlisting{pet.py}
+
+Inheritance represents a hierarchical relationship between two or more
+classes where one class \textit{is a} more specific version of the other, e.g.
+a dog \textit{is a} pet. Because \texttt{Dog} inherits from \texttt{Pet}, we
+didn't have to redefine \texttt{\_\_init\_\_} or \texttt{eat}.  However, since
+we want \texttt{Dog} to \texttt{talk} in a way that is unique to dogs, we did
+\define{override} the \texttt{talk} method.

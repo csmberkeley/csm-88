@@ -1,0 +1,43 @@
+\question 
+Here's a part of the Pascal's triangle:
+\begin{lstlisting}
+        Column:   0    1    2    3    4    ...
+        Row 0:    1
+        Row 1:    1    1
+        Row 2:    1    2    1
+        Row 3:    1    3    3    1
+        Row 4:    1    4    6    4    1
+        ...
+\end{lstlisting}
+
+Every number in Pascal's triangle is defined as the sum of the item
+above it and the item that is directly to the upper left of it, use
+{\tt 0} if the entry is empty.
+Define the procedure {\tt pascal(row, column)} which takes a row and a column,
+and finds the value at that position in the triangle. 
+
+\begin{lstlisting}
+def pascal(row, column):
+\end{lstlisting}
+\begin{solution}[2.3in]
+\begin{lstlisting}
+    if column == 0:
+        return 1
+    elif row == 0:
+        return 0
+    else:
+        return pascal(row - 1, column) + \
+               pascal(row - 1, column - 1)
+\end{lstlisting}
+
+\textbf{Background}: Pascal's triangle is a useful recursive definition that tells
+us the coefficients in the expansion of the polynomial $(x + a)^n$.
+Each element in the triangle has a coordinate, given by the row it
+is on and its position in the row (which you could call its column).
+
+\iffalse
+If there is a position that does not have an entry, we treat it as
+if we had a 0 there. Below are the first few rows of the triangle:
+\fi
+
+\end{solution}

@@ -1,0 +1,21 @@
+\question To make the \lstinline$Link$ class iterable, implement the
+\lstinline$__iter__$ method using a generator.
+
+\begin{lstlisting}
+class Link:
+    empty = ()
+
+    def __init__(self, first, rest=empty):
+        self.first = first
+        self.rest = rest
+
+    def __iter__(self):
+\end{lstlisting}
+
+\begin{solution}[.75in]
+\begin{lstlisting}
+        while self is not Link.empty:
+            yield self.first
+            self = self.rest
+\end{lstlisting}
+\end{solution}

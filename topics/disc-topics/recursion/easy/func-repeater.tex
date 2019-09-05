@@ -1,0 +1,45 @@
+\question \textbf{(Optional)}
+
+Define a function \texttt{make\_fn\_repeater} which takes in a 
+one-argument function \texttt{f} and an integer \texttt{x}. 
+It should return another function which takes in one argument, another integer.
+This function returns the result of applying \texttt{f} to \texttt{x} this
+number of times.
+
+Make sure to use recursion in your solution.
+
+\begin{lstlisting}
+def make_func_repeater(f, x):
+    """
+    >>> incr_1 = make_func_repeater(lambda x: x + 1, 1)
+    >>> incr_1(2) #same as f(f(x))
+    3
+    >>> incr_1(5)
+    6
+    """
+
+    def repeat(___________________):
+
+        if _______________________:
+
+           return __________________
+
+        else:
+
+           return __________________
+
+    return _________________________
+
+
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}
+    def repeat(i):
+        if i == 0:
+           return x
+        else:
+           return f(repeat(i - 1))
+    return repeat
+\end{lstlisting}
+\end{solution}

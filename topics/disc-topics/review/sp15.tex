@@ -1,0 +1,206 @@
+\section{Dynamic Scoping}
+\begin{lstlisting}[language=Scheme]
+scm> (define f (mu (x) (mu (y) (- x y))))
+scm> (define g (lambda (x) (lambda (y) ((f y) x))))
+scm> (define h (mu (x) (lambda (y) (g ((f x) y)))))
+scm> ((f 6) 1)
+
+scm> ((g 6) 1)
+
+scm> ((h 6) 1)
+
+scm> (((h 6) 1) 1)
+
+\end{lstlisting}
+
+\begin{solution}[0in]
+\begin{lstlisting}
+Unknown identifier `x'
+0
+(lambda (y) ((f y) x))
+0
+\end{lstlisting}
+\end{solution}
+
+\section{Iterables and Generators}
+\begin{questions}
+\question
+Modify the \texttt{Link} class so that it supports the iterable interface. Hint:
+use the \texttt{yield} statement to make the \texttt{\_\_iter\_\_} method a
+generator function.
+\begin{lstlisting}
+class Link:
+    empty = ()
+    def __init__(self, first, rest=empty):
+        self.first, self.rest = first, rest
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    def __iter__(self):
+        curr = self
+        while curr != Link.empty:
+            yield curr.first
+            curr = curr.rest
+\end{lstlisting}
+\end{solution}
+\end{questions}
+
+\section{Streams}
+\begin{questions}
+\question
+Implement the \texttt{tree\_to\_stream} function, which takes in a Tree \texttt{t} and returns a Stream that gives back the elements of \texttt{t} one by one. The Stream should be ordered so that parent values come before child values. You may find the provided \texttt{append\_streams} function helpful. See the example for more details.
+
+\begin{lstlisting}
+>>> t = Tree(1, [Tree(3, [Tree(4), Tree(5)]), Tree(2)])
+>>> s = tree_to_stream(t)
+>>> print_stream(s)
+< 1 3 4 5 2 >
+\end{lstlisting}
+
+\begin{lstlisting}
+def append_streams(s1, s2):
+    """
+    Returns a new stream of s1's elements, then s2's.
+    >>> s1 = Stream(1, lambda: Stream(2))
+    >>> s2 = append_streams(s1, s1)
+    >>> print_stream(s)
+    < 1 2 1 2 >
+    """
+    if s1 is Stream.empty:
+        return s2
+    return Stream(s1.first,
+                  lambda: append_streams(s1.rest, s2))
+\end{lstlisting}
+
+\begin{lstlisting}
+def tree_to_stream(t):
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    def compute_rest():
+        rest = Stream.empty
+        for b in t.branches:
+            rest = append_streams(rest, tree_to_stream(b))
+        return rest
+    return Stream(t.entry, compute_rest)
+\end{lstlisting}
+\end{solution}
+\end{questions}
+
+\clearpage
+
+\section{Scheme}
+\begin{questions}
+\question
+Write a Scheme function \texttt{follow-path-sum} that takes a binary tree \texttt{t} and a list \texttt{l} that consists of Boolean values, i.e. \texttt{\#t} and \texttt{\#f}, and returns the sum along the path of \texttt{t} specified by \texttt{l}, where \texttt{\#t} specifies left and \texttt{\#f} specifies right. After you write this function, try to reimplement it tail recursively. For example,
+
+\begin{center}
+\begin{tikzpicture}[level distance=1cm,
+                    level 1/.style={sibling distance=3cm},
+                    level 2/.style={sibling distance=1.5cm}]
+\node{\textbf{5}}
+  child {node {4}
+    child {node {6}}
+    child {node {0}}
+  }
+  child {node {\textbf{7}}
+    child {node {\textbf{-2}}}
+    child {node {8}}
+  };
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}[language=Scheme]
+scm> (follow-path-sum my-tree `(#f #t))
+10
+\end{lstlisting}
+
+For your reference:
+\begin{lstlisting}[language=Scheme]
+(define (make-btree entry left right)
+  (cons entry (cons left right)))
+(define (entry tree) (car tree))
+(define (left tree) (car (cdr tree)))
+(define (right tree) (cdr (cdr tree)))
+
+(define my-tree
+  (make-btree 5
+    (make-btree 4 (make-btree 6 nil nil) nil)
+    (make-btree 7 (make-btree -2 nil nil) (make-btree 8 nil nil))))
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}[language=Scheme]
+(define (follow-path-sum t l)
+  (if (null? l) (entry t)
+      (let ((next-tree (if (car l) (left t) (right t))))
+        (+ (entry t) (follow-path-sum next-tree (cdr l))))))
+\end{lstlisting}
+
+Tail recursive solution:
+\begin{lstlisting}[language=Scheme]
+(define (follow-path-sum t l)
+  (define (follow-path-sum-iter t l so-far)
+    (if (null? l) (+ so-far (entry t))
+      (let ((next-tree (if (car l) (left t) (right t))))
+        (follow-path-sum-iter next-tree (cdr l) (+ (entry t) so-far)))))
+  (follow-path-sum-iter t l 0))
+\end{lstlisting}
+\end{solution}
+\end{questions}
+
+\clearpage
+
+\section{SQL}
+\begin{questions}
+\question
+Suppose we are trying to calculate the degrees of separation between two users on Facebook. For example, if Clinton and Barack are friends, and Barack and Abraham are friends, then Abraham is 2 degrees of separation away from Clinton. We are given a table \texttt{friends} with the columns \texttt{u1} and \texttt{u2}. Create a new table \texttt{deg\_sep} with the columns \texttt{u1}, \texttt{u2}, and \texttt{n}, where \texttt{n} is the degree of separation between \texttt{u1} and \texttt{u2}. Limit the number of rows so that the maximum degree of separation is 10. Notice that Abraham could also be considered 2 degrees of separation away from himself.
+
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\texttt{\textbf{friends}}} \\ \hline
+u1 & u2 \\ \hline \hline
+Abraham & Barack \\ \hline
+Barack & Abraham \\ \hline
+Barack & Clinton \\ \hline
+Clinton & Barack \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textbf{\texttt{deg\_sep}}} \\ \hline
+u1 & u2 & n \\ \hline \hline
+Abraham & Barack & 1 \\ \hline
+Barack & Abraham & 1 \\ \hline
+Barack & Clinton & 1 \\ \hline
+Clinton & Barack & 1 \\ \hline
+Abraham & Abraham & 2 \\ \hline
+Abraham & Clinton & 2 \\ \hline
+\multicolumn{3}{|c|}{\dots} \\ \hline
+\end{tabular}
+\end{minipage}
+
+\begin{solution}[2in]
+\begin{lstlisting}[language=SQL]
+CREATE TABLE deg_sep AS
+    WITH deg_sep(u1, u2, n) AS (
+        SELECT u1, u2, 1 FROM friends UNION
+        SELECT deg_sep.u1, friends.u2, n+1 FROM friends, deg_sep
+            WHERE deg_sep.u2 = friends.u1 AND n < 10
+    )
+    SELECT * FROM deg_sep;
+\end{lstlisting}
+\end{solution}
+
+\question
+In our previous question, the resulting table included all possible degrees of separation for two users. Now create a table \texttt{min\_deg\_sep} that includes only the minimum degree of separation for 2 users. You may use \texttt{deg\_sep} from above.
+
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=SQL]
+CREATE TABLE min_deg_sep AS
+    SELECT u1, u2, MIN(n) FROM deg_sep GROUP BY u1, u2;
+\end{lstlisting}
+\end{solution}
+\end{questions}

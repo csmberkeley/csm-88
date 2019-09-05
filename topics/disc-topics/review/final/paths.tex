@@ -1,0 +1,52 @@
+\question (Fall 2013) Fill in the blanks in the implementation of
+\texttt{paths}, which takes as input two positive integers \texttt{x} and
+\texttt{y}. It returns the number of ways of reaching y from x by repeatedly
+incrementing or doubling. For instance, we can reach 9 from 3 by incrementing to
+4, doubling to 8, then incrementing again to 9.
+
+\medskip
+
+\begin{lstlisting}
+def inc(x):
+    return x + 1
+
+def double(x):
+    return x * 2
+
+def paths(x, y):
+    """Return the number of ways to reach y from x by repeated
+    incrementing or doubling.
+    >>> paths(3, 5) # inc(inc(3))
+    1
+    >>> paths(3, 6) # double(3), inc(inc(inc(3)))
+    2
+    >>> paths(3, 9) # E.g. inc(double(inc(3)))
+    3
+    >>> paths(3, 3) # No calls is a valid path
+    1
+    """
+    if x > y:
+
+        return ______________________________________________
+
+    elif x == y:
+
+        return ______________________________________________
+
+    else:
+
+        return ______________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def paths(x, y):
+    if x > y:
+        return 0
+    elif x == y:
+        return 1
+    else:
+        return paths(inc(x), y) + paths(double(x), y)
+\end{lstlisting}
+\end{solution}
+
+\clearpage

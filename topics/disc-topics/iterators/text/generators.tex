@@ -1,0 +1,19 @@
+\define{Generators} can be used to create iterators as well. Generators use a
+\texttt{yield} statement instead of \texttt{return}. When a generator function
+is called, the body of the function is not evaluated. Instead, an iterator is
+created and is the return value of the function call. The elements of this
+iterator are the yielded values of the function. For extra fun, \texttt{yield from}
+lets generators yield multiple values at once.
+
+\vspace{1em}
+\begin{lstlisting}[language=Python]
+>>> square = lambda x: x*x
+>>> def many_squares(s):
+...     for x in s:
+...         yield square(x)
+...     yield from [square(x) for x in s]
+...     yield from map(square, s)
+...
+>>> list(many_squares([1, 2, 3]))
+[1, 4, 9, 1, 4, 9, 1, 4, 9]
+\end{lstlisting}

@@ -1,0 +1,99 @@
+\question What would SQL display? \textbf{Keep track of the contents of
+the table after every statement below.} Write \texttt{Error} if you think
+a statement would cause an error.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT * FROM dogs;
+Fido|1|woof
+Sparky|2|woof
+Lassie|2|I'll save you!
+Floofy|3|Much doge
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+sqlite> INSERT INTO dogs(age, name) VALUES ("Rover", 3);
+sqlite> SELECT * FROM dogs;
+\end{lstlisting}
+\begin{solution}[0.75in]
+\begin{lstlisting}[language=SQL]
+Fido|1|woof
+Sparky|2|woof
+Lassie|2|I'll save you!
+Floofy|3|Much doge
+3|Rover|woof
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=SQL]
+sqlite> UPDATE dogs SET name=age, age=name WHERE name=3;
+sqlite> SELECT * FROM dogs;
+\end{lstlisting}
+\begin{solution}[0.75in]
+\begin{lstlisting}[language=SQL]
+Fido|1|woof
+Sparky|2|woof
+Lassie|2|I'll save you!
+Floofy|3|Much doge
+Rover|3|woof
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=SQL]
+sqlite> UPDATE dogs SET phrase="Hi there!" WHERE name LIKE "F%";
+sqlite> SELECT * FROM dogs;
+\end{lstlisting}
+\begin{solution}[0.75in]
+\begin{lstlisting}[language=SQL]
+Fido|1|Hi there!
+Sparky|2|woof
+Lassie|2|I'll save you!
+Floofy|3|Hi there!
+Rover|3|woof
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=SQL]
+sqlite> DELETE FROM dogs WHERE age < 3;
+sqlite> SELECT * FROM dogs;
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=SQL]
+Floofy|3|Hi there!
+Rover|3|woof
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=SQL]
+sqlite> INSERT INTO dogs VALUES ("Spot", 2), ("Buster", 4);
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}[language=SQL]
+Error: table dogs has 3 columns but 2 values were supplied
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=SQL]
+sqlite> INSERT INTO dogs(name, phrase) VALUES ("Spot", "bark"), ("Buster", "barkbark");
+sqlite> SELECT * FROM dogs;
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=SQL]
+Floofy|3|Hi there!
+Rover|3|woof
+Spot||bark
+Buster||barkbark
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=SQL]
+sqlite> INSERT INTO dogs(name, age) SELECT name, phrase from dogs where age = 3;
+sqlite> DELETE FROM dogs WHERE phrase != "woof";
+sqlite> SELECT * FROM dogs;
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}[language=SQL]
+Rover|3|woof
+Floofy|Hi there!|woof
+Rover|woof|woof
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,40 @@
+\question (Fall 2013) Fill in the blanks in the implementation of
+\texttt{pathfinder}, a higher-order function that takes an increasing function
+\texttt{f} and a positive integer \texttt{y}. It returns a function that takes a
+positive integer \texttt{x} and returns whether it is possible to reach
+\texttt{y} by applying \texttt{f} to \texttt{x} zero or more times. For example,
+8 can be reached from 2 by applying \texttt{double} twice. A function \texttt{f}
+is \textit{increasing} if $f(x)>x$ for all positive integers \texttt{x}.
+
+\medskip
+
+\begin{lstlisting}
+def pathfinder(f, y):
+    """
+    >>> f = pathfinder(double, 8)
+    >>> {k: f(k) for k in (1, 2, 3, 4, 5)}
+    {1: True, 2: True, 3: False, 4: True, 5: False}
+    >>> g = pathfinder(inc, 3)
+    >>> {k: g(k) for k in (1, 2, 3, 4, 5)}
+    {1: True, 2: True, 3: True, 4: False, 5: False}
+    """
+    def find_from(x):
+
+        while ______________________________________________:
+
+            _________________________________________________
+
+        return ______________________________________________
+
+    _________________________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def pathfinder(f, y):
+    def find_from(x):
+        while x < y:
+            x = f(x)
+        return x == y
+    return find_from
+\end{lstlisting}
+\end{solution}

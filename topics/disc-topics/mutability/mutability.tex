@@ -1,0 +1,100 @@
+\question
+Name two data types that are mutable. What does it mean to be mutable?
+\begin{solution}[0.25in]
+Dictionaries, Lists. Being mutable means we can modify them after they've been created.
+\end{solution}
+
+\question
+Name at least two data types at are not mutable.
+\begin{solution}[0.25in]
+Tuples, functions, int, float
+\end{solution}
+
+\question
+Will the following code error? If so, why?
+\begin{lstlisting}
+a = 1
+b = 2
+dt = {a: 1, b: 2}
+|\begin{solution}
+No -- a and b are both immutable, so we can use them as Dictionary keys.
+\end{solution}|
+
+a = [1]
+b = [2]
+dt = {a: 1, b: 2}
+|\begin{solution}
+Yes -- a and b are mutable, so we can't use them as Dictionary keys.
+\end{solution}|
+\end{lstlisting}
+
+\question
+Fill in the output and draw a box-and-pointer diagram for the following code. If an error occurs, write “Error”, but include all output displayed before the error.
+
+\begin{lstlisting}[language=Python]
+a = [1, [2, 3], 4]
+c = a[1]
+c
+|\begin{solution}
+[2, 3]
+\end{solution}|
+a.append(c)
+a
+|\begin{solution}
+[1, [2, 3], 4, [2, 3]]
+\end{solution}|
+c[0] = 0
+c
+|\begin{solution}
+[0, 3]
+\end{solution}|
+a
+|\begin{solution}
+[1, [0, 3], 4, [0, 3]]
+\end{solution}|
+a.extend(c)
+c[1] = 9
+a
+|\begin{solution}
+[1, [0, 9], 4, [0, 9], 0, 3]
+\end{solution}|
+list1 = [1, 2, 3]
+list2 = [1, 2, 3]
+list1 == list2
+|\begin{solution}
+True
+\end{solution}|
+list1 is list2
+|\begin{solution}
+False
+\end{solution}|
+\end{lstlisting}
+\hfill \break
+\question
+Check your understanding:
+\begin{paragraph}
+1 What is the difference between the append function, extend function, and the '+' operator? 
+\end{paragraph}
+\begin{solution}
+The append and extend functions both return a value of none. They just mutate the list that we are currently working on. For example, if we did a = [1,2,3].append(4), a would evaluate to None because the return value of the append function is None. However, when we are using the ‘+’ operator, we return the value of the two lists added together. If we did a = [1,2,3] + [4,5,6], we would get that a is equal to [1,2,3,4,5,6]. The difference between appends and extends is that appends opens up one single space in the list to place the the parameter of appends. This allows for appends to take in both numbers and lists. The extends function takes in a list (that we will refer to as a) as its parameter and will open len(a) number of boxes in the original list that we are extending. 
+\end{solution}
+\begin{paragraph}
+2 Given the below code, answer the following questions:
+\end{paragraph}
+a = [1, 2, [3, 4], 5] \\
+b = a[:] \\
+b[1] = 6 \\
+b[2][0] = 7 \\
+
+What does b evaluate to? \\
+\\ 
+\\ 
+\begin{solution}
+b = [1,6, [7, 4], 5]
+\end{solution}
+What does a evaluate to? Are a and b the same? Please explain your reasoning. 
+\begin{solution}
+A = [1,2,[7,4], 5].
+
+A,B are not the same. Because lists are mutable, when you assign b to a shallow copy of a, you are also copying the pointers to lists within a. Thus, that is why nested elements inside a list changed in both arrays, but all the other elements were unaffected by changes to the shallow copy. 
+\end{solution}

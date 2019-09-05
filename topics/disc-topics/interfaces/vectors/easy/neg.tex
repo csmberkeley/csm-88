@@ -1,0 +1,13 @@
+\question Implement {\tt \_\_neg\_\_}, which returns a new {\tt Vector}
+that is the negation of the current vector, {\tt self}. Try using list
+comprehensions.
+\begin{lstlisting}
+def __neg__(self):
+    return Vector(________________________________________)
+\end{lstlisting}
+\begin{solution}[0cm]
+\begin{lstlisting}
+def __neg__(self):
+    return Vector([-i for i in self.vector])
+\end{lstlisting}
+\end{solution}

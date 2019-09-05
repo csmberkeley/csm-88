@@ -1,0 +1,87 @@
+\question What would Python print?
+
+\begin{lstlisting}
+>>> a = lambda: 5
+>>> a()
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+5
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> a(5)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+TypeError: <lambda>() takes 0 positional arguments but 1 was given
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> b = lambda: lambda x: 3
+>>> b()(15)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+3
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> c = lambda x, y: x + y
+>>> c(4, 5)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+9
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> d = lambda x: lambda y: x * y
+>>> d(3)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+<function ...>
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> d(3)(3)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+9
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> e = d(2)
+>>> e(5)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+10
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> f = lambda: print(1)
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+# No output
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> g = f()
+\end{lstlisting}
+\begin{solution}[0.2in]
+\begin{lstlisting}
+1
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,15 @@
+\question Write a function \texttt{fib\_stream} that creates an infinite
+stream of Fibonacci Numbers, using the \texttt{add\_streams} function that was
+introduced in lab.
+
+\begin{lstlisting}
+def fib_stream():
+\end{lstlisting}
+\begin{solution}[4cm]
+\begin{lstlisting}
+    def compute_rest():
+        return add_streams(fib_stream(),
+                           fib_stream().rest)
+    return Stream(0, lambda: Stream(1, compute_rest))
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,25 @@
+\question Write a function that takes in a deep dictionary {\tt d} and
+replace all occurences of {\tt x} {\it as a value (not a key)} with {\tt
+y}.
+
+Hint: You will need to combine iteration and recursion. Also, for a
+dictionary \texttt{z}, \texttt{type(z) == dict} will evaluate to
+\texttt{True}.
+\begin{lstlisting}
+def replace_all_deep(d, x, y):
+    """
+    >>> d = {1: {2: 'x', 'x': 4}, 2: {4: 4, 5: 'x'}}
+    >>> replace_all_deep(d, 'x', 'y')
+    >>> d
+    {1: {2: 'y', 'x': 4}, 2: {4: 4, 5: 'y'}}
+    """
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    for key in d:
+        if d[key] == x:
+            d[key] = y
+        elif type(d[key]) == dict:
+            replace_all_deep(d[key], x, y)
+\end{lstlisting}
+\end{solution}

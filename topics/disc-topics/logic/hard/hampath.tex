@@ -1,0 +1,127 @@
+\tikzset{main node/.style={circle,fill=blue!20,draw,minimum size=1cm,inner sep=0pt},}
+
+Similarly to the map coloring example from lecture, we can construct the graph
+shown on the right in Logic using some simple facts:\\
+
+\begin{lstlisting}
+> (fact (vertices A B C D))
+> (fact (edge B A))
+> (fact (edge B C))
+> (fact (edge C A))
+> (fact (edge D B))
+\end{lstlisting}
+
+\vspace{-3cm}
+\hspace{9cm}
+\begin{tikzpicture}[>=stealth,auto,semithick]
+
+\node[main node] (a) {$A$};
+\node[main node] (b) [right=1.7cm of a] {$B$};
+\node[main node] (c) [below=1.7cm of a] {$C$};
+\node[main node] (d) [right=1.7cm of c] {$D$};
+
+\path[->] (b) edge node {} (a);
+\path[->] (b) edge node {} (c);
+\path[->] (c) edge node {} (a);
+\path[->] (d) edge node {} (b);
+
+\end{tikzpicture}
+
+We can implement some pretty interesting relations for this graph. In these
+questions we will implement the Hamiltonian path relation, which is true for a
+vertex if there a path starting from that vertex that visits each node once. For
+example, in the given graph, {\tt (D B C A)} is a Hamiltonian path, and this is
+actually the only one. Let's start with a few helper relations.
+
+\vspace{1cm}
+
+\begin{questions}
+\question
+Implement facts for the {\tt remove} relation, which relates {\tt elem} and two
+lists if, and only if, the second list has all and only the elements of the
+first list but with one occurrence of {\tt elem} removed. {\tt elem} must
+appear at least once in the first list.
+
+\begin{lstlisting}
+> (query (remove a (b a n a n a s) ?lst))
+Success!
+lst: (b n a n a s)
+lst: (b a n n a s)
+lst: (b a n a n s)
+> (query (remove no (not in this list) ?lst))
+Failed.
+\end{lstlisting}
+
+\begin{solution}[1.7in]
+\begin{lstlisting}
+(fact (remove ?elem (?elem . ?rest) ?rest))
+(fact (remove ?elem (?first . ?rest1) (?first . ?rest2))
+      (remove ?elem ?rest1 ?rest2))
+\end{lstlisting}
+\end{solution}
+
+\newpage
+\question
+Use {\tt remove} to implement fact for the {\tt contain-same} relation, which
+relates two lists that contain exactly the same elements, though not necessarily
+in the same order.
+
+\begin{lstlisting}
+> (query (contain-same (A B C D) (D C A B)))
+Success!
+> (query (contain-same (A B C) (B B C A)))
+Failed.
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+(fact (contain-same () ()))
+(fact (contain-same (?first . ?rest) ?other)
+      (remove ?first ?other ?other-rest)
+      (contain-same ?rest ?other-rest))
+\end{lstlisting}
+\end{solution}
+
+\question
+Our last helper relation is aptly named {\tt hamil-helper}, a relation between a
+vertex {\tt v} and a list of vertices {\tt so-far} that is satisfied if the rest
+of a Hamiltonian path can be constructed from {\tt v} given that we have already
+visited the vertices in {\tt so-far}. {\tt contain-same} may be useful here.
+
+\begin{lstlisting}
+> (query (hamil-helper A (B C D)))
+Success!
+> (query (hamil-helper A (B C)))
+Failed.
+\end{lstlisting}
+
+\begin{solution}[2in]
+\begin{lstlisting}
+(fact (hamil-helper ?v ?so-far)
+      (vertices . ?vertices)
+      (contain-same (?v . ?so-far) ?vertices))
+(fact (hamil-helper ?v ?so-far)
+      (edge ?v ?v2)
+      (hamil-helper ?v2 (?v . ?so-far)))
+\end{lstlisting}
+\end{solution}
+
+\question
+Finally, write {\tt hamiltonian}, a relation that holds for a vertex {\tt v} if
+there is a Hamiltonian path starting from {\tt v}. This should be very easy now!
+
+\begin{lstlisting}
+> (query (hamiltonian D))
+Success!
+> (query (hamiltonian B))
+Failed.
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{lstlisting}
+(fact (hamiltonian ?v)
+      (hamil-helper ?v ()))
+\end{lstlisting}
+\end{solution}
+
+\end{questions}

@@ -1,0 +1,24 @@
+\question
+Write facts to implement the {\tt subs} relation that relates two symbols {\tt
+old} and {\tt new} with two lists {\tt input} and {\tt output}. The relation
+holds whenever {\tt output} is identical to {\tt input}, except with every
+occurrence of {\tt old} replaced by {\tt new}.
+
+{\it Hint:} You may need the {\tt equal} relation from earlier.
+
+\begin{lstlisting}
+> (query (subs romeo fred (romeo oh romeo wherefore art thou romeo) ?x))
+Success!
+x: (fred oh fred wherefore art thou fred)
+\end{lstlisting}
+
+\begin{solution}[1.7in]
+\begin{lstlisting}
+(fact (subs ?old ?new () ()))
+(fact (subs ?old ?new (?old . ?rest1) (?new . ?rest2))
+      (subs ?old ?new ?rest1 ?rest2))
+(fact (subs ?old ?new (?x . ?rest1) (?x . ?rest2))
+      (subs ?old ?new ?rest1 ?rest2)
+      (not (equal ?old ?x)))
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,29 @@
+\question Write a recursive function that takes a number {\tt n} and
+returns the sum of every other digit, starting from the rightmost
+digit. Assume {\tt n} is non-negative.
+
+You might find the operators \texttt{//} and \texttt{\%} useful.
+\begin{lstlisting}
+def sum_every_other_digit(n):
+    """
+    >>> sum_every_other_digit(7)
+    7
+    >>> sum_every_other_digit(30)
+    0
+    >>> sum_every_other_digit(228)
+    10
+    >>> sum_every_other_digit(123456)
+    12
+    >>> sum_every_other_digit(1234567) # 1 + 3 + 5 + 7
+    16
+    """
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}
+    if n == 0:
+        return 0
+    else:
+        return n % 10 + sum_every_other_digit(n // 100)
+\end{lstlisting}
+\end{solution}

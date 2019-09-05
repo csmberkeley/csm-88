@@ -1,0 +1,24 @@
+% From Prof. Hilfinger's slide, Sp14
+\question Using recursion, write \texttt{tree\_find}. \texttt{tree\_find} takes in a
+binary search tree \texttt{t} and a value \texttt{x}. It returns \texttt{True}
+only when \texttt{x} is in \texttt{t}, and \texttt{False} otherwise. Make sure
+your function runs in $O(H)$, where $H$ is the height of the tree. \\
+
+\begin{lstlisting}
+def tree_find(t, x):
+    """Return True if and only if x is an entry in binary
+    search tree t.
+    """
+\end{lstlisting}
+\begin{solution}[2.2in]
+\begin{lstlisting}
+    if t == BinaryTree.empty:
+        return False
+    if x == t.entry:
+        return True
+    if x < t.entry:
+        return tree_find(t.left, x)
+    else:
+        return tree_find(t.right, x)
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,41 @@
+\question
+Write a function that takes a list and returns a new list that keeps only
+the even-indexed elements of lst and multiplies them by their
+corresponding index.
+
+\begin{lstlisting}
+def even_weighted(lst):
+    """
+    >>> x = [1, 2, 3, 4, 5, 6]
+    >>> even_weighted(x)
+    [0, 6, 20]
+    """
+
+    return [_________________________________________________]
+\end{lstlisting}
+\begin{solution}[0cm]
+\begin{lstlisting}
+    return [i * lst[i] for i in range(len(lst)) if i % 2 == 0]
+\end{lstlisting}
+
+Alternatively, we can take advantage of the step size for range to make sure we
+only consider even numbered indices:
+
+\begin{lstlisting}
+    return [i * lst[i] for i in range(0, len(lst), 2)]
+\end{lstlisting}
+
+The key point to note is that instead of iterating over each element in the
+list, we must instead iterate over the indices of the list. Otherwise, there's
+no way to tell if we should keep a given element.
+
+One way of solving these problems is to try and write your solution as a for loop first, and then transform it into a list comprehension. The for loop solution might look something like this:
+\begin{lstlisting}
+    result = []
+    for i in range(len(lst)):
+        if i % 2 == 0:
+            result.append(i * lst[i])
+    return result
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=Am6m8YgAnYY&list=PLx38hZJ5RLZdJgRCgpaTbmRXKAHOUmomO&index=4}{Video walkthrough}
+\end{solution}

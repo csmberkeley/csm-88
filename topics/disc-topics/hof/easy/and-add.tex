@@ -1,0 +1,24 @@
+\question Write a function \texttt{and\_add} that takes a one-argument function
+\texttt{f} and a number \texttt{n} as arguments. It should return a function
+that takes one argument, and does the same thing as the function \texttt{f},
+except also adds \texttt{n} to the result.
+
+\begin{lstlisting}
+def and_add(f, n):
+    """Return a new function. This new function takes an
+    argument x and returns f(x) + n.
+
+    >>> def square(x):
+    ...     return x * x
+    >>> new_square = and_add(square, 3)
+    >>> new_square(4)   # 4 * 4 + 3
+    19
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    def g(x):
+        return f(x) + n
+    return g
+\end{lstlisting}
+\end{solution}

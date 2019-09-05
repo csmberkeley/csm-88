@@ -1,0 +1,64 @@
+\question You're trying to re-organize your music library! The table
+\texttt{tracks} below contains song titles and the corresponding album.
+Create another table \texttt{tracklist} with two columns: the album and a
+comma-separated list of all songs from that album in alphabetical order.
+
+\medskip
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE tracks AS
+  SELECT "Human" AS title  , "The Definition" AS album UNION
+  SELECT "Simple and Sweet", "The Definition"          UNION
+  SELECT "Paper Planes"    , "Translations Through Speakers";
+\end{lstlisting}
+
+\medskip
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE tracklist AS
+  WITH songs(album, total) AS (
+
+      ____________________________________________________________________________
+
+    ),
+
+    ____________________________________________________ AS (
+
+      ____________________________________________________________________________
+
+      ____________________________________________________________________________
+
+      ____________________________________________________________________________
+
+    )
+
+    SELECT _______________________________________________________________________
+
+      WHERE ______________________________________________________________________;
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+CREATE TABLE tracklist AS
+  WITH songs(album, total) AS (
+      SELECT album, COUNT(*) FROM tracks GROUP BY album
+    ),
+    listing(album, songs_so_far, last_song, num_songs_so_far) AS (
+      SELECT album, title, title, 1 FROM tracks UNION
+      SELECT l.album, songs_so_far || ', ' || title, title, num_songs_so_far + 1
+       FROM tracks AS t, listing AS l
+       WHERE l.album = t.album AND title > last_song
+    )
+    SELECT l.album, l.songs_so_far
+      FROM songs AS s, listing AS l
+      WHERE s.album = l.album AND total = num_songs_so_far;
+\end{lstlisting}
+\end{solution}
+
+\medskip
+
+\begin{lstlisting}[language=SQL]
+sqlite3> SELECT * FROM tracklist ORDER BY album;
+The Definition|Human, Simple and Sweet
+Translations Through Speakers|Paper Planes
+\end{lstlisting}

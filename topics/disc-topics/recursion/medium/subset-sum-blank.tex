@@ -1,0 +1,48 @@
+\question Implement a function to solve the subset sum problem: you are given a
+list of integers and a number $k$. Is there a subset of the list that adds up
+to $k$?
+
+\begin{lstlisting}
+def subset_sum(lst, k):
+    """
+    >>> subset_sum([], 0)
+    True
+    >>> subset_sum([], 4)
+    False
+    >>> subset_sum([2, 4, 7, 3], 5)         # 2 + 3 = 5
+    True
+    >>> subset_sum([1, 9, 5, 7, 3], 2)
+    False
+    >>> subset_sum([-2, 1, 4, -1], 2)
+    True
+    """
+\end{lstlisting}
+\begin{lstlisting}
+    if ______________________________________________________________________________:
+
+
+        return True
+
+
+    elif ____________________________________________________________________________:
+
+
+        return False
+
+
+    else:
+
+
+        return ______________________________________________________________________
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+    if k == 0:
+        return True
+    elif lst == []:
+        return False
+    else:
+        return subset_sum(lst[1:], k - lst[0]) or \
+               subset_sum(lst[1:], k)
+\end{lstlisting}
+\end{solution}

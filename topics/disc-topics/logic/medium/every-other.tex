@@ -1,0 +1,22 @@
+\question Write simple and complex facts for {\tt every-other}, a relation
+between two lists that is satisfied if and only if the second list is the same
+as the first list, but with every other element removed.
+
+\begin{lstlisting}
+> (query (every-other (frodo merry sam pippin) ?x))
+Success!
+x: (frodo sam)
+> (query (every-other (gandalf) ?x))
+Success!
+x: (gandalf)
+\end{lstlisting}
+
+\begin{solution}[1.9in]
+\begin{lstlisting}
+(fact (every-other () ()))
+(fact (every-other (?x) (?x)))
+(fact (every-other (?a ?b . ?l_rest) (?a . ?r_rest))
+      (every-other ?l_rest ?r_rest))
+\end{lstlisting}
+\end{solution}
+

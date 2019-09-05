@@ -1,0 +1,58 @@
+Under the hood, streams are implemented using \textit{promises}, which represent
+a value that is evaluated lazily. We can work with promises directly using the
+\texttt{delay} and \texttt{force} primitives. The \texttt{delay} special form
+takes an unevaluated expression and packages it up into a \texttt{promise}. The
+\texttt{force} function takes a promise, evaluates it, and returns its value.
+Subsequent calls to \texttt{force} do not re-evaluate the promise; instead, we
+remember the previous value and return that instead of recomputing the value.
+
+\begin{lstlisting}[language=Scheme]
+scm> (define p
+...>   (delay
+...>     (begin
+...>       (print "evaluating!")
+...>       (+ 3 4)))
+p
+scm> p
+#[promise (not forced)]
+scm> (force p)
+evaluating!
+7
+scm> p
+#[promise (forced)]
+scm> (force p)
+7
+\end{lstlisting}
+
+When we construct a stream with \texttt{cons-stream}, we get a Scheme pair of
+the first element of the stream, as well as a promise that contains an
+expression to compute the rest of the stream. That is, if \texttt{s} is a
+stream, then \texttt{(car s)} returns an element, and \texttt{(cdr s)} returns
+a promise. \texttt{(cdr-stream s)} is shorthand for \texttt{(force (cdr s))},
+so it will evaluate the promise to get the rest of the stream.
+
+\begin{lstlisting}[language=Scheme]
+scm> (define s (cons-stream 1 nil))
+s
+scm> s
+(1 . #[promise (not forced)])
+scm> (cdr s)
+#[promise (not forced)]
+scm> (cdr-stream s)
+nil
+scm> s
+(1 . #[promise (forced)])
+\end{lstlisting}
+
+Here's an example using the \texttt{naturals} function we defined earlier:
+
+\begin{lstlisting}[language=Scheme]
+scm> (define nat (naturals 0))
+nat
+scm> nat
+(0 . #[promise (not forced)])
+scm> (cdr-stream nat)
+(1 . #[promise (not forced)])  ; the value 1 has been forced
+scm> nat
+(0 . #[promise (forced)])
+\end{lstlisting}

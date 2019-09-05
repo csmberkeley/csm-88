@@ -1,0 +1,27 @@
+\question
+Write a tail recursive function that returns the $n$th fibonacci number. We
+define $\text{fib}(0) = 0$ and $\text{fib}(1) = 1$.
+
+\begin{lstlisting}[language=Scheme]
+(define (fib n)
+  (define (fib-sofar ____________________________________________)
+
+    (if _________________________________________________________
+
+        _________________________________________________________
+
+        (fib-sofar ______________________________________________)
+
+  (fib-sofar ____________________________________________________))
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}[language=Scheme]
+(define (fib n)
+  (define (fib-sofar i curr next)
+    (if (= i n)
+        curr
+        (fib-sofar (+ i 1) next (+ curr next)))
+  (fib-sofar 0 0 1))
+\end{lstlisting}
+\href{https://youtu.be/9y7rnuYp-DU}{Video walkthrough}
+\end{solution}

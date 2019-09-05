@@ -1,0 +1,19 @@
+\question Write facts for {\tt match}, a relation between two lists  
+if and only if the two lists are identical.
+
+\begin{lstlisting}
+> (query (match (i am so cool) (i am . ?you)))
+Success!
+you: (so cool)
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}
+(fact (match ?() ?()))
+(fact (match (?f0 . ?r0) (?f0 . ?r1))
+      (match ?r0 ?r1))
+
+(query (match (i am so cool) (i am . ?you)))
+\end{lstlisting}
+\end{solution}
+

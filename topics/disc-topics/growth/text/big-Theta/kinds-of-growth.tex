@@ -1,0 +1,19 @@
+Here are some common orders of growth, ranked from no growth to fastest growth:
+\begin{itemize}
+\item $\Theta(1)$ --- constant time takes the same amount of time regardless of
+  input size
+\item $\Theta(\log n)$ --- logarithmic time
+\item $\Theta(n)$ --- linear time
+\item $\Theta(n\log n)$ --- linearithmic time
+\item $\Theta(n^2)$, $\Theta(n^3)$, etc. --- polynomial time
+\item $\Theta(2^n)$, $\Theta(3^n)$, etc. --- exponential time (considered
+    ``intractable''; these are really, really horrible)
+\end{itemize}
+
+We can express growth in terms of any function of $n$ - for example,
+$\Theta(n!)$ grows even more quickly than exponential time growth.
+However, for this class, you should focus on the growth classes
+above.
+
+In addition, some programs will never terminate if they get stuck in an
+infinite loop.

@@ -1,0 +1,19 @@
+Stream processing functions can be higher-order, abstracting a general
+computational process over streams. Take a look at \texttt{filter\_stream}:
+
+\begin{lstlisting}
+def filter_stream(filter_func, s):
+    def compute_rest():
+        return filter_stream(filter_func, s.rest)
+    if s is Stream.empty:
+        return s
+    elif filter_func(s.first):
+        return Stream(s.first, compute_rest)
+    else:
+        return compute_rest()
+\end{lstlisting}
+
+The Stream we create has as its \texttt{compute\_rest} a function that
+``promises'' to filter the rest of the Stream when called. So at any one point,
+the entire stream has not been filtered. Instead, only the part that has been
+referenced has been filtered.

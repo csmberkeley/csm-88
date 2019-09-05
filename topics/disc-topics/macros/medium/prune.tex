@@ -1,0 +1,29 @@
+\question Write a macro that takes in a call expression and strips out
+every other argument. The first argument is kept, the second is removed,
+and so on. You may find it helpful to write a helper function.
+
+\begin{lstlisting}[language=Scheme]
+(define-macro (prune-expr expr)
+\end{lstlisting}
+
+\begin{solution}[1.7in]
+\begin{lstlisting}[language=Scheme]
+(define (prune lst)
+  (if (or (null? lst) (null? (cdr lst))) lst
+      (cons (car lst) (prune (cdr (cdr lst))))))
+
+(define-macro (prune-expr expr)
+    (cons (car expr) (prune (cdr expr))))
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (prune-expr (+ 10))
+10
+scm> (prune-expr (+ 10 100))
+10
+scm> (prune-expr (+ 10 100 1000))
+1010
+scm> (prune-expr (prune-expr (+ 10 100) 'garbage))
+10
+\end{lstlisting}

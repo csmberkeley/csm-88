@@ -1,0 +1,67 @@
+\question Implement \texttt{filter\_link}, which takes in a linked list \texttt{link}
+and a function \texttt{f} and returns a generator which yields the values of \texttt{link}
+for which \texttt{f} returns \texttt{True}.
+
+Try to implement this both using a while loop and without using any form of iteration.
+
+\begin{lstlisting}
+def filter_link(link, f):
+    """
+    >>> link = Link(1, Link(2, Link(3)))
+    >>> g = filter_link(link, lambda x: x % 2 == 0)
+    >>> next(g)
+    2
+    >>> next(g)
+    StopIteration
+    >>> list(filter_link(link, lambda x: x % 2 != 0))
+    [1, 3]
+    """
+
+    while _________________________:
+
+        if ________________________:
+
+            _______________________
+
+        ___________________________
+\end{lstlisting}
+
+\begin{solution}[.5in]
+\begin{lstlisting}
+def filter_link(link, f):
+    while link is not Link.empty:
+        if f(link.first):
+            yield link.first
+        link = link.rest
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def filter_no_iter(link, f):
+    """
+    >>> link = Link(1, Link(2, Link(3)))
+    >>> list(filter_no_iter(link, lambda x: x % 2 != 0))
+    [1, 3]
+    """
+
+    if ____________________________:
+
+        return
+
+    elif __________________________:
+
+        ___________________________
+
+    _______________________________
+\end{lstlisting}
+
+\begin{solution}[.5in]
+\begin{lstlisting}
+def filter_no_iter(link, f):
+    if link is Link.empty:
+        return
+    elif f(link.first):
+        yield link.first
+    yield from filter_no_iter(link.rest, f)
+\end{lstlisting}
+\end{solution}

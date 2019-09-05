@@ -1,0 +1,83 @@
+\question
+Write a tail recursive function that takes in a number and a sorted list.
+The function returns a sorted copy with the number inserted in the correct
+position.
+
+\begin{parts}
+\part Begin by writing a tail recursive function that reverses a list.
+
+\begin{lstlisting}[language=Scheme]
+(define (reverse lst)
+  (define (reverse-sofar lst lst-sofar)
+
+    (if (null? lst) ______________________________________________________________________
+
+      ____________________________________________________________________________________))
+
+  ________________________________________________________________________________________)
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}[language=Scheme]
+(define (reverse lst)
+  (define (reverse-sofar lst lst-sofar)
+    (if (null? lst)
+        lst-sofar
+        (reverse-sofar (cdr lst) (cons (car lst) lst-sofar))))
+  (reverse-sofar lst nil))
+\end{lstlisting}
+\end{solution}
+
+\part Next, write a tail recursive function that concatenates two lists
+together. You may use \texttt{reverse}.
+
+\begin{lstlisting}[language=Scheme]
+(define (append a b)
+  (define (rev-append-tail a b)
+
+    (if (null? a) ________________________________________________________________________
+
+      ____________________________________________________________________________________))
+
+  ________________________________________________________________________________________)
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}[language=Scheme]
+(define (append a b)
+  (define (rev-append-tail a b)
+    (if (null? a)
+      b
+      (rev-append-tail (cdr a) (cons (car a) b))))
+  (rev-append-tail (reverse a) b))
+\end{lstlisting}
+\end{solution}
+
+\part Finally, implement \texttt{insert}. You may use \texttt{reverse} and
+\texttt{append}.
+
+\begin{lstlisting}[language=Scheme]
+(define (insert n lst)
+  (define (rev-insert lst rev-lst)
+
+    (cond ((null? lst) ___________________________________________________________________)
+
+          ((> (car lst) n) _______________________________________________________________)
+
+          (else __________________________________________________________________________)))
+
+  ________________________________________________________________________________________)
+\end{lstlisting}
+\begin{solution}[0in]
+\begin{lstlisting}[language=Scheme]
+(define (insert n lst)
+ (define (rev-insert lst rev-lst)
+   (cond ((null? lst) (cons n rev-lst))
+         ((> (car lst) n) (append (reverse lst)
+                                  (cons n rev-lst)))
+         (else (rev-insert (cdr lst)
+                           (cons (car lst) rev-lst)))))
+ (reverse (rev-insert lst nil)))
+\end{lstlisting}
+\end{solution}
+
+\end{parts}
+

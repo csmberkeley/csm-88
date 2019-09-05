@@ -1,0 +1,26 @@
+\question The irrational number $e \approx 2.718$ can be generated from an infinite series.
+Let's try calculating it using our rational number data type!
+The mathematical formula is as follows:
+\[
+    e = \frac{1}{0!}+\frac{1}{1!} + \frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!} \cdots
+\]
+
+Write a function {\tt approx\_e} that returns a rational number
+approximation of $e$ to {\tt iter} amount of iterations. We've provided a factorial
+function.
+\begin{lstlisting}
+def factorial(n):
+    return 1 if n == 0 else n * factorial(n - 1)
+
+def approx_e(iter=100):
+\end{lstlisting}
+\begin{solution}[2.0in]
+\begin{lstlisting}
+    k = 0
+    e = rational(0, 1)
+    while k < iter:
+        e = add_rationals(e, rational(1, factorial(k)))
+        k += 1
+    return e
+\end{lstlisting}
+\end{solution}

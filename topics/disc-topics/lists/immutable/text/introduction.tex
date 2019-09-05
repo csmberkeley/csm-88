@@ -1,0 +1,32 @@
+A \textit{sequence} is an ordered collection of values. It has two
+fundamental properties: length and element selection. In this
+discussion, we'll explore one of Python's data types,
+the \textit{list}, which implements this abstraction.
+
+In Python, we can have lists of whatever values we want, be it
+numbers, strings, functions, or even other lists!  Furthermore, the
+types of the list's contents need not be the same. In other words, the
+list need not be homogenous.
+
+Lists can be created using square braces. Their elements can be
+accessed (or \textit{indexed}) with square braces. Lists are
+zero-indexed: to access the first element, we must index at 0; to access
+the $i$th element, we must index at $i - 1$.
+
+We can also index with negative numbers. These begin indexing at the
+end of the list, so the index $-1$ is equivalent to the index
+\texttt{len(list) - 1} and index $-2$ is the same as
+\texttt{len(list) - 2}.
+
+Let's try out some indexing:
+\begin{lstlisting}
+>>> fantasy_team = ['aaron rodgers', 'desean jackson']
+>>> print(fantasy_team)
+['aaron rodgers', 'desean jackson']
+>>> fantasy_team[0]
+'aaron rodgers'
+>>> fantasy_team[len(fantasy_team) - 1]
+'desean jackson'
+>>> fantasy_team[-1]
+'desean jackson'
+\end{lstlisting}

@@ -1,0 +1,17 @@
+Big-O notation is a way to denote an upper bound on the complexity of a
+function. For example, $O(n^2)$ states that a function's run time will be \textbf{no
+larger than the quadratic} of the input.
+
+\begin{blocksection}
+\begin{itemize}
+\item
+If a function requires $n^3 + 3n^2 + 5n + 10$ operations with a given input $n$,
+then the runtime of this function is $O(n^3)$. As $n$ gets larger, the lower order terms (10,
+$5n$, and $3n^2$) all become insignificant compared to $n^3$.
+\item
+If a function requires $5n$ operations with a given input $n$, then the runtime
+of this function is $O(n)$. The constant 5 only influences the runtime by a constant
+amount. In other words, the function still runs in linear time. Therefore, it doesn't
+matter that we drop the constant.
+\end{itemize}
+\end{blocksection}

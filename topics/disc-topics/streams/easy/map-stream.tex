@@ -1,0 +1,16 @@
+\question Let's write a function \lstinline$map_stream$, which given a stream
+\lstinline$s$ and a one-argument function \lstinline$func$, returns a new
+stream that is the result of applying \lstinline$func$ on every element in
+\lstinline$s$.
+
+\begin{lstlisting}
+def map_stream(func, s):
+\end{lstlisting}
+\begin{solution}[3cm]
+\begin{lstlisting}
+    if s is Stream.empty:
+        return s
+    else:
+        return Stream(func(s.first), lambda: map_stream(func, s.rest))
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,62 @@
+\question
+Determine what the Python interpreter will output given the following lines of code.
+
+\begin{lstlisting}[language=Python]
+>>> from operator import add, mul
+>>> mul(add(5, 6), 8)
+|\begin{solution}[0.15in]
+88
+\end{solution}|
+>>> print('x')
+|\begin{solution}[.15in]
+x
+\end{solution}|
+>>> y = print('x')
+|\begin{solution}[.15in]
+x
+\end{solution}|
+>>> print(y)
+|\begin{solution}[.15in]
+None
+\end{solution}|
+>>> print(add(4, 2), print('a'))
+|\begin{solution}[.15in]
+\begin{verbatim}
+a
+6 None
+\end{verbatim}
+\end{solution}|
+\end{lstlisting}
+\question
+Determine what the Python interpreter will output given the following lines of code.
+\begin{lstlisting}[language=Python]
+>>> def foo(x):
+	print(x)
+	return x + 1
+
+>>> def bar(y, x):
+	print(x - y)
+	
+>>> foo(3)
+|\begin{solution}[.15in]
+\begin{verbatim}
+3
+4
+\end{verbatim}
+\end{solution}|
+>>> bar(3)
+|\begin{solution}[.15in]
+Error
+\end{solution}|
+>>> bar(6, 1)
+|\begin{solution}[.15in]
+-5
+\end{solution}|
+>>> bar(foo(10), 11)
+|\begin{solution}
+\begin{verbatim}
+10
+0
+\end{verbatim}
+\end{solution}
+\end{lstlisting}

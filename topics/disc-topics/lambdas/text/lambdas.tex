@@ -1,0 +1,17 @@
+\define{Lambda expressions} are one-line functions that specify two things: the parameters and the return expression. 
+ 
+A lambda expression that takes in no arguments and returns 8:
+\begin{equation*}
+    \texttt{lambda: }
+    \underbrace{\texttt{8}}_\text{return value}
+\end{equation*}
+
+A lambda expression that takes two arguments and returns their product:
+\begin{equation*} 
+	\texttt{lambda }
+	\underbrace{\texttt{x, y}}_\text{parameters}
+	\texttt{: }
+	\underbrace{\texttt{x * y}}_\text{return expression}
+\end{equation*}
+
+Unlike functions created by a \texttt{def} statement, the function object that a lambda expression creates has no intrinsic name and is not bound to any variable. In fact, nothing changes in the current environment when we evaluate a lambda expression unless we do something with this expression, such as assign it to a variable or pass it as an argument to a higher order function.	

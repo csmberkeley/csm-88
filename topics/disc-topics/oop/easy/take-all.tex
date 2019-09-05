@@ -1,0 +1,12 @@
+\question Write a new method for the \texttt{Bag} class called {\tt take\_all},
+which takes all the \texttt{Skittle}s in the current bag and prints the color of
+the each \texttt{Skittle} taken from the bag.
+\begin{lstlisting}
+    def take_all(self):
+\end{lstlisting}
+\begin{solution}[2.5 in]
+\begin{lstlisting}
+        for _ in range(len(self.skittles)):
+            print(self.take_skittle().color)
+\end{lstlisting}
+\end{solution}

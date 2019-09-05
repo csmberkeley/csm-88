@@ -1,0 +1,53 @@
+\question (Adapted from Fall 2013) Fill in the blanks in the implementation of
+\texttt{paths}, which takes as input two positive integers \texttt{x} and
+\texttt{y}. It returns a list of paths, where each path is a list containing
+steps to reach \texttt{y} from \texttt{x} by repeated incrementing or doubling
+For instance, we can reach 9 from 3 by incrementing to 4, doubling to 8, 
+then incrementing again to 9, so one path is \texttt{[3, 4, 8, 9]}
+
+\medskip
+
+\begin{lstlisting}
+def paths(x, y):
+    """Return a list of ways to reach y from x by repeated
+    incrementing or doubling.
+    >>> paths(3, 5) 
+    [[3, 4, 5]]
+    >>> sorted(paths(3, 6))
+    [[3, 4, 5, 6], [3, 6]]
+    >>> sorted(paths(3, 9))
+    [[3, 4, 5, 6, 7, 8, 9], [3, 4, 8, 9], [3, 6, 7, 8, 9]]
+    >>> paths(3, 3) # No calls is a valid path
+    [[3]]
+    """
+    if _________________________:
+
+        return ______________________________________________
+
+    elif _______________________:
+
+        return ______________________________________________
+
+    else:
+
+        a = _________________________________________________
+
+        b = _________________________________________________
+
+        return ______________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def paths(x, y):
+    if x > y:
+        return []
+    elif x == y:
+        return [[x]]
+    else:
+        a = paths(x + 1, y)
+        b = paths(x * 2, y)
+        return [[x] + subpath for subpath in a + b]
+\end{lstlisting}
+\end{solution}
+
+\clearpage

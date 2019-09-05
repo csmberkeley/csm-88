@@ -1,0 +1,34 @@
+\question Write a generator function \texttt{gen\char`_all\char`_items} that
+takes a list of iterators and yields items from all of them in order.
+
+\begin{lstlisting}[language=Python]
+def gen_all_items(lst):
+    """
+    >>> nums = [[1, 2], [3, 4], [[5, 6]]]
+    >>> num_iters = [iter(l) for l in nums]
+    >>> list(gen_all_items(num_iters))
+    [1, 2, 3, 4, [5, 6]]
+    """
+\end{lstlisting}
+
+\begin{solution}[0.75in]
+\begin{lstlisting}[language=Python]
+    for it in lst:
+        yield from it
+\end{lstlisting}
+
+The \texttt{yield from} solution is nice and short. But this can also be done
+with just yield:
+\begin{lstlisting}
+    for it in lst:
+        for x in it:
+            yield x
+\end{lstlisting}
+
+Notice that this function will not yield out of deep lists. That is, it will
+keep the brackets around deep lists and yield them together instead of one
+element at a time.
+
+For an extra challenge, figure out how to yield deep list items! (so the example
+in the doctest would return [1, 2, 3, 4, 5, 6])
+\end{solution}

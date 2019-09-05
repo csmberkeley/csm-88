@@ -1,0 +1,21 @@
+\question
+Write a function that returns the height of a tree.
+Recall that the height of a tree is the length of the longest path from
+the root to a leaf.
+\begin{lstlisting}
+def height(t):
+    """Return the height of a tree.
+
+    >>> t = tree(3, [tree(5, [tree(1)]), tree(2)])
+    >>> height(t)
+    2
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    if is_leaf(t):
+        return 0
+    return 1 + max([height(branch) for branch in branches(t)])
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=cZWnevsmb5o&index=2&list=PLx38hZJ5RLZcgrSJp16YmzNwn9hL5JD8q&t=1m45s}{Video walkthrough}
+\end{solution}

@@ -1,0 +1,23 @@
+\question Implement the list operator. A list expression evaluates all its
+arguments and returns a list of their values.
+
+\begin{lstlisting}
+> (list (+ 3 4) 5 (* 2 3))
+(7 5 6)
+> (list (+ 1 2) (quote (3 4)) 5)
+(3 (3 4) 5)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def calc_apply(operator, args):
+    ...
+    elif operator == 'list':
+        return list_to_pairs(args)
+    ...
+
+def list_to_pairs(lst):
+    if len(lst) == 0:
+        return nil
+    return Pair(lst[0], list_to_pairs(lst[1:]))
+\end{lstlisting}
+\end{solution}

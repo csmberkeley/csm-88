@@ -1,0 +1,22 @@
+Sometimes it isn't enough to have one function call itself; sometimes functions
+recursively call one another!  Here is an example:
+\begin{lstlisting}
+def even(n):
+    if n == 0:
+        return True
+    return odd(n - 1)
+
+def odd(n):
+    if n == 0:
+        return False
+    return even(n - 1)
+\end{lstlisting}
+Given a positive integer, the function {\tt even} will return a boolean value
+representing whether or not the integer is even.  However, notice that the
+recursive call is to {\tt odd}, not itself.  We call this mutual recursion
+because because {\tt even} and {\tt odd} are defined in terms of one another,
+and as a result alternatively call one another to arrive at the answer.
+
+Mutual recursion is especially useful for when you need to deal with different
+data structures that interact with one another.  We'll see this later in the
+semester with Trees.

@@ -1,0 +1,64 @@
+\question
+What are three things you find in every recursive function?
+\begin{solution}[0.75in]
+\begin{verbatim}
+1) Base Case(s)
+2) Way(s) to reduce the problem into a smaller problem of the same type
+3) Recursive case(s) that uses the solution of the smaller problem to solve the original (large) problem   
+\end{verbatim}
+\end{solution}
+
+\question
+When you write a Recursive function, you seem to call it before it has been fully defined. Why doesn't this break the Python interpreter?
+\begin{solution}[0.75in]
+When you define a function, Python does not evaluate the body of the function.
+\end{solution}
+
+\question
+Below is a Python function that computes the nth Fibonacci number. Identify the three things it contains as a recursive function (from 1.1).
+\begin{lstlisting}[language=Python]
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+|\begin{solution}[0.75in]
+\begin{verbatim}
+Domain is integers, range is integers.
+Base Cases: if n == 0: ..., elif n == 1: ...
+Finding Smaller Problems: finding fib(n - 1), fib(n - 2)
+Recursive Case: when n is neither 0 nor 1, add together the fib(n - 1) and fib(n - 2) to find fib(n)
+\end{verbatim}
+\end{solution}|
+\end{lstlisting}
+
+\question
+With the definition of the Fibonacci function above, draw out a diagram of the recursive calls made when \textbf{fib(4)} is called.
+\begin{solution}[1in]
+\begin{verbatim}
+                            fib(4)
+                            /    \
+                        fib(3)   fib(2)
+                       /    |     |    \
+                   fib(2) fib(1) fib(1) fib(0)
+                  /    |
+              fib(1)  fib(0)
+\end{verbatim}
+\end{solution}
+\newpage
+\question
+What does the following function \textbf{cascade2} do? What is its domain and range?
+\begin{lstlisting}[language=Python]
+def cascade2(n):
+    print(n)
+    if n >= 10:
+        cascade2(n//10)
+        print(n)
+\end{lstlisting}
+\begin{solution}[1in]
+Domain is integers, range is None. It takes in a number n and prints out n, then prints out n excluding the ones digit, then prints n excluding the hundreds digit, and so on, then back up to the full number. 
+\end{solution}
+
+

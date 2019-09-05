@@ -1,0 +1,24 @@
+\question How many calls to {\tt calc\_eval} and {\tt calc\_apply} would it
+take to evaluate each of the following Calculator expressions?
+
+\begin{lstlisting}
+> (+ 2 4 6 8)
+\end{lstlisting}
+\begin{solution}[0.2in]
+6 calls to eval: 1 for the entire expression, and then 1 each for the operator
+and each operand.
+
+1 call to apply the addition operator.
+\end{solution}
+
+\begin{lstlisting}
+> (+ 2 (* 4 (- 6 8)))
+\end{lstlisting}
+\begin{solution}[0.2in]
+10 calls to eval: 1 for the whole expression, then 1 for each of the operators
+and operands. When we encounter another call expression, we have to evaluate
+the operators and operands inside as well.
+
+3 calls to apply the function to the arguments for each call expression.\\
+\href{https://youtu.be/ZHPdJzZ3g14}{Video walkthrough}
+\end{solution}

@@ -1,0 +1,28 @@
+\question Write a macro that takes in two expressions and \texttt{or}'s
+them together (applying short-circuiting rules). However, do this without
+using the \texttt{or} special form. You may also assume the name
+\texttt{v1} doesn't appear anywhere outside of our macro. Fill in the
+implementation below.
+
+\begin{lstlisting}[language=Scheme]
+(define-macro (or-macro expr1 expr2)
+
+  `(let ((v1 _____________________________________________________________________________))
+
+     (if  ________________________________________________________________________________
+
+       ___________________________________________________________________________________)))
+
+scm> (or-macro (print 'bork) (/ 1 0))
+bork
+scm> (or-macro (= 1 0) (+ 1 2))
+3
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define-macro (or-macro expr1 expr2)
+    `(let ((v1 ,expr1))
+        (if v1 v1 ,expr2)))
+\end{lstlisting}
+\end{solution}

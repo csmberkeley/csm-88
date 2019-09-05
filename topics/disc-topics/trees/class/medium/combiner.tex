@@ -1,0 +1,22 @@
+\question Write a function that combines the values of two
+trees \texttt{t1} and \texttt{t2} together with the \texttt{combiner}
+function. Assume that \texttt{t1} and \texttt{t2} have identical structure. This function should return a new tree.
+\begin{lstlisting}
+def combine_tree(t1, t2, combiner):
+    """
+    >>> a = Tree(1, [Tree(2, [Tree(3)])])
+    >>> b = Tree(4, [Tree(5, [Tree(6)])])
+    >>> combined = combine_tree(a, b, mul)
+    >>> combined.root
+    4
+    >>> combined.branches[0].root
+    10
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    combined = [combine_tree(b1, b2, combiner) for b1, b2
+                in zip(t1.branches, t2.branches)]
+    return Tree(combiner(t1.root, t2.root), combined)
+\end{lstlisting}
+\end{solution}

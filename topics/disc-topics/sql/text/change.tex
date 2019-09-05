@@ -1,0 +1,86 @@
+Tables don't need to begin fully formed, it's possible to update them
+after creation! We'll also introduce this alternative syntax for creating
+a table, which creates an empty table with the given columns:
+\begin{lstlisting}[language=SQL]
+CREATE TABLE [table]([column1], [column2] DEFAULT [val], ...);
+\end{lstlisting}
+The \textbf{optional} \texttt{DEFAULT} keyword denotes default values for
+a given column if they're not specified. This will be relevant when we
+insert new elements into our table.  To add a new table entries, use the
+\texttt{INSERT INTO} statement:
+\begin{lstlisting}[language=SQL]
+INSERT INTO [table] ([column1], [column2], ...)
+  VALUES ([value1], [value2], ...), ([value1], [value2], ...);
+\end{lstlisting}
+A couple of notes:
+\begin{itemize}
+    \item If a value is specified for each column of the table, you don't
+        need to specify column names. This is because each value matches
+        up with a column, so there's no ambiguity.
+    \item For columns where a value is not specified, the default value
+        will be used if available. If not a default value was not provided,
+        that column in the new row will be left empty!
+\end{itemize}
+
+Here's an example of insertion into an empty table:
+\begin{lstlisting}[language=SQL]
+sqlite> CREATE TABLE dogs(name, age, phrase DEFAULT "woof");
+sqlite> INSERT INTO dogs(name, age) VALUES ("Fido", 1), ("Sparky", 2);
+sqlite> INSERT INTO dogs VALUES ("Lassie", 2, "I'll save you!"), ("Floofy", 3);
+Error: all VALUES must have the same number of terms
+sqlite> INSERT INTO dogs VALUES ("Lassie", 2, "I'll save you!"), ("Floofy", 3, "Much doge");
+sqlite> SELECT * FROM dogs;
+Fido|1|woof
+Sparky|2|woof
+Lassie|2|I'll save you!
+Floofy|3|Much doge
+\end{lstlisting}
+
+The \texttt{INSERT INTO} statement can also insert a table returned by a \texttt{SELECT} 
+statement, in which case the syntax is:
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO [table] ([column1], [column2], ...)
+  SELECT ...;
+\end{lstlisting}
+
+We can update certain existing entries in a table using \texttt{UPDATE}:
+\begin{lstlisting}[language=SQL]
+UPDATE [table] SET [column1] = [value1], [column2] = [value2], ... WHERE [condition];
+\end{lstlisting}
+All rows matching the condition will have their columns updated. If no
+condition is specified, \textbf{all} rows will be updated! We can also
+remove certain entries in a table using \texttt{DELETE}:
+\begin{lstlisting}[language=SQL]
+DELETE FROM [table] WHERE [condition];
+\end{lstlisting}
+Just like with \texttt{UPDATE}, if no condition is specified,
+\textbf{all} rows will be deleted!  Here's an example using all of the
+above:
+\begin{lstlisting}[language=SQL]
+sqlite> UPDATE dogs SET age=age+1; -- If condition isn't specified, every row is updated
+sqlite> SELECT * FROM dogs;
+Fido|2|woof
+Sparky|3|woof
+Lassie|3|I'll save you!
+Floofy|4|Much doge
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+sqlite> UPDATE dogs SET phrase = "bark" WHERE age=2;
+sqlite> SELECT * FROM dogs WHERE age=2;
+Fido|2|bark
+sqlite> DELETE FROM dogs WHERE age=3;
+sqlite> SELECT * FROM dogs;
+Fido|2|bark
+Floofy|4|Much doge
+\end{lstlisting}
+Finally, we can delete an entire table using the \texttt{DROP TABLE
+[table]} statement. In this example, the \texttt{.schema} statement shows
+us a list of the current tables, along with their column names.
+\begin{lstlisting}[language=SQL]
+sqlite> .schema
+CREATE TABLE dogs(name, age, phrase DEFAULT "woof");
+sqlite> DROP TABLE dogs;
+sqlite> .schema
+sqlite> -- Nothing displayed above
+\end{lstlisting}

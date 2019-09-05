@@ -1,0 +1,74 @@
+\question Since streams only evaluate the next element when they are needed, we
+can combine infinite streams together for interesting results! Use it to define
+a few of our favorite sequences. We've defined the function
+\texttt{combine-with} for you below, as well as an example of how to use it to
+define the stream of even numbers.
+
+\begin{lstlisting}[language=Scheme]
+(define (combine-with f xs ys)
+  (if (or (null? xs) (null? ys))
+    nil
+    (cons-stream
+      (f (car xs) (car ys))
+      (combine-with f (cdr-stream xs) (cdr-stream ys)))))
+scm> (define evens (combine-with + (naturals 0) (naturals 0)))
+evens
+scm> (slice evens 0 10)
+(0 2 4 6 8 10 12 14 16 18)
+\end{lstlisting}
+For these questions, you may use the \texttt{naturals} stream in addition to
+\texttt{combine-with}.
+
+\begin{subparts}
+\subpart
+\begin{lstlisting}[language=Scheme]
+(define factorials
+\end{lstlisting}
+\begin{solution}[2.0in]
+\begin{lstlisting}[language=Scheme]
+  (cons-stream 1 (combine-with * (naturals 1) factorials)))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (slice factorials 0 10)
+(1 1 2 6 24 120 720 5040 40320 362880)
+\end{lstlisting}
+
+\subpart
+\begin{lstlisting}[language=Scheme]
+(define fibs
+\end{lstlisting}
+\begin{solution}[2.0in]
+\begin{lstlisting}[language=Scheme]
+  (cons-stream 0
+    (cons-stream 1
+      (combine-with + fibs (cdr-stream fibs)))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (slice fibs 0 10)
+(0 1 1 2 3 5 8 13 21 34)
+\end{lstlisting}
+
+\subpart (Extra for practice) Write \texttt{exp}, which returns a stream where the $n$th term
+represents the degree-$n$ polynomial expantion for $e^x$, which is
+$\sum_{i=0}^{n} x^i / i!$.
+
+You may use \texttt{factorials} in addition to \texttt{combine-with} and
+\texttt{naturals} in your solution.
+\begin{lstlisting}[language=Scheme]
+(define (exp x)
+\end{lstlisting}
+\begin{solution}[2.0in]
+\begin{lstlisting}[language=Scheme]
+  (let ((terms (combine-with (lambda (a b) (/ (expt x a) b))
+                             (cdr-stream (naturals 0))
+                             (cdr-stream factorials))))
+    (cons-stream 1 (combine-with + terms (exp x)))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (slice (exp 2) 0 5)
+(1 3 5 6.333333333 7)
+\end{lstlisting}
+\end{subparts}

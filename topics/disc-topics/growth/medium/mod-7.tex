@@ -1,0 +1,14 @@
+\begin{blocksection}
+\question \begin{lstlisting}
+def mod_7(n):
+    if n % 7 == 0:
+        return 0
+    else:
+        return 1 + mod_7(n - 1)
+\end{lstlisting}
+
+\begin{solution}[0.0in]
+    $\growth(1)$, since at worst it will require 6 recursive calls to reach the
+    base case. So this is $\growth(6)$, which can be reduced to $\growth(1)$.
+\end{solution}
+\end{blocksection}

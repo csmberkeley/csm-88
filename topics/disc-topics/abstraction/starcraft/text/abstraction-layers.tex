@@ -1,0 +1,22 @@
+The beauty of data abstraction is that we can treat complex data in a very
+simple way.  Although we've only been dealing with storing primitive data types
+inside our pairs, we can in fact store more complex data in the exact same
+way. A simple example is nesting lists inside each other.
+
+\begin{lstlisting}
+>>> def make_pair(a, b):
+        return [a, b]
+>>> def get_pair(pair, i):
+        return pair[i]
+>>> def make_pair_of_pairs(pair1, pair2):
+        return make_pair(pair1, pair2)
+>>> p = make_pair_of_pairs(make_pair(1, 2), make_pair(3, 4))
+>>> get_pair(get_pair(p, 0), 0)
+1
+>>> get_pair(get_pair(p, 1), 0)
+3
+\end{lstlisting}
+
+Let's apply this to our running Starcraft example. In Starcraft, buildings are
+used to create units, if given enough resources.
+

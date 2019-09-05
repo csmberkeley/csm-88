@@ -1,0 +1,23 @@
+When defining an iterator, you should always keep track of current position in
+the sequence. In the \lstinline$Naturals$ class, we use
+\lstinline$self.current$ to save the position.
+
+Iterator objects maintain state. Each successive call to \lstinline$__next__$
+will return the next element in the sequence. Since this element may be
+different from the previous one, \lstinline$__next__$ is considered
+\emph{non-pure}.
+
+Python has built-in functions called \lstinline$next$ and \lstinline$iter$ that
+call \lstinline$__next__$ and \lstinline$__iter__$ respectively.
+
+For example, this is how we could use the \lstinline$Naturals$ iterator:
+
+\begin{lstlisting}[language=Python]
+>>> nats = Naturals()
+>>> next(nats)
+0
+>>> next(nats)
+1
+>>> next(nats)
+2
+\end{lstlisting}

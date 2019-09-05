@@ -1,0 +1,18 @@
+\question Write a function \lstinline$filter_stream$, which takes in a
+boolean function \lstinline$f$ and a \lstinline$Stream$ \lstinline$s$.
+It should return a new \lstinline$Stream$, containing only the elements of
+\lstinline$s$ for which \lstinline$f$ returns \lstinline$True$.
+
+\begin{lstlisting}
+def filter_stream(f, s):
+\end{lstlisting}
+\begin{solution}[3.5cm]
+\begin{lstlisting}
+    if s is Stream.empty:
+        return Stream.empty
+    if f(s.first):
+        return Stream(s.first, lambda: filter_stream(f, s.rest))
+    else:
+        return filter_stream(f, s.rest)
+\end{lstlisting}
+\end{solution}

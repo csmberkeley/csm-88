@@ -1,0 +1,22 @@
+Here are some general guidelines for finding the order of growth for the
+runtime of a function:
+
+\begin{itemize}
+\item If the function is recursive or iterative, you can subdivide the problem
+    as seen above:
+    \begin{itemize}
+        \item Count the number of recursive calls/iterations that will be made
+            in terms of input size $n$.
+        \item Find how much work is done per recursive call or iteration in
+            terms of input size $n$.
+    \end{itemize}
+    The answer is usually the product of the above two, but be sure to pay
+    attention to control flow!
+\item If the function calls helper functions that are not constant-time, you
+    need to take the runtime of the helper functions into consideration.
+\item We can ignore constant factors. For example,  $\Theta(1000000n) =
+    \Theta(n)$.
+\item We can also ignore lower-order terms. For example, $\Theta(n^3 + n^2 + 4n
+    + 399) = \Theta(n^3)$. This is because the $n^{3}$ term dominates as $n$
+    gets larger.
+\end{itemize}

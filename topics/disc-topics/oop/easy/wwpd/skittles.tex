@@ -1,0 +1,87 @@
+\question What does Python print for each of the following:
+
+\begin{lstlisting}
+>>> johns_bag = Bag()
+>>> johns_bag.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+[]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> for color in ['blue', 'red', 'green', 'red']:
+...     johns_bag.add_skittle(Skittle(color))
+>>> johns_bag.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+['blue', 'red', 'green', 'red']
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> s = johns_bag.take_skittle()
+>>> print(s.color)
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+blue
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> johns_bag.number_sold
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+1
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> Bag.number_sold
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+1
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> soumyas_bag = Bag()
+>>> soumyas_bag.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+[]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> johns_bag.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+['red', 'green', 'red']
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> Bag.number_sold
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+2
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> soumyas_bag.number_sold
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+2
+\end{lstlisting}
+\end{solution}

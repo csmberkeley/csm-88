@@ -1,0 +1,21 @@
+\question Draw the environment diagram for the following code.
+
+\begin{lstlisting}
+def stepper(num):
+    def step():
+        nonlocal num
+        num = num + 1
+        return num
+    return step
+
+s = stepper(3)
+s()
+s()
+\end{lstlisting}
+
+\begin{solution}[4.0in]
+\begin{center}
+\includegraphics{stepper.png}
+\end{center}
+\href{https://www.youtube.com/watch?v=XsdTV6cAAjY&vq=hd1080&t=38m38s}{Video walkthrough}
+\end{solution}

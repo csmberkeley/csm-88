@@ -1,0 +1,14 @@
+\question Define a generator that yields the sequence of perfect squares. The
+sequence of perfect squares looks like: $1, 4, 9, 16 \ldots$
+\begin{lstlisting}
+def perfect_squares():
+\end{lstlisting}
+
+\begin{solution}[1in]
+\begin{lstlisting}
+    i = 0
+    while True:
+        yield i * i
+        i += 1
+\end{lstlisting}
+\end{solution}

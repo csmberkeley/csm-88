@@ -1,0 +1,27 @@
+\question Write a function that rotates the elements of a list to the right by
+$k$.  Elements should not ``fall off''; they should wrap around the beginning
+of the list.  {\tt rotate} should return a new list.  To make a list of $n$
+0's, you can do this: {\tt [0] * n}
+\begin{lstlisting}
+def rotate(lst, k):
+    """ Return a new list, with the same elements
+        of lst, rotated to the right k.
+    >>> x = [1, 2, 3, 4, 5]
+    >>> rotate(x, 3)
+    [3, 4, 5, 1, 2]
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    n = len(lst)
+    ret = [0] * n
+    for i in range(n):
+        j = (i + k) % n
+        ret[j] = lst[i]
+    return ret
+\end{lstlisting}
+or
+\begin{lstlisting}
+    return lst[-k:] + lst[:-k]
+\end{lstlisting}
+\end{solution}

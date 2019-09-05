@@ -1,0 +1,70 @@
+\question Complete \texttt{redundant\_map}, which takes a tree \texttt{t} and a function \texttt{f}, and applies \texttt{f} to each node ($2^d$) times, where d is the depth of the node. The root has a depth of 0. We should be returning a \textbf{new tree}.
+
+\begin{lstlisting}
+def redundant_map(t, f):
+  """
+  >>> double = lambda x: x*2
+  >>> t = tree(1, [tree(1), tree(2, [tree(1, [tree(1)])])])
+  >>> print_tree(t)
+  1
+    1
+    2
+      1
+        1
+  >>> new_t = redundant_map(t, double)
+  >>> print_tree(new_t)
+  2
+    4
+    8
+      16
+        256
+  """
+  new_label = ____________________________________________
+  new_f = _________________________________________________
+  ____________ = ___________________________________________
+  return _____________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+def redundant_map(t, f):
+  """
+  >>> double = lambda x: x*2
+  >>> t = tree(1, [tree(1), tree(2, [tree(1, [tree(1)])])])
+  >>> print_tree(t)
+  1
+    1
+    2
+      1
+        1
+  >>> new_t = redundant_map(t, double)
+  >>> print_tree(new_t)
+  2
+    4
+    8
+      16
+        256
+  """
+  new_label = f(label(t))
+  new_f = lambda x: f(f(x))
+  new_branches = [redundant_map(b, new_f) for b in branches(t)]
+  return tree(new_label, new_branches)
+\end{lstlisting}
+Every time we recurse, we transform our map function into one that is one level
+deeper in terms of calls to input function \texttt{f}. To see why this will
+achieve the result we want, let's look at what happens to some input function
+\texttt{f}.
+
+\begin{itemize}
+    \item The first call to \texttt{redundant\char`_map} will call \texttt{f}
+        once.
+    \item This means on the second call to \texttt{redundant\char`_map}, we pass
+        in a function \texttt{g} that causes the original \texttt{f} to be
+        called two times.
+    \item On the third call to \texttt{redundant\char`_map}, we pass in a
+        function \texttt{h} that causes \texttt{g} to be called two times.
+        Remember that \texttt{g} calls original \texttt{f} twice, so \texttt{h}
+        will end up calling original \texttt{f} four times.
+\end{itemize}
+Therefore, each level will have double the calls to \texttt{f} as the previous
+level, which matches the requirements.
+\end{solution}

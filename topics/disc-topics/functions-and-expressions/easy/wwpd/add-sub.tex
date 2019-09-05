@@ -1,0 +1,14 @@
+\question What would Python print?
+\begin{lstlisting}
+>>> from operator import add
+>>> def sub(a, b):
+...     sub = add
+...     return a - b
+>>> add = sub
+>>> sub = min
+>>> print(add(2, sub(2, 3)))
+\end{lstlisting}
+
+\begin{solution}[1in]
+0
+\end{solution}

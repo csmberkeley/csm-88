@@ -1,0 +1,18 @@
+\question The Fibonacci sequence is a classic infinite sequence. Implement
+\texttt{make-fib-stream}, which takes two numbers and produces a stream of
+Fibonacci numbers starting with those two numbers.
+\newline
+\begin{lstlisting}[language=Scheme]
+(define (make-fib-stream a b)
+\end{lstlisting}
+\begin{solution}[2cm]
+\begin{lstlisting}[language=Scheme]
+  (cons-stream a (make-fib-stream b (+ a b))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (define fib-stream (make-fib-stream 0 1))
+fib-stream
+scm> (car (cdr-stream (cdr-stream (cdr-stream (cdr-stream (cdr-stream fib-stream))))))
+5
+\end{lstlisting}

@@ -1,0 +1,59 @@
+\question
+Consider a tree ADT \texttt{t} constructed by calling \texttt{tree(1, [tree(2),
+tree(4)])}.  For each of the following expressions, answer these two questions:
+
+\begin{itemize}
+\item What does the expression evaluate to?
+\item Does the expression violate any abstraction barriers? If so, write an
+equivalent expression that does not violate abstraction barriers.
+\end{itemize}
+
+\begin{enumerate}
+\item \texttt{label(t)}
+\begin{solution}[0.20in]
+Evaluates to 1, the label of the entire tree. This is simply using a selector
+to get the label, which is not violating any abstraction barriers.
+\end{solution}
+\item \texttt{t[0]}
+\begin{solution}[0.20in]
+This expression evaluates to 1, the label of the entire tree. However, it makes
+use of the fact that trees are implemented using lists, and violates the
+abstraction barrier. An equivalent expression is \texttt{label(t)}.
+\end{solution}
+\item \texttt{label(branches(t)[0])}
+\begin{solution}[0.20in]
+This expression evaluates to the label of the first branch of \texttt{t}.  It
+is not a violation to index into \texttt{branches(t)} because it is given in
+the description of the ADT that \texttt{branches(t)} returns a list of
+branches.
+\end{solution}
+\item \texttt{is\_leaf(t[1:][1])}
+\begin{solution}[0.20in]
+This expression accesses the branches of \texttt{t} by slicing \texttt{t}.
+Although this works because this is technically what \texttt{branches(t)}
+returns, this is an abstraction violation because we cannot assume the
+implementation of \texttt{branches(t)}.
+
+It then accesses the second branch by indexing into the list of branches, which
+is \emph{not} an abstraction violation because we are allowed to assume that
+branches is a list.  This expression evaluates to \texttt{True} because the
+second branch of \texttt{t} is a leaf. An equivalent expression is
+\texttt{is\_leaf(branches(t)[1])}.
+\end{solution}
+\item \texttt{[label(b) for b in branches(t)]}
+\begin{solution}[0.20in]
+This expression uses the \texttt{branches} selector to access the branches of
+\texttt{t} and then iterates through it to construct a new list containing the
+labels of the branches. The result list is \texttt{[2, 4]}. It does not violate
+any abstraction barriers.
+\end{solution}
+\item \textbf{Challenge:} \texttt{branches(tree(5, [t, tree(3)]))[0][0]}
+\begin{solution}[0.20in]
+This expression evaluates to the label of the tree \texttt{t}, which is 1. This
+is because the expression \texttt{tree(5, [t, tree(3)])} evaluates to a tree
+whose first branch is the tree \texttt{t} that we constructed above! Howvever,
+this expression violates the abstraction barrier by indexing into \texttt{t} to
+get its label. An equivalent expression would be \texttt{label(branches(tree(5,
+[t, tree(3)]))[0])}.
+\end{solution}
+\end{enumerate}

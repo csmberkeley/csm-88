@@ -1,0 +1,18 @@
+\question We also want to be able to perform division, as in {\tt (/ 4 2)}.
+Supplement the existing code to handle this. If division by 0 is attempted,
+raise a {\tt ZeroDivisionError}. If there are less than 2 arguments supplied,
+raise a {\tt TypeError} (the error message is unimportant).
+\begin{solution}[1.7in]
+\begin{lstlisting}
+    ...
+    elif operator == '/':
+        if len(args) < 2:
+            raise TypeError('too few args')
+        if 0 in args[1:]:
+            raise ZeroDivisionError
+        else:
+            return reduce(truediv, args[1:], args[0])
+    ...
+\end{lstlisting}
+\end{solution}
+

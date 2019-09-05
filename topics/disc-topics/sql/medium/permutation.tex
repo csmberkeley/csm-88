@@ -1,0 +1,11 @@
+\question Generate a table that contains all the permutations of length 3 from
+the set {0, 1, 2, 3}. Your solution should have three columns named p, q, r.
+Hint: Use the \texttt{natural} table defined earlier.
+
+\begin{solution}[1in]
+\begin{lstlisting}[language=SQL]
+create table permutation as
+  select a.n as p, b.n as q, c.n as r from
+    natural as a, natural as b, natural as c;
+\end{lstlisting}
+\end{solution}

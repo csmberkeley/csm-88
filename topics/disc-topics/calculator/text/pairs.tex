@@ -1,0 +1,60 @@
+Recall that the reader component of an interpreter parses input strings and
+represents them as data structures in the implementing language. In this case,
+we need to represent Calculator expressions as Python objects. To represent
+numbers, we can just use Python numbers. To represent the names of the
+arithmetic procedures, we can use Python strings (e.g. \texttt{'+'}).
+
+Call expressions are a bit more complicated. First, note that like Scheme call
+expressions, call expressions in Calculator look just like Scheme lists.  For
+example, to construct the expression {\tt (+ 2 3)} in Scheme, we would do the
+following:
+
+\begin{lstlisting}
+scm> (cons '+ (cons 2 (cons 3 nil)))
+(+ 2 3)
+\end{lstlisting}
+
+To represent Scheme lists in Python, we will use the {\tt Pair} class.  A {\tt
+Pair} instance holds exactly two elements. Accordingly, the {\tt Pair}
+constructor takes in two arguments, and to make a list we must nest calls to
+the constructor and pass in {\tt nil} as the second element of the last pair.
+Note that in our implementation, {\tt nil} is bound to a special user-defined
+object that represents an empty list, whereas {\tt nil} in Scheme is actually
+an empty list.
+
+\begin{lstlisting}
+>>> Pair('+', Pair(2, Pair(3, nil)))
+Pair('+', Pair(2, Pair(3, nil)))
+\end{lstlisting}
+
+Each {\tt Pair} instance has two instance attributes: {\tt first} and {\tt
+second}, which are bound to the first and second elements of the pair
+respectively.
+
+\begin{lstlisting}
+>>> p = Pair('+', Pair(2, Pair(3, nil)))
+>>> p.first
+'+'
+>>> p.second
+Pair(2, Pair(3, nil))
+>>> p.second.first
+2
+\end{lstlisting}
+
+%{\tt Pair} is very similar to {\tt Link}, the class we developed for
+%representing linked lists, except that the second attribute doesn't have to be
+%a linked list.
+%In addition to {\tt Pair} objects, we include a {\tt nil} object
+%to represent the empty list. {\tt Pair} instances have methods:
+%\begin{enumerate}
+%\itemsep-0.5em
+%\item[1.] {\tt \char`_\char`_len\char`_\char`_}, which returns the length of the
+%    list.
+%\item[2.] {\tt \char`_\char`_getitem\char`_\char`_}, which allows indexing into
+%    the pair.
+%\item[3.] {\tt map}, which applies a function, {\tt fn}, to all of the elements
+%    in the list.
+%\end{enumerate}
+%
+%{\tt nil} has the methods {\tt \char`_\char`_len\char`_\char`_}, {\tt
+%\char`_\char`_getitem\char`_\char`_}, and {\tt map}.

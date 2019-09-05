@@ -1,0 +1,27 @@
+Iterables can be used in for loops and as arguments to functions that require a
+sequence (e.g.\ \lstinline$map$ and \lstinline$zip$). For example:
+\begin{lstlisting}
+>>> for n in Range(2):
+...     print(n)
+...
+0
+1
+\end{lstlisting}
+
+This works because the for loop implicitly creates an iterator using the
+\lstinline$__iter__$ method. Python then repeatedly calls \lstinline$next$
+repeatedly on the iterator, until it raises \lstinline$StopIteration$. In other
+words, the loop above is (basically) equivalent to:
+
+\begin{blocksection}
+\begin{lstlisting}
+range_iterator = iter(Range(2))
+is_done = False
+while not is_done:
+    try:
+        val = next(range_iterator)
+        print(val)
+    except StopIteration:
+        is_done = True
+\end{lstlisting}
+\end{blocksection}

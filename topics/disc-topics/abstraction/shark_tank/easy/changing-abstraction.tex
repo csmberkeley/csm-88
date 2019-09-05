@@ -1,0 +1,80 @@
+\question Data abstractions are extremely useful when the underlying
+implementation of the abstraction changes. For example, after writing a program
+using functions as a way of storing pairs, suddenly someone switches the
+implementation to tuples. If we correctly use constructors and
+selectors, our program should still work perfectly.
+
+Reimplement the previous Shark Tank abstractions to use tuples instead of functional
+pairs. Then verify that the code for {\tt episode} still works.
+
+\begin{lstlisting}
+def make_idea(name, good):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return (name, good)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_name(idea):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return idea[0]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def is_good(idea):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return idea[1]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def make_entrepreneur(idea, money_request):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return (idea, money_request)
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_idea(entrepreneur):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return entrepreneur[0]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_money_request(entrepreneur):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return entrepreneur[1]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def make_shark(max_funding):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+  return max_funding
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_max_funding(shark):
+\end{lstlisting}
+\begin{solution}[0.1in]
+\begin{lstlisting}
+    return shark
+\end{lstlisting}
+\end{solution}

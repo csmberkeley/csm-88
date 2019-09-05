@@ -1,0 +1,29 @@
+\question Fill in the \texttt{choose} function, which returns the number of ways to
+choose \texttt{k} items from \texttt{n} items. Mathematically,
+\texttt{choose(n, k)} is defined as:
+\begin{equation*}
+  \frac{n \times (n-1) \times (n-2) \times \cdots \times (n-k+1)}{k \times (k-1)
+  \times (k-2) \times \cdots \times 2 \times 1}
+\end{equation*}
+
+\begin{lstlisting}
+def choose(n, k):
+    """Returns the number of ways to choose K items from
+       N items.
+
+    >>> choose(5, 2)
+    10
+    >>> choose(20, 6)
+    38760
+    """
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    total = 1
+    i = 0
+    while i < k:
+        total = total * (n - i) // (i + 1)
+        i += 1
+    return total
+\end{lstlisting}
+\end{solution}

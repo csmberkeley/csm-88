@@ -1,0 +1,97 @@
+We can use a \texttt{SELECT} statement to create tables. The following statement
+creates a table with a single row, with columns named ``first'' and ``last'':
+
+\begin{lstlisting}[language=SQL]
+  sqlite> SELECT "Ben" AS first, "Bitdiddle" AS last;
+  Ben|Bitdiddle
+\end{lstlisting}
+
+Given two tables with the same number of columns, we can combine their rows
+into a larger table with \texttt{UNION}:
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT "Ben" AS first, "Bitdiddle" AS last UNION
+   ...> SELECT "Louis",        "Reasoner";
+Ben|Bitdiddle
+Louis|Reasoner
+\end{lstlisting}
+
+\begin{blocksection}
+To save a table, use \texttt{CREATE TABLE} and a name.
+Here we're going to create the table of employees from the
+previous section and assign it to the name \texttt{records}:
+
+\begin{lstlisting}[language=SQL]
+sqlite> CREATE TABLE records AS
+   ...>   SELECT "Ben Bitdiddle" AS name, "Computer" AS division,
+   ...>     "Wizard" AS title, 60000 AS salary,
+   ...>     "Oliver Warbucks" AS supervisor UNION
+   ...>   SELECT "Alyssa P Hacker", "Computer",
+   ...>     "Programmer", 40000, "Ben Bitdiddle" UNION ... ;
+\end{lstlisting}
+\end{blocksection}
+
+We can SELECT specific values from an existing table using a \texttt{FROM} 
+clause. This query creates a table with two columns, with a row for each row in the
+\texttt{records} table:
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT name, division FROM records;
+Alyssa P Hacker|Computer
+Ben Bitdiddle|Computer
+Cy D Fect|Computer
+Eben Scrooge|Accounting
+Lem E Tweakit|Computer
+Louis Reasoner|Computer
+Oliver Warbucks|Administration
+Robert Cratchet|Accounting
+\end{lstlisting}
+
+The special syntax \texttt{SELECT *} will select all columns from a table. It's
+an easy way to print the contents of a table.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT * FROM records;
+Alyssa P Hacker|Computer|Programmer|40000|Ben Bitdiddle
+Ben Bitdiddle|Computer|Wizard|60000|Oliver Warbucks
+Cy D Fect|Computer|Programmer|35000|Ben Bitdiddle
+Eben Scrooge|Accounting|Chief Accountant|75000|Oliver Warbucks
+Lem E Tweakit|Computer|Technician|25000|Ben Bitdiddle
+Louis Reasoner|Computer|Programmer Trainee|30000|Alyssa P Hacker
+Oliver Warbucks|Administration|Big Wheel|150000|Oliver Warbucks
+Robert Cratchet|Accounting|Scrivener|18000|Eben Scrooge
+\end{lstlisting}
+
+We can choose which columns to show in the first part of the \texttt{SELECT}, we
+can filter out rows using a \texttt{WHERE} clause, and sort the resulting rows
+with an \texttt{ORDER BY} clause. In general the syntax is:
+
+\begin{lstlisting}[language=SQL]
+SELECT [columns] FROM [tables]
+  WHERE [condition] ORDER BY [criteria];
+\end{lstlisting}
+
+For instance, the following statement lists all information about employees with
+the ``Programmer'' title.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT * FROM records WHERE title = "Programmer";
+Alyssa P Hacker|Computer|Programmer|40000|Ben Bitdiddle
+Cy D Fect|Computer|Programmer|35000|Ben Bitdiddle
+\end{lstlisting}
+
+The following statement lists the names and salaries of each employee under the
+accounting division, sorted in \textbf{descending} order by their salaries.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT name, salary FROM records
+   ...>   WHERE division = "Accounting" ORDER BY -salary;
+Eben Scrooge|75000
+Robert Cratchet|18000
+\end{lstlisting}
+
+Note that all valid SQL statements must be terminated by a semicolon
+(\texttt{;}). Additionally, you can split up your statement over many lines and
+add as much whitespace as you want, much like Scheme. But keep in mind that
+having consistent indentation and line breaking does make your code a lot more
+readable to others (and your future self)!

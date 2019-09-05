@@ -1,0 +1,15 @@
+\question Define a function {\tt square\_tree(t)} that squares every value in
+{\tt t}. You can assume that every value is a number.
+
+\begin{lstlisting}
+def square_tree(t):
+    """Mutates a BinTree t by squaring all its elements"""
+\end{lstlisting}
+\begin{solution}[0.7in]
+\begin{lstlisting}
+    if t != BinTree.empty:
+        t.root = t.root ** 2
+        square_tree(t.left)
+        square_tree(t.right)
+\end{lstlisting}
+\end{solution}

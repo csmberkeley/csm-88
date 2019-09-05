@@ -1,0 +1,17 @@
+\question
+Given that the input \texttt{t} is a non-empty binary search tree, write
+\texttt{tree\_max}. \texttt{tree\_max} must run in $O(H)$, where $H$ is the height of the tree.
+
+\begin{lstlisting}
+def tree_max(t):
+    """Returns the max root in a binary search tree t."""
+\end{lstlisting}
+\begin{solution}[1.5in]
+Because \texttt{t} is a binary search tree, the max root must be the rightmost
+root.
+\begin{lstlisting}
+    if t.right == BinaryTree.empty:
+        return t.root
+    return tree_max(t.right)
+\end{lstlisting}
+\end{solution}

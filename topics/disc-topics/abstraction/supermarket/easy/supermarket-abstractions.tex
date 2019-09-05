@@ -1,0 +1,29 @@
+\question Write the constructor and selectors for the \emph{item} abstraction.
+An item consists of a string name and an integer price.
+
+\begin{lstlisting}
+def make_item(name, price):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return [name, price]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_item_name(item):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return item[0]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_item_price(item):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return item[1]
+\end{lstlisting}
+\end{solution}

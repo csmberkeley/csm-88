@@ -1,0 +1,50 @@
+We've written {\tt factorial} recursively. Let's compare the two implementations:
+
+\begin{minipage}{0.5\linewidth}
+\begin{lstlisting}[linewidth=\linewidth]
+def recursive_fact(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * recursive_fact(n-1)
+\end{lstlisting}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+\begin{lstlisting}[linewidth=\linewidth]
+def iterative_fact(n):
+    total = 1
+    while n > 1:
+        total = total * n
+        n = n - 1
+    return total
+\end{lstlisting}
+\end{minipage}
+
+Let's also compare {\tt fibonacci}.
+
+\begin{minipage}{0.5\linewidth}
+\begin{lstlisting}[linewidth=\linewidth]
+def recursive_fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return (recursive_fib(n-1)
+              + recursive_fib(n-2))
+\end{lstlisting}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+\begin{lstlisting}[linewidth=\linewidth]
+def iterative_fib(n):
+    prev, curr = 0, 1
+    while n > 0:
+        prev, curr = curr, prev + curr
+        n = n - 1
+    return prev
+\end{lstlisting}
+\end{minipage}
+
+For the recursive version, we copied the definition of the Fibonacci sequence straight into code! The $n$th Fibonacci number is simply the sum of the two before it. In iteration, you need to keep track of more numbers and have a better understanding of the code.
+
+Some code is easier to write iteratively and some recursively. Have fun experimenting with both!

@@ -1,0 +1,41 @@
+\question
+Define the function tree\_map, which takes in a tree and a
+one-argument function as arguments and returns a new tree which is the
+result of mapping the function over the entries of the input tree.
+\begin{lstlisting}
+def tree_map(fn, t):
+    """Maps the function fn over the entries of tree and returns the
+    result in a new tree.
+
+    >>> numbers = tree(1,
+    ...                [tree(2,
+    ...                      [tree(3),
+    ...                       tree(4)]),
+    ...                 tree(5,
+    ...                      [tree(6,
+    ...                            [tree(7)]),
+    ...                       tree(8)])])
+    >>> print_tree(tree_map(lambda x: 2**x, numbers))
+    2
+      4
+        8
+        16
+      32
+        64
+          128
+        256
+    """
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+    if is_leaf(t):
+        return tree(fn(label(t)))
+    mapped_subtrees = []
+    for b in branches(t):
+        mapped_subtrees += [tree_map(fn, b)]
+    return tree(fn(label(t)), mapped_subtrees)
+
+# Alternate solution
+    return tree(fn(label(t)), [tree_map(fn, t) for t in branches(t)])
+\end{lstlisting}
+\end{solution}

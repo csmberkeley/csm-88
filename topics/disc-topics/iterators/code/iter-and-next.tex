@@ -1,0 +1,17 @@
+\begin{lstlisting}
+>>> lst = [4, 2]
+>>> i = iter(lst)
+>>> j = iter(lst)
+>>> i
+<list_iterator object>
+>>> next(i)
+4
+>>> next(i)
+2
+>>> next(j)
+4
+>>> next(i)
+StopIteration
+>>> next(j)
+2
+\end{lstlisting}

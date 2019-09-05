@@ -1,0 +1,22 @@
+\question Notice that the builtin \texttt{append} takes in, not a \emph{list} of lists, but an \emph{arbitrary}
+number of lists as arguments, which it then concatenates together. Implement \texttt{better-append}, which behaves in such
+a manner, allowing the caller to pass in an arbitrary number of arguments. You may use \texttt{concat} from the previous
+question.
+
+(Hint: look up ``variadic functions'' in the Scheme spec!)
+
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=Scheme]
+(define (better-append . args)
+  (concat args))
+\end{lstlisting}
+%\href{https://youtu.be/8FO2ZYkXwb0}{Video walkthrough}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (better-append '(1 2 3))
+(1 2 3 2 3 4)
+scm> (better-append '(1 2 3) '(2 3 4))
+(1 2 3 2 3 4)
+scm> (better-append '(1 2 3) '(2 3 4) '(3 4 5))
+(1 2 3 2 3 4 3 4 5)
+\end{lstlisting}

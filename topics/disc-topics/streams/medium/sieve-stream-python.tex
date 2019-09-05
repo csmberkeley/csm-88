@@ -1,0 +1,17 @@
+\question We can even represent the sequence of all prime numbers as an
+infinite stream!
+Define a function \lstinline$sieve$, which takes in a stream of numbers and
+returns a new stream containing only those numbers which are not multiples of
+an earlier number in the stream.
+We can define \lstinline$primes$ by sifting all natural numbers starting at 2.
+Look online for the \textbf{Sieve of Eratosthenes} if you need some inspiration.
+
+\begin{lstlisting}
+def sieve(s):
+\end{lstlisting}
+\begin{solution}[2cm]
+\begin{lstlisting}
+    no_multiples = filter_stream(lambda x: x % s.first != 0, s)
+    return Stream(s.first, lambda: sieve(no_multiples))
+\end{lstlisting}
+\end{solution}

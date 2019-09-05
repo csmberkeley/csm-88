@@ -1,0 +1,32 @@
+\question (Fall 2013) The CS61A staff has developed a formula for determining
+what a fox might say. Given three strings, a start, a middle, and an end, a fox
+will say the start string, followed by the middle string repeated a number of
+times, followed by the end string. These parts are all separated by single
+hyphens.
+
+Complete the definition of {\tt fox\_says}, which takes the three string parts
+of the fox's statement (start, middle, and end) and a positive integer {\tt num}
+indicating how many times to repeat middle. It returns a string. You cannot use
+any for or while statements. Use recursion in repeat. Moreover, you cannot use
+string operations other than the + operator to concatenate strings together.
+\begin{lstlisting}
+def fox_says(start, middle, end, num ):
+    """
+    >>> fox_says('wa', 'pa', 'pow', 3)
+    'wa-pa-pa-pa-pow'
+    >>> fox_says('fraka', 'kaka', 'kow', 4)
+    'fraka-kaka-kaka-kaka-kaka-kow'
+    """
+    def repeat(k):
+\end{lstlisting}
+\begin{solution}[1.75in]
+\begin{lstlisting}
+    if k == 1:
+        return middle
+    else:
+        return middle + '-' + repeat(k-1)
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+    return start + '-' + repeat(num) + '-' + end
+\end{lstlisting}

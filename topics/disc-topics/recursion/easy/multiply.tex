@@ -1,0 +1,40 @@
+\question Write a function that takes two numbers {\tt m} and {\tt n} and
+returns their product. Assume {\tt m} and {\tt n} are positive integers.
+\textbf{Use recursion}, not \texttt{mul} or \texttt{*}!
+
+Hint: \texttt{5*3 = 5 + 5*2 = 5 + 5 + 5*1}.
+
+For the base case, what is the simplest possible input for \texttt{multiply}?
+\begin{solution}[0.3in]
+If one of the inputs is one, you simply return the other input.
+\end{solution}
+
+For the recursive case, what does calling \texttt{multiply(m - 1, n)} do?
+What does calling \texttt{multiply(m, n - 1)} do?
+Do we prefer one over the other?
+\begin{solution}[0.5in]
+The first call will calculate a value that is \texttt{m} less than the total,
+while the second will calculate a value that is  \texttt{n} less.
+
+Either recursive call will work, but only \texttt{multiply(m, n - 1)}  is
+needed.
+\end{solution}
+
+\begin{blocksection}
+\begin{lstlisting}
+def multiply(m, n):
+    """
+    >>> multiply(5, 3)
+    15
+    """
+\end{lstlisting}
+\begin{solution}[1.25in]
+\begin{lstlisting}
+    if n == 1:
+        return m
+    else:
+        return m + multiply(m, n - 1)
+\end{lstlisting}
+\href{https://youtu.be/VcZPTlE56G8?t=41m21s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

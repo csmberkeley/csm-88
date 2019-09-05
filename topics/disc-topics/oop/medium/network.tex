@@ -1,0 +1,159 @@
+\question (Summer 2015 Final) The TAs are building a social networking
+website called CS61A+. The TAs plan to represent the network in a class
+called \texttt{Network} that supports the following method:
+\begin{itemize}
+    \item \texttt{add\_friend(user1, user2)} adds \texttt{user1} and
+        \texttt{user2} to each other's friends lists. If \texttt{user1} or
+        \texttt{user2} are not in the \texttt{Network}, add them to the
+        dictionary of friends.
+\end{itemize}
+Help the TAs implement these two methods to make their social networking website
+popular!
+
+\begin{lstlisting}
+class Network:
+    """
+    >>> cs61a_plus = Network()
+    >>> cs61a_plus.add_friend('Robert', 'Jeffrey')
+    >>> cs61a_plus.friends['Robert']
+    ['Jeffrey']
+    >>> cs61a_plus.friends['Jeffrey']
+    ['Robert']
+    >>> cs61a_plus.add_friend('Jessica', 'Robert')
+    >>> cs61a_plus.friends['Robert']
+    ['Jeffrey', 'Jessica']
+    """
+    def __init__(self):
+        self.friends = {}       # Maps users to a list of their friends
+
+    def add_friend(self, user1, user2):
+
+
+        if __________________________________________________:
+
+
+            _________________________________________________
+
+
+        if __________________________________________________:
+
+
+            _________________________________________________
+
+
+        _____________________________________________________
+
+
+        _____________________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+    def add_friend(self, user1, user2):
+        if user1 not in self.friends:
+            self.friends[user1] = []
+        if user2 not in self.friends:
+            self.friends[user2] = []
+        self.friends[user1].append(user2)
+        self.friends[user2].append(user1)
+\end{lstlisting}
+\end{solution}
+
+\clearpage
+
+CS61A+ turns out to be unpopular. To attract more users, the TAs want to
+implement a feature that checks if two users have at most \texttt{n} degrees of
+separation. Consider the following CS61A+ \texttt{Network}:
+
+\begin{lstlisting}
+self.friends = {
+    'Robert':  ['Jeffrey', 'Jessica'],
+    'Jeffrey': ['Robert', 'Jessica', 'Yulin'],
+    'Jessica': ['Robert', 'Jeffrey', 'Yulin'],
+    'Yulin':   ['Jeffrey', 'Jessica'],
+    'Albert':  []
+}
+\end{lstlisting}
+
+\begin{itemize}
+    \item There is 1 degree of separation between Robert and Jeffrey, because they
+        are direct friends.
+    \item There are 2 degrees of separation between Robert and Yulin (Robert
+        $\rightarrow$ Jessica $\rightarrow$ Yulin)
+    \item The degree of separation between Albert and anyone else is undefined,
+        since Albert has no friends.
+\end{itemize}
+
+\begin{lstlisting}
+class Network:
+    # Code from previous question
+
+    def degrees(self, user1, user2, n):
+        """In these doctests, assume cs61a_plus is a Network with the
+        dictionary of friends described in the example.
+
+        >>> cs61a_plus.degrees('Robert', 'Yulin', 2)    # Exactly 2 degrees
+        True
+        >>> cs61a_plus.degrees('Robert', 'Jessica', 2)  # Less than 2 degrees
+        True
+        >>> cs61a_plus.degrees('Yulin', 'Robert', 1)    # More than 1 degree
+        False
+        >>> cs61a_plus.degrees('Albert', 'Jessica', 10) # No friends!
+        False
+        """
+        if ______________________________________:
+            return True
+
+        elif ____________________________________:
+            return False
+
+        for friend in _______________________________:
+
+            if ______________________________________:
+                return True
+
+        return ______________________________________
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}
+class Network:
+    # Code from previous question
+
+    def degrees(self, user1, user2, n):
+        """
+        >>> cs61a_plus = Network()
+        >>> cs61a_plus.friends = {
+        ...     'Robert': ['Jeffrey', 'Jessica'],
+        ...     'Jeffrey': ['Robert', 'Jessica', 'Yulin'],
+        ...     'Jessica': ['Robert', 'Jeffrey', 'Yulin'],
+        ...     'Yulin': ['Jeffrey', 'Jessica'],
+        ...     'Albert': []
+        ... }
+        >>> cs61a_plus.degrees('Robert', 'Yulin', 2)    # Exactly 2 degrees
+        True
+        >>> cs61a_plus.degrees('Robert', 'Jessica', 2)  # Less than 2 degrees
+        True
+        >>> cs61a_plus.degrees('Yulin', 'Robert', 1)    # More than 1 degree
+        False
+        >>> cs61a_plus.degrees('Albert', 'Jessica', 10) # No friends!
+        False
+        """
+
+        if user1 == user2:
+
+            return True
+
+        elif n <= 0:
+
+            return False
+
+        for friend in self.friends[user1]:
+
+            if self.degrees(friend, user2, n - 1):
+
+                return True
+
+        return False
+
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,21 @@
+A Binary Search Tree (BST) is a special kind of tree that satisfies the
+following properties:
+\begin{itemize}
+\item Every node of a BST has at most two children called \texttt{left} and \texttt{right}. The children are also BST's.
+\item For every node, all values in the left child are less than or equal to the parent's value.
+\item For every node, all values in the right child are greater than or equal to the parent's value.
+\end{itemize}
+
+% new binary tree class.
+\begin{lstlisting}
+# Binary Search Tree (BST) Class
+class BinTree:
+    empty = ()
+    def __init__(self, root, left=empty, right=empty):
+        self.root = root
+        self.left = left
+        self.right = right
+\end{lstlisting}
+
+Note that there is an empty tree (\texttt{BinTree.empty}) defined. If a node
+does not have a left or right child, that attribute will be an empty tree.

@@ -1,0 +1,36 @@
+We can create recursive table definitions using the \texttt{with} syntax. 
+
+Let's create a table of natural numbers from 0 to 5 (inclusive). We want to
+employ the same thought process as we did with the recursive functions in
+Python and Scheme: we want a base case and a recursive case. 
+
+We start by defining a local table called \texttt{num} that has 1 column
+\texttt{n}. Each row will have 1 value, a natural number. The base case is 0 
+(the smallest natural number) and we can create a one row table for it with
+\texttt{select 0}. For the recursive case, for each natural number, we can
+add 1 to get another natural number with \texttt{select n + 1 from num}. Since
+we want numbers up to 5, the recursive case applies only to numbers less than
+5 (so $n + 1$ will be 5 or less). Finally, we combine the two cases into a
+single table with \texttt{union}.
+
+\begin{lstlisting}[language=SQL]
+sqlite> create table naturals as
+   ...>   with num(n) as (
+   ...>     select 0 union
+   ...>     select n + 1 from num where n < 5
+   ...>   )
+   ...>   select * from num;
+\end{lstlisting}
+
+Remember that \texttt{num} is local to this query. We can see the result by
+selecting everything from \texttt{naturals}.
+\begin{lstlisting}[language=SQL]
+sqlite> select * from naturals;
+0
+1
+2
+3
+4
+5
+\end{lstlisting}
+

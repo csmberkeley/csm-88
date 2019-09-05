@@ -1,0 +1,22 @@
+An \define{iterator} is an object that tracks the position in a sequence of
+values in order to provide sequential access. It returns elements one at a
+time and is only good for one pass through the sequence. The following is an
+example of a class that implements Python's iterator interface using two
+special methods \lstinline$__next__$ and \lstinline$__iter__$. This iterator
+calculates all of the natural numbers one-by-one, starting from zero:
+
+\vspace{0.5em}
+\begin{lstlisting}[language=Python]
+class Naturals():
+    def __init__(self):
+        self.current = 0
+
+    def __next__(self):
+        result = self.current
+        self.current += 1
+        return result
+
+    def __iter__(self):
+        return self
+\end{lstlisting}
+\vspace{0.5em}

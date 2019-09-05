@@ -1,0 +1,9 @@
+In the example below, we start out with a \lstinline$Stream$ whose first
+element is \lstinline$n$, and whose \lstinline$compute_rest$ function creates
+another stream.
+When we do compute the \lstinline$rest$, we get another \lstinline$Stream$.
+It's first element will be \lstinline$n+1$, and it's \lstinline$compute_rest$
+function will create a third \lstinline$Stream$.
+This third \lstinline$Stream$ will start at \lstinline$n+2$, and its
+\lstinline$compute_rest$ will make a fourth \lstinline$Stream$, and so on.
+We get an infinite stream of integers, computed one at a time.

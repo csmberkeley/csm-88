@@ -1,0 +1,17 @@
+\question Write a new method for the \texttt{Bag} class called {\tt
+take\_color}, which takes a color and removes (and returns) a \texttt{Skittle}
+of that color from the bag. If there is no \texttt{Skittle} of that color, then
+it returns {\tt None}.
+
+\begin{lstlisting}
+    def take_color(self, color):
+\end{lstlisting}
+\begin{solution}[2 in]
+\begin{lstlisting}
+        for i in range(len(self.skittles)):
+            curr_skittle = self.skittles[i].color
+            if curr_skittle == color:
+                return self.skittles.pop(i)
+\end{lstlisting}
+\end{solution}
+

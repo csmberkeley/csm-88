@@ -1,0 +1,37 @@
+An assignment statement assigns a certain value to a variable name.
+
+\begin{blocksection}
+\begin{equation*}
+    \underbrace{\texttt{x}}_\text{Name}
+    \texttt{ = }
+    \underbrace{\texttt{2 + 3}}_\text{Expression}
+\end{equation*}
+\end{blocksection}
+
+\begin{blocksection}
+To execute an assignment statement:
+\begin{enumerate}
+\item Evaluate the expression on the right-hand-side of the statement to obtain
+a value.
+\item Bind the value to the name on the left-hand-side of the statement.
+\end{enumerate}
+\end{blocksection}
+
+Let's try to assign the primitive value 6 to the name \texttt{a}, and subsequently
+do a lookup on \texttt{a}.
+
+\begin{lstlisting}
+>>> a = 6
+>>> a
+6
+\end{lstlisting}
+
+Now, let's reassign \texttt{a} to another value. This time, let's use a more
+complex expression. Note that the name is bound to the value, not the
+expression!
+
+\begin{lstlisting}
+>>> a = (3 + 5) // 2
+>>> a
+4
+\end{lstlisting}

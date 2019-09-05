@@ -1,0 +1,78 @@
+\question
+For each of the following functions, identify whether it contains a recursive
+call in a tail context. Also indicate if it uses a constant number of frames.
+
+% \begin{minipage}{\linewidth}
+% \begin{lstlisting}[language=Scheme]
+% (define (question-a x)
+%   (if (= x 0) 0
+%       (+ x (question-a (- x 1)))))
+% \end{lstlisting}
+% \end{minipage}
+% \begin{solution}[0in]
+% In the recursive case, the last expression that is evaluated is a call to
+% \texttt{+}. Therefore, the recursive call is not in tail context, and each of
+% the frames remain active. This function uses $\Theta(n)$ frames.
+% \end{solution}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Scheme]
+(define (question-b x y)
+  (if (= x 0) y
+      (question-b (- x 1) (+ y x))))
+\end{lstlisting}
+\end{minipage}
+\begin{solution}[0in]
+The recursive call is the third operand in the if expression, so it is in tail
+context. This means that the last expression that will be evaluated in the body
+of this function is the recursive function call, so this function uses
+$\Theta(1)$ frames.
+\end{solution}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Scheme]
+(define (question-c x y)
+  (if (> x y)
+      (question-c (- y 1) x)
+      (question-c (+ x 10) y)))
+\end{lstlisting}
+\end{minipage}
+\begin{solution}[0in]
+The recursive calls are the second and third operands of the \texttt{if}
+expression. Only one of these calls is actually evaluated, and whichever one it
+is will be the last expression evaluated in the body of the function.  This
+function therefore uses $\Theta(1)$ frames.
+
+Note that if you actually try and evaluate this function, it will never
+terminate. But at least it won't crash from hitting max recursion depth!
+\end{solution}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Scheme]
+(define (question-d n)
+  (if (question-d n)
+      (question-d (- n 1))
+      (question-d (+ n 10))))
+\end{lstlisting}
+\end{minipage}
+\begin{solution}[0in]
+The second and third recursive calls are in tail context, but the first is not.
+Since not all the recursive calls are tail calls, this function does not use a
+constant number of frames.
+\href{https://youtu.be/QbtKMreFRl8?t=9m}{Video walkthrough}
+\end{solution}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Scheme]
+(define (question-e n)
+  (cond ((= n 0) 1)
+        ((question-e (- n 1)) (question-e (- n 2)))
+        (else (begin (print 2) (question-e (- n 3))))))
+\end{lstlisting}
+\end{minipage}
+\begin{solution}[0in]
+The second and third recursive calls are the second expressions in a clause, so
+they are in tail context. However, the first recursive call is not in tail
+context. Since not all recursive calls are tail calls, this function is not
+tail recursive and does not use a constant number of frames.
+\end{solution}

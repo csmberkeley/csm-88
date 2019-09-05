@@ -1,0 +1,80 @@
+\question
+Write a function that takes in a Python list of linked lists and
+multiplies them element-wise. It should return a new linked list.
+
+If not all of the \texttt{Link} objects are of equal length, return a
+linked list whose length is that of the shortest linked list given. You
+may assume the \texttt{Link} objects are shallow linked lists, and that
+\texttt{lst\_of\_lnks} contains at least one linked list.
+
+\begin{lstlisting}
+def multiply_lnks(lst_of_lnks):
+    """
+    >>> a = Link(2, Link(3, Link(5)))
+    >>> b = Link(6, Link(4, Link(2)))
+    >>> c = Link(4, Link(1, Link(0, Link(2))))
+    >>> p = multiply_lnks([a, b, c])
+    >>> p.first
+    48
+    >>> p.rest.first
+    12
+    >>> p.rest.rest.rest is Link.empty
+    True
+    """
+\end{lstlisting}
+\begin{solution}[1.0in]
+Recursive solution:
+\begin{lstlisting}
+    product = 1
+    for lnk in lst_of_lnks:
+        if lnk is Link.empty:
+            return Link.empty
+        product *= lnk.first
+    lst_of_lnks_rests = [lnk.rest for lnk in lst_of_lnks]
+    return Link(product, multiply_lnks(lst_of_lnks_rests))
+\end{lstlisting}
+For our base case, if we detect that any of the lists in the list of
+\texttt{Link}s is empty, we can return the empty linked list as we're not going
+to multiply anything.
+
+Otherwise, we compute the product of all the firsts in our list of
+\texttt{Link}s. Then, the subproblem we use here is the rest of all the linked
+lists in our list of Links. Remember that the result of calling
+\texttt{multiply\char`_lnks} will be a linked list! We'll use the product we've
+built so far as the first item in the returned \texttt{Link}, and then the
+result of the recursive call as the rest of that \texttt{Link}.
+
+Iterative solution:
+\begin{lstlisting}
+    import operator
+    from functools import reduce
+    def prod(factors):
+         return reduce(operator.mul, factors, 1)
+
+    head = Link.empty
+    tail = head
+    while Link.empty not in lst_of_lnks:
+        all_prod = prod([l.first for l in lst_of_lnks])
+        if head is Link.empty:
+            head = Link(all_prod)
+            tail = head
+        else:
+            tail.rest = Link(all_prod)
+            tail = tail.rest
+        lst_of_lnks = [l.rest for l in lst_of_lnks]
+    return head
+\end{lstlisting}
+
+The iterative solution is a bit more involved than the recursive solution.
+Instead of building the list ``backwards'' as in the recursive solution (because
+of the order that the recursive calls result in, the last item in our list will
+be finished first), we'll build the resulting linked list as we go along.
+
+We use \texttt{head} and \texttt{tail} to track the front and end of the new
+linked list we're creating. Our stopping condition for the loop is if any of the
+\texttt{Link}s in our list of \texttt{Link}s runs out of items.
+
+Finally, there's some special handling for the first item. We need to update
+both head and tail in that case. Otherwise, we just append to the end of our
+list using tail, and update tail.
+\end{solution}

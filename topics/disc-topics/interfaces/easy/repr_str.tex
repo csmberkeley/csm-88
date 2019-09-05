@@ -1,0 +1,73 @@
+\question What would Python display?
+
+\begin{lstlisting}
+class A():
+    def __init__(self, x):
+        self.x = x
+    def __repr__(self):
+         return self.x
+    def __str__(self):
+         return self.x * 2
+
+class B():
+    def __init__(self):
+         print("boo!")
+         self.a = []
+    def add_a(self, a):
+         self.a.append(a)
+    def __repr__(self):
+         print(len(self.a))
+         ret = ""
+         for a in self.a:
+             ret += str(a)
+         return ret
+
+>>> A("one")
+\end{lstlisting}
+\begin{solution}[0.25in]
+\lstinline{one}
+\end{solution}
+
+\begin{lstlisting}
+>>> print(A("one"))
+\end{lstlisting}
+\begin{solution}[0.25in]
+\lstinline{oneone}
+\end{solution}
+
+\begin{lstlisting}
+>>> repr(A("two"))
+\end{lstlisting}
+\begin{solution}[0.25in]
+\lstinline{'two'}
+\end{solution}
+
+\begin{lstlisting}
+>>> b = B()
+\end{lstlisting}
+\begin{solution}[0.25in]
+\lstinline{boo!}
+\end{solution}
+
+\begin{lstlisting}
+>>> b.add_a(A("a"))
+>>> b.add_a(A("b"))
+>>> b
+\end{lstlisting}
+\begin{solution}[0.25in]
+\lstinline{2}
+\end{solution}
+\begin{solution}[0.25in]
+\lstinline{aabb}
+\end{solution}
+\begin{lstlisting}
+>>> c = A("c")
+>>> b.add_a(c)
+>>> str(b)
+\end{lstlisting}
+\begin{solution}[0.25in]
+\lstinline{3}
+\end{solution}
+\begin{solution}[0.25in]
+\lstinline{'aabbcc'}
+\end{solution}

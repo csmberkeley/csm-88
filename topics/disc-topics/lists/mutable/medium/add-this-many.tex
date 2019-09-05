@@ -1,0 +1,29 @@
+\question Write a function that takes in a value \texttt{x}, a value
+\texttt{el}, and a list and adds as many \texttt{el}'s to the end of the
+list as there are \texttt{x}'s. \textbf{Make sure to modify the original
+list using list mutation techniques.}
+
+\begin{lstlisting}
+def add_this_many(x, el, lst):
+    """ Adds el to the end of lst the number of times x occurs
+    in lst.
+    >>> lst = [1, 2, 4, 2, 1]
+    >>> add_this_many(1, 5, lst)
+    >>> lst
+    [1, 2, 4, 2, 1, 5, 5]
+    >>> add_this_many(2, 2, lst)
+    >>> lst
+    [1, 2, 4, 2, 1, 5, 5, 2, 2]
+    """
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    count = 0
+    for element in lst:
+        if element == x:
+            count += 1
+    while count > 0:
+        lst.append(el)
+        count -= 1
+\end{lstlisting}
+\end{solution}

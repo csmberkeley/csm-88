@@ -1,0 +1,149 @@
+\question
+For the following procedures, determine whether or not they are tail recursive. If they are not, write why not and rewrite the function to be tail recursive on the right.
+
+\begin{lstlisting}[language=Scheme]
+; Multiplies x by y
+(define (mult x y)
+  (if (= 0 y)
+      0
+      (+ x (mult x (- y 1)))))
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define (mult x y)
+  (define (helper x y total)
+    (if (= 0 y)
+        total
+        (helper x (- y 1) (+ total x))))
+  (helper x y 0))
+\end{lstlisting}
+Not tail recursive: after evaluating the recursive call, we still need to apply `+', so evaluating the recursive call is not the last thing we do in the frame.
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+; Always evaluates to true
+; assume n is positive
+(define (true1 n)
+  (if (= n 0)
+      #t
+      (and #t (true1 (- n 1)))))
+\end{lstlisting}
+\begin{solution}
+Tail recursive: the recursive call to ``true1'' is the final sub-expression of the `and' special form. Therefore, we will not need to perform any additional work after getting the result of the recursive call.
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+; Always evaluates to true
+; assume n is positive
+(define (true2 n)
+  (if (= n 0)
+      #t
+      (or (true2 (- n 1)) #f)))
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define (true2 n)
+  (if (= n 0)
+      #t
+      (true2 (- n 1))))
+\end{lstlisting}
+Not tail recursive: the recursive call to ``true2'' is not the final sub-expression of the `or' special form. Even though it will always evaluate to `true' and short-circuit, the interpreter does not take that into account when determining whether to evaluate it in a tail context or not.
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+; Returns true if x is in lst
+(define (contains lst x)
+  (cond
+    ((null? lst)            #f)
+    ((equal? (car lst) x)   #t)
+    ((contains (cdr lst) x) #t)
+    (else                   #f)))
+\end{lstlisting}
+
+\begin{solution}
+\begin{lstlisting}[language=Scheme]
+(define (contains lst x)
+  (cond
+    ((null? lst)          #f)
+    ((equal? (car lst) x) #t)
+    (else                 (contains (cdr lst) x))))
+\end{lstlisting}
+Not tail recursive: the recursive call to ``contains'' is in a predicate sub-expression. That means we will have to evaluate another expression if it evaluates to true, so it is not the final thing we evaluate.
+\end{solution}
+\newpage
+
+\question
+Tail recursively implement \textbf{sum-satisfied-k} which, given an input list \textbf{lst}, a predicate procedure \textbf{f} which takes in one argument, and an integer \textbf{k}, will return the sum of the first \textbf{k} elements that satisfy \textbf{f}. If there are not \textbf{k} such elements, return 0.
+
+\begin{lstlisting}[language=Scheme]
+; Doctests
+scm> (define lst `(1 2 3 4 5 6))
+scm> (sum-satisfied-k lst even? 2)  ; 2 + 4
+6
+scm> (sum-satisfied-k lst (lambda (x) (= 0 (modulo x 3))) 10)
+0
+scm> (sum-satisfied-k lst (lambda (x) #t) 0)
+0
+
+(define (sum-satisfied-k lst f k)
+\end{lstlisting}
+\begin{solution}[2.5in]
+\begin{lstlisting}[language=Scheme]
+    (define (sum-helper lst k total)
+      (cond
+        ((= 0 k)
+         total)
+        ((null? lst)
+         0)
+        ((f (car lst))
+         (sum-helper (cdr lst) (- k 1) (+ total (car lst))))
+        (else
+         (sum-helper (cdr lst) k total))))
+
+    (sum-helper lst k 0)
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+)
+\end{lstlisting}
+
+
+\question
+Tail-recursively implement \textbf{remove-range} which, 
+given one input list \textbf{lst}, and two nonnegative integers \textbf{i} and \textbf{j}, 
+returns a new list containing the elements of \textbf{lst} except 
+the ones from index \textbf{i} to index \textbf{j}. 
+You may assume \textbf{j} $>$ \textbf{i}, 
+and \textbf{j} is less than the length of the list. 
+(Hint: you may want to use the built-in \textbf{append} function)
+
+\begin{lstlisting}[language=Scheme]
+; Doctests
+scm> (append '(1 2) '(3 4) '(5 6))
+(1 2 3 4 5 6)
+scm> (remove-range '(0 1 2 3 4) 1 3)
+(0 4)
+
+(define (remove-range lst i j)
+
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=Scheme]
+    (define (remove-tail lst index so-far)
+      (cond
+        ((> index j)
+         (append so-far lst))
+        ((>= index i)
+         (remove-tail (cdr lst) (+ index 1) so-far))
+        (else
+         (remove-tail (cdr lst)
+                      (+ index 1)
+                      (append so-far (list (car lst))))))
+      (remove-tail lst 0 nil))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+)
+\end{lstlisting}

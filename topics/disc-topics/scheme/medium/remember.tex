@@ -1,0 +1,35 @@
+\question
+Define \texttt{remember}, a function that takes in another zero-argument function \texttt{f}, and returns another function \texttt{g}. When called for the first time, \texttt{g} will call \texttt{f} and pass on its return value. When called subsequent times, \texttt{g} will remember its previous return value and return it directly, without calling \texttt{f} again.
+
+(Hint: look up \texttt{set!} in the Scheme spec!)
+
+\begin{lstlisting}
+(define (remember f)
+\end{lstlisting}
+
+\begin{solution}[0.75in]
+\begin{lstlisting}
+  (define remembered? #f)
+  (define remembered nil)
+  (lambda ()
+    (if remembered?
+        remembered
+        (begin (set! remembered (f))
+               (set! remembered? #t)
+               remembered)))
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+)
+scm> (define (f) (print "hello!") 5)
+scm> (define g (remember f))
+scm> (f)
+hello!
+5
+scm> (g)
+hello!
+5
+scm> (g)
+5
+\end{lstlisting}

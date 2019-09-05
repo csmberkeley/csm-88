@@ -1,0 +1,51 @@
+\question Let's answer the age-old question of "What came first, the chicken or
+the egg?"  Each function takes an argument (pun unintended!), which is a boolean
+value that represents an argument for whether or not the corresponding element
+came first.  To mirror the debate, let's do this:
+\begin{lstlisting}
+def chicken(argument=True):
+    print("Chickens!")
+    return egg(argument)
+def egg(argument=True):
+    print("Eggs!")
+    return chicken(argument)
+\end{lstlisting}
+We could argue that chickens came first by calling {\tt chicken()}, but then the
+argument would never be resolved. That's unfortunate! Therefore, let's also add
+{\tt generations}, which is a variable that represents which generation we are
+on. For example, if you argue for the 5th generation chicken, you're arguing for
+not the 4th generation egg.  The 0th generation determines the winner.
+
+\begin{lstlisting}
+def chicken(argument, generations=0):
+    """ Argue whether or not the chicken came first.
+    >>> chicken(True)
+    [Insert reason chickens came first.]
+    >>> chicken(False) # is equivalent to egg(True)
+    [Insert reason eggs came first.]
+    >>> chicken(False, 1) # is equivalent to egg(True, 0)
+    [Insert reason eggs came first.]
+    """
+\end{lstlisting}
+\begin{solution}[1.2in]
+\begin{lstlisting}
+    if generations <= 0:
+        if argument:
+            return "Chickens lay eggs!"
+        return egg(not argument, generations)
+    return egg(not argument, generations - 1)
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+def egg(argument, generations=0):
+    "Argue whether or not the egg came first."""
+\end{lstlisting}
+\begin{solution}[1.2in]
+\begin{lstlisting}
+    if generations <= 0:
+        if argument:
+            return "Eggs hatch chickens! And they're cuter."
+        return chicken(not argument, generations)
+    return egg(not argument, generations - 1)
+\end{lstlisting}
+\end{solution}

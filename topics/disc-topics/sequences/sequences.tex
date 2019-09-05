@@ -1,0 +1,110 @@
+\question
+What would Python display?
+\begin{lstlisting}[language=Python]
+lst = [1, 2, 3, 4, 5]
+lst[1:3] 
+|\begin{solution}
+[2, 3]
+\end{solution}|
+lst[0:len(lst)]
+|\begin{solution}
+[1, 2, 3, 4, 5]
+\end{solution}|
+lst[-4:]
+|\begin{solution}
+[2, 3, 4, 5] 
+\end{solution}|
+lst[3:]
+|\begin{solution}
+[4, 5]
+\end{solution}|
+lst[1:4:2]
+|\begin{solution}
+[2, 4] 
+\end{solution}|
+lst[:4:2]
+|\begin{solution}
+[1, 3]
+\end{solution}|
+lst[1::2]
+|\begin{solution}
+[2, 4] 
+\end{solution}|
+lst[::-1]
+|\begin{solution}
+[5, 4, 3, 2, 1]
+\end{solution}|
+lst + 100
+|\begin{solution}
+Error (These aren't numpy arrays)
+\end{solution}|
+lst3 = [[1], [2], [3]]
+lst + lst3
+|\begin{solution}
+[1, 2, 3, 4, 5, [1], [2] , [3]]
+\end{solution}|
+\end{lstlisting}
+\newpage
+\question
+Draw the environment diagram that results from running the code below
+
+\begin{lstlisting}[language=Python]
+def reverse(lst):
+    if len(lst) <= 1:
+        return lst
+    return reverse(lst[1:]) + [lst[0]]
+
+lst = [1, [2, 3], 4]
+rev = reverse(lst)
+\end{lstlisting}
+\begin{solution}
+https://goo.gl/6vPeX9
+\end{solution}
+ \hfill\break
+\hfill\break
+\hfill\break 
+\hfill\break
+\hfill\break
+\hfill\break
+\question
+Implement a function $map\_mut$ that takes a list as an argument and maps a function f onto each element of the list. You should mutate the original lists, without creating any new lists. Do NOT return anything.
+
+\begin{lstlisting}[language=Python]
+def map_mut(f, L):
+    >>> L = [1, 2, 3, 4]
+    >>> map_mut(lambda x: x**2, L)
+    >>> L
+    [1, 4, 9, 16]
+\end{lstlisting}
+\hfill \break
+\hfill \break
+\hfill \break
+\hfill \break
+\hfill \break
+\hfill \break
+\hfill \break
+\begin{solution}
+\begin{lstlisting}[language=Python]
+def map_mut(f, L):
+    for i in range(len(L)):
+        L[i] = f(L[i])
+\end{lstlisting}
+\end{solution}    
+\question 
+Check your understanding
+\begin{paragraph}
+1 When copying the list, when are you copying a pointer of the list vs. copying the actual value inside of a list? 
+\end{paragraph}
+\begin{solution}
+We copy pointers when we refer to a list within a list or another object and we copy the actual values of the list when the item inside that box is a primitive. We also copy pointers of the entire list when we assign variables to that list because we copy pointers for objects.
+
+\end{solution}
+\begin{paragraph}
+2 How would you make a deep copy of a list? 
+\begin{solution}
+Recurse through the list and for every element in the list that is also a list object, copy, the elements of the list object into your copy. In other words, we create a function deep\_copy(lst) which takes in a list. We go through each element of that lst, and if the element is type list, we call deep\_copy on that sublist. We eventually go through the entire lst that we pass in, and return our deep copy list back.
+OR: 
+Import copy, copy.deepcopy()
+\end{solution}
+\end{paragraph}
+

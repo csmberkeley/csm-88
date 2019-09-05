@@ -1,0 +1,37 @@
+\question
+Write a function that takes in a list and returns the maximum product that
+can be formed using nonconsecutive elements of the list. The input list
+will contain only numbers greater than or equal to 1.
+
+\begin{lstlisting}
+def max_product(lst):
+    """Return the maximum product that can be formed using lst
+    without using any consecutive numbers
+    >>> max_product([10,3,1,9,2]) # 10 * 9
+    90
+    >>> max_product([5,10,5,10,5]) # 5 * 5 * 5
+    125
+    >>> max_product([])
+    1
+    """
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    if lst == []:
+        return 1
+    elif len(lst) == 1: # Base case optional
+        return lst[0]
+    else:
+        return max(max_product(lst[1:]), lst[0]*max_product(lst[2:]))
+\end{lstlisting}
+At each step, we choose if we want to include the current number in our product
+or not:
+\begin{itemize}
+    \item If we include the current number, we cannot use the adjacent number.
+    \item If we don't use the current number, we try the adjacent number (and
+        obviously ignore the current number).
+\end{itemize}
+The recursive calls represent these two alternate realities. Finally, we pick
+the one that gives us the largest product.\\
+\href{https://www.youtube.com/watch?v=Am6m8YgAnYY&list=PLx38hZJ5RLZdJgRCgpaTbmRXKAHOUmomO&index=4&t=3m0s}{Video walkthrough}
+\end{solution}

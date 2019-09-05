@@ -1,0 +1,36 @@
+\question Write a function that returns \lstinline$True$ if a positive integer \texttt{n} is
+a prime number and \lstinline$False$ otherwise. 
+
+% After you have a working
+% solution, think about potential ways to make your solution more
+% \emph{efficient}.
+
+\textbf{Hint}: use the \lstinline$%$ operator: \lstinline$x % y$ returns
+the remainder of \lstinline$x$ when divided by \lstinline$y$.
+
+\begin{lstlisting}
+def is_prime(n):
+    """
+    >>> is_prime(10)
+    False
+    >>> is_prime(7)
+    True
+    """
+\end{lstlisting}
+
+\begin{solution}[2in]
+\begin{lstlisting}
+    if n == 1:
+        return False
+    k = 2
+    while k < n:
+        if n % k == 0:
+            return False
+        k += 1
+    return True
+\end{lstlisting}
+
+Alternatively, the while loop's conditional expression could ensure that
+\lstinline$k$ is less than or equal to the square root of \lstinline$n$.\\
+\href{https://www.youtube.com/watch?v=_EsWkCytavI&list=PLx38hZJ5RLZfg6jvEBBtjc5fnc5BclyEb&index=2}{Video walkthrough}
+\end{solution}

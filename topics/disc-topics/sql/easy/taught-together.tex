@@ -1,0 +1,10 @@
+\question Write a query that outputs all the rows from \texttt{courses} where
+the professor teaching that semester has taught the course at least one other
+time.
+\begin{solution}[0.75in]
+\begin{lstlisting}[language=SQL]
+SELECT a.professor, a.course, a.semester
+  FROM courses AS a, num_taught as b
+  WHERE a.professor = b.professor AND a.course = b.course AND b.times > 1;
+\end{lstlisting}
+\end{solution}

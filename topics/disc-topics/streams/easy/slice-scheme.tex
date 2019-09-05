@@ -1,0 +1,26 @@
+\question Write a function \texttt{slice} which takes in a stream \texttt{s},
+a \texttt{start}, and an \texttt{end}.
+It should return a Scheme list that contains the elements of \texttt{s} between
+index \texttt{start} and \texttt{end}, not including \texttt{end}. If the stream
+ends before \texttt{end}, you can return \texttt{nil}.
+
+\begin{lstlisting}[language=Scheme]
+(define (slice s start end)
+\end{lstlisting}
+\begin{solution}[4cm]
+\begin{lstlisting}[language=Scheme]
+  (cond
+    ((or (null? s) (= end 0)) nil)
+    ((> start 0)
+      (slice (cdr-stream s) (- start 1) (- end 1)))
+    (else
+      (cons (car s)
+        (slice (cdr-stream s) (- start 1) (- end 1))))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (define nat (naturals 0)) ; See naturals procedure defined earlier
+nat
+scm> (slice nat 4 12)
+(4 5 6 7 8 9 10 11)
+\end{lstlisting}

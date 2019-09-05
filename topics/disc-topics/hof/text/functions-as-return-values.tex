@@ -1,0 +1,13 @@
+Often, we will need to write a function that returns another function. One way
+to do this is to define a function inside of a function:
+
+
+
+The return value of \texttt{outer} is the function \texttt{inner}. This is a
+case of a function returning a function. In this example, \texttt{inner} is
+defined inside of \texttt{outer}. Although this is a common pattern, we can also
+define \texttt{inner} outside of \texttt{outer} and still use the same
+\texttt{return} statement. However, note that in this second example (unlike the
+first example), \texttt{inner} doesn't have access to variables defined within
+the \texttt{outer} function, like \texttt{x}.
+

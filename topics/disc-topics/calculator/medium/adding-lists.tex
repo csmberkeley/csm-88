@@ -1,0 +1,27 @@
+\question Now that we can create Scheme-style lists in calculator, let's modify the + operator so
+that it can add lists together elementwise. You can assume that the lists are the same
+length and contain only numbers.
+\begin{lstlisting}
+> (+ (quote (7 4 3 9)) (quote 6 2 6 2))
+(13 6 9 2)
+> (+ (quote (1 2 3 4)) (list (+ 2 2) 3 (/ 4 2) 1))
+(5 5 5.0 5)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def calc_apply(operator, args):
+    ...
+    elif operator == '+':
+        if type(args[0]) == Pair:
+            return reduce(add_pairs, \
+                          args[1:], args[0])
+        return sum(args)
+    ...
+
+def add_pairs(x, y):
+    if (x is nil) or (y is nil):
+        return nil
+    return Pair(x.first + y.first, \
+                add_pairs(x.second, y.second))
+\end{lstlisting}
+\end{solution}

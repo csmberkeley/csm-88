@@ -1,0 +1,17 @@
+The \lstinline$yield$ statement is similar to a \lstinline$return$ statement.
+However, while a \lstinline$return$ statement closes the current frame after the
+function exits, a \lstinline$yield$ statement causes the frame to be saved until
+the next time \lstinline$next$ is called, which allows the generator to
+automatically keep track of the iteration state.
+
+Once \lstinline$next$ is called again, execution resumes where it last
+stopped and continues until the next \lstinline$yield$ statement or the end of
+the function. A generator function can have multiple \lstinline$yield$
+statements.
+
+Including a \lstinline$yield$ statement in a function automatically tells Python
+that this function will create a generator. When we call the function, it
+returns a generator object instead of executing the body.  When the
+generator's \lstinline$next$ method is called, the body is executed until
+the next \lstinline$yield$ statement is executed.
+

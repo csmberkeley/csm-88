@@ -1,0 +1,14 @@
+Many times, we wish an operation to be applied to all elements of a list.
+Python has built-in methods to help us with these tasks. ({\it Note:} reduce
+was hidden in Python 3.)
+
+\begin{itemize}
+\item {\tt map(fn, lst)} applies fn to each element in lst
+\item {\tt filter(pred, lst)} keeps those elements in lst that satisfy the
+predicate
+\item {\tt reduce(accum, lst, zero\_value)} repeatedly calls the accumulator
+function, which takes in two arguments and returns a single value, on elements
+of lst.
+\end{itemize}
+
+An important thing to note is that these operators do not change the input list, and they also do not return lists. You must call the {\tt list} operator on them to get a list back. 

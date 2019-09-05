@@ -1,0 +1,44 @@
+\begin{blocksection}
+\question Alfonso will only wear a jacket outside if it is below 60
+degrees or it is raining.
+
+Write a function that takes in the current temperature and a boolean value
+telling if it is raining and returns \texttt{True} if Alfonso will wear a
+jacket and \texttt{False} otherwise.
+
+First, try solving this problem using an if statement.
+
+\begin{lstlisting}
+def wears_jacket_with_if(temp, raining):
+    """
+    >>> wears_jacket(90, False)
+    False
+    >>> wears_jacket(40, False)
+    True
+    >>> wears_jacket(100, True)
+    True
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    if temp < 60 or raining:
+        return True
+    else:
+        return False
+\end{lstlisting}
+\end{solution}
+
+Note that we'll either return \texttt{True} or \texttt{False} based on a single
+condition, whose truthiness value will also be either \texttt{True} or
+\texttt{False}. Knowing this, try to write this function using a single line.
+
+\begin{lstlisting}
+def wears_jacket(temp, raining):
+\end{lstlisting}
+\begin{solution}[0.25in]
+\begin{lstlisting}
+    return temp < 60 or raining
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=E8VPVCbyfiE&list=PLx38hZJ5RLZfg6jvEBBtjc5fnc5BclyEb&index=2&t=0s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

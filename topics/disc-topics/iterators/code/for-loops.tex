@@ -1,0 +1,14 @@
+\begin{lstlisting}
+counts = [1, 2, 3]
+
+for i in counts:
+   print(i)
+
+items = iter(counts)
+while True:
+   try:
+      i = next(items)
+      print(i)
+   except StopIteration:
+      break #Exit the while loop
+\end{lstlisting}

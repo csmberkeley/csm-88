@@ -1,0 +1,13 @@
+\question The {\tt -} operator will fail if given no arguments. Add error
+handling to raise a {\tt TypeError} when this situation is encountered (the
+error message is unimportant).
+\begin{solution}[2in]
+\begin{lstlisting}
+    ...
+    elif operator == '-':
+        if len(args) == 0:
+            raise TypeError("need at least one arg")
+    ...
+\end{lstlisting}
+\end{solution}
+

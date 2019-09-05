@@ -1,0 +1,51 @@
+\question What would Python display? If a StopIteration Exception
+occurs, write \texttt{StopIteration}, and if another error occurs,
+write \texttt{Error}.
+
+\begin{lstlisting}
+>>> lst = [6, 1, "a"]
+>>> next(lst)
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+Error
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> lst_iter = iter(lst)
+>>> next(lst_iter)
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+6
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> next(lst_iter)
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+1
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> next(iter(lst))
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+6
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> [x for x in lst_iter]
+\end{lstlisting}
+\begin{solution}[.25in]
+\begin{lstlisting}
+["a"]
+\end{lstlisting}
+\end{solution}
+

@@ -1,0 +1,11 @@
+The \lstinline$__next__$ method checks if it has any values left in the
+sequence; if it does, it computes the next element.  To return the next value in
+the sequence, the \lstinline$__next__$ method keeps track of its current
+position in the sequence. If there are no more values left to compute, it must
+raise an exception called \lstinline$StopIteration$. This signals the end of the
+sequence.
+
+\emph{Note}: the \lstinline$__next__$ method defined in the \lstinline$Naturals$
+class does \emph{not} raise \lstinline$StopIteration$ because there is no ``last
+natural number''.
+

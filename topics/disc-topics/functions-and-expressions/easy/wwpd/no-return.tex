@@ -1,0 +1,28 @@
+% Question Summary
+% - Missing `return` statement results in function returning None
+
+\begin{blocksection}
+\question Determine the result of evaluating the following functions in the
+Python interpreter:
+
+\begin{lstlisting}
+>>> from operator import add
+>>> def double(x):
+...     return x + x
+>>> def square(y):
+...     return y * y
+>>> def f(z):
+...     add(square(double(z)), 1)
+>>> f(4)
+\end{lstlisting}
+
+\begin{solution}[0.3in]
+\texttt{None}
+
+\texttt{f(4)} returns \texttt{None}, because \texttt{f} has no return
+statement. Note that whenever an expression evaluates to \texttt{None}, then
+the interpreter will not display it.
+\end{solution}
+
+\end{blocksection}
+

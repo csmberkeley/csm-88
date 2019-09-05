@@ -1,0 +1,55 @@
+\question Below is a skeleton for the \texttt{Cat} class, which inherits from
+the \texttt{Pet} class. To complete the implementation, override the
+\texttt{\_\_init\_\_} and \texttt{talk} methods and add a new
+\texttt{lose\char`_life} method.
+
+\textit{Hint:} You can call the \texttt{\_\_init\_\_} method of \texttt{Pet} to
+set a cat's \texttt{name} and \texttt{owner}.
+
+\begin{lstlisting}
+class Cat(Pet):
+    def __init__(self, name, owner, lives=9):
+        \end{lstlisting}
+
+        \begin{solution}[.3in]
+        \begin{lstlisting}
+        Pet.__init__(self, name, owner)
+        self.lives = lives
+        \end{lstlisting}
+        \end{solution}
+
+        \begin{lstlisting}
+    def talk(self):
+        """ Print out a cat's greeting.
+
+        >>> Cat('Thomas', 'Tammy').talk()
+        Thomas says meow!
+        """
+        \end{lstlisting}
+
+        \begin{solution}[.3in]
+        \begin{lstlisting}
+        print(self.name + ' says meow!')
+        \end{lstlisting}
+        \end{solution}
+
+        \begin{lstlisting}
+    def lose_life(self):
+        """Decrements a cat's life by 1. When lives reaches zero, 'is_alive'
+        becomes False.
+        """
+        \end{lstlisting}
+
+        \begin{solution}[.3in]
+        \begin{lstlisting}
+        if self.lives > 0:
+            self.lives -= 1
+            if self.lives == 0:
+                self.is_alive = False
+        else:
+            print("This cat has no more lives to lose :(")
+        \end{lstlisting}
+        \end{solution}
+\begin{solution}
+\href{https://www.youtube.com/watch?v=BatqjYa7WZ8&list=PLx38hZJ5RLZfel-Gi9pjaUbfQDCZIsWMU&vq=hd1080&t=34m50s}{Video walkthrough}
+\end{solution}

@@ -1,0 +1,6 @@
+\question Write a query that outputs each supervisor and the sum of salaries of all the employees they supervise.
+\begin{solution}[2cm]
+\begin{lstlisting}[language=SQL]
+SELECT supervisor, SUM(salary) FROM records GROUP BY supervivor;
+\end{lstlisting}
+\end{solution}

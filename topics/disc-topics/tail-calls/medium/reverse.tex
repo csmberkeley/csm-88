@@ -1,0 +1,16 @@
+\question
+Write a tail recursive function, \texttt{reverse}, that takes in a Scheme list
+and returns a reversed copy.
+\begin{lstlisting}[language=Scheme]
+(define (reverse lst)
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=Scheme]
+(define (reverse lst)
+  (define (reverse-sofar lst lst-sofar)
+    (if (null? lst)
+        lst-sofar
+        (reverse-sofar (cdr lst) (cons (car lst) lst-sofar))))
+  (reverse-sofar lst nil))
+\end{lstlisting}
+\end{solution}

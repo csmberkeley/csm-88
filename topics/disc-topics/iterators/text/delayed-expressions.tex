@@ -1,0 +1,17 @@
+We have already seen something very similar to the lazy evaluation of Streams in
+another topic covered: iterators! When an iterator is created, no elements are
+actually calculated. It is not until a \texttt{next} call triggers the
+evaluation of the next element in the sequence. This property allows us to work
+with infinite iterators, just like the infinite streams we've worked on in this
+discussion. Recall the naturals generator function:
+
+\begin{lstlisting}
+def naturals():
+    i = 1
+    while True:
+        yield i
+        i += 1
+\end{lstlisting}
+
+One way to think about iterators is that they are to lists as streams are to
+linked lists. They are lazy versions of each data structure.

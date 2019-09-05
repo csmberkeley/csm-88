@@ -1,0 +1,14 @@
+\question Define a function \texttt{square\_tree(t)} that squares every value in
+the non-empty tree \texttt{t}. You can assume that every value is a number.
+
+\begin{lstlisting}
+def square_tree(t):
+    """Mutates a Tree t by squaring all its elements."""
+\end{lstlisting}
+\begin{solution}[0.7in]
+\begin{lstlisting}
+    t.label = t.label ** 2
+    for branch in t.branches:
+        square_tree(branch)
+\end{lstlisting}
+\end{solution}

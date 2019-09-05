@@ -1,0 +1,42 @@
+\question 
+Find out if the given tree, \texttt{t}, is a binary search tree. If it
+is return \texttt{True}, otherwise return \texttt{False}.
+For example, if \texttt{t} is the one depicted below, \texttt{is\_bst(t)}
+should return \texttt{True}.
+
+\vspace{8mm}
+
+\begin{center}
+\begin{lstlisting}
+                               10
+                             /    \
+                            /      \
+                           5       15
+                          /      /    \
+                         /      /      \
+                        1     12       20
+
+\end{lstlisting}
+\end{center}
+\vspace{8mm}
+\begin{lstlisting}
+def is_bst(t):
+    """
+    >>> bt = BinaryTree(10, BinaryTree(5, 
+                                        BinaryTree(1)), 
+                            BinaryTree(15, 
+                                        BinaryTree(12), 
+                                        BinaryTree(20)))
+    >>> is_bst(bt)
+    True
+    """
+\end{lstlisting}
+\begin{solution}[1.25in]
+\begin{lstlisting}
+    if t == BinaryTree.empty:
+        return True
+    if entry(t.right) > entry(t) or entry(t.left) < entry(t):
+        return False
+    return is_bst(t.left) and is_bst(t.right)
+\end{lstlisting}
+\end{solution}

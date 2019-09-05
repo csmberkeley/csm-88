@@ -1,0 +1,41 @@
+\question Our Python interpreter is broken and {\tt pow} no longer works!
+However, we can write our own replacement. Let's try writing it both
+iteratively and recursively. Both {\tt expt\_iter(base, power)} and 
+{\tt expt\_rec(base, power)} implement the exponent function, so we should get
+the same answer regardless of which one we use. Assume that {\tt power} is a
+non-negative integer.
+
+\begin{lstlisting}
+def expt_iter(base, power):
+    """ Implements the exponent function iteratively
+    >>> expt_iter(2, 3)
+    8
+    >>> expt_iter(4, 0)
+    1
+    """
+\end{lstlisting}
+\begin{solution}[1.8in]
+\begin{lstlisting}
+    result = 1
+    while power > 0:
+        result = result * base
+        power = power - 1
+    return result
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def expt_rec(base, power):
+    """ Implements the exponent function recursively
+    >>> expt_rec(3, 2)
+    9
+    """
+\end{lstlisting}
+\begin{solution}[1.8in]
+\begin{lstlisting}
+    if power == 0:
+        return 1
+    else:
+        return expt(base, power - 1) * base
+\end{lstlisting}
+\end{solution}

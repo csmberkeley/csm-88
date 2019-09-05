@@ -1,0 +1,52 @@
+\question Implement the \emph{supermarket} abstraction.
+
+\begin{lstlisting}
+def make_supermarket(items):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return items
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def get_supermarket_items(supermarket):
+\end{lstlisting}
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    return supermarket
+\end{lstlisting}
+\end{solution}
+
+\clearpage
+
+\question Write the {\tt shopping} function. Given a grocery list (a list of
+string item names), a supermarket, and coupon list, calculate the total cost of
+purchasing every item on the grocery list. You may use any functions you've
+already written.
+
+\begin{lstlisting}
+def shopping(grocery_list, supermarket, coupons):
+    """
+    >>> grocery_list = ["Butter", "Bread"]
+    >>> items = [create_item("Butter", 2),
+    ...          create_item("Bread", 3),
+    ...          create_item("Soup", 4)]
+    >>> supermarket = make_supermarket(items)
+    >>> coupons = [create_coupon("Butter", 1),
+    ...            create_coupon("Soup", 1)]
+    >>> shopping(grocery_list, supermarket, coupons)
+    4
+    """
+\end{lstlisting}
+\begin{solution}[3in]
+\begin{lstlisting}
+    items = []
+    for item_name in grocery_list:
+        for item in get_supermarket_items(supermarket):
+            if item_name == get_item_name(item):
+                items.append(item)
+    return discount_purchase(items, coupons)
+\end{lstlisting}
+\end{solution}
+

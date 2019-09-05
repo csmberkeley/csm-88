@@ -1,0 +1,13 @@
+\begin{lstlisting}
+def outer(x):
+    def inner(y):
+        ...
+    return inner
+
+
+def inner(y):
+    ...
+def outer(x):
+    return inner
+
+\end{lstlisting}

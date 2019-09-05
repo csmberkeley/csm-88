@@ -1,0 +1,39 @@
+\begin{blocksection}
+\question Use this definition of \lstinline$outer$ to fill in what Python would
+display when the following lines are evaluated.
+
+\begin{lstlisting}
+>>> def outer(n):
+...     def inner(m):
+...         return n - m
+...     return inner
+\end{lstlisting}
+\begin{lstlisting}
+>>> outer(61)
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+<function outer.inner ...>
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> f = outer(10)
+>>> f(4)
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+6
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> outer(5)(4)
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+1
+\end{lstlisting}
+\href{https://www.youtube.com/watch?v=Fiw0f5yuQgo&vq=hd1080&t=75m34s}{Video walkthrough}
+\end{solution}
+\end{blocksection}

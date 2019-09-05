@@ -1,0 +1,143 @@
+%So far, we've mostly explored similarities between the Python and Scheme
+%languages. For example, we saw how tail-call optimization allows us to write
+%recursive Scheme functions that use a constant amount of space. This makes it
+%feasible to translate iterative code from Python. We have also recently seen
+%similarities in their handling of mutable functions.
+%
+%On the other hand, \textbf{macros} are a Scheme feature that don't have a
+%apparent Python equivalent. Like functions, macros are a useful tool for
+%simplifying code via abstraction. But while functions typically operate on
+%values like numbers and lists, macros have the option of transforming
+%unevaluated code, leading to a whole new world of possibilities!
+%
+%\marginpar{\subimport{../code/}{print.tex}}
+%As a reminder, most Scheme functions do not have side effects. One
+%exception to this is \texttt{print}. Just like in Python, \texttt{print}
+%doesn't return anything! With that in mind, let's consider an example
+%where we want to repeat a piece of code twice.
+
+So far we've been able to define our own procedures in Scheme using the
+\texttt{define} special form. When we call these procedures, we have to follow
+the rules for evaluating call expressions, which involve evaluating all the
+operands.
+
+We know that special form expressions do not follow the evaluation rules of
+call expressions. Instead, each special form has its own rules of evaluation,
+which may include not evaluating all the operands.  Wouldn't it be cool if we
+could define our own special forms where we decide which operands are
+evaluated?  Consider the following example where we attempt to write a function
+that evaluates a given expression twice:
+
+\begin{lstlisting}
+scm> (define (twice f) (begin f f))
+twice
+scm> (twice (print 'woof))
+woof
+\end{lstlisting}
+
+Since \texttt{twice} is a regular procedure, a call to \texttt{twice} will
+follow the same rules of evaluation as regular call expressions; first we
+evaluate the operator and then we evaluate the operands.  That means that
+\texttt{woof} was printed when we evaluated the operand \texttt{(print 'woof)}.
+Inside the body of \texttt{twice}, the name \texttt{f} is bound to the value
+\texttt{undefined}, so the expression \texttt{(begin f f)} does nothing at all!
+
+%As an example of this, imagine if the problem were less constrained and we
+%could surround our original expression in a \texttt{define} expression. In
+%that case, we could use higher order functions to get what we want:
+%\begin{lstlisting}[language=Scheme]
+%scm> (define (speak) (print 'woof))
+%speak
+%scm> (define (twice f) (begin (f) (f)))
+%twice
+%scm> (twice speak)
+%woof
+%woof
+%\end{lstlisting}
+%But if the expression is given to us directly, there's no way to ``undo''
+%the execution and delay it for later!
+%\begin{lstlisting}[language=Scheme]
+%scm> (define (twice result)
+%       (begin
+%         (define (f) result) % This won't work!
+%         (f)(f)))
+%twice
+%scm> (twice (print 'woof))
+%woof
+%\end{lstlisting}
+%Clearly, we need a special form, since we cannot evaluate our operand
+%immediately.
+
+The problem here is clear: we need to prevent the given expression from
+evaluating until we're inside the body of the procedure. This is where the
+\texttt{define-macro} special form, which has identical syntax to the regular
+\texttt{define} form, comes in:
+
+\begin{lstlisting}[language=Scheme]
+scm> (define-macro (twice f) (list 'begin f f))
+twice
+\end{lstlisting}
+
+\texttt{define-macro} allows us to define what's known as a \define{macro},
+which is simply a way for us to combine unevaluated input expressions together
+into another expression. When we call macros, the operands are not evaluated,
+but rather are treated as Scheme data. This means that any operands that are
+call expressions or special form expression are treated like lists.
+
+If we call \texttt{(twice (print 'woof))}, \texttt{f} will actually be bound to
+the list \texttt{(print 'woof)} instead of the value \texttt{undefined}.
+Inside the body of \texttt{define-macro}, we can insert these expressions into
+a larger Scheme expression. In our case, we would want a \texttt{begin}
+expression that looks like the following:
+
+\begin{lstlisting}[language=Scheme]
+(begin (print 'woof) (print 'woof))
+\end{lstlisting}
+
+As Scheme data, this expression is really just a list containing three
+elements: \texttt{begin} and \texttt{(print 'woof)} twice, which is exactly
+what \texttt{(list 'begin f f)} returns.  Now, when we call \texttt{twice},
+this list is evaluated as an expression and \texttt{(print 'woof)} is evaluated
+twice.
+
+\begin{lstlisting}
+scm> (twice (print 'woof))
+woof
+woof
+\end{lstlisting}
+
+To recap, macros are called similarly to regular procedures, but the rules for
+evaluating them are different. We evaluated lambda procedures in the following
+way:
+
+\begin{enumerate}[1.]
+\item Evaluate operator
+\item Evaluate operands
+\item Apply operator to operands, evaluating the body of the procedure
+\end{enumerate}
+
+However, the rules for evaluating calls to macro procedures are:
+
+\begin{enumerate}[1.]
+\item Evaluate operator
+\item Apply operator to unevaluated operands
+\item Evaluate the expression returned by the macro in the frame it was called in.
+\end{enumerate}
+
+%This looks a bit like a function definition. \texttt{twice} is the name of
+%the macro, and everything that follows in the same list is a required
+%parameter. When we evaluate the macro form, we won't evaluate any
+%parameters immediately. Instead, the body of the macro describes the final
+%expression we want to evaluate, with the unevaluated parameters put in
+%place! Recall that we want a final expression that looks like:
+%\begin{lstlisting}[language=Scheme]
+%(begin
+%  (print 'woof)
+%  (print 'woof))
+%\end{lstlisting}
+%Now, let \texttt{f} be the snippet of \texttt{print} code from earlier
+%(not the result of evaluation, which is simply nothing) The expression:
+%\begin{lstlisting}
+%(list 'begin f f)
+%\end{lstlisting}
+%Creates our desired expression, and then finally evaluates it.

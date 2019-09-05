@@ -1,0 +1,15 @@
+\define{Conditional statements} let programs execute different lines of code
+depending on certain conditions. Let's review the \texttt{if}-
+\texttt{elif}-\texttt{else} syntax.
+
+Recall the following points:
+\begin{itemize}
+    \item The \texttt{else} and \texttt{elif} clauses are optional, and you can have any number of \texttt{elif} clauses.
+    \item A \define{conditional expression} is an expression that evaluates to either a true value (\texttt{True}, a non-zero integer, etc.) or a false value (\texttt{False}, \texttt{0}, \texttt{None}, \texttt{""}, \texttt{[]}, etc.).
+    \item Only the \define{suite} that is indented under the first
+        \texttt{if}/\texttt{elif} with a \define{conditional expression}
+        evaluating to a true value will be executed.
+    \item If none of the \define{conditional expressions} evaluate to a true
+        value, then the \texttt{else} suite is executed. There can only be one
+        \texttt{else} clause in a conditional statement!
+\end{itemize}

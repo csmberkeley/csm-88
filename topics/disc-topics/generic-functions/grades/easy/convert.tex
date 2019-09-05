@@ -1,0 +1,32 @@
+\question John needs you to convert all student records into
+the format that he uses. Unlike Albert and Mark, John is actually
+helpful and provides the class definition of his formatted student
+records. Unfortunately, his email was corrupted so you can only see the
+first few lines of his class definition:
+
+\begin{lstlisting}
+class JohnGrade:
+    """A student record formatted via John's standard"""
+    def __init__(self, name, grade):
+        """NOTE: name must be a string, grade must be a number"""
+
+\end{lstlisting}
+
+Write a function {\tt johnify} which takes a list of student records
+formatted either using Albert's or Mark's standard, and returns a list
+of the same student records formatted using John's standard.
+
+\begin{lstlisting}
+def johnify(records):
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+    gradebook = []
+    for record in records:
+        name = get_name(record)
+        points = get_points(get_grade(record))
+        gradebook.append(JohnGrade(name, points))
+    return gradebook
+\end{lstlisting}
+\end{solution}
+

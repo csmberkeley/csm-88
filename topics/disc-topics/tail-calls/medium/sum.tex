@@ -1,0 +1,18 @@
+\question
+Write a tail recursive function that takes in a Scheme list and returns
+the numerical sum of all values in the list. You can assume that the list
+contains only numbers (no nested lists).
+\begin{lstlisting}[language=Scheme]
+(define (sum lst)
+\end{lstlisting}
+\begin{solution}[1.0in]
+\begin{lstlisting}[language=Scheme]
+(define (sum lst)
+  (define (sum-sofar lst current-sum)
+    (if (null? lst)
+        current-sum
+        (sum-sofar (cdr lst) (+ (car lst) current-sum))))
+  (sum-sofar lst 0))
+\end{lstlisting}
+\href{https://youtu.be/9y7rnuYp-DU?t=9m27s}{Video walkthrough}
+\end{solution}

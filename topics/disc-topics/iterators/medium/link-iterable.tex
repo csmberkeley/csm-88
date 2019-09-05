@@ -1,0 +1,49 @@
+\question To make the \lstinline$Link$ class iterable, implement the
+\lstinline$LinkIterator$ class.
+
+\begin{lstlisting}
+class Link:
+    empty = ()
+    def __init__(self, first, rest=empty):
+        self.first = first
+        self.rest = rest
+    def __iter__(self):
+        return LinkIterator(self)
+\end{lstlisting}
+
+\begin{blocksection}
+\begin{lstlisting}
+class LinkIterator:
+    def __init__(self, link):
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+        self.link = link
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+    def __iter__(self):
+\end{lstlisting}
+
+\begin{solution}[.2in]
+\begin{lstlisting}
+        return self
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+    def __next__(self):
+\end{lstlisting}
+
+\begin{solution}[.9in]
+\begin{lstlisting}
+        if self.link is Link.empty:
+            raise StopIteration
+        val = self.link.first
+        self.link = self.link.rest
+        return val
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

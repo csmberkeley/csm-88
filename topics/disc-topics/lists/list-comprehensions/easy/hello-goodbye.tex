@@ -1,0 +1,21 @@
+\question What would Python print?
+
+\begin{lstlisting}
+>>> x = [1, 3, 5, 7]
+>>> def partial(lst):
+        first = lst[0]
+        if first == 3:
+            print('Hello')
+        else:
+            print('Goodbye')
+        return lst
+
+>>> partial(x)
+\end{lstlisting}
+
+\begin{solution}[2cm]
+\begin{lstlisting}
+Goodbye
+[1, 3, 5, 7]
+\end{lstlisting}
+\end{solution}

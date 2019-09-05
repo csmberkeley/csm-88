@@ -1,0 +1,9 @@
+An \define{iterable} object is any container that can be processed sequentially.
+Examples of iterables are lists, tuples, strings, and dictionaries. The iterable
+class must implement an \lstinline$__iter__$ method, which returns an iterator.
+Note that since all iterators have an \lstinline$__iter__$ method, they are all
+iterable.
+
+In general, a sequence's \lstinline$__iter__$ method will return a new iterator
+every time it is called. This is because an iterator cannot be reset. Returning
+a new iterator allows us to iterate through the same sequence multiple times.

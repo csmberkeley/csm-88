@@ -1,0 +1,16 @@
+\question Write a function that takes a procedure and applies it to every
+element in a given list.
+\begin{lstlisting}[language=Scheme]
+(define (map fn lst)
+\end{lstlisting}
+\begin{solution}[1.0in]
+\begin{lstlisting}[language=Scheme]
+    (if (null? lst)
+        nil
+        (cons (fn (car lst)) (map fn (cdr lst)))))
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}[language=Scheme]
+scm> (map (lambda (x) (* x x)) '(1 2 3))
+(1 4 9)
+\end{lstlisting}

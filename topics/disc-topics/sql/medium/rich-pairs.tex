@@ -1,0 +1,9 @@
+\question Write a query that outputs all divisions for which there is more than one employee,
+and all pairs of employees within that division have a salary less than 100,000.
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=SQL]
+SELECT e1.division FROM records AS e1, records AS e2 
+   WHERE e1.name != e2.name AND e1.division = e2.division 
+   GROUP BY e1.division HAVING MAX(e1.salary + e2.salary) < 100000;
+\end{lstlisting}
+\end{solution}

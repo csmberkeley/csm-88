@@ -1,0 +1,73 @@
+\question
+Below we have defined the classes \texttt{Professor} and \texttt{Student}, implementing some of what was described above.
+Remember that we pass the \texttt{self} argument implicitly to instance methods when using dot-notation.
+There are more questions on the next page.
+\lstinputlisting{student.py}
+
+\newpage
+
+What will the following lines output?
+\newline
+\begin{lstlisting}
+>>> snape = Professor("Snape")
+>>> harry = Student("Harry", snape)
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+There are now 1 students
+\end{lstlisting}
+\end{solution}
+\begin{lstlisting}
+>>> harry.visit_office_hours(snape)
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+Thanks, Snape
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> harry.visit_office_hours(Professor("Hagrid"))
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+Thanks, Hagrid
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> harry.understanding
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+2
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> [name for name in snape.students]
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+['Harry']
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> Student("Hermione", Professor("McGonagall")).name
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+There are now 2 students
+'Hermione'
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> [name for name in snape.students]
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+['Harry']
+\end{lstlisting}
+\end{solution}

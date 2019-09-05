@@ -1,0 +1,19 @@
+\question (Fall 2012) Draw the environment diagram.
+
+\begin{lstlisting}
+def box(a):
+    def box(b):
+        def box(c):
+            nonlocal a
+            a = a + c
+            return (a, b)
+        return box
+    gift = box(1)
+    return (gift(2), gift(3))
+box(4)
+\end{lstlisting}
+
+\begin{solution}[2in]
+\url{http://goo.gl/myL8Qq} \newline
+\includegraphics[scale=.5]{box.png}
+\end{solution}

@@ -1,0 +1,42 @@
+\question Albert and Mark have agreed to release their implementations of student
+records, which are given below:
+
+\begin{lstlisting}
+class AlbertRecord:
+    """A student record formatted via Albert's standard"""
+    def __init__(self, name, grade):
+        """name is a string containing the student's name,
+        and grade is a grade object"""
+        self.student_info = [name, grade]
+
+class MarkRecord:
+    """A student record formatted via Mark's standard"""
+    def __init__(self, name, grade):
+        """name is a string containing the student's name,
+        and grade is a grade object"""
+        self.student_info = {'name': name, 'grade': grade}
+\end{lstlisting}
+
+Write functions {\tt get\_name} and {\tt get\_grade}, which take in a
+student record and return the name and
+grade, respectively.
+
+\begin{solution}[2.5in]
+\begin{lstlisting}
+def get_name(record):
+    data_type = type_tag(record)
+    return get_name.implementations[data_type](record)
+
+def get_grade(record):
+    data_type = type_tag(record)
+    return get_grade.implementations[data_type](record)
+
+get_name.implementations = {}
+get_name.implementations['AW'] = lambda x: x.student_info[0]
+get_name.implementations['MM'] = lambda x: x.student_info['name']
+get_grade.implementations = {}
+get_grade.implementations['AW'] = lambda x: x.student_info[1]
+get_grade.implementations['MM'] = lambda x: x.student_info['grade']
+\end{lstlisting}
+\end{solution}
+

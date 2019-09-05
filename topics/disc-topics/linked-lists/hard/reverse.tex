@@ -1,0 +1,133 @@
+\question
+Define \texttt{reverse}, which takes in a linked list and reverses the order of the links. The function may \emph{not} return a new list; it must mutate the original list. Return a pointer to the head of the reversed list.
+\begin{lstlisting}
+def reverse(lnk):
+    """
+    >>> a = Link(1, Link(2, Link(3)))
+    >>> r = reverse(a)
+    >>> r.first
+    3
+    >>> r.rest.first
+    2
+    """
+\end{lstlisting}
+
+\begin{solution}[1.2in]
+{\Large Recursive solution:}
+\begin{lstlisting}
+    if lnk is Link.empty or lnk.rest is Link.empty:
+        return lnk
+    rest_rev = reverse(lnk.rest)
+    lnk.rest.rest = lnk
+    lnk.rest = Link.empty
+    return rest_rev
+\end{lstlisting}
+
+For the base case, a linked list with no items or a single item is trivial to
+reverse.
+
+Let's formally name our variables to make the explanation of the following
+process a bit easier. The original list is \texttt{lnk}, we reverse
+\texttt{lnk.rest} recursively and get back a pointer to the head of the reversed
+version of \texttt{lnk.rest}, which is \texttt{rest\char`_rev}.
+
+Notice that \texttt{lnk.rest} is the last item of the list referred to by
+\texttt{rest\char`_rev}. All we have to do is attach the first item of
+\texttt{lnk} to the end of the reversed rest, and then make sure that
+\texttt{lnk.rest} is the empty list as it is now the last item in the reversed
+list.\\
+\href{https://www.youtube.com/watch?v=eEIMcIN9Teg&index=3&list=PLx38hZJ5RLZdJgRCgpaTbmRXKAHOUmomO}{Video walkthrough}
+
+{\Large Iterative solution (1):}
+\begin{lstlisting}
+    if lnk is Link.empty:
+        return lnk
+    cur = lnk
+    nxt = lnk.rest
+    cur.rest = Link.empty
+
+    while nxt is not Link.empty:
+        after = nxt.rest
+        nxt.rest = cur
+        cur = nxt
+        nxt = after
+    return cur
+\end{lstlisting}
+
+The iterative solution is quite different from the recursive solution. We go
+through every item in our linked list, and reattach them in reverse order. That
+is, we attach the second item back to the first item, the third item back to the
+second item, and so on.
+
+The tricky part is figuring what information we need to keep track of in order
+to do this. We use a two pointer method that tracks a current and a following
+position in a linked list. The logic is not too complicated, but the best way to
+understand it is to work through an example with a box and pointer diagram.
+
+{\Large Iterative solution (2):}
+\begin{lstlisting}
+    new_lnk = Link.empty
+    while lnk is not Link.empty:
+        new_lnk, lnk.rest, lnk = lnk, new_lnk, lnk.rest
+    return new_lnk
+\end{lstlisting}
+
+Here's yet another iterative approach, different from both the previous
+iterative and recursive approaches.
+
+We begin by asking how we'd gather the values in a linked list into a list (not
+a linked list, but a regular Python list) in reverse order.
+
+\begin{lstlisting}
+>>> xs = Link(1, Link(2, Link(3)))
+>>> xs
+Link(1, Link(2, Link(3)))
+>>> reverse(xs)
+[3, 2, 1]
+\end{lstlisting}
+
+We could do this by iterating through the linked list and inserting the values
+into the front of the list:
+
+\begin{lstlisting}
+def reverse(lnk):
+    new_list = []
+    while lnk is not Link.empty:
+        new_list.insert(0, lnk.first)  # Insert the link value before all existing elements of new_list
+        lnk = lnk.rest
+    return new_list
+\end{lstlisting}
+
+This works because if value A comes before value B in the original list, then B
+will be inserted before value A in our new list.
+
+We could keep this same approach, but have \texttt{new\char`_lnk} be a linked
+list instead of an ordinary list.
+
+\begin{lstlisting}
+def reverse(lnk):
+    new_lnk = Link.empty
+    while lnk is not Link.empty:
+        new_lnk = Link(lnk.first, new_lnk)  # Create a new link and insert it before all existing links in new_lnk
+        lnk = lnk.rest
+    return new_lnk
+\end{lstlisting}
+
+This works, but we are not allowed to create new \texttt{Link} instances.
+
+So, instead of copying \texttt{lnk} by constructing a new \texttt{Link} with the
+same first attribute as \texttt{lnk}, we should just make \texttt{lnk} the new
+head of \texttt{new\char`_lnk}. But that means we simultaneously need to make
+three updates:
+\begin{itemize}
+    \item \texttt{new\char`_lnk} should point at what \texttt{lnk} was pointing
+        at (because \texttt{lnk} is the new head of \texttt{new\char`_lnk}).
+    \item \texttt{lnk.rest} should point at what \texttt{new\char`_lnk} was
+        pointing at (this makes \texttt{lnk} the new head of
+        \texttt{new\char`_lnk}).
+    \item \texttt{lnk} should point at what \texttt{lnk.rest} was pointing at
+        (because we still need to iterate through the original list).
+\end{itemize}
+
+This leads us the final solution presented earlier.
+\end{solution}

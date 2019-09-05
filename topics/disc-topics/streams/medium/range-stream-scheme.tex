@@ -1,0 +1,31 @@
+\question Write a function \texttt{range-stream} which takes a \texttt{start}
+and \texttt{end}, and returns a stream that represents the integers between
+\texttt{start} and \texttt{end - 1} (inclusive).
+
+\begin{lstlisting}[language=Scheme]
+(define (range-stream start end)
+\end{lstlisting}
+\begin{solution}[1.25in]
+\begin{lstlisting}[language=Scheme]
+  (if (= start end)
+    nil
+    (cons-stream start (range-stream (+ start 1) end))))
+\end{lstlisting}
+
+It might help to compare this to the version of \texttt{range} for regular
+(non-stream) Scheme lists:
+\begin{lstlisting}[language=Scheme]
+(define (range start end)
+  (if (= start end)
+    nil
+    (cons start (range (+ start 1) end))))
+\end{lstlisting}
+
+\end{solution}
+
+\begin{lstlisting}[language=Scheme]
+scm> (define s (range-stream 1 5))
+s
+scm> (car (cdr-stream s))
+2
+\end{lstlisting}

@@ -1,0 +1,30 @@
+\question
+Write a function that takes in a sequence \texttt{s} and a function
+\texttt{fn} and returns a dictionary.
+
+The values of the dictionary are lists of elements from \texttt{s}. Each
+element \texttt{e} in a list should be constructed such that \texttt{fn(e)}
+is the same for all elements in that list. Finally, the key for each value
+should be \texttt{fn(e)}.
+
+\begin{lstlisting}
+def group_by(s, fn):
+    """
+    >>> group_by([12, 23, 14, 45], lambda p: p // 10)
+    {1: [12, 14], 2: [23], 4: [45]}
+    >>> group_by(range(-3, 4), lambda x: x * x)
+    {0: [0], 1: [-1, 1], 4: [-2, 2], 9: [-3, 3]}
+    """
+\end{lstlisting}
+\begin{solution}[1.8in]
+\begin{lstlisting}
+    grouped = {}
+    for x in s:
+        key = fn(x)
+        if key in grouped:
+            grouped[key].append(x)
+        else:
+            grouped[key] = [x]
+    return grouped
+\end{lstlisting}
+\end{solution}

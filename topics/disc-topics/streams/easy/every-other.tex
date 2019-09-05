@@ -1,0 +1,11 @@
+\question Write a function \lstinline$every_other$, which takes in an infinite
+stream and returns a stream containing its even indexed elements.
+
+\begin{lstlisting}
+def every_other(s):
+\end{lstlisting}
+\begin{solution}[2cm]
+\begin{lstlisting}
+    return Stream(s.first, lambda: every_other(s.rest.rest))
+\end{lstlisting}
+\end{solution}

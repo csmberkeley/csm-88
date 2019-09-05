@@ -1,0 +1,51 @@
+\question Language can be modeled as a binary tree, where each node is a part of speech. Using such a syntactic tree, we can model question formation by moving the question
+word in the tree.
+\begin{center}
+\begin{tikzpicture}[sibling distance=5mm,level distance=7mm]
+  \Tree [.S [.NP \`{A}(T\'{u}) ]
+            [.VP  [.V escribiste ]
+                      [.PP [.P a ] [.NP qui\'{e}n? ] ] ] ]
+\end{tikzpicture}
+$\Longrightarrow$
+\begin{tikzpicture}[sibling distance=5mm,level distance=7mm]
+  \Tree [.S [.PP \`{A}A qui\'{e}n ]
+            [.VP  [.V escribiste ]
+                      [.NP (t\'{u})? ] ] ]
+\end{tikzpicture}
+\\
+Who did you write to?
+\end{center}
+
+\begin{enumerate}[a.]
+    \item How would we modify the Tree class so that each node remembers its
+        parent?
+        \begin{solution}[1in]
+            One possible solution is:
+\begin{lstlisting}
+class Tree:
+    def __init__(self, entry, left=None, right=None):
+        self.entry = entry
+        self.left, self.right = left, right
+        if self.left is not None:
+            self.left.parent = self
+        if self.right is not None:
+            self.right.parent = self
+\end{lstlisting}
+            \end{solution}
+
+    \item Now write a method that swaps a tree's own left child with the right
+        child of {\tt other}. Assume that this function is part of the \texttt{Tree} class.
+\begin{lstlisting}
+def left_swap(self, other):
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    assert self.left is not None and other.right is not None, "Must have children to swap."
+    self.left, other.right = other.right, self.left
+    self.left.parent, other.right.parent = self other
+\end{lstlisting}
+
+The important part here is that the parent pointers must be updated as well.
+\end{solution}
+
+\end{enumerate}

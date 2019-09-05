@@ -1,0 +1,36 @@
+Call expressions apply a procedure to some arguments.
+
+\centerline{\lstinline{(<operator> <operand1> <operand2> ...)}}
+
+Call expressions in Scheme work exactly like they do in Python. To evaluate
+them:
+\begin{enumerate}
+\item Evaluate the operator to get a procedure.
+\item Evaluate each of the operands from left to right.
+\item Apply the value of the operator to the evaluated operands.
+\end{enumerate}
+
+For example, consider the call expression \texttt{(+ 1 2)}. First, we evaluate
+the symbol \texttt{+} to get the built-in addition procedure. Then we evaluate
+the two operands \texttt{1} and \texttt{2} to get their corresponding atomic
+values. Finally, we apply the addition procedure to the values \texttt{1} and
+\texttt{2} to get the return value \texttt{3}.
+
+Operators may be symbols, such as \lstinline$+$ and \lstinline$*$, or more
+complex expressions, as long as they evaluate to procedure values.
+
+\begin{lstlisting}[language=Scheme]
+scm> (- 1 1)                 ; 1 - 1
+0
+scm> (/ 8 4 2)               ; 8 / 4 / 2
+1
+scm> (* (+ 1 2) (+ 1 2))     ; (1 + 2) * (1 + 2)
+9
+\end{lstlisting}
+
+Some important built-in functions you'll want to know are:
+\begin{itemize}
+\item {\tt +}, {\tt -}, {\tt *}, {\tt /}
+\item {\tt =}, {\tt >}, {\tt >=}, {\tt <}, {\tt <=}
+\item {\tt quotient}, {\tt modulo}, {\tt even?}, {\tt odd?}
+\end{itemize}

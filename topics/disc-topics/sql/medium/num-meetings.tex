@@ -1,0 +1,8 @@
+\question Write a query that outputs the days of the week for which fewer than 5
+employees have a meeting. You may assume no department has more than one meeting on a given day.
+\begin{solution}[1.5in]
+\begin{lstlisting}[language=SQL]
+SELECT m.day FROM records AS e, meetings AS m WHERE e.division = m.division 
+GROUP BY m.day HAVING COUNT(*) < 5;
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,72 @@
+\question
+What will Scheme display? If you think it errors, write Error
+
+\begin{lstlisting}[language=Scheme]
+> (define-macro (doierror) (/ 1 0))
+
+|\begin{solution}
+doierror
+\end{solution}|
+> (doierror)
+
+|\begin{solution}
+Error
+\end{solution}|
+> (define x 5)
+
+|\begin{solution}
+x
+\end{solution}|
+>(define-macro (evaller y) (list (list 'lambda '(x) 'x) y))
+
+|\begin{solution}
+evaller
+\end{solution}|
+> (evaller 2)
+
+|\begin{solution}
+2
+\end{solution}|
+\end{lstlisting}
+
+\question
+Consider a new special form, \textbf{when}, that has the following structure: \\
+\begin{lstlisting}[language=Scheme]
+(when <condition> <expr1> <expr2> <expr3> ... )
+\end{lstlisting}
+If the condition is not false (a truthy expression), all the subsequent operands are evaluated in order and the value of the last expression is returned. Otherwise, the entire \textbf{when} expression evaluates to \textbf{okay}. 
+\begin{lstlisting}[language=Scheme]
+scm> (when (= 1 0)(/1 0) 'error)
+okay
+scm> (when (= 1 1) (print 6) (print 1) 'a)
+6
+1
+a
+\end{lstlisting}
+Create this new special form using a macro. Recall that putting a dot before the last formal parameter allows you to pass any number of arguments to a procedure, a list of which will be bound to the parameter, similar to (*args) in Python. \\
+
+\begin{lstlisting}[language=Scheme]
+; implement when without using quasiquotes
+(define-macro (when condition . exprs)
+    (list 'if __________________________________________________________________________________)
+\end{lstlisting}
+
+\begin{lstlisting}[language=Scheme]
+; implement when using quasiquotes
+(define-macro (when condition . exprs)
+    `(if __________________________________________________________________________________)
+\end{lstlisting}
+
+\begin{solution}
+\begin{verbatim}
+; without quasiquotes
+(define-macro (when condition . exprs)
+    (list 'if condition (cons 'begin exprs) ''okay))
+
+; with quasiquotes
+(define-macro (when condition . exprs)
+    `(if ,condition ,(cons 'begin exprs) 'okay))
+\end{verbatim}
+\end{solution}
+
+

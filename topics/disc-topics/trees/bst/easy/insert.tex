@@ -1,0 +1,37 @@
+\question
+Define a function \texttt{insert} that takes in a \texttt{BinTree},
+\texttt{bst}, and a number, \texttt{n}, and returns a new \texttt{BinTree} that is a \textbf{copy} of \texttt{bst} with a new node inserted. \texttt{insert} should place the new node
+as a leaf in the correct position. If \texttt{t} is the \texttt{BinTree} on
+the left, then calling \texttt{insert(t, 3)} will return the \texttt{BinTree} on the
+right.
+
+\begin{center}
+\begin{lstlisting}
+          4                                  4
+        /   \                              /   \
+       2     5             ->             2     5
+      /                                 /   \
+     1                                 1     3
+
+\end{lstlisting}
+\end{center}
+
+\begin{lstlisting}
+def insert(bst, n):
+    """
+    >>> bst = BinTree(4, BinTree(2, BinTree(1)), BinTree(5))
+    >>> new_bst = insert(bst, 3)
+    >>> new_bst.left.right.root
+    3
+    """
+\end{lstlisting}
+\begin{solution}[1in]
+\begin{lstlisting}
+    if bst == BinTree.empty:
+        return BinTree(n)
+    elif bst.root >= n:
+        return BinTree(bst.root, insert(bst.left, n), bst.right)
+    else:
+        return BinTree(bst.root, bst.left, insert(bst.right, n))
+\end{lstlisting}
+\end{solution}

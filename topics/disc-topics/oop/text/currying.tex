@@ -1,0 +1,80 @@
+In a class method, you probably noticed that the first argument is always this
+mysterious \texttt{self}. And somehow, we never seem to have to pass in the
+argument \texttt{self} when we're calling it. This is the power of the magic
+dot. It tells us that \texttt{self} is the instance that's before the
+dot. However, if it happens to be the name of the class, then it's the method
+itself and \texttt{self} isn't an automatic argument.
+
+As to what this has to do with currying...try the questions and see. Let's start
+with the Skittles and Bag classes above.
+
+\begin{lstlisting}
+>>> bag1 = Bag()
+>>> def curried(f):
+...     def outer(instance):
+...         def inner(*args):
+...             return f(instance, *args)
+...         return inner
+...     return outer
+>>> add_binding = curried(Bag.add_skittle)
+>>> bag1_add = add_binding(bag1)
+>>> bag1.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+[]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> bag1.add_skittle(Skittle("blue"))
+>>> bag1.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+['blue']
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> bag1_add(Skittle("red"))
+>>> bag1.add_skittle(Skittle("green"))
+>>> bag1_add(Skittle("red"))
+>>> bag1.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+['blue', 'red', 'green', 'red']
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> s = bag1.take_skittle()
+>>> bag2 = Bag()
+>>> bag2_add = add_binding(bag2)
+>>> bag2.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+[]
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> bag2_add(Skittle("blue"))
+>>> bag1.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+['red', 'green', 'red']
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> bag2.print_bag()
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+['blue']
+\end{lstlisting}
+\end{solution}

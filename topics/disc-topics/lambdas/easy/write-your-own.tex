@@ -1,0 +1,45 @@
+\question Fill in the blanks with one-line lambda expressions so that each call expression that follows returns 3.
+
+\begin{lstlisting}
+>>> f1 = ________________
+>>> f1()
+3
+\end{lstlisting}
+\begin{solution}[.125in]
+\begin{lstlisting}
+lambda: 3
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> f2 = ________________
+>>> f2()()
+3
+\end{lstlisting}
+\begin{solution}[.125in]
+\begin{lstlisting}
+lambda: lambda: 3
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> f3 = ________________
+>>> f3()(3)
+3
+\end{lstlisting}
+\begin{solution}[.125in]
+\begin{lstlisting}
+lambda: lambda x: x
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> f4 = ________________
+>>> f4()()(3)()
+3
+\end{lstlisting}
+\begin{solution}[.125in]
+\begin{lstlisting}
+lambda: lambda: lambda x: lambda: x
+\end{lstlisting}
+\end{solution}

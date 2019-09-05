@@ -1,0 +1,19 @@
+\question
+Write {\tt purchase}, which calculates
+the total price of a list of items.
+
+\begin{lstlisting}
+def purchase(items):
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    total_cost = 0
+    for item in items:
+        total_cost += get_item_price(item)
+    return total_cost
+
+    # List comprehension solution
+    return sum([get_item_price(item) for item in items])
+\end{lstlisting}
+\end{solution}
+
