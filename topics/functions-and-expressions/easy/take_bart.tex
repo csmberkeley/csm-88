@@ -30,6 +30,15 @@ def take_bart(temp, raining):
     	return True
     else:
     	return False
+
+# Solution with if/elif/else
+def take_bart(temp, raining):
+    if temp < 50:
+    	return True
+    elif raining:
+        return True
+    else:
+    	return False
 \end{lstlisting}
 \end{solution}
 \end{blocksection}
