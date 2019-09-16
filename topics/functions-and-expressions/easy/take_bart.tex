@@ -1,0 +1,35 @@
+\begin{blocksection}
+\question Michael Ball only takes the bart to Berkeley when it is below 50 degrees or it is raining.
+
+Write a function that takes in the current temperature and a boolean value telling if it is raining, and returns True if Michael Ball is taking the bart, and False otherwise.
+
+Try writing the function in one line!
+
+\begin{lstlisting}
+def take_bart(temp, raining): 
+    """
+    >>> take_bart(60, True)
+    True
+    >>> take_bart(40, False)
+    True
+    >>> take_bart(70, False)
+    False
+    """
+
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+# One line solution
+def take_bart(temp, raining):
+    return (temp < 50) or raining
+
+# Solution with if/else
+def take_bart(temp, raining):
+    if (temp < 50) or raining:
+    	return True
+    else:
+    	return False
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
