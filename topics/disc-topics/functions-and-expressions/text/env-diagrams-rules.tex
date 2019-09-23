@@ -18,7 +18,6 @@
     \item Assignment
     		\begin{itemize}
     			\item Evaluate the expression to the right of the assignment operator (=).
-			\item If nonlocal, find the frame that has the variable you're looking for, starting in the parent frame and ending just before the global frame (via Lookup rules). Otherwise, use the current frame. Note: If there are multiple frames that have the same variable, pick the frame closest to the current frame.
 			\item Bind the variable name to the value of the expression in the identified frame. Be sure you override the variable name if it had a previous binding.
     		\end{itemize}
     	\item Lookup
@@ -27,10 +26,5 @@
 			\item If it isn't, go to the parent frame and repeat 1.
 			\item If you run out of frames (reach the Global frame and it's not there), complain.
     		\end{itemize}
-    	\item Tips
-    		\begin{itemize}
-			\item You can only bind names to values. No expressions (such as \texttt{3 + 4}) are allowed in environment diagrams!
-			\item Frames and Functions both have parents.
-		\end{itemize}
 \end{enumerate}
 \end{blocksection}

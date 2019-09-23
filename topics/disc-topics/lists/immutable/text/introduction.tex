@@ -1,12 +1,5 @@
-A \textit{sequence} is an ordered collection of values. It has two
-fundamental properties: length and element selection. In this
-discussion, we'll explore one of Python's data types,
-the \textit{list}, which implements this abstraction.
-
-In Python, we can have lists of whatever values we want, be it
-numbers, strings, functions, or even other lists!  Furthermore, the
-types of the list's contents need not be the same. In other words, the
-list need not be homogenous.
+In Python, we have \textit{lists}, which are ordered collections of whatever values we want, be it
+numbers, strings, functions, or even other lists!
 
 Lists can be created using square braces. Their elements can be
 accessed (or \textit{indexed}) with square braces. Lists are
@@ -18,15 +11,13 @@ end of the list, so the index $-1$ is equivalent to the index
 \texttt{len(list) - 1} and index $-2$ is the same as
 \texttt{len(list) - 2}.
 
-Let's try out some indexing:
+Examples:
 \begin{lstlisting}
 >>> pokemon_team = ['pikachu', 'dratini']
 >>> print(pokemon_team)
 ['pikachu', 'dratini']
 >>> pokemon_team[0]
 'pikachu'
->>> pokemon_team[len(pokemon_team) - 1]
-'dratini'
 >>> pokemon_team[-1]
 'dratini'
 \end{lstlisting}

@@ -6,23 +6,20 @@ def f(x):
 y = 10
 f(8)
 \end{lstlisting}
-
 \begin{solution}[3in]
 Solution: https://goo.gl/rZnzaM
 \end{solution}
-
 \question
 Draw the environment diagram for evaluating the following code
 \begin{lstlisting}[language=Python]
 def dessef(a, b):
 	c = a + b
 	b = b + 1
-	    
 b = 6
 dessef(b, 4)
 \end{lstlisting}
 
-\begin{solution}[3in]
+\begin{solution}[.1in]
 Solution: https://goo.gl/4m3NRD
 \end{solution}
 \newpage
@@ -60,30 +57,5 @@ spain(poland+1, saudi)
 \begin{solution}
 Solution: 	https://goo.gl/iddW49
 \end{solution}
-\newpage
 
-\question
-Draw the environment diagram for evaluating the following code
-\begin{lstlisting}
-cap = 9
-hulk = 3
 
-def marvel(cap, thor, avengers):
-    marvel = avengers
-    iron = hulk + cap
-    if thor > cap:
-        def marvel(cap, thor, avengers):
-            return iron
-    else:
-        iron = hulk      
-    return marvel(thor, cap, marvel)
-
-def iron(man):
-    hulk = cap - 1
-    return hulk
-
-marvel(cap, iron(3), marvel)
-\end{lstlisting}
-\begin{solution}
-Solution:	https://goo.gl/sofcq2
-\end{solution}
