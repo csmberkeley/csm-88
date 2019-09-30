@@ -8,30 +8,35 @@ Lambda expressions create functions. When a lambda expression is evaluated, it p
 Determine if each of the following will error: \newline
 \begin{lstlisting}
 >>> 1/0
-|\begin{solution}
-Error
-\end{solution}|
->>> boom = lambda: 1/0
-|\begin{solution}
-No error, since we don't evaluate the body of the lambda when we define it.
-\end{solution}|
->>> boom()
-|\begin{solution}
-Error
-\end{solution}|
 \end{lstlisting}
+\begin{solution}[0.25in]
+Error
+\end{solution}
+\begin{lstlisting}
+>>> boom = lambda: 1/0
+\end{lstlisting}
+\begin{solution}[0.25in]
+No error, since we don't evaluate the body of the lambda when we define it.
+\end{solution}
+\begin{lstlisting}
+>>> boom()
+\end{lstlisting}
+\begin{solution}[0.25in]
+Error
+\end{solution}
+
 
 \question
 Express the following lambda expression using a \textbf{def} statement, and the \textbf{def} statement using a lambda expression.
 \begin{lstlisting}
 pow = lambda x, y: x**y
-|\begin{solution}[0.25in]
+\end{lstlisting}
+\begin{solution}[0.5in]
 \begin{verbatim}
 def pow(x, y):
     return x**y
 \end{verbatim}
-\end{solution}|
-\end{lstlisting}
+\end{solution}
 
 \begin{lstlisting}
 def foo(x):
@@ -62,24 +67,3 @@ a = (lambda f, a: f(a))(lambda b: b * b, 2)
 \begin{solution}
 Solution: https://goo.gl/TyriuP
 \end{solution}
-\newpage
-\question
-Write \textbf{make\_skipper}, which takes in a number n and outputs a function. When this function takes in a number x, it prints out all the numbers between 0 and x, skipping every nth number (meaning skip any value that is a multiple of n).
-\begin{lstlisting}[language=Python]
-def make_skipper(n):
-    """
-    >>> a = make_skipper(2)
-    >>> a(5)
-    1
-    3
-    5
-    """
-|\begin{solution}[1.5in] \begin{verbatim}
-    def skipper(x):
-        for i in range(x + 1):
-            if i % n != 0:
-                print(i)
-    return skipper
-    \end{verbatim}
-\end{solution}|
-\end{lstlisting}

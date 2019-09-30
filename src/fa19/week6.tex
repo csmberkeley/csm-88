@@ -1,0 +1,34 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Lambdas, Higher Order Functions}}
+\date{September 24th to 26th}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lambdas}
+\subimport{../../topics/disc-topics/hof/text/}{lambda-expressions.tex}
+\newpage
+\begin{questions}
+\subimport{../../topics/disc-topics/higher-order-functions/}{higher-order-functions.tex}
+\end{questions}
+\newpage
+\section{Writing Higher Order Functions}
+\begin{questions}
+\subimport{../../topics/disc-topics/hof/easy/}{keep-ints.tex}
+\subimport{../../topics/disc-topics/hof/easy/}{keep-ints-multi.tex}
+\subimport{../../topics/hof/medium/}{check-sum.tex}
+
+\end{questions}
+\end{document}
