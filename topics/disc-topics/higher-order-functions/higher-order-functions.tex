@@ -55,15 +55,9 @@ Draw Environment Diagrams for the following lines of code
 \begin{lstlisting}
 square = lambda x: x * x
 higher = lambda f: lambda y: f(f(y))
-higher(square)(5)
-\end{lstlisting}
-\begin{solution}
-Solution: https://goo.gl/LATqV9
-\end{solution}
-
-\begin{lstlisting}
+b = higher(square)(5)
 a = (lambda f, a: f(a))(lambda b: b * b, 2)
 \end{lstlisting}
 \begin{solution}
-Solution: https://goo.gl/TyriuP
+Solution: https://tinyurl.com/y69u6hu3
 \end{solution}
