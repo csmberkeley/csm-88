@@ -1,18 +1,20 @@
 \begin{blocksection}
-\question (Fall 2015 MT1 Q4A) Implement the higher-order function \lstinline$decompose1$, 
+\question (61A Fall 2015 MT1 Q4A) Implement the higher-order function \lstinline$decompose1$, 
 which takes two functions \lstinline$f$ and \lstinline$h$ as arguments. It returns a function
 \lstinline$g$ that relates \lstinline$f$ to \lstinline$h$ in the following way: For any 
 non-negative integer \lstinline$x$, \lstinline$h(x)$ equals \lstinline$f(g(x))$. Assume that 
 \lstinline$decompose1$ will be called only on arguments for which such a function 
-\lstinline$g$ exists. \\
+\lstinline$g$ exists. Good practice for CS 88 midterm \\
 
 \begin{lstlisting}
 def decompose1(f, h):
     """
     Return g such that h(x) equals f(g(x)) for any non-negative integer x.
     
-    >>> add_one = lambda x: x + 1
-    >>> square_then_add_one = lambda x: x * x + 1
+    >>> def add_one(x):
+    ...     return x + 1
+    >>> def square_then_add_one(x):
+    ...     return x * x + 1
     >>> g = decompose1(add_one, square_then_add_one)
     >>> g(5)
     25
