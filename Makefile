@@ -1,7 +1,7 @@
 # You should only have to modify RELEASED and SOLUTIONS.
 # Also change SRC once per semester.
-RELEASED = week3 week4 week5 week6
-SOLUTIONS = week3 week4 week5 week6
+RELEASED = week3 week4 week5 week6 week7
+SOLUTIONS = week3 week4 week5 week6 week7
 
 DST = published
 SRC = src/fa19
