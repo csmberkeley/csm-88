@@ -39,7 +39,7 @@ The abstraction barrier is broken inside simplify(f1) when calling gcd(f1[0], f1
 The correct implementation of simplify would be\\
 \begin{verbatim}
 def simplify(f1): 
-    g = gcd(numer(x), denom(x))
+    g = gcd(numer(f1), denom(f1))
     return rational(numer(f1) // g, denom(f1) // g)
 \end{verbatim}
 \end{solution}
