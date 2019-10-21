@@ -24,7 +24,7 @@ def simplify(f1): #Simplifies a rational number
     g = gcd(f1[0], f1[1])
     return rational(numer(f1) // g, denom(f1) // g)
 
-def multiply(f1, f2): # Multiples and simplifies two rational numbers
+def multiply(f1, f2): # Multiples and simplifies two rationals
     r = rational(numer(f1) * numer(f2), denom(f1) * denom(f2))
     return simplify(r)
 
