@@ -1,0 +1,39 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Mutability}}
+\date{October 29th to 31st}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subimport{../../topics/lists/mutable/text/}{mutable-vs-immutable.tex}
+\newpage
+\section{WWPD}
+\begin{questions}
+
+\subimport{../../topics/lists/mutable/easy/}{wwpd.tex}
+\newpage
+
+\section{Code Writing}
+\subimport{../../topics/lists/mutable/easy/}{add-this-many.tex}
+
+\subimport{../../topics/lists/mutable/easy/}{reverse.tex}
+
+\subimport{../../topics/lists/mutable/medium/}{replace-dict.tex}
+\newpage
+\section{Optional Challenge Question}
+\subimport{../../topics/lists/mutable/medium/}{accumulate.tex}
+
+\end{questions}
+\end{document}
