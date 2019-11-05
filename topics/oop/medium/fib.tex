@@ -1,0 +1,64 @@
+\begin{blocksection}
+\question Lets use OOP to help us implement our good friend, the fibonacci sequence!
+
+As a reminder, here is the fib sequence
+
+$0, 1, 1, 2, 3, 5, 8, 13, 21$
+
+
+\begin{lstlisting}
+fib(0) = 0
+fib(1) = 1
+fib(n) = fib(n - 1) + fib(n - 2)
+\end{lstlisting}
+
+
+\vspace{2\baselineskip}
+\begin{nonsol}
+\begin{lstlisting}
+>>> tracker1 = FibTracker()
+>>> tracker2 = FibTracker()
+>>> tracker1.next()
+0
+>>> tracker1.next()
+1
+>>> tracker1.next()
+1
+>>> tracker2.next()
+0
+>>> tracker1.next()
+2
+>>> tracker1.next()
+3
+>>> tracker1.next()
+5
+>>> tracker2.next()
+1
+
+class FibTracker:
+    def __init__(self):
+
+
+
+
+
+
+    def next(self):
+\end{lstlisting}
+\end{nonsol}
+
+\begin{solution}[0.3in]
+\begin{lstlisting}
+class FibTracker:
+    def __init__(self):
+        self.a = 0
+        self.b = 1
+
+    def next(self):
+        result = self.a
+        self.a, self.b = self.b, self.a + self.b
+        return result
+\end{lstlisting}
+\end{solution}
+
+\end{blocksection}
