@@ -1,4 +1,5 @@
-Linked lists are data abstractions that can have multiple implementations. Previously, we saw linked lists implemented using Python lists. Today, we will look at linked lists implemented using Object-Oriented Programming. Here it is:
+Linked lists are a recursive data structure.
+
 \begin{lstlisting}
 class Link:
     empty = ()
@@ -6,16 +7,7 @@ class Link:
         assert rest is Link.empty or isinstance(rest, Link)
         self.first = first
         self.rest = rest
-    def __getitem__(self, i):
-        if i == 0:
-            return self.first
-        return self.rest[i-1]
-    def __len__(self):
-        return 1 + len(self.rest)
 \end{lstlisting}
-When we implemented linked lists using Python lists, we called \texttt{first(lnk)} and \texttt{rest(lnk)} to access the \texttt{first} and \texttt{rest} elements. This time, we can write \texttt{lnk.first} and \texttt{lnk.rest} instead. In the former, we could access the elements, but we could not modify them. In the latter, we can access and also modify the elements. In other words, linked lists implemented using OOP is mutable.
-
-In addition to the constructor \texttt{\_\_init\_\_}, we have the special Python methods \texttt{\_\_getitem\_\_} and \texttt{\_\_len\_\_}. Note that any method that begins and ends with two underscores is a special Python method. Special Python methods may be invoked using built-in functions and special notation. The built-in Python element selection operator, as in \texttt{lst[i]}, invokes \texttt{lst.\_\_getitem\_\_(i)}. Likewise, the built-in Python function \texttt{len}, as in \texttt{len(lst)}, invokes \texttt{lst.\_\_len\_\_()}. 
 
 
 
