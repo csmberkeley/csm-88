@@ -2,7 +2,7 @@
 \question What will Python display?
 
 \begin{lstlisting}
-Class Tree:
+class Tree:
     def __init__(self, label, branches=[]):
         for b in branches:
             assert isinstance(b, Tree)
@@ -76,6 +76,8 @@ True
 \begin{solution}[.5in]
 \begin{lstlisting}
 9
+
+Mystery1 finds the sum of the root node and its direct branches.
 \end{lstlisting}
 \end{solution}
 
@@ -85,6 +87,8 @@ True
 \begin{solution}[.5in]
 \begin{lstlisting}
 14
+
+Mystery2 finds the sum of all the nodes
 \end{lstlisting}
 \end{solution}
 
@@ -96,13 +100,17 @@ True
 5
 \end{lstlisting}
 \end{solution}
-
+\end{blocksection}
+\begin{blocksection}
 \begin{lstlisting}
+
 >>> t.mystery3() # What is mystery3 doing?
 \end{lstlisting}
 \begin{solution}[.5in]
 \begin{lstlisting}
 False
+
+Mystery3 finds if the label of the root is the largest value in the tree.
 \end{lstlisting}
 \end{solution}
 
