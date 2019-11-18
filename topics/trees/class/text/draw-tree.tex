@@ -1,0 +1,29 @@
+As shown above, the tree constructor takes in a label and a list of branches (which are themselves trees).
+
+\begin{lstlisting}
+
+Tree(4,
+    [Tree(5),
+     Tree(2,
+        [Tree(2),
+         Tree(1)]),
+     Tree(1),
+     Tree(8,
+        [Tree(4)])])
+\end{lstlisting}
+
+This creates a tree that looks like this:
+
+\begin{tikzpicture}[scale=1.5, transform shape]
+    \node [circle, draw] (z){$4$}
+        child {node [circle, draw] (a) {$5$}}
+        child {node [circle, draw] (b) {$2$}
+            child {node [circle, draw] (e) {$2$}}
+            child {node [circle, draw] (f) {$1$}}
+        }
+        child {node [circle, draw] (c) {$1$}}
+        child {node [circle, draw] (d) {$8$}
+            child {node [circle, draw] (g) {$4$}}
+        };
+\end{tikzpicture}
+% \end{blocksection}

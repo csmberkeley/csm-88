@@ -1,0 +1,130 @@
+\begin{blocksection}
+\question What will Python display?
+
+\begin{lstlisting}
+class Tree:
+    def __init__(self, label, branches=[]):
+        for b in branches:
+            assert isinstance(b, Tree)
+        self.label = label
+        self.branches = list(branches)
+
+    def is_leaf(self):
+        return not self.branches
+
+    def mystery1(self):
+        s = self.label
+        for b in self.branches:
+            s += b.label
+        return s
+
+    def mystery2(self):
+        s = self.label
+        for b in self.branches:
+            s += b.mystery2()
+        return s
+
+    def max_label(self):
+        answer = self.label
+        for b in self.branches:
+            x = b.max_label()
+            if x > answer:
+                answer = x
+        return answer
+
+    def mystery3(self):
+        return self.label > max([b.max_label() for b in self.branches])
+\end{lstlisting}
+\end{blocksection}
+
+\begin{blocksection}
+
+\begin{lstlisting}
+>>> t = Tree(3, [Tree(2, [Tree(5)]), Tree(4)])
+\end{lstlisting}
+
+\begin{lstlisting}
+>>> t.label
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+3
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> t.branches[0].label
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+2
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> t.branches[1].is_leaf()
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+True
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> t.mystery1() # What is mystery1 doing?
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+9
+
+Mystery1 finds the sum of the root node and its direct branches.
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> t.mystery2() # What is mystery2 doing?
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+14
+
+Mystery2 finds the sum of all the nodes
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> t.max_label()
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+5
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
+\begin{blocksection}
+\begin{lstlisting}
+
+>>> t.mystery3() # What is mystery3 doing?
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+False
+
+Mystery3 finds if the label of the root is the largest value in the tree.
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> t.label = 7
+\end{lstlisting}
+
+\begin{lstlisting}
+>>> t.mystery3()
+\end{lstlisting}
+\begin{solution}[.5in]
+\begin{lstlisting}
+True
+\end{lstlisting}
+\end{solution}
+
+\end{blocksection}
