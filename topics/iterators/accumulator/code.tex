@@ -1,8 +1,13 @@
 \begin{blocksection}
 \question Write an iterator that takes in a list and returns the sum of the list thus far.
 
+Hints (general enough for any class iterator problem): 
+
+\texttt{\_\_init\_\_} you want to set any variables that you want to keep track off between calls
+\texttt{\_\_next\_\_} you compute the new value, update your variables, and return the new value, and raise a Stop Iteration Exception when you should be done iterating
+
 \begin{lstlisting}
->>> accu = Accumulator([1, 2, 3, 4, 5, 6])
+>>> accu = Accumulator([1, 2, 3, 4, 5, 6]) # bless you
 >>> for a in accu:
 ...     print(a)
 1
@@ -24,6 +29,7 @@ class Accumulator:
 
 
     def __iter__(self):
+    	return self
 \end{lstlisting}
 
 \begin{solution}[1.5in]
