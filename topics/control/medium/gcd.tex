@@ -1,0 +1,27 @@
+\begin{blocksection}
+\question Implement \lstinline$gcd(a, b)$, which finds the greatest common denominator between two positive numbers \lstinline$a$ and \lstinline$b$.
+
+\begin{lstlisting}
+def gcd(a, b):
+    """
+    >>> gcd(5, 12)
+    1
+    >>> gcd(4, 24)
+    4
+    >>> gcd(6, 8)
+    2
+    >>
+    True
+    """
+\end{lstlisting}
+\begin{solution}[2in]
+\begin{lstlisting}
+    poss_gcd = min(a, b)
+    while (poss_gcd >= 1):
+        if (a % poss_gcd == 0 && b % poss_gcd == 0):
+            return poss_gcd
+        poss_gcd -=1
+    return 1
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
