@@ -1,0 +1,32 @@
+\begin{blocksection}
+\question Write a function that takes in a list and prints the elements in the list at indices that are
+divisible by 3.
+
+\begin{lstlisting}
+def every_third(lst): 
+    """
+    >>> lst1 = [1, 4, 7, 9, 6, 3, 2, 10, 5]
+    >>> every_third(lst1)
+    1
+    9
+    2
+    >>> lst2 = [5, 3, 1, 7]
+    >>> every_third(lst2)
+    5
+    7
+    >>> lst3 = [4, 7]
+    >>> every_third(lst3)
+    4
+    """
+
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def every_third(lst):
+    for idx in range(len(lst)):
+        if idx % 3 == 0:
+            print(lst[idx])
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
