@@ -1,0 +1,33 @@
+\begin{blocksection}
+\question Write a function that returns the longest string in a list of strings. You can assume the list has at least one string.
+
+\begin{lstlisting}
+def longest_string(lst):
+    """
+    >>> food = ["pie", "burgers", "mashed potatoes", "fries"]
+    >>> longest_string(food)
+    'mashed potatoes'
+    >>> colors = ["green", "red", "purple", "turquoise"]
+    >>> longest_string(colors)
+    'turquoise'
+    """
+
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def longest_string(lst):
+    max_idx = 0
+    max_len = 0
+    
+    for curr_idx in range(len(lst)):
+        if (len(lst[curr_idx]) > max_len):
+            max_len = len(lst[curr_idx])
+            max_idx = curr_idx
+            
+    return lst[max_idx]
+    
+    
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
