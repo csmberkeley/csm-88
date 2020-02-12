@@ -1,0 +1,26 @@
+\begin{blocksection}
+\question Write a function that takes in a list of numbers and returns a list containing only the even numbers from the given list. Use a list comprehension.
+
+\begin{lstlisting}
+def only_even(lst): 
+    """
+    >>> lst1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> only_even(lst1)
+    [2, 4, 6, 8]
+    >>> lst2 = [5, 3, 1, 7]
+    >>> only_even(lst2)
+    []
+    >>> lst3 = [4, 7, 10]
+    >>> only_even(lst3)
+    [4, 10]
+    """
+
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def only_even(lst):
+    return [element for element in lst if element % 2 == 0]
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

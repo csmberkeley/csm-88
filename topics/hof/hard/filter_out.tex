@@ -1,0 +1,28 @@
+\begin{blocksection}
+\question Implement the function \lstinline$filter_out$ that takes in a list \lstinline$lst$ and returns a one argument function, let’s arbitrarily call this \lstinline$g$. \lstinline$g$ takes in a one argument function \lstinline$f$  and returns a pair — a new list containing only the elements of \lstinline$lst$ that return True when passed in to \lstinline$f$, and a one argument function that behaves identically to \lstinline$g$ but operates on the filtered list.
+
+\begin{lstlisting}
+def filter_out(lst):
+    """
+    >>> a = filter_out([1, 2, 3, 4, 5])
+    >>> lst, b = a(lambda x: x < 4)
+    >>> lst
+    [1, 2, 3]
+    >>> lst, c = b(lambda y: y % 2 == 0)
+    >>> lst
+    [2]
+    """
+
+    
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def filter_out(lst):
+    def helper(f):
+        answer = [x for x in lst if f(x)]
+        return answer, filter_out(answer)
+    return helper
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
