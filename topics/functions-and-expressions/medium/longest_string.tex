@@ -17,15 +17,11 @@ def longest_string(lst):
 \begin{solution}[1.5in]
 \begin{lstlisting}
 def longest_string(lst):
-    max_idx = 0
-    max_len = 0
-    
-    for curr_idx in range(len(lst)):
-        if (len(lst[curr_idx]) > max_len):
-            max_len = len(lst[curr_idx])
-            max_idx = curr_idx
-            
-    return lst[max_idx]
+    answer = ""
+    for x in lst:
+        if len(x) > len(answer):
+            answer = x
+    return answer
     
     
 \end{lstlisting}
