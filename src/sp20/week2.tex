@@ -1,0 +1,42 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Lists and Functions}}
+\date{February 10th to 14th}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lists}
+\begin{questions}
+\subimport{../../topics/disc-topics/lists/immutable/text/}{introduction.tex}
+\subimport{../../topics/disc-topics/lists/immutable/text/}{length.tex}
+\newpage
+\section{WWPD}
+\subimport{../../topics/disc-topics/lists/immutable/easy/wwpd/}{basics.tex}
+\vspace{3em}
+\subimport{../../topics/functions-and-expressions/medium/wwpd/}{welcome.tex}
+\newpage
+\subimport{../../topics/functions-and-expressions/easy/wwpd/}{square.tex}
+\subimport{../../topics/functions-and-expressions/medium/wwpd/}{happy-sad.tex}
+
+\newpage
+\section{Code Writing Questions}
+\subimport{../../topics/functions-and-expressions/easy/}{every_third.tex}
+\subimport{../../topics/functions-and-expressions/easy/}{sum_even_to.tex}
+\newpage
+\section{Optional Challenging problem!}
+\subimport{../../topics/functions-and-expressions/medium/}{longest_string.tex}
+
+\end{questions}
+\end{document}
