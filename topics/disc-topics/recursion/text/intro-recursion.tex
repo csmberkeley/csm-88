@@ -1,0 +1,17 @@
+A recursive function is a function that is defined in terms of itself. One might want to use recursion when a problem is more easily expressed in terms of its sub-problems. 
+
+Here is an example of using recursion to sum all the numbers from 1 to n, assuming n is a positive integer.
+
+\begin{lstlisting}
+def sum_to_n(n):
+    if n == 1:
+        return 1
+    else:
+        return n + sum_to_n(n-1)
+\end{lstlisting}
+
+The base case is usually the the simplest case that your function handles (in this case, where the input is 1) since the problem cannot be further divided into smaller sub problems.
+
+In the recursive case, we call our function on a smaller version of the input, namely on an input size of \texttt{n} - 1, because we now want to find the sum of numbers until \texttt{n} - 1, and then simply add our current number, \texttt{n}, to the overall sum. 
+
+You may be thinking, why can't I use iteration for this? If you did, you're right! Iteration can indeed be used to write this specific function as well, and often times, functions can be expressed both iteratively and recursively. It may just be that sometimes, the recursive approach is more intuitive or simpler, and vice versa.

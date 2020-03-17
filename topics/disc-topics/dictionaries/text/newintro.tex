@@ -1,0 +1,57 @@
+
+Dictionaries are containers that \textbf{map keys to values}.
+Let's look at an example:
+
+\begin{lstlisting}
+
+>>> pokemon = {'pikachu': 25, 'dragonair': 148, 'mew': 151}
+>>> pokemon['pikachu']
+25
+>>> pokemon['jolteon'] = 135
+>>> pokemon
+{'jolteon': 135, 'pikachu': 25, 'dragonair': 148, 'mew': 151}
+>>> pokemon['ditto'] = 25
+>>> pokemon
+{'jolteon': 135, 'pikachu': 25, 'dragonair': 148,
+'ditto': 25, 'mew': 151}
+
+
+\end{lstlisting}
+\vspace{5}
+The {\it keys} of a dictionary must be {\it immutable} values, such as
+numbers, strings, tuples, etc.
+Dictionaries themselves are mutable; we can add,
+remove, and change entries after creation. Finally, there is only one value per key,
+however --- if we assign a new value to the same key, it overrides any previous
+value which might have existed. See below for some common uses of dictionaries:
+
+\begin{itemize}
+\item To add {\tt val} corresponding to {\tt key} {\it or} to replace the current value of {\tt key} with {\tt val}:
+\begin{lstlisting}
+    dictionary[key] = val
+\end{lstlisting}
+\item To iterate over a dictionary's keys:
+\begin{lstlisting}
+    for key in dictionary: #OR for key in dictionary.keys()
+        do_stuff()
+\end{lstlisting}
+\item To iterate over a dictionary's values:
+\begin{lstlisting}
+    for value in dictionary.values():
+        do_stuff()
+\end{lstlisting}
+\item To iterate over a dictionary's keys and values:
+\begin{lstlisting}
+    for key, value in dictionary.items():
+        do_stuff()
+\end{lstlisting}
+\item To remove an entry in a dictionary:
+\begin{lstlisting}
+    del dictionary[key]
+\end{lstlisting}
+\item To get the value corresponding to {\tt key} and remove the entry:
+\begin{lstlisting}
+    dictionary.pop(key)
+\end{lstlisting} 
+\end{itemize}
+

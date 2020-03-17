@@ -19,12 +19,11 @@ def apply_func(f):
 
 \begin{solution}[1.5in]
 \begin{lstlisting}
-def apply_function(f):
+def apply_func(f):
     def helper(lst):
         for i in range(len(lst)):
             lst[i] = f(lst[i])
     return helper
-    """
 \end{lstlisting}
 \end{solution}
 \end{blocksection}

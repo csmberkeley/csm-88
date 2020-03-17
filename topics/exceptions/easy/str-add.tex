@@ -1,0 +1,23 @@
+\begin{blocksection}
+\question Write the function \lstinline{str_add} that takes in two strings and adds them together if possible, otherwise it prints out "invalid args." \textit{Hint: To turn a string into an int you can use the method int() which will return a integer version of a string.  For example, int("1") == 1.  It will return a \textbf{ValueError} if it cannot turn the string to an int, such as int("a")}
+
+\begin{lstlisting}
+def str_add(a, b):
+    """
+    >>> str_add("1", "2")
+    3
+    >>> str_add("a", "b")
+    invalid args
+    >>> str_add("1", "b")
+    invalid args
+    """
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+    try:
+        return int(a) + int(b)
+    except(ValueError):
+        print("invalid args")
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

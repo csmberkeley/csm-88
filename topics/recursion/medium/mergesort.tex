@@ -1,0 +1,24 @@
+\question We will now write one of the faster sorting algorithms
+commonly used, known as {\it merge sort}. Merge sort works like this:
+\begin{enumerate}
+    \item If there is only one (or zero) item(s) in the sequence,
+        it is already sorted!
+    \item If there are more than one item, then we can split the
+        sequence in half, sort each half recursively, then merge
+        the results, using the {\tt merge} procedure from earlier
+        in the notes. The result will be a sorted sequence.
+\end{enumerate}
+Using the algorithm described, write a function {\tt mergesort(seq)}
+that takes an unsorted sequence and sorts it.
+\begin{lstlisting}
+def mergesort(seq):
+\end{lstlisting}
+\begin{solution}[1.7in]
+\begin{lstlisting}
+    if len(seq) <= 1:
+        return seq
+    else:
+        return merge(mergesort(seq[:len(seq)//2]),
+            mergesort(seq[len(seq)//2:]))
+\end{lstlisting}
+\end{solution}

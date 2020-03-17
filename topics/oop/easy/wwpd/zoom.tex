@@ -1,0 +1,136 @@
+\begin{blocksection}
+\question \textbf{Hello Zoom} \newline
+Given the class ZoomCall defined below, what will Python print for the following prompts? 
+
+\begin{lstlisting}
+class ZoomCall:
+
+    duration = 40
+    def __init__(self, teacher, group):
+        self.teacher = teacher
+        self.group = group
+        self.time_spent = 0
+
+    def attempt_problem(self, difficulty):
+        groups = self.breakout_groups()
+        for group in groups:
+            print("How's it going " + str(group[0]))
+        self.time_spent += difficulty
+
+    def breakout_groups(self):
+        answers = []
+        copy = list(self.group)
+        while copy:
+            mini = []
+            for i in range(2):
+                if copy:
+                    mini.append(copy.pop())
+            answers.append(mini)
+        return answers
+
+    def time_remaining(self):
+        return self.duration - self.time_spent
+       
+\end{lstlisting}
+\end{blocksection}
+\newline
+\newline
+\newline
+\begin{blocksection}
+
+\begin{lstlisting}
+>>> call_one = ZoomCall("Ada", ["Nicholas", "Jack", "Megan"])
+>>> call_one.teacher
+\end{lstlisting}
+\begin{solution}[.2in]
+'Ada'
+\end{solution}
+
+\begin{lstlisting}
+>>> call_one.attempt_problem(25)
+\end{lstlisting}
+\begin{solution}[.2in]
+\begin{lstlisting}
+How's it going Megan
+How's it going Nicholas
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+>>> call_one.time_spent
+\end{lstlisting}
+\begin{solution}[.2in]
+25
+\end{solution}
+\end{blocksection}
+
+\begin{blocksection}
+\begin{lstlisting}
+>>> call_one.time_remaining()
+\end{lstlisting}
+\begin{solution}[.2in]
+15
+\end{solution}
+
+\begin{lstlisting}
+>>> call_one.duration = 20
+>>> call_one.time_remaining()
+\end{lstlisting}
+\begin{solution}[.2in]
+-5
+\end{solution}
+
+\begin{lstlisting}
+>>> call_two = ZoomCall("Nikhil", ["Kaitlyn", "Shreya"])
+>>> call_two.duration
+\end{lstlisting}
+\begin{solution}[.2in]
+40
+\end{solution}
+\end{blocksection}
+
+\question Add the methods \lstinline$overtime$ and \lstinline$overthrow$ to the ZoomCall class so they execute the behavior shown below. You can assume that we continue executing the following prompts \emph{after} executing the prompts above.
+
+\begin{blocksection}
+\begin{lstlisting}
+>>> call_one.overtime()
+True
+>>> call_two.overtime()
+False
+>>> call_two.overthrow('Shreya')
+>>> call_two.teacher
+'Shreya'
+>>> call_two.group
+['Kaitlyn', 'Nikhil']
+>>> call_two.overthrow('Chi')
+>>> call_two.teacher
+'Chi'
+>>> call_two.group
+['Kaitlyn', 'Nikhil', 'Shreya']
+\end{lstlisting}
+\end{blocksection}
+
+\begin{lstlisting}
+def overtime(self):
+    
+\end{lstlisting}
+
+\begin{solution}[.5in]
+\begin{lstlisting}
+    return self.time_remaining() < 0
+\end{lstlisting}
+\end{solution}
+
+\begin{lstlisting}
+def overthrow(self, new_leader):
+    
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    if new_leader in self.group:
+        self.group.remove(new_leader)
+    self.group.append(self.teacher)
+    self.teacher = new_leader
+\end{lstlisting}
+\end{solution}

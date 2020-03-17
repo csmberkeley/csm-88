@@ -1,0 +1,30 @@
+\question Write a procedure {\tt merge(s1, s2)} which takes two sorted (smallest
+value first) lists and returns a single list with all of the elements of the two
+lists, in ascending order. Use recursion.
+
+{\it Hint}: If you can figure out which list has the smallest element out of
+both, then we know that the resulting merged list will have that smallest
+element, followed by the merge of the two lists with the smallest item
+removed. Don't forget to handle the case where one list is empty!
+
+\begin{lstlisting}
+def merge(s1, s2):
+    """ Merges two sorted lists
+    >>> merge([1, 3], [2, 4])
+    [1, 2, 3, 4]
+    >>> merge([1, 2], [])
+    [1, 2]
+    """
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    if len(s1) == 0:
+        return s2
+    elif len(s2) == 0:
+        return s1
+    elif s1[0] < s2[0]:
+        return [s1[0]] + merge(s1[1:], s2)
+    else:
+        return [s2[0]] + merge(s1, s2[1:])
+\end{lstlisting}
+\end{solution}

@@ -7,8 +7,9 @@ Fill in the classes \texttt{Emotion}, \texttt{Joy}, and \texttt{Sadness} below s
 0
 >>> joy = Joy()
 >>> sadness = Sadness()
+>>> emotion = Emotion()
 >>> Emotion.num # number of Emotion instances created
-2
+3
 >>> joy.power
 5
 >>> joy.catchphrase() # Print Joy's catchphrase
@@ -17,6 +18,8 @@ Think positive thoughts
 I'm positive you will get lost
 >>> sadness.power
 5
+>>> emotion.catchphrase()
+I'm just an emotion.
 >>> joy.feeling(sadness) # When both Emotions have same power value, print "Together"
 Together
 >>> sadness.feeling(joy)
@@ -29,13 +32,13 @@ I'm positive you will get lost
 Think positive thoughts 
 I'm positive you will get lost
 \end{lstlisting}
-\newpage
 \end{blocksection}
 
 \begin{blocksection}
 \begin{lstlisting}
 class Emotion
 \end{lstlisting}
+
 \begin{solution}[.5in]
 \begin{lstlisting}
 class Emotion:
@@ -68,7 +71,15 @@ class Emotion:
 \end{lstlisting}
 \end{solution}
 \begin{lstlisting}
+    def catchphrase(self):
+\end{lstlisting}
+\begin{solution}[0.55in]
+\begin{lstlisting}
+        print("I'm just an emotion.")
+\end{lstlisting}
+\end{solution}
 
+\begin{lstlisting}
 class Joy
 \end{lstlisting}
 \begin{solution}[0in]
@@ -84,15 +95,24 @@ class Joy(Emotion):
         print("Think positive thoughts!")
 \end{lstlisting}
 \end{solution}
+
+\end{blocksection}
+\newpage
+\begin{blocksection}
+
 \begin{lstlisting}
 
 class Sadness
 \end{lstlisting}
 \begin{solution}[0in]
+
+
+
 \begin{lstlisting}
 class Sadness(Emotion):
 \end{lstlisting}
 \end{solution}
+
 \begin{lstlisting}
     def catchphrase(self):
 \end{lstlisting}
