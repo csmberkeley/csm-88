@@ -1,0 +1,58 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Environment Diagrams and HOFs}}
+\date{February 17 - 21}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subimport{../../topics/disc-topics/functions-and-expressions/text/}{assignment-statement.tex}
+%p\subimport{../../topics/disc-topics/functions-and-expressions/code/}{assignment-statement.tex}
+%\subimport{../../topics/disc-topics/functions-and-expressions/text/}{def-statement.tex}
+%\subimport{../../topics/disc-topics/functions-and-expressions/code/}{def-statement.tex}
+%\subimport{../../topics/disc-topics/functions-and-expressions/text/}{call-expressions.tex}
+
+%\subimport{../../topics/disc-topics/functions-and-expressions/code/env-diagrams/}{call-expressions.tex}
+
+\vspace{-1em}
+\section{Environment Diagrams}
+\subimport{../../topics/disc-topics/functions-and-expressions/text/}{env-diagrams-rules.tex}
+\newpage
+\begin{questions}
+\subimport{../../topics/disc-topics/environment/}{environment.tex}
+
+\end{questions}
+
+\newpage
+\section{Higher Order Functions — Code Writing}
+\begin{questions}
+\subimport{../../topics/hof/easy/}{make-skipper.tex}
+\subimport{../../topics/hof/medium/}{apply_func.tex}
+\end{questions}
+
+\newpage
+\section{WWPD}
+\begin{questions}
+\subimport{../../topics/hof/medium/env-diagram/}{foohi.tex}
+\subimport{../../topics/hof/easy/}{fruit.tex}
+\end{questions}
+
+\newpage
+\begin{questions}
+\section{Optional Challenging Problems!}
+\subimport{../../topics/hof/hard/}{filter_out.tex}
+\subimport{../../topics/hof/medium/env-diagram/}{fxyz.tex}
+\end{questions}
+
+
+\end{document}

@@ -1,0 +1,45 @@
+\begin{blocksection}
+\question Write a function \lstinline{make_keeper} that takes in a one parameter boolean function \lstinline{cond}, that returns True or False. \lstinline{make_keeper} returns a function that takes in \lstinline{n} and prints out the numbers from 1 to \lstinline{n} where calling \lstinline{cond} on that number returns \lstinline{True}.
+
+\begin{lstlisting}
+
+def make_keeper(cond):
+    """Returns a function which takes in an a number n and prints out all integers 1..i..n where calling cond(i) returns True.
+    
+    >>> def is_even(x):
+    ...    # Even numbers have remainder 0 when divided by 2
+    ...    return x % 2 = 0
+    >>> make_keeper(is_even)(5)
+    2
+    4
+    """
+    
+    def _________________________________:
+    
+        i = _________________
+        
+        while ___________________________:
+        
+            _____________________________:
+            
+                ____________________
+                
+            _____________________
+            
+    _______________________
+    
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def make_keeper(cond):
+    def keeper(n):
+        i = 1:
+        while i <= n:
+            if cond(i):
+                print(i)
+            i += 1
+    return keeper
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

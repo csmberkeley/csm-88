@@ -50,7 +50,34 @@ def foo(x):
 foo = lambda x: lambda y: lambda z: x + y * z
 \end{solution}
 \newpage
+
 \question 
+For each of the following lines of code, determine what would be printed as the output. \newline
+\begin{lstlisting}
+>>> plus_one = lambda i: print(i+1)
+>>> plus_one
+\end{lstlisting}
+\begin{solution}[0.25in]
+function $<$lambda$>$ at 0x61CSTUFF
+\end{solution}
+\begin{lstlisting}
+>>> plus_one(6)
+\end{lstlisting}
+\begin{solution}[0.25in]
+7
+\end{solution}
+\begin{lstlisting}
+>>> multiply = lambda x, y: x*y
+>>> harder_lambda = lambda func: print(func(4, 5))
+>>> harder_lambda(multiply)
+\end{lstlisting}
+\begin{solution}[0.25in]
+20
+\end{solution}
+
+
+\question 
+\textbf{Challenge Problem}: 
 Draw Environment Diagrams for the following lines of code
 \begin{lstlisting}
 square = lambda x: x * x

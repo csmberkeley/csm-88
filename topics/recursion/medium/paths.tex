@@ -1,0 +1,21 @@
+\question Consider an insect in an {\tt M} by {\tt N} grid. The insect starts at the bottom left corner, {\tt (0, 0)}, and wants to end up at the top right corner {\tt (M-1, N-1)}. The insect is only capable of moving right or up. Write a function {\tt paths} that takes a grid length and width and returns the number of different paths the insect can take from the start to the goal. (There is a closed-form solution to this problem, but try to answer it procedurally using recursion.)
+
+\begin{blocksection}
+\begin{lstlisting}
+def paths(m, n):
+    """
+    >>> paths(2, 2)
+    2
+    >>> paths(117, 1)
+    1
+    """
+\end{lstlisting}
+\end{blocksection}
+
+\begin{solution}[1.2in]
+\begin{lstlisting}
+    if m == 1 or n == 1:
+        return 1
+    return paths(m - 1, n) + paths(m, n - 1)
+\end{lstlisting}
+\end{solution}

@@ -1,0 +1,29 @@
+\begin{blocksection}
+\question Implement \lstinline$apply_func$ which takes in a one argument function \lstinline$f$ 
+and returns a one argument function. The returned function takes in a list \lstinline$lst$ and applies 
+\lstinline$f$ to each element in \lstinline$lst$.
+
+\begin{lstlisting}
+def apply_func(f):
+    """
+    >>> g = apply_func(abs)
+    >>> lst = [1, -1, 2, -2]
+    >>> g(lst)
+    >>> lst
+    [1, 1, 2, 2]
+    """
+
+
+
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+def apply_func(f):
+    def helper(lst):
+        for i in range(len(lst)):
+            lst[i] = f(lst[i])
+    return helper
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

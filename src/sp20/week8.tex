@@ -1,0 +1,39 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Abstract Data Types and Mutable Data}}
+\date{March 9th to 13th}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{questions}
+\section{Conceptual Start}
+\subimport{../../topics/disc-topics/data-abstraction/}{data-abstraction.tex}
+\section{Code Writing}
+\subimport{../../topics/data-abstraction/easy/}{elephants.tex}
+\newpage
+\subimport{../../topics/data-abstraction/easy/}{college.tex}
+\newpage
+\vspace{5}
+\section{Dictionaries}
+\vspace{5}
+\subimport{../../topics/disc-topics/dictionaries/text/}{newintro.tex}
+\newpage
+\vspace{5}
+
+\subimport{../../topics/disc-topics/dictionaries/medium/}{add_all.tex}
+
+\subimport{../../topics/disc-topics/dictionaries/medium/}{replace-all-deep.tex}
+\end{questions}
+\end{document}

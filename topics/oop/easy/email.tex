@@ -3,7 +3,24 @@
 We now want to write three different classes, \texttt{Postman}, \texttt{Client},
 and \texttt{Email} to simulate email. Fill in the definitions below to finish
 the implementation!
+\begin{lstlisting}
+>>> postman = Postman() #Create a new Postman
 
+>>> john = Client(postman, "John") #Create client named John
+
+>>> rohan = Client(postman, "Rohan") #Create client named Rohan
+
+>>> john.compose("POG", "Rohan") #John sends an email to Rohan
+
+>>> rohan.compose("CHAMP", "John") #Rohan sends an email to John
+
+>>> rohan.inbox[0].msg #Rohan's inbox
+"POG"
+
+>>>john.inbox[0].msg #John's inbox
+"CHAMP"
+\end{lstlisting}
+\pagebreak
 \begin{lstlisting}
 class Email:
     """Every email object has 3 instance attributes: the message,
@@ -20,7 +37,6 @@ class Email:
 \end{lstlisting}
 \end{solution}
 
-\pagebreak
 
 \begin{lstlisting}
 class Postman:
@@ -80,8 +96,8 @@ class Client:
 \end{lstlisting}
 \begin{solution}[1in]
 \begin{lstlisting}
-            email = Email(msg, self.name, recipient)
-            self.mailman.send(email)
+        email = Email(msg, self.name, recipient)
+        self.mailman.send(email)
 \end{lstlisting}
 \end{solution}
 
@@ -92,7 +108,8 @@ class Client:
 \end{lstlisting}
 \begin{solution}[1in]
 \begin{lstlisting}
-            self.inbox.append(email)
+        self.inbox.append(email)
+            
 \end{lstlisting}
 \end{solution}
 
