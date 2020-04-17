@@ -1,0 +1,29 @@
+For the following problems, use this definition for the Tree class:
+
+\begin{lstlisting}
+
+class Tree:
+    def __init__(self, label, branches=[]):
+        for b in branches:
+            assert isinstance(b, Tree)
+        self.label = label
+        self.branches = branches
+
+    def is_leaf(self):
+        return not self.branches
+        
+        
+\end{lstlisting}
+\vspace{10}
+Notice that with this implementation we can mutate a tree using attribute
+assignment:
+
+\begin{lstlisting}
+
+>>> t = Tree(3, [Tree(4), Tree(5)])
+>>> t.label = 5
+>>> t.label
+5
+
+
+\end{lstlisting}

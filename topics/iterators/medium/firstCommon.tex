@@ -1,0 +1,59 @@
+\begin{blocksection}
+\question Given two sorted iterators, \texttt{iter1} and  \texttt{iter2}, return the first common element between the iterators, or -1 if no common element exists.
+
+\begin{lstlisting}
+def first_common(iter1, iter2):
+    """
+    >>> iter1 = iter([1, 4, 6, 8])
+    >>> iter2 = iter([2, 3, 5, 6, 7])
+    >>> first_common(iter1, iter2)
+    6
+    >>> so = iter([1, 4, 6, 8])
+    >>> hum = iter([2, 3, 5, 7])
+    >>> first_common(so, hum)
+    -1
+    """
+    one = __________________________________________________
+
+    two = __________________________________________________
+    
+    while _________________________________________________:
+    
+        try:
+        
+            if _____________________________________________:
+            
+                one = ______________________________________
+                
+            else:
+            
+                two = ______________________________________
+                
+        except _____________________________________________:
+        
+            return -1
+            
+    return __________________________________________________
+\end{lstlisting}
+\end{blocksection}
+\begin{blocksection}
+\begin{solution}[0.6in]
+\begin{lstlisting}
+def first_common(iter1, iter2):
+
+    one = next(iter1)
+    two = next(iter2)
+    while one != two:
+        try:
+            if one < two:
+                one = next(iter1)
+            else:
+                two = next(iter2)
+        except StopIteration:
+            return -1
+    return one 
+    
+    #could return two as well since both are equal
+\end{lstlisting}
+\end{solution}
+\end{blocksection}
