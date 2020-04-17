@@ -1,0 +1,23 @@
+\begin{blocksection}
+\question Previously, we looked at the \texttt{is\_prime} function. Here's the code for it:
+
+\begin{blocksection}
+\begin{lstlisting}
+def is_prime(n):
+    if n == 1:
+        return False
+    k = 2
+    while k < n:
+        if n % k == 0:
+            return False
+        k += 1
+    return True
+\end{lstlisting}
+\end{blocksection}
+
+What is the efficiency of \texttt{is\_prime}?
+
+\begin{solution} [0.5in]
+    Linear
+\end{solution}
+\end{blocksection}

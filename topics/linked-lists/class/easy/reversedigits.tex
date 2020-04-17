@@ -1,0 +1,28 @@
+\begin{blocksection}
+\question Given a number \texttt{num}, return a linked list containing the digits of \texttt{num} in reversed order. 
+
+\begin{lstlisting}
+def reverse_digits(num):
+    """
+    >>> num = 1234
+    >>> reverse_digits(num)
+    Link (4, Link (3, Link (2, Link (1)))) 
+    """
+
+    if _____________________________________:
+    
+        ____________________________________
+        
+    else:
+    
+        _____________________________________
+\end{lstlisting}
+\begin{solution}[0.6in]
+\begin{lstlisting}
+    if num < 10:
+        return Link(num):
+    else:
+ 	return Link(num % 10, reverse_digits(num // 10))
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

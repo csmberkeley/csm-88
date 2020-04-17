@@ -1,0 +1,49 @@
+\begin{blocksection}
+\question
+Determine the runtimes of the following functions:
+
+
+\begin{blocksection}
+\begin{lstlisting}
+def func_one(n):
+    if n < 10:
+        return
+    for i in range(n):
+        for j in range(n):
+            print(i + j)
+\end{lstlisting}
+\end{blocksection}
+
+\begin{solution} [0.5in]
+    Quadratic
+\end{solution}
+
+\begin{blocksection}
+\begin{lstlisting}
+def func_two(n):
+    for i in range(n):
+        for j in range(100):
+            print(i + j)
+\end{lstlisting}
+\end{blocksection}
+
+
+\begin{solution} [0.5in]
+    Linear
+\end{solution}
+
+\begin{blocksection}
+\begin{lstlisting}
+def func_three(n):
+    func_one(n)
+    func_one(n)
+    func_two(n)
+\end{lstlisting}
+\end{blocksection}
+
+
+\begin{solution} [0.5in]
+    Quadratic
+\end{solution}
+
+\end{blocksection}

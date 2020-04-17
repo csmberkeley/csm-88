@@ -1,0 +1,14 @@
+\question
+What is the efficiency of \texttt{mod\_7}?
+\begin{lstlisting}
+def mod_7(n):
+    if n % 7 == 0:
+        return 0
+    else:
+        return 1 + mod_7(n - 1)
+\end{lstlisting}
+
+\begin{solution}[0.0in]
+    Constant, since at worst it will require 6 recursive calls to reach the
+    base case.
+\end{solution}

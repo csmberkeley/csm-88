@@ -1,20 +1,7 @@
-As shown above, the tree constructor takes in a label and a list of branches (which are themselves trees).
+As shown above, the tree constructor takes in a label and a list of branches (which are themselves trees). An example is shown below:
 
-\begin{lstlisting}
 
-Tree(4,
-    [Tree(5),
-     Tree(2,
-        [Tree(2),
-         Tree(1)]),
-     Tree(1),
-     Tree(8,
-        [Tree(4)])])
-\end{lstlisting}
-
-This creates a tree that looks like this:
-
-\begin{tikzpicture}[scale=1.5, transform shape]
+\begin{tikzpicture}[scale = 1.2, remember picture,overlay,shift=(current page.south west)]
     \node [circle, draw] (z){$4$}
         child {node [circle, draw] (a) {$5$}}
         child {node [circle, draw] (b) {$2$}
@@ -26,4 +13,15 @@ This creates a tree that looks like this:
             child {node [circle, draw] (g) {$4$}}
         };
 \end{tikzpicture}
-% \end{blocksection}
+
+\begin{lstlisting}
+Tree(4,
+    [Tree(5),
+     Tree(2,
+        [Tree(2),
+         Tree(1)]),
+     Tree(1),
+     Tree(8,
+        [Tree(4)])])
+\end{lstlisting}
+This creates a tree that looks like this:
