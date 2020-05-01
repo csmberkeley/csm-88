@@ -5,29 +5,39 @@ Fill in the classes \texttt{Emotion}, \texttt{Joy}, and \texttt{Sadness} below s
 \begin{lstlisting}
 >>> Emotion.num
 0
+
 >>> joy = Joy()
 >>> sadness = Sadness()
 >>> emotion = Emotion()
 >>> Emotion.num # number of Emotion instances created
 3
+
 >>> joy.power
 5
+
 >>> joy.catchphrase() # Print Joy's catchphrase
 Think positive thoughts
+
 >>> sadness.catchphrase() #Print Sad's catchphrase
 I'm positive you will get lost
+
 >>> sadness.power
 5
+
 >>> emotion.catchphrase()
 I'm just an emotion.
->>> joy.feeling(sadness) # When both Emotions have same power value, print "Together"
+
+>>> joy.feeling(sadness) # print "Together" if same power
 Together
+
 >>> sadness.feeling(joy)
 Together
+
 >>> joy.power = 7
 >>> joy.feeling(sadness) # Print the catchphrase of the more powerful feeling before the less powerful feeling
 Think positive thoughts
 I'm positive you will get lost
+
 >>> sadness.feeling(joy)
 Think positive thoughts 
 I'm positive you will get lost
