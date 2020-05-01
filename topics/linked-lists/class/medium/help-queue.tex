@@ -1,0 +1,51 @@
+\begin{blocksection}
+\question \textbf Write the \texttt{help} function in the Mentor class. When this function is called, the mentor should help students in the queue that need help (the queue is a linked list). If a student does not need help, the mentor should move on to the next student. See the sample use case at the bottom for an example of how the \texttt{help} method should work!
+
+\begin{lstlisting}
+class Mentee:
+    def __init__(self, name, needs_help):
+        self.name = name
+        self.needs_help = needs_help
+
+class Mentor:
+    def __init__(self, name):
+        self.name = name
+
+    def help(self, students):
+        ## TO DO
+
+chi = Mentee("Chi", True)
+mimi = Mentee("Mimi", False)
+gilbert = Mentee("Gilbert", True)
+ada = Mentee("Ada", True)
+
+tony = Mentor("Tony")
+students = Link(chi, Link(mimi, Link(gilbert, Link(ada))))
+
+tony.help(students)
+>>> Tony helped Chi!
+>>> Tony helped Gilbert!
+>>> Tony helped Ada!
+
+tony.help(students)
+## No one needs help anymore, so nothing should be printed!
+\end{lstlisting}
+\end{blocksection}
+\begin{lstlisting}
+def help(self, students):
+    
+\end{lstlisting}
+\begin{blocksection}
+\begin{solution}
+\begin{lstlisting}
+    if students is Link.empty:
+        return
+    else:
+        curr = students.first
+        if curr.needs_help:
+            print(self.name + " helped " + curr.name + "!")
+            curr.needs_help = False
+        self.help(students.rest)
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

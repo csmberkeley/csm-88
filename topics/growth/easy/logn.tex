@@ -1,0 +1,16 @@
+\question
+What is the efficiency of \texttt{bonk}?
+\begin{lstlisting}
+def bonk(n):
+    total = 0
+    while n >= 2:
+        total += n
+        n = n / 2
+    return total
+\end{lstlisting}
+
+\begin{solution}[0.0in]
+  Logarithmic, because our while loop iterates at most $\log(n)$ times,
+  due to $n$ being halved in every iteration. Another way of looking at this if you
+  duplicate the input, we only add a single iteration to the time, which also indicates logarithmic.
+\end{solution}
