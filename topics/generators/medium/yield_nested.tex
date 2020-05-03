@@ -1,0 +1,27 @@
+\begin{blocksection}
+\question Define \lstinline$level_order$, a generator that takes in a nested list \lstinline$lsts$ and yields every element in \lstinline$lsts$ in \textbf{level order}. Look at the doctests to understand what level order means. 
+
+\begin{lstlisting}
+def level_order(lsts):
+    """
+    >>> lsts = [[1, [[5], 4], 2, 3], 0]
+    >>> list(level_order(lsts))
+    [0, 1, 2, 3, 4, 5]
+    """
+\end{lstlisting}
+
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    if not lsts:
+        return
+    answer = []
+    for item in lsts:
+        if isinstance(item, list):
+            answer.extend(item)
+        else:
+            yield item
+    for x in level_order(answer):
+        yield x
+\end{lstlisting}
+\end{solution}
+\end{blocksection}

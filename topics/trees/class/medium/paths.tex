@@ -1,0 +1,39 @@
+\begin{blocksection}
+\question Implement path, which takes a linked list s and a Tree instance t. It returns whether s is a path from the
+root of t to some leaf. (Hint: The \textbf{any} function takes in an iterable and returns True if any element is True and False otherwise.)
+
+\begin{lstlisting}
+def path(s, t):
+    """Return whether Link S is a path from the root to a leaf in Tree T.
+    >>> t = Tree(1, [Tree(2), Tree(3, [Tree(4), Tree(5)]), Tree(6)])
+    >>> a = Link(1, Link(3, Link(4))) # A full path
+    >>> path(a, t)
+    True
+    >>> b = Link(1, Link(3)) # A partial path
+    >>> path(b, t)
+    False
+    >>> c = Link(1, Link(2, Link(7))) # A path and an extra value
+    >>> path(c, t)
+    False
+    >>> d = Link(3, Link(4)) # A path of a branch
+    >>> path(d, t)
+    False
+    """
+    if ____________________________________________________:
+        return False
+    if ____________________________________________________:
+        return True
+    return ______________([_____________________________ for b in t.branches])
+\end{lstlisting}
+
+\begin{solution}[0.5in]
+\begin{lstlisting}
+    if s is Link.empty or t.entry != s.first:
+        return False
+    if t.is_leaf() and s.rest is Link.empty:
+        return True
+    return any([path(s.rest, b) for b in t.branches])
+\end{lstlisting}
+\end{solution}
+
+\end{blocksection}
