@@ -6,6 +6,7 @@ creates a table with a single row, with columns named ``first'' and ``last'':
   Ben|Bitdiddle
 \end{lstlisting}
 
+\vspace{20}
 Given two tables with the same number of columns, we can combine their rows
 into a larger table with \texttt{UNION}:
 
@@ -17,6 +18,7 @@ Louis|Reasoner
 \end{lstlisting}
 
 \begin{blocksection}
+\vspace{20}
 To save a table, use \texttt{CREATE TABLE} and a name.
 Here we're going to create the table of employees from the
 previous section and assign it to the name \texttt{records}:
@@ -29,8 +31,10 @@ sqlite> CREATE TABLE records AS
    ...>   SELECT "Alyssa P Hacker", "Computer",
    ...>     "Programmer", 40000, "Ben Bitdiddle" UNION ... ;
 \end{lstlisting}
+
 \end{blocksection}
 
+\vspace{20}
 We can SELECT specific values from an existing table using a \texttt{FROM} 
 clause. This query creates a table with two columns, with a row for each row in the
 \texttt{records} table:
@@ -45,8 +49,10 @@ Lem E Tweakit|Computer
 Louis Reasoner|Computer
 Oliver Warbucks|Administration
 Robert Cratchet|Accounting
+
 \end{lstlisting}
 
+\vspace{20}
 The special syntax \texttt{SELECT *} will select all columns from a table. It's
 an easy way to print the contents of a table.
 
@@ -60,8 +66,10 @@ Lem E Tweakit|Computer|Technician|25000|Ben Bitdiddle
 Louis Reasoner|Computer|Programmer Trainee|30000|Alyssa P Hacker
 Oliver Warbucks|Administration|Big Wheel|150000|Oliver Warbucks
 Robert Cratchet|Accounting|Scrivener|18000|Eben Scrooge
+
 \end{lstlisting}
 
+\vspace{20}
 We can choose which columns to show in the first part of the \texttt{SELECT}, we
 can filter out rows using a \texttt{WHERE} clause, and sort the resulting rows
 with an \texttt{ORDER BY} clause. In general the syntax is:
@@ -69,8 +77,10 @@ with an \texttt{ORDER BY} clause. In general the syntax is:
 \begin{lstlisting}[language=SQL]
 SELECT [columns] FROM [tables]
   WHERE [condition] ORDER BY [criteria];
+  
 \end{lstlisting}
 
+\vspace{20}
 For instance, the following statement lists all information about employees with
 the ``Programmer'' title.
 
@@ -78,8 +88,10 @@ the ``Programmer'' title.
 sqlite> SELECT * FROM records WHERE title = "Programmer";
 Alyssa P Hacker|Computer|Programmer|40000|Ben Bitdiddle
 Cy D Fect|Computer|Programmer|35000|Ben Bitdiddle
+
 \end{lstlisting}
 
+\vspace{20}
 The following statement lists the names and salaries of each employee under the
 accounting division, sorted in \textbf{descending} order by their salaries.
 
@@ -88,10 +100,26 @@ sqlite> SELECT name, salary FROM records
    ...>   WHERE division = "Accounting" ORDER BY -salary;
 Eben Scrooge|75000
 Robert Cratchet|18000
+
 \end{lstlisting}
 
+\vspace{20}
 Note that all valid SQL statements must be terminated by a semicolon
 (\texttt{;}). Additionally, you can split up your statement over many lines and
 add as much whitespace as you want, much like Scheme. But keep in mind that
 having consistent indentation and line breaking does make your code a lot more
 readable to others (and your future self)!
+
+\vspace{20}
+The \texttt{GROUP BY} and \texttt{HAVING} clauses of a \texttt{SELECT} statement are used to partition rows into groups and select only a subset of the groups. Any aggregate functions in the having clause or column description will apply to each group independently, rather than the entire set of rows in the table.
+
+\begin{lstlisting}[language=SQL]
+sqlite> SELECT division, max(salary) FROM records GROUP BY division;
+Computer|60000
+Administration|150000
+Accounting|75000
+
+sqlite> SELECT division, max(salary) FROM records GROUP BY division HAVING COUNT(*) > 1;
+Computer|60000
+Accounting|75000
+\end{lstlisting}
