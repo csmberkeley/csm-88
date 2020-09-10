@@ -4,8 +4,8 @@
 \begin{lstlisting}
 def filter_out(lst):
     """
-    >>> a = filter_out([1, 2, 3, 4, 5])
-    >>> lst, b = a(lambda x: x < 4)
+    >>> g = filter_out([1, 2, 3, 4, 5])
+    >>> lst, b = g(lambda x: x < 4)
     >>> lst
     [1, 2, 3]
     >>> lst, c = b(lambda y: y % 2 == 0)
@@ -20,7 +20,7 @@ def filter_out(lst):
 \begin{lstlisting}
 def filter_out(lst):
     def helper(f):
-        answer = [x for x in lst if f(x)]
+        answer = map(f, lst)
         return answer, filter_out(answer)
     return helper
 \end{lstlisting}

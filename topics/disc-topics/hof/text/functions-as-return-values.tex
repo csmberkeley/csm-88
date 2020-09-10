@@ -1,13 +1,35 @@
 Often, we will need to write a function that returns another function. One way
-to do this is to define a function inside of a function:
+to do this is to define a function \texttt{inner} inside of a function \texttt{outer}, and \texttt{outer} will return the function \texttt{inner}. 
+
+Some cases where we might do this is:
+\begin{itemize}
+    \item need additional information (in the example below, we needed information of the \texttt{name} of whom to greet)
+    \item might need to track other variables that aren't included
+\end{itemize}
+\vspace{2mm}
+
+\begin{lstlisting}[language = Python]
+def maker-greeter(greeting):
+    def greet(name):
+        print(greeting, name)
+    return greet
+
+>>> hello-greeter = make-greeter("Hello")
+>>> greet("Alina")
+Hello Alina
+\end{lstlisting}
+
+
+% Often, we will need to write a function that returns another function. One way
+% to do this is to define a function inside of a function:
 
 
 
-The return value of \texttt{outer} is the function \texttt{inner}. This is a
-case of a function returning a function. In this example, \texttt{inner} is
-defined inside of \texttt{outer}. Although this is a common pattern, we can also
-define \texttt{inner} outside of \texttt{outer} and still use the same
-\texttt{return} statement. However, note that in this second example (unlike the
-first example), \texttt{inner} doesn't have access to variables defined within
-the \texttt{outer} function, like \texttt{x}.
+% The return value of \texttt{outer} is the function \texttt{inner}. This is a
+% case of a function returning a function. In this example, \texttt{inner} is
+% defined inside of \texttt{outer}. Although this is a common pattern, we can also
+% define \texttt{inner} outside of \texttt{outer} and still use the same
+% \texttt{return} statement. However, note that in this second example (unlike the
+% first example), \texttt{inner} doesn't have access to variables defined within
+% the \texttt{outer} function, like \texttt{x}.
 

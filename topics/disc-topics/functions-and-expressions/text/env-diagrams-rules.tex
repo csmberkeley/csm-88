@@ -1,29 +1,33 @@
 \begin{blocksection}
-\begin{enumerate}
+\begin{itemize}
     \item Creating a Function
-        \begin{itemize}
+        \begin{enumerate}
+            \setlength{\itemindent}{0.3em}
             \item Draw the func $<$name$>$($<$arg1$>$, $<$arg2$>$, ...)
             \item The parent of the function is wherever the function was defined (the frame we're currently in, since we're creating the function).
             \item If we used def, make a binding of the name to the value in the current frame.
-        \end{itemize}
+        \end{enumerate}
     \item Calling User Defined Functions
-		\begin{itemize}
+		\begin{enumerate}
+		    \setlength{\itemindent}{0.3em}
 			\item Evaluate the operator and operands.
 			\item Create a new frame; the parent is whatever the operator's parent is. Now this is the current frame.
 			\item Bind the formal parameters to the argument values (the evaluated operands).
 			\item Evaluate the body of the operator in the context of this new frame.
 			\item After evaluating the body, go back to the frame that called the function.
-		\end{itemize}
+		\end{enumerate}
     \item Assignment
-    		\begin{itemize}
-    			\item Evaluate the expression to the right of the assignment operator (=).
+		\begin{enumerate}
+		    \setlength{\itemindent}{0.3em}
+			\item Evaluate the expression to the right of the assignment operator (=).
 			\item Bind the variable name to the value of the expression in the identified frame. Be sure you override the variable name if it had a previous binding.
-    		\end{itemize}
-    	\item Lookup
-    		\begin{itemize}
-    			\item Start at the current frame. Is the variable in this frame? If yes, that's the answer.
-			\item If it isn't, go to the parent frame and repeat 1.
-			\item If you run out of frames (reach the Global frame and it's not there), complain.
-    		\end{itemize}
-\end{enumerate}
+		\end{enumerate}
+	\item Lookup
+		\begin{enumerate}
+		\setlength{\itemindent}{0.3em}
+			\item Start at the current frame. Is the variable in this frame? If yes, that's the answer.
+    		\item If it isn't, go to the parent frame and repeat 1.
+    		\item If you run out of frames (reach the Global frame and it's not there), complain.
+	\end{enumerate}
+\end{itemize}
 \end{blocksection}
