@@ -13,7 +13,7 @@ except ValueError:
 
 
 prefix = '../../topics'
-worksheet_source = 'src/sp20'
+worksheet_source = 'src/fa20'
 output_directory = "published"
 
 def generate_file(file_name, file_paths, everything, solution=False):
@@ -23,17 +23,30 @@ def generate_file(file_name, file_paths, everything, solution=False):
         with open(file_path, 'r') as f:
             start = False
             start_sol = False
-            for line in f.read().split('\n'):
+            lines = f.read().split('\n')
+            found_doctest = False
+            lines_written = 0
+            for i in range(len(lines)):
+                line = lines[i]
                 if line.startswith(r'\begin{solution}'):
                     start_sol = True
                 if line == r'\begin{lstlisting}':
                     start = True
+                    found_doctest = False
                 elif line == r'\end{lstlisting}':
                     start = False
+                    found_doctest = False
                 elif start and (start_sol == solution):
-                    if everything or line[:3] not in [">>>", "..."]:
+                    if everything or solution:
                         file.append(line)
-        file.append("\n")
+                        lines_written += 1
+                    if "def" in line and '"""' in lines[i+1]:
+                        found_doctest = True
+                    if not everything and found_doctest:
+                        lines_written += 1
+                        file.append(line)
+        if lines_written:
+            file.append("\n")
     with open(file_name, 'w') as f:
         f.write('\n'.join(file) + '\n')
                 
