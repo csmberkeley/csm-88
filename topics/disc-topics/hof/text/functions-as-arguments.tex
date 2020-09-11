@@ -1,5 +1,14 @@
-One way a higher order function can manipulate other functions is by taking
-functions as input (an argument). Consider this higher order function called
-\texttt{negate}.
+Taking in functions as arguments can help generalize our code. Imagine we have a function \texttt{mul-by-2} which will take in a list and multiply each element by 2. If we'd want to be able to do something similar to \texttt{mul-by-2} but apply a different operation, we'd have to make a different function, but nearly all the code between the two would be the same!
 
-\texttt{negate} takes in a function \texttt{f} and a number \texttt{x}. It doesn't care what exactly \texttt{f} does, as long as \texttt{f} is a function, takes in a number and returns a number. Its job is simple: call \texttt{f} on \texttt{x} and return the negation of that value.
+A way that generalizes this is a function that takes in two arguments, the list and a one argument function that will perform the operation we'd like. This function is known as \texttt{map}. Below is an example of applying a \texttt{cook} function to a list of various food items:
+\vspace{2mm}
+\begin{lstlisting}[language=Python]
+>>> map(cook, ["cow", "potato", "chicken", "corn"])
+["burger", "fries", "fried chicken", "popcorn"]
+\end{lstlisting}
+
+% One way a higher order function can manipulate other functions is by taking
+% functions as input (an argument). Consider this higher order function called
+% \texttt{negate}.
+
+% \texttt{negate} takes in a function \texttt{f} and a number \texttt{x}. It doesn't care what exactly \texttt{f} does, as long as \texttt{f} is a function, takes in a number and returns a number. Its job is simple: call \texttt{f} on \texttt{x} and return the negation of that value.

@@ -1,8 +1,8 @@
 \begin{blocksection}
-\question Definition: Each digit in a non-negative integer n has a digit position. Digit positions begin at 0 and count from the right-most digit of n. For example, in 568789, the digit 9 is at position 0 and digit 7 is at position 2. The digit 8 appears at both positions 1 and 3. 
+\question Each digit in a non-negative integer n has a digit position. Digit positions begin at 0 and count from the right-most digit of n. For example, in 568789, the digit 9 is at position 0 and digit 7 is at position 2. The digit 8 appears at both positions 1 and 3. 
 
 Implement the find\_digit function, which takes a non-negative integer n and a digit d greater than 0 and less than 10. It returns the largest (left-most) position in n at which digit d appears. If d does not appear in n, then find\_digit returns False. You may not use recursive calls.
-
+\vspace{10}
 
 \begin{lstlisting}
 def find_digit (n , d ): 
@@ -16,15 +16,18 @@ def find_digit (n , d ):
     >>> find_digit (568789 , 8) # 8 appears at positions 1 and 3 
     3 
     """ 
-    i , k = 0 , _____________________________________________
+    i = 0
     
-    while n : 
+    k = ___________________________________________________
     
-        n , last = n // 10 , n % 10 
+    while n: 
+    
+        n, last = n // 10, n % 10 
 
         if last == ___________:
 
             _____________________
+            
         i = i + 1 
 
     return ___________________________________________________
