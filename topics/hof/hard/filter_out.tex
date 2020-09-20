@@ -20,7 +20,7 @@ def filter_out(lst):
 \begin{lstlisting}
 def filter_out(lst):
     def helper(f):
-        answer = map(f, lst)
+        answer = list(map(f, lst))
         return answer, filter_out(answer)
     return helper
 \end{lstlisting}

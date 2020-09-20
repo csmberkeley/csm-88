@@ -1,14 +1,30 @@
-In Python, we have \textit{lists}, which are ordered collections of whatever values we want, be it numbers, strings, functions, or even other lists! Lists can be created using square braces. Their elements can be accessed (or \textit{indexed}) with square braces. 
+\define{Introduction} 
 
-Lists are zero-indexed: to access the first element, we must index at 0;  to access the $i$th element, we must index at $i - 1$. We can also index with negative numbers. This begins indexing at the end of the list, so the index $-1$ is equivalent to the index \texttt{len(list) - 1} and index $-2$ is the same as \texttt{len(list) - 2}.
+In Python, \textit{lists} are ordered collections of whatever values we want, be it numbers, strings, functions, or even other lists! Each value stored inside a list is called an \textit{element}. We can create lists by using square braces.
+
+
+\begin{lstlisting}
+>>> foods = ['apple', 'oranges', 'banana', 'milk', 'cookies']
+>>> print(foods)
+['apple', 'oranges', 'banana', 'milk', 'cookies']
+\end{lstlisting}
+
+\define{Accessing elements} 
+
+Lists are zero-indexed: to access the first element, we must access the element at index 0;  to access the $i$th element, we must index at $i - 1$.
+
+We can also index with negative numbers. This begins indexing at the end of the list, so the index $-1$ is equivalent to the index \texttt{len(list) - 1} and index $-2$ is the same as \texttt{len(list) - 2}.
 
 Examples:
 \begin{lstlisting}
->>> pokemon_team = ['pikachu', 'dratini']
->>> print(pokemon_team)
-['pikachu', 'dratini']
->>> pokemon_team[0]
-'pikachu'
->>> pokemon_team[-1]
-'dratini'
+>>> foods[0]
+'apple'
+>>> foods[2]
+'banana'
+>>> foods[-3] 
+'milk'
 \end{lstlisting}
+
+\define{Comprehension Check:} How would you access the element 'oranges' using a positive index? What about a negative index?
+
+
