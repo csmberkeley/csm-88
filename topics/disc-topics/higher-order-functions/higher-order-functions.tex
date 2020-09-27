@@ -1,7 +1,7 @@
 \question
-What do lambda expressions do? Can we write all functions as lambda expressions? In what cases are lambda expressions useful? 
+What do lambda expressions do? Can we write all functions as lambda expressions? (Hint: think about the limitations of lambdas) In what cases are lambda expressions useful? 
 \begin{solution}[0.75in]
-Lambda expressions create functions. When a lambda expression is evaluated, it produces a function. We often use lambdas to create short anonymous functions that we won?t need for too long. \newline We can?t write all functions as lambda expressions because lambda functions all have to have ?return? statements and they can?t contain very complex multi-line expressions.
+Lambda expressions create functions. When a lambda expression is evaluated, it produces a function. We often use lambdas to create short anonymous functions that we won't need for too long. \newline We can't write all functions as lambda expressions because lambda functions all have to have "return" statements. In addition, they can't contain very complex multi-line expressions.  \newline Lambda expressions are very useful. In HOF, we want to pass functions into another function or have a function return a function. Lambdas expressions serve as a short and convenient way to define functions in HOFs.
 \end{solution}
 
 \question
@@ -78,7 +78,9 @@ function $<$lambda$>$ at 0x61CSTUFF
 
 \question 
 \textbf{Challenge Problem}: 
-Draw Environment Diagrams for the following lines of code
+Draw Environment Diagrams for the following lines of code. 
+\newline
+Note: When working with lambdas in environment diagram problems, it is really helpful to write down  which line the lambda was define on.
 \begin{lstlisting}
 square = lambda x: x * x
 higher = lambda f: lambda y: f(f(y))
