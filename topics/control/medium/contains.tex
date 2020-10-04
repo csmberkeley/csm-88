@@ -1,0 +1,51 @@
+\question
+\begin{parts}
+\part 
+Given a list \lstinline{lst}, and an index \lstinline{i}, return whether or not \lstinline{num} appears at index \lstinline{i} or onwards in the given \lstinline{lst}.
+\begin{lstlisting}
+def contains_num_after_i(lst, num, i):
+    """ 
+    >>> contains_num_after_i([1, 11, 3, 4, 5, 6, 7, 8], 11, 3)
+    False
+    >>> contains_num_after_i([1, 2, 11, 4, 5, 6, 7, 8], 11, 3)
+    False
+    >>> contains_num_after_i([1, 2, 3, 11, 5, 6, 7, 8], 11, 3)
+    True
+    >>> contains_num_after_i([1, 11, 3, 4, 5, 6, 7, 11], 11, 5)
+    True
+    """
+\end{lstlisting}
+\begin{solution}[1.5in]
+\begin{lstlisting}
+    for j in range(i, len(lst)):
+        if lst[j] == num:
+            return True
+    return False
+\end{lstlisting}
+\end{solution}
+
+\newpage
+\part Return whether or not there are duplicates in the given \lstinline{lst}. Hint: Call the function above!
+
+\begin{lstlisting}
+def duplicates(lst):
+    """ 
+    >>> duplicates([1, 11, 3, 4, 5, 6, 7, 8])
+    False
+    >>> duplicates([1, 2, 11, 4, 5, 6, 7, 8])
+    False
+    >>> duplicates([1, 2, 3, 11, 5, 6, 7, 3, 8])
+    True
+    >>> duplicates([1, 11, 4, 4, 9, 5, 6, 7, 11])
+    True
+    """
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+    for i in range(len(lst)):
+        if contains_num_after_i(lst, lst[i], i):
+            return True
+    return False
+\end{lstlisting}
+\end{solution}
+\end{parts}

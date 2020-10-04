@@ -1,0 +1,52 @@
+\begin{blocksection}
+\question
+\begin{parts}
+
+\part
+Create a new list containing only the unique values of the given list. All of the code except for two blank lines has been given to you! You may not use the built in \lstinline{count} method for this part and the next. Hint, use slicing. 
+\begin{lstlisting}
+def unique_values1(lst):
+    """
+    >>> unique_values1([1, 2, 3, 1, 3, 1, 4])
+    [2, 4]
+    >>> unique_values1([3, 1, 2, 2])
+    [3, 1]
+    >>> unique_values1([])
+    []
+    >>> unique_values1([5, 5, 4, 4, 3, 2, 1])
+    [3, 2, 1]
+    """
+    answer = []
+    for i in range(len(lst)):
+
+        if _____________________________:
+
+            ____________________________
+
+    return answer
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+answer = []
+    for i in range(len(lst)):
+        if lst[i] not in lst[:i] + lst[i + 1:]:
+            answer.append(lst[i])
+    return answer
+\end{lstlisting}
+\end{solution}
+
+\part Create a new list containing only the unique values of the given list on one line with a list comprehension! It is the same question as before but one line this time!
+\begin{lstlisting}
+def unique_values2(lst):
+    """ See doctests of previous problem """
+    
+    
+    return ________________________________________________
+\end{lstlisting}
+\begin{solution}
+\begin{lstlisting}
+    return [lst[i] for i in range(len(lst)) if lst[i] not in lst[:i] + lst[i + 1:]]
+\end{lstlisting}
+\end{solution}
+\end{parts}
+\end{blocksection}
