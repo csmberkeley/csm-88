@@ -1,0 +1,39 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{More Recursion and Tree Recursion}}
+\date{October 11th to 16th}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Recursion}
+\begin{questions}
+\subimport{../../topics/recursion/easy/}{is-increasing.tex}
+\subimport{../../topics/recursion/medium/}{replace.tex}
+\newpage
+\end{questions}
+
+\section{Tree Recursion}
+\subimport{../../topics/disc-topics/recursion/text/}{tree-recursion.tex}
+\begin{questions}
+\pagebreak
+\subimport{../../topics/recursion/medium/}{mario-number.tex}
+\pagebreak
+\subimport{../../topics/recursion/medium/}{paths.tex}
+\pagebreak
+\subimport{../../topics/recursion/medium/}{merge.tex}
+\subimport{../../topics/recursion/medium/}{mergesort.tex}
+
+\end{questions}
+\end{document}
