@@ -1,14 +1,14 @@
 \begin{blocksection}
 \question \textbf{Hello Zoom} \newline
-Given the class ZoomCall defined below, what will Python print for the following prompts? 
+Given the class \lstinline{ZoomCall} defined below, what will Python print for the following prompts? 
 
 \begin{lstlisting}
 class ZoomCall:
 
     duration = 40
-    def __init__(self, teacher, group):
+    def __init__(self, teacher, students):
         self.teacher = teacher
-        self.group = group
+        self.students = students
         self.time_spent = 0
 
     def attempt_problem(self, difficulty):
@@ -18,15 +18,10 @@ class ZoomCall:
         self.time_spent += difficulty
 
     def breakout_groups(self):
-        answers = []
-        copy = list(self.group)
-        while copy:
-            mini = []
-            for i in range(2):
-                if copy:
-                    mini.append(copy.pop())
-            answers.append(mini)
-        return answers
+        groups = [[], [], []]
+        for i in range(len(self.students)):
+            groups[i % 3].append(self.students[i])
+        return groups
 
     def time_remaining(self):
         return self.duration - self.time_spent
@@ -39,11 +34,11 @@ class ZoomCall:
 \begin{blocksection}
 
 \begin{lstlisting}
->>> call_one = ZoomCall("Ada", ["Nicholas", "Jack", "Megan"])
+>>> call_one = ZoomCall('Alina', ['Amit', 'Lukas', 'Vikram', 'Warren', 'Tony'])
 >>> call_one.teacher
 \end{lstlisting}
 \begin{solution}[.2in]
-'Ada'
+'Alina'
 \end{solution}
 
 \begin{lstlisting}
@@ -51,8 +46,9 @@ class ZoomCall:
 \end{lstlisting}
 \begin{solution}[.2in]
 \begin{lstlisting}
-How's it going Megan
-How's it going Nicholas
+How's it going Amit
+How's it going Lukas
+How's it going Vikram
 \end{lstlisting}
 \end{solution}
 
@@ -88,28 +84,29 @@ How's it going Nicholas
 40
 \end{solution}
 \end{blocksection}
+\newpage
+\question Add the methods \lstinline$overtime$ and \lstinline$promote$ to the ZoomCall class so they execute the behavior shown below. You can assume that we continue executing the following code \emph{after} executing the code above.
 
-\question Add the methods \lstinline$overtime$ and \lstinline$overthrow$ to the ZoomCall class so they execute the behavior shown below. You can assume that we continue executing the following prompts \emph{after} executing the prompts above.
-
-\begin{blocksection}
 \begin{lstlisting}
 >>> call_one.overtime()
 True
 >>> call_two.overtime()
 False
->>> call_two.overthrow('Shreya')
+>>> call_two.time_spent = call_two.duration + 1
+>>> call_two.overtime()
+True
+>>> call_two.promote('Shreya')
 >>> call_two.teacher
 'Shreya'
->>> call_two.group
+>>> call_two.students
 ['Kaitlyn', 'Nikhil']
->>> call_two.overthrow('Chi')
+>>> call_two.promote('Chi')
 >>> call_two.teacher
 'Chi'
->>> call_two.group
+>>> call_two.students
 ['Kaitlyn', 'Nikhil', 'Shreya']
 \end{lstlisting}
-\end{blocksection}
-
+\bigbreak
 \begin{lstlisting}
 def overtime(self):
     
@@ -122,15 +119,15 @@ def overtime(self):
 \end{solution}
 
 \begin{lstlisting}
-def overthrow(self, new_leader):
+def promote(self, new_teacher):
     
 \end{lstlisting}
 
 \begin{solution}[1.5in]
 \begin{lstlisting}
-    if new_leader in self.group:
-        self.group.remove(new_leader)
-    self.group.append(self.teacher)
-    self.teacher = new_leader
+    if new_teacher in self.students:
+        self.students.remove(new_teacher)
+    self.students.append(self.teacher)
+    self.teacher = new_teacher
 \end{lstlisting}
 \end{solution}
