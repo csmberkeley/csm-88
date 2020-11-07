@@ -1,8 +1,8 @@
 \begin{blocksection}
-\question \textbf Write the \texttt{help} function in the Mentor class. When this function is called, the mentor should help students in the queue that need help (the queue is a linked list). If a student does not need help, the mentor should move on to the next student. See the sample use case at the bottom for an example of how the \texttt{help} method should work!
+\question Implement the \texttt{help} method in the \texttt{Mentor} class. In this method, the mentor should help all the \lstinline{students} that need help (\lstinline{students} is a linked list of \lstinline{Student} instances). If a student does not need help, the mentor should move on to the next student. See the doctests for an example of how the \texttt{help} method should work!
 
 \begin{lstlisting}
-class Mentee:
+class Student:
     def __init__(self, name, needs_help):
         self.name = name
         self.needs_help = needs_help
@@ -12,40 +12,31 @@ class Mentor:
         self.name = name
 
     def help(self, students):
-        ## TO DO
+        """
+        >>> warren = Student("Warren", True)
+        >>> lukas = Student("Lukas", False)
+        >>> alina = Student("Alina", True)
+        >>> vik = Student("Vikram", True)
+        >>> amit = Mentor("Amit")
+        >>> students = Link(warren, Link(lukas, Link(alina, Link(vik))))
+        >>> amit.help(students)
+        Amit helped Warren!
+        Amit helped Alina!
+        Amit helped Vikram!
+        >>> amit.help(students) ## No one needs help anymore, so nothing should be printed!
+        """
 
-chi = Mentee("Chi", True)
-mimi = Mentee("Mimi", False)
-gilbert = Mentee("Gilbert", True)
-ada = Mentee("Ada", True)
 
-tony = Mentor("Tony")
-students = Link(chi, Link(mimi, Link(gilbert, Link(ada))))
-
-tony.help(students)
->>> Tony helped Chi!
->>> Tony helped Gilbert!
->>> Tony helped Ada!
-
-tony.help(students)
-## No one needs help anymore, so nothing should be printed!
 \end{lstlisting}
-\end{blocksection}
-\begin{lstlisting}
-def help(self, students):
-    
-\end{lstlisting}
-\begin{blocksection}
+
 \begin{solution}
 \begin{lstlisting}
-    if students is Link.empty:
-        return
-    else:
-        curr = students.first
-        if curr.needs_help:
-            print(self.name + " helped " + curr.name + "!")
-            curr.needs_help = False
-        self.help(students.rest)
+        if students is not Link.empty:
+            curr = students.first
+            if curr.needs_help:
+                print(self.name + " helped " + curr.name + "!")
+                curr.needs_help = False
+            self.help(students.rest)
 \end{lstlisting}
 \end{solution}
 \end{blocksection}
