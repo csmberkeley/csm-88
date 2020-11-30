@@ -1,0 +1,51 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Structured Query Language (SQL)}}
+\date{November 30th - December 4th}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction to SQL}
+\subimport{../../topics/sql/text/}{introduction.tex}
+\subimport{../../topics/sql/text/}{queries.tex}
+\newpage
+\subimport{../../topics/sql/mentors/}{table.tex}
+\begin{questions}
+\subimport{../../topics/sql/mentors/easy/}{food-if-color-green.tex}
+\subimport{../../topics/sql/mentors/easy/}{food-and-color-if-language-not-python.tex}
+\subimport{../../topics/sql/mentors/medium/}{pairs-same-language.tex}
+\subimport{../../topics/sql/mentors/easy/}{alphabetical.tex}
+
+\newpage
+\section{Aggregation}
+\subimport{../../topics/sql/fish/text/}{intro.tex}
+\subimport{../../topics/sql/fish/tables/}{fish.tex}
+\subimport{../../topics/sql/fish/easy/}{most-populated-species.tex}
+\subimport{../../topics/sql/fish/easy/}{number-fish.tex}
+\subimport{../../topics/sql/fish/easy/}{most-pieces-per-price.tex}
+
+
+\newpage
+\section{Extra Problems}
+\subimport{../../topics/disc-topics/sql/text/}{courses.tex}
+%\subimport{../topics/sql/text/}{courses-taught-times.tex}
+\subimport{../../topics/disc-topics/sql/easy/}{num-taught.tex}
+%\subimport{../topics/sql/easy/}{taught-once.tex}
+%\subimport{../topics/sql/easy/}{taught-together.tex}
+\subimport{../../topics/disc-topics/sql/easy/}{taught-same.tex}
+\subimport{../../topics/disc-topics/sql/medium/}{taught-coop.tex}
+
+\end{questions}
+\end{document}
