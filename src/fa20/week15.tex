@@ -1,0 +1,53 @@
+\documentclass{exam}
+\usepackage{../../commonheader}
+% \usepackage{draftwatermark}
+% \SetWatermarkText{Training}
+% \SetWatermarkScale{1}
+
+%%% CHANGE THESE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\discnumber{1}
+\title{\textsc{Final Review}}
+\date{December 7th to 11th}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\rule{\textwidth}{0.15em}
+\fontsize{12}{15}\selectfont
+
+%%% INCLUDE TOPICS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{questions}
+
+\section{HOFs}
+\subimport{../../topics/hof/medium/}{flip-flop.tex}
+\newpage
+
+\section{Recursion}
+\subimport{../../topics/recursion/medium/}{replace.tex}
+\newpage
+
+\section{Lists}
+\subimport{../../topics/lists/immutable/medium/}{comprehensions.tex}
+\newpage
+
+\section{OOP + WWPD}
+\subimport{../../topics/oop/easy/}{star-wars.tex}
+\newpage
+
+\section{Linked Lists}
+\subimport{../../topics/linked-lists/class/medium/}{double-link.tex}
+\newpage
+
+\section{Trees}
+\subimport{../../topics/trees/class/medium/}{paths.tex}
+\newpage
+
+\section{Generators}
+\subimport{../../topics/generators/medium/}{flat-map.tex}
+\newpage
+\section{Challenge Problem}
+\subimport{../../topics/generators/medium/}{yield_nested.tex}
+\newpage 
+\end{questions}
+\end{document}
